@@ -1046,8 +1046,7 @@
             <li>Soporte por email</li>
           </ul>
           <div class="cta">
-            <button class="btn primary" onclick="startPayment('monthly')">Empezar ahora</button>
-            <a class="btn" href="mailto:ventas@ejemplo.com?subject=Consulta%20plan%20mensual">Hablar con ventas</a>
+            <button class="btn primary" onclick="startPayment('monthly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
           </div>
           <p class="note">Sin permanencia. Cancela cuando quieras.</p>
         </article>
@@ -1064,8 +1063,7 @@
             <li>Equivale a 3,33€/mes</li>
           </ul>
           <div class="cta">
-            <button class="btn primary" onclick="startPayment('yearly')">Contratar anual</button>
-            <a class="btn" href="mailto:ventas@ejemplo.com?subject=Consulta%20plan%20anual">Hablar con ventas</a>
+            <button class="btn primary" onclick="startPayment('yearly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
           </div>
           <p class="note">Ahorra 8€ al año por propiedad.</p>
         </article>
@@ -1080,8 +1078,7 @@
             <li>Onboarding personalizado</li>
           </ul>
           <div class="cta">
-            <a class="btn primary" href="mailto:ventas@delfincheckin.com?subject=Consulta%20descuento%20por%20volumen&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20el%20descuento%20por%20volumen%20para%205%2B%20propiedades.%0D%0A%0D%0A¿Podrían%20enviarme%20información%20sobre:%0D%0A-%20Precios%20especiales%20negociables%0D%0A-%20Funcionalidades%20incluidas%0D%0A-%20Proceso%20de%20implementación%0D%0A%0D%0AGracias.">Consultar precio</a>
-            <a class="btn" href="mailto:ventas@ejemplo.com?subject=Consulta%20descuento%20volumen">Hablar con ventas</a>
+            <a class="btn primary" href="mailto:ventas@delfincheckin.com?subject=Consulta%20descuento%20por%20volumen&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20el%20descuento%20por%20volumen%20para%205%2B%20propiedades.%0D%0A%0D%0A¿Podrían%20enviarme%20información%20sobre:%0D%0A-%20Precios%20especiales%20negociables%0D%0A-%20Funcionalidades%20incluidas%0D%0A-%20Proceso%20de%20implementación%0D%0A%0D%0AGracias." style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700; text-align: center;">Consultar precio</a>
           </div>
           <p class="note">Contacta para precio personalizado.</p>
         </article>
@@ -1336,40 +1333,98 @@
     </footer>
 
   <!-- Modal de Pago Stripe -->
-  <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center;">
-    <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%; position: relative;">
+  <div id="paymentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; overflow-y: auto; padding: 20px;">
+    <div style="background: white; padding: 30px; border-radius: 12px; max-width: 600px; width: 90%; position: relative; margin: 20px 0;">
       <button id="closePayment" style="position: absolute; top: 15px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer;">×</button>
-      <h3 style="margin: 0 0 20px; color: #1e40af;">💳 Pago seguro con Stripe</h3>
-      <div id="paymentInfo" style="margin-bottom: 20px; padding: 15px; background: #f8fafc; border-radius: 8px;">
-        <div id="planName" style="font-weight: 600; margin-bottom: 5px;"></div>
-        <div id="planPrice" style="font-size: 18px; color: #2563eb; font-weight: 600;"></div>
-        <div id="planDescription" style="font-size: 14px; color: #64748b; margin-top: 5px;"></div>
+      <h3 style="margin: 0 0 20px; color: #1e40af; text-align: center;">🐬 Contratar Delfín Check-in</h3>
+      
+      <!-- Resumen del pedido -->
+      <div id="paymentInfo" style="margin-bottom: 25px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
+        <h4 style="margin: 0 0 15px; color: #1e40af;">Resumen del Pedido</h4>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span>Plan:</span>
+          <span id="planName" style="font-weight: 600;"></span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span>Propiedades:</span>
+          <span id="planProperties">-</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+          <span>Precio por propiedad:</span>
+          <span id="planPrice">-</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 18px; color: #1e40af; border-top: 2px solid #e5e7eb; padding-top: 10px; margin-top: 10px;">
+          <span>Total:</span>
+          <span id="totalPrice">-</span>
+        </div>
       </div>
       
       <form id="paymentForm">
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; margin-bottom: 8px; font-weight: 600;">Número de propiedades</label>
-          <input type="number" id="paymentProperties" min="1" value="1" style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+        <!-- Datos del cliente -->
+        <div style="margin-bottom: 25px;">
+          <h4 style="margin: 0 0 15px; color: #374151;">Datos del Cliente</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Nombre <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="paymentFirstName" placeholder="Nombre" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Apellidos <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="paymentLastName" placeholder="Apellidos" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Email <span style="color: #dc2626;">*</span></label>
+            <input type="email" id="paymentEmail" placeholder="tu@email.com" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Empresa/Alojamiento <span style="color: #dc2626;">*</span></label>
+            <input type="text" id="paymentCompany" placeholder="Nombre de tu negocio" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+          </div>
+          
+          <div style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Dirección <span style="color: #dc2626;">*</span></label>
+            <input type="text" id="paymentAddress" placeholder="Dirección completa" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px;">
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Ciudad <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="paymentCity" placeholder="Ciudad" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">Código Postal <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="paymentPostalCode" placeholder="CP" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+            </div>
+            <div>
+              <label style="display: block; margin-bottom: 8px; font-weight: 600; font-size: 14px;">País <span style="color: #dc2626;">*</span></label>
+              <select id="paymentCountry" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+                <option value="">Seleccionar</option>
+                <option value="ES" selected>España</option>
+                <option value="FR">Francia</option>
+                <option value="IT">Italia</option>
+                <option value="PT">Portugal</option>
+                <option value="DE">Alemania</option>
+                <option value="GB">Reino Unido</option>
+                <option value="US">Estados Unidos</option>
+              </select>
+            </div>
+          </div>
         </div>
         
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email de facturación</label>
-          <input type="email" id="paymentEmail" placeholder="tu@email.com" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
+        <!-- Información de pago -->
+        <div style="margin-bottom: 25px;">
+          <h4 style="margin: 0 0 15px; color: #374151;">Información de Pago</h4>
+          <div id="cardElement" style="margin-bottom: 15px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white;">
+            <!-- Stripe Elements se insertará aquí -->
+          </div>
+          <div id="cardErrors" style="color: #dc2626; margin-bottom: 15px; font-size: 14px;"></div>
         </div>
-        
-        <div style="margin-bottom: 20px;">
-          <label style="display: block; margin-bottom: 8px; font-weight: 600;">Nombre completo</label>
-          <input type="text" id="paymentName" placeholder="Tu nombre completo" required style="width: 100%; height: 40px; border: 1px solid #d1d5db; border-radius: 8px; padding: 0 12px;">
-        </div>
-        
-        <div id="cardElement" style="margin-bottom: 20px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white;">
-          <!-- Stripe Elements se insertará aquí -->
-        </div>
-        
-        <div id="cardErrors" style="color: #dc2626; margin-bottom: 20px; font-size: 14px;"></div>
         
         <button type="submit" id="submitPayment" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
-          <span id="buttonText">Pagar ahora</span>
+          <span id="buttonText">💳 Pagar ahora</span>
           <span id="spinner" style="display: none;">⏳ Procesando...</span>
         </button>
         
@@ -2131,16 +2186,30 @@
       const planPrice = $('#planPrice');
       const planDescription = $('#planDescription');
       
+      // Obtener número de propiedades de la calculadora
+      const properties = parseInt($('#calcProperties').value) || 1;
+      
       // Configurar información del plan
+      let pricePerProperty, total, planText;
       if (plan === 'monthly') {
-        planName.textContent = 'Plan Mensual';
-        planPrice.textContent = '4€ por propiedad/mes';
-        planDescription.textContent = 'Facturación mensual • Sin permanencia';
+        planText = 'Plan Mensual';
+        pricePerProperty = '4€/mes';
+        total = properties * 4;
       } else if (plan === 'yearly') {
-        planName.textContent = 'Plan Anual';
-        planPrice.textContent = '40€ por propiedad/año';
-        planDescription.textContent = 'Ahorra 8€ por propiedad • Equivale a 3,33€/mes';
+        planText = 'Plan Anual';
+        pricePerProperty = '40€/año';
+        total = properties * 40;
+      } else if (plan === 'volume') {
+        planText = 'Plan Volumen';
+        pricePerProperty = 'Negociable';
+        total = 'Contactar';
       }
+      
+      // Actualizar información en el modal
+      planName.textContent = planText;
+      planPrice.textContent = pricePerProperty;
+      $('#planProperties').textContent = properties + (properties === 1 ? ' propiedad' : ' propiedades');
+      $('#totalPrice').textContent = total === 'Contactar' ? 'Contactar para precio' : `${total}€${plan === 'monthly' ? '/mes' : '/año'}`;
       
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
