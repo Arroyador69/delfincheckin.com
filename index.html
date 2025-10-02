@@ -1414,10 +1414,22 @@
           </div>
         </div>
         
+        <!-- Número de propiedades -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Configuración</h4>
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px;">Número de propiedades <span style="color: #dc2626;">*</span></label>
+            <input type="number" id="paymentProperties" min="1" value="1" style="width: 100%; height: 36px; border: 1px solid #d1d5db; border-radius: 6px; padding: 0 10px; font-size: 14px;">
+          </div>
+        </div>
+        
         <!-- Información de pago -->
         <div style="margin-bottom: 20px;">
           <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Información de Pago</h4>
-          <div id="cardElement" style="margin-bottom: 15px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white;">
+          <button type="button" id="stripeButton" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 15px;">
+            🔗 Utilizar enlace de pago
+          </button>
+          <div id="cardElement" style="margin-bottom: 15px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white; display: none;">
             <!-- Stripe Elements se insertará aquí -->
           </div>
           <div id="cardErrors" style="color: #dc2626; margin-bottom: 15px; font-size: 14px;"></div>
@@ -2186,8 +2198,8 @@
       const planPrice = $('#planPrice');
       const planDescription = $('#planDescription');
       
-      // Obtener número de propiedades de la calculadora
-      const properties = parseInt($('#calcProperties').value) || 1;
+      // Inicializar con 1 propiedad por defecto
+      const properties = 1;
       
       // Configurar información del plan
       let pricePerProperty, total, planText;
@@ -2210,6 +2222,39 @@
       planPrice.textContent = pricePerProperty;
       $('#planProperties').textContent = properties + (properties === 1 ? ' propiedad' : ' propiedades');
       $('#totalPrice').textContent = total === 'Contactar' ? 'Contactar para precio' : `${total}€${plan === 'monthly' ? '/mes' : '/año'}`;
+      
+      // Configurar el campo de propiedades
+      $('#paymentProperties').value = properties;
+      
+      // Event listener para actualizar precio cuando cambie el número de propiedades
+      $('#paymentProperties').addEventListener('input', function() {
+        const newProperties = parseInt(this.value) || 1;
+        let newTotal;
+        if (plan === 'monthly') {
+          newTotal = newProperties * 4;
+        } else if (plan === 'yearly') {
+          newTotal = newProperties * 40;
+        } else {
+          newTotal = 'Contactar';
+        }
+        
+        $('#planProperties').textContent = newProperties + (newProperties === 1 ? ' propiedad' : ' propiedades');
+        $('#totalPrice').textContent = newTotal === 'Contactar' ? 'Contactar para precio' : `${newTotal}€${plan === 'monthly' ? '/mes' : '/año'}`;
+      });
+      
+      // Event listener para el botón de enlace de pago
+      $('#stripeButton').addEventListener('click', function() {
+        const cardElement = $('#cardElement');
+        if (cardElement.style.display === 'none') {
+          cardElement.style.display = 'block';
+          this.textContent = '💳 Usar tarjeta de crédito';
+          this.style.background = '#6b7280';
+        } else {
+          cardElement.style.display = 'none';
+          this.textContent = '🔗 Utilizar enlace de pago';
+          this.style.background = '#2563eb';
+        }
+      });
       
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
