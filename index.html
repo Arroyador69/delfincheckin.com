@@ -1078,7 +1078,7 @@
             <li>Onboarding personalizado</li>
           </ul>
           <div class="cta">
-            <a class="btn primary" href="mailto:ventas@delfincheckin.com?subject=Consulta%20descuento%20por%20volumen&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20el%20descuento%20por%20volumen%20para%205%2B%20propiedades.%0D%0A%0D%0A¿Podrían%20enviarme%20información%20sobre:%0D%0A-%20Precios%20especiales%20negociables%0D%0A-%20Funcionalidades%20incluidas%0D%0A-%20Proceso%20de%20implementación%0D%0A%0D%0AGracias." style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700; text-align: center;">Consultar precio</a>
+            <button class="btn primary" onclick="startPayment('volume')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
           </div>
           <p class="note">Contacta para precio personalizado.</p>
         </article>
@@ -1360,6 +1360,15 @@
       </div>
       
       <form id="paymentForm">
+        <!-- Número de propiedades -->
+        <div style="margin-bottom: 20px;">
+          <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Configuración</h4>
+          <div style="margin-bottom: 12px;">
+            <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px;">Número de propiedades <span style="color: #dc2626;">*</span></label>
+            <input type="number" id="paymentProperties" min="1" value="1" style="width: 100%; height: 36px; border: 1px solid #d1d5db; border-radius: 6px; padding: 0 10px; font-size: 14px;">
+          </div>
+        </div>
+        
         <!-- Datos del cliente -->
         <div style="margin-bottom: 20px;">
           <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Datos del Cliente</h4>
@@ -1414,22 +1423,10 @@
           </div>
         </div>
         
-        <!-- Número de propiedades -->
-        <div style="margin-bottom: 20px;">
-          <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Configuración</h4>
-          <div style="margin-bottom: 12px;">
-            <label style="display: block; margin-bottom: 6px; font-weight: 600; font-size: 13px;">Número de propiedades <span style="color: #dc2626;">*</span></label>
-            <input type="number" id="paymentProperties" min="1" value="1" style="width: 100%; height: 36px; border: 1px solid #d1d5db; border-radius: 6px; padding: 0 10px; font-size: 14px;">
-          </div>
-        </div>
-        
         <!-- Información de pago -->
         <div style="margin-bottom: 20px;">
           <h4 style="margin: 0 0 12px; color: #374151; font-size: 16px;">Información de Pago</h4>
-          <button type="button" id="stripeButton" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-bottom: 15px;">
-            🔗 Utilizar enlace de pago
-          </button>
-          <div id="cardElement" style="margin-bottom: 15px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white; display: none;">
+          <div id="cardElement" style="margin-bottom: 15px; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; background: white;">
             <!-- Stripe Elements se insertará aquí -->
           </div>
           <div id="cardErrors" style="color: #dc2626; margin-bottom: 15px; font-size: 14px;"></div>
@@ -2213,8 +2210,15 @@
         total = properties * 40;
       } else if (plan === 'volume') {
         planText = 'Plan Volumen';
-        pricePerProperty = 'Negociable';
-        total = 'Contactar';
+        if (properties >= 5) {
+          // Aplicar descuento del 30% para 5+ propiedades
+          const discountedPrice = Math.round(40 * 0.7); // 28€ por propiedad
+          pricePerProperty = `${discountedPrice}€/año (descuento aplicado)`;
+          total = properties * discountedPrice;
+        } else {
+          pricePerProperty = '40€/año (mínimo 5 propiedades)';
+          total = properties * 40;
+        }
       }
       
       // Actualizar información en el modal
@@ -2229,32 +2233,30 @@
       // Event listener para actualizar precio cuando cambie el número de propiedades
       $('#paymentProperties').addEventListener('input', function() {
         const newProperties = parseInt(this.value) || 1;
-        let newTotal;
+        let newTotal, newPricePerProperty;
+        
         if (plan === 'monthly') {
+          newPricePerProperty = '4€/mes';
           newTotal = newProperties * 4;
         } else if (plan === 'yearly') {
+          newPricePerProperty = '40€/año';
           newTotal = newProperties * 40;
-        } else {
-          newTotal = 'Contactar';
+        } else if (plan === 'volume') {
+          if (newProperties >= 5) {
+            const discountedPrice = Math.round(40 * 0.7); // 28€ por propiedad
+            newPricePerProperty = `${discountedPrice}€/año (descuento aplicado)`;
+            newTotal = newProperties * discountedPrice;
+          } else {
+            newPricePerProperty = '40€/año (mínimo 5 propiedades)';
+            newTotal = newProperties * 40;
+          }
         }
         
         $('#planProperties').textContent = newProperties + (newProperties === 1 ? ' propiedad' : ' propiedades');
-        $('#totalPrice').textContent = newTotal === 'Contactar' ? 'Contactar para precio' : `${newTotal}€${plan === 'monthly' ? '/mes' : '/año'}`;
+        $('#planPrice').textContent = newPricePerProperty;
+        $('#totalPrice').textContent = `${newTotal}€${plan === 'monthly' ? '/mes' : '/año'}`;
       });
       
-      // Event listener para el botón de enlace de pago
-      $('#stripeButton').addEventListener('click', function() {
-        const cardElement = $('#cardElement');
-        if (cardElement.style.display === 'none') {
-          cardElement.style.display = 'block';
-          this.textContent = '💳 Usar tarjeta de crédito';
-          this.style.background = '#6b7280';
-        } else {
-          cardElement.style.display = 'none';
-          this.textContent = '🔗 Utilizar enlace de pago';
-          this.style.background = '#2563eb';
-        }
-      });
       
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
