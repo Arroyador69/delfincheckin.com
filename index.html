@@ -785,7 +785,6 @@
       <div class="card">
         <form id="form-registro" onsubmit="return false">
           <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap">
-            <button class="btn primary" id="sendLinkBtn" type="button">Enviar enlace al huésped</button>
             <button class="btn" id="previewBtn" type="button">Previsualizar ficha</button>
           </div>
           <div class="form-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px">
@@ -1031,20 +1030,6 @@
             </div>
           </div>
           
-          <!-- Botones de acción -->
-          <div style="text-align: center; margin-top: 32px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-            <button class="btn primary" onclick="openCalculator()" style="height: 50px; padding: 0 24px; font-size: 16px; font-weight: 600; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); transition: all 0.3s ease; transform: translateY(0);"
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'">
-              💬 Ver detalles
-            </button>
-            <a class="btn" href="mailto:ventas@delfincheckin.com?subject=Consulta%20Delfin%20Check-in&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20Delfin%20Check-in%20para%20mis%20propiedades.%0D%0A%0D%0A¿Podrían%20enviarme%20información%20sobre:%0D%0A-%20Precios%20y%20planes%20disponibles%0D%0A-%20Funcionalidades%20incluidas%0D%0A-%20Proceso%20de%20implementación%0D%0A%0D%0AGracias." 
-               style="height: 50px; padding: 0 24px; font-size: 16px; font-weight: 600; border-radius: 12px; background: white; color: #2563eb; border: 2px solid #2563eb; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.3s ease; transform: translateY(0);"
-               onmouseover="this.style.transform='translateY(-2px)'; this.style.background='#2563eb'; this.style.color='white'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.3)'"
-               onmouseout="this.style.transform='translateY(0)'; this.style.background='white'; this.style.color='#2563eb'; this.style.boxShadow='none'">
-              📧 Contactar
-            </a>
-          </div>
         </div>
       </div>
       
@@ -1124,10 +1109,6 @@
                 <input id="contactEmail" type="email" required placeholder="tu@email.com" data-es-placeholder="tu@email.com" data-en-placeholder="your@email.com" style="width: 100%; height: 40px; border-radius: 10px; background: #ffffff; color: #0f172a; border: 1px solid rgba(15,23,42,.2); padding: 0 12px;">
               </label>
               <label>
-                <span data-es="Teléfono" data-en="Phone">Teléfono</span>
-                <input id="contactPhone" placeholder="+34 600 000 000" data-es-placeholder="+34 600 000 000" data-en-placeholder="+1 555 000 000" style="width: 100%; height: 40px; border-radius: 10px; background: #ffffff; color: #0f172a; border: 1px solid rgba(15,23,42,.2); padding: 0 12px;">
-              </label>
-              <label>
                 <span data-es="Empresa/Alojamiento" data-en="Company/Accommodation">Empresa/Alojamiento</span>
                 <input id="contactBusiness" placeholder="Nombre de tu negocio" data-es-placeholder="Nombre de tu negocio" data-en-placeholder="Your business name" style="width: 100%; height: 40px; border-radius: 10px; background: #ffffff; color: #0f172a; border: 1px solid rgba(15,23,42,.2); padding: 0 12px;">
               </label>
@@ -1147,11 +1128,6 @@
           <h3 style="text-align: center; margin-bottom: 20px;">Información de contacto</h3>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; text-align: center;">
             <div>
-              <div style="font-size: 20px; margin-bottom: 8px;">📱</div>
-              <div style="font-weight: 600; color: var(--text); margin-bottom: 4px;">WhatsApp</div>
-              <div style="color: var(--muted); font-size: 14px;">+34 600 000 000</div>
-            </div>
-            <div>
               <div style="font-size: 20px; margin-bottom: 8px;">📧</div>
               <div style="font-weight: 600; color: var(--text); margin-bottom: 4px;">Email</div>
               <div style="color: var(--muted); font-size: 14px;">ventas@delfincheckin.com</div>
@@ -1163,8 +1139,7 @@
             </div>
           </div>
           <div class="cta" style="margin-top: 20px; justify-content: center;">
-            <a class="btn primary" href="https://wa.me/34600000000?text=Hola,%20me%20interesa%20Delfin%20Check-in" target="_blank" rel="noopener">Chat directo</a>
-            <a class="btn" href="mailto:ventas@delfincheckin.com?subject=Consulta%20Delfin%20Check-in">Email directo</a>
+            <a class="btn primary" href="mailto:ventas@delfincheckin.com?subject=Consulta%20Delfin%20Check-in">Email directo</a>
           </div>
         </div>
       </div>
@@ -1328,30 +1303,6 @@
     }
   </style>
 
-  <!-- Modal para enviar enlace -->
-  <div id="sendModal" style="position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(15,23,42,.4); z-index:1000">
-    <div style="width:min(560px, 92vw); background:#ffffff; color:#0f172a; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,.35); overflow:hidden">
-      <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border-bottom:1px solid rgba(15,23,42,.08)">
-        <strong>Enviar enlace al huésped</strong>
-        <button id="sendClose" class="btn" style="height:34px">Cerrar</button>
-      </div>
-      <div style="padding:16px; display:grid; gap:12px">
-        <label>
-          <span class="note">Teléfono (con prefijo, ej. +34)</span>
-          <input id="sendPhone" placeholder="+34 600 000 000" style="width:100%; height:40px; border-radius:10px; background:#ffffff; color:#0f172a; border:1px solid rgba(15,23,42,.2); padding:0 12px">
-        </label>
-        <label>
-          <span class="note">Correo electrónico</span>
-          <input id="sendEmail" type="email" placeholder="email@ejemplo.com" style="width:100%; height:40px; border-radius:10px; background:#ffffff; color:#0f172a; border:1px solid rgba(15,23,42,.2); padding:0 12px">
-        </label>
-        <div class="cta">
-          <button class="btn primary" id="sendWhatsApp" type="button">Enviar por WhatsApp</button>
-          <button class="btn" id="sendMail" type="button">Enviar por Email</button>
-        </div>
-        <div class="note">Se generará un enlace con idioma seleccionado para el formulario.</div>
-      </div>
-    </div>
-  </div>
 
     <footer>
       <div class="container">
@@ -1364,7 +1315,6 @@
             <h4 style="margin: 0 0 10px; color: var(--text);">Contacto</h4>
             <p style="margin: 0; color: var(--muted); font-size: 14px;">
               📧 ventas@delfincheckin.com<br>
-              📱 <a href="https://wa.me/34600000000" style="color: var(--brand);">+34 600 000 000</a><br>
               🕒 Lun-Vie: 9:00-18:00
             </p>
           </div>
@@ -1521,83 +1471,6 @@
       openModal();
     });
 
-    // Enviar enlace al huésped (WhatsApp / Email)
-    const openSend = () => { $('#sendModal').style.display = 'flex'; document.body.style.overflow='hidden'; };
-    const closeSend = () => { $('#sendModal').style.display = 'none'; document.body.style.overflow=''; };
-    $('#sendLinkBtn').addEventListener('click', openSend);
-    $('#sendClose').addEventListener('click', closeSend);
-
-    function getFormUrl(){
-      const lang = 'es'; // Idioma fijo en español
-      // Si se abre el HTML como file://, usamos dominio de producción como fallback
-      const base = location.protocol.startsWith('http')
-        ? `${location.origin}/public/guest-registration.html`
-        : `https://admin.delfincheckin.com/guest-registration`;
-      return `${base}?lang=${encodeURIComponent(lang)}`;
-    }
-
-
-    $('#sendMail').addEventListener('click', () => {
-      const email = ($('#sendEmail').value || '').trim();
-      
-      // Validar email
-      if (!email || !email.includes('@')) {
-        alert('❌ Por favor, introduce un email válido');
-        $('#sendEmail').focus();
-        return;
-      }
-      
-      const url = getFormUrl();
-      const subject = `Registro de viajero – Delfín Check‑in`;
-      const body = `Hola,%0D%0A%0D%0APor favor, completa tu registro de viajero en el siguiente enlace:%0D%0A${encodeURIComponent(url)}%0D%0A%0D%0AGracias.`;
-      const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${body}`;
-      
-      // Efecto visual
-      const btn = $('#sendMail');
-      const originalText = btn.textContent;
-      btn.textContent = '⏳ Abriendo...';
-      btn.style.opacity = '0.7';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        try {
-          window.location.href = mailto;
-          closeSend();
-        } catch (error) {
-          console.error('Error al abrir email:', error);
-          alert('❌ Error al abrir el cliente de correo. Por favor, copia este enlace manualmente:\n\n' + url);
-        } finally {
-          btn.textContent = originalText;
-          btn.style.opacity = '1';
-          btn.disabled = false;
-        }
-      }, 500);
-    });
-
-    
-    function sendReservationMail(email, guest, arrival){
-      if (!email || email.trim() === '' || !email.includes('@')) {
-        alert('❌ No se puede enviar email: dirección de correo no válida');
-        return;
-      }
-      
-      const url = getFormUrl();
-      const subject = `Registro de viajero – ${guest}`;
-      const body = `Hola ${guest},%0D%0A%0D%0ACompleta tu registro de viajero aquí (llegada ${arrival}):%0D%0A${encodeURIComponent(url)}%0D%0A%0D%0AGracias.`;
-      const mailto = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${body}`;
-      
-      // Efecto visual
-      const btn = event.target;
-      const originalText = btn.textContent;
-      btn.textContent = '⏳ Abriendo...';
-      btn.style.opacity = '0.7';
-      
-      setTimeout(() => {
-        window.location.href = mailto;
-        btn.textContent = originalText;
-        btn.style.opacity = '1';
-      }, 500);
-    }
 
     // Generar y descargar CSV con datos de reservas
     function generateReservationsCSV(){
