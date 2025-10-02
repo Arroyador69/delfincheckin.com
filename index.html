@@ -1136,7 +1136,7 @@
             </div>
           </div>
           <div class="cta" style="margin-top: 20px; justify-content: center;">
-            <a class="btn primary" href="mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in">Email directo</a>
+            <a class="btn primary" href="mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in" target="_blank">Email directo</a>
           </div>
         </div>
       </div>
@@ -2007,14 +2007,23 @@
     // Formulario de Contacto
     $('#sendContact').addEventListener('click', (e) => {
       e.preventDefault();
+      
       const name = $('#contactName').value.trim();
       const email = $('#contactEmail').value.trim();
       const phone = $('#contactPhone').value.trim();
       const business = $('#contactBusiness').value.trim();
       const message = $('#contactMessage').value.trim();
       
+      // Validar campos obligatorios
       if (!name || !email || !message) {
         alert('Por favor, completa los campos obligatorios (Nombre, Email y Mensaje).');
+        return;
+      }
+      
+      // Validar formato de email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Por favor, introduce un email válido.');
         return;
       }
       
@@ -2034,13 +2043,20 @@ ${message}`;
       const mailtoUrl = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
       
       // Abrir cliente de email
-      window.location.href = mailtoUrl;
-      
-      // Mostrar confirmación
-      alert('¡Redirigiendo a tu cliente de email! Completa el envío desde allí.');
-      
-      // Limpiar formulario
-      $('#contactForm').reset();
+      try {
+        window.location.href = mailtoUrl;
+        
+        // Mostrar confirmación después de un breve delay
+        setTimeout(() => {
+          alert('¡Redirigiendo a tu cliente de email! Completa el envío desde allí.');
+        }, 100);
+        
+        // Limpiar formulario
+        $('#contactForm').reset();
+      } catch (error) {
+        console.error('Error al abrir cliente de email:', error);
+        alert('Error al abrir el cliente de email. Por favor, copia este email: contacto@delfincheckin.com');
+      }
     });
 
     // Cookies Banner - RGPD Compliant
