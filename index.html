@@ -1127,7 +1127,7 @@
             <div>
               <div style="font-size: 20px; margin-bottom: 8px;">📧</div>
               <div style="font-weight: 600; color: var(--text); margin-bottom: 4px;">Email</div>
-              <div style="color: var(--muted); font-size: 14px;">ventas@delfincheckin.com</div>
+              <div style="color: var(--muted); font-size: 14px;">contacto@delfincheckin.com</div>
             </div>
             <div>
               <div style="font-size: 20px; margin-bottom: 8px;">🕒</div>
@@ -1136,7 +1136,7 @@
             </div>
           </div>
           <div class="cta" style="margin-top: 20px; justify-content: center;">
-            <a class="btn primary" href="mailto:ventas@delfincheckin.com?subject=Consulta%20Delfin%20Check-in">Email directo</a>
+            <a class="btn primary" href="mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in">Email directo</a>
           </div>
         </div>
       </div>
@@ -1311,7 +1311,7 @@
           <div>
             <h4 style="margin: 0 0 10px; color: var(--text);">Contacto</h4>
             <p style="margin: 0; color: var(--muted); font-size: 14px;">
-              📧 ventas@delfincheckin.com<br>
+              📧 contacto@delfincheckin.com<br>
               🕒 Lun-Vie: 9:00-18:00
             </p>
           </div>
@@ -1720,7 +1720,7 @@
       subject = `Consulta plan ${planText} - Delfín Check-in`;
       body = `Hola,%0D%0A%0D%0AMe interesa el plan ${planText} de Delfín Check-in para ${properties} ${properties == 1 ? 'propiedad' : 'propiedades'}.%0D%0A%0D%0A¿Podrían darme más información sobre:%0D%0A- Precios y planes disponibles%0D%0A- Funcionalidades incluidas%0D%0A- Proceso de implementación%0D%0A%0D%0AGracias.`;
       
-      const mailto = `mailto:ventas@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      const mailto = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
       window.location.href = mailto;
     }
 
@@ -2434,7 +2434,7 @@
         const planText = plan ? ` - ${plan}` : '';
         const subject = `Consulta Delfín Check-in${planText}`;
         const body = `Hola,%0D%0A%0D%0AMe interesa conocer más sobre Delfín Check-in${planText}.%0D%0A%0D%0A¿Podrían enviarme información sobre:%0D%0A- Precios y planes disponibles%0D%0A- Funcionalidades incluidas%0D%0A- Proceso de implementación%0D%0A%0D%0AGracias.`;
-        const mailto = `mailto:ventas@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+        const mailto = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
         window.location.href = mailto;
         document.querySelector('.sales-modal')?.remove();
         document.body.style.overflow = '';
