@@ -570,9 +570,8 @@
         <b>Delfín Check‑in</b>
       </div>
       <div class="actions">
-        <a class="btn" href="#precio">Precios</a>
+        <a class="btn primary" href="#precio">Precios</a>
         <a class="btn" href="#caracteristicas">Funciones</a>
-        <a class="btn primary" href="https://wa.me/34600000000" rel="noopener" target="_blank">Pedir demo</a>
       </div>
     </div>
   </header>
@@ -1039,11 +1038,11 @@
                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'">
               💬 Ver detalles
             </button>
-            <a class="btn" href="https://wa.me/34600000000?text=Hola,%20me%20interesa%20Delfin%20Check-in%20para%20mis%20propiedades" target="_blank" rel="noopener" 
+            <a class="btn" href="mailto:ventas@delfincheckin.com?subject=Consulta%20Delfin%20Check-in&body=Hola,%0D%0A%0D%0AMe%20interesa%20conocer%20más%20sobre%20Delfin%20Check-in%20para%20mis%20propiedades.%0D%0A%0D%0A¿Podrían%20enviarme%20información%20sobre:%0D%0A-%20Precios%20y%20planes%20disponibles%0D%0A-%20Funcionalidades%20incluidas%0D%0A-%20Proceso%20de%20implementación%0D%0A%0D%0AGracias." 
                style="height: 50px; padding: 0 24px; font-size: 16px; font-weight: 600; border-radius: 12px; background: white; color: #2563eb; border: 2px solid #2563eb; text-decoration: none; display: inline-flex; align-items: center; transition: all 0.3s ease; transform: translateY(0);"
                onmouseover="this.style.transform='translateY(-2px)'; this.style.background='#2563eb'; this.style.color='white'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.3)'"
                onmouseout="this.style.transform='translateY(0)'; this.style.background='white'; this.style.color='#2563eb'; this.style.boxShadow='none'">
-              📞 Contactar
+              📧 Contactar
             </a>
           </div>
         </div>
@@ -1537,41 +1536,6 @@
       return `${base}?lang=${encodeURIComponent(lang)}`;
     }
 
-    $('#sendWhatsApp').addEventListener('click', () => {
-      const phone = ($('#sendPhone').value || '').replace(/\s+/g,'');
-      
-      // Validar teléfono
-      if (!phone || phone.length < 9) {
-        alert('❌ Por favor, introduce un número de teléfono válido');
-        $('#sendPhone').focus();
-        return;
-      }
-      
-      const url = getFormUrl();
-      const text = `Hola, este es tu enlace para completar el registro de viajero: ${url}`;
-      const wa = `https://wa.me/${encodeURIComponent(phone.replace('+',''))}?text=${encodeURIComponent(text)}`;
-      
-      // Efecto visual
-      const btn = $('#sendWhatsApp');
-      const originalText = btn.textContent;
-      btn.textContent = '⏳ Enviando...';
-      btn.style.opacity = '0.7';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        try {
-          window.open(wa, '_blank');
-          closeSend();
-        } catch (error) {
-          console.error('Error al abrir WhatsApp:', error);
-          alert('❌ Error al abrir WhatsApp. Por favor, copia este enlace manualmente:\n\n' + url);
-        } finally {
-          btn.textContent = originalText;
-          btn.style.opacity = '1';
-          btn.disabled = false;
-        }
-      }, 500);
-    });
 
     $('#sendMail').addEventListener('click', () => {
       const email = ($('#sendEmail').value || '').trim();
@@ -1610,30 +1574,6 @@
       }, 500);
     });
 
-    // Acciones desde dashboard: enviar formulario a huésped
-    function sendReservationWA(phone, guest, arrival){
-      if (!phone || phone.trim() === '') {
-        alert('❌ No se puede enviar WhatsApp: número de teléfono no válido');
-        return;
-      }
-      
-      const url = getFormUrl();
-      const msg = `Hola ${guest}, este es tu enlace para completar el registro de viajero (llegada ${arrival}): ${url}`;
-      const cleanPhone = phone.replace(/\s|\+/g,'');
-      const wa = `https://wa.me/${encodeURIComponent(cleanPhone)}?text=${encodeURIComponent(msg)}`;
-      
-      // Efecto visual
-      const btn = event.target;
-      const originalText = btn.textContent;
-      btn.textContent = '⏳ Enviando...';
-      btn.style.opacity = '0.7';
-      
-      setTimeout(() => {
-        window.open(wa, '_blank');
-        btn.textContent = originalText;
-        btn.style.opacity = '1';
-      }, 500);
-    }
     
     function sendReservationMail(email, guest, arrival){
       if (!email || email.trim() === '' || !email.includes('@')) {
@@ -1838,12 +1778,13 @@
       const properties = $('#calcProperties').value;
       const plan = $('#calcPlan').value;
       
-      let planText, message;
+      let planText, subject, body;
       planText = plan === 'monthly' ? 'mensual' : plan === 'yearly' ? 'anual' : 'volumen';
-      message = `Hola, me interesa el plan ${planText} de Delfín Check-in para ${properties} ${properties == 1 ? 'propiedad' : 'propiedades'}. ¿Podrían darme más información?`;
+      subject = `Consulta plan ${planText} - Delfín Check-in`;
+      body = `Hola,%0D%0A%0D%0AMe interesa el plan ${planText} de Delfín Check-in para ${properties} ${properties == 1 ? 'propiedad' : 'propiedades'}.%0D%0A%0D%0A¿Podrían darme más información sobre:%0D%0A- Precios y planes disponibles%0D%0A- Funcionalidades incluidas%0D%0A- Proceso de implementación%0D%0A%0D%0AGracias.`;
       
-      const waUrl = `https://wa.me/34600000000?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, '_blank');
+      const mailto = `mailto:ventas@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailto;
     }
 
     // Variables para el mantenimiento de pulsación
@@ -2470,23 +2411,15 @@
             </div>
             <div style="padding: 24px;">
               <div style="margin-bottom: 20px;">
-                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px;">¿Cómo prefieres que te contactemos?</h4>
-                <p style="margin: 0; color: #64748b; font-size: 14px;">Elige el método que más te convenga y te responderemos en menos de 24 horas.</p>
+                <h4 style="margin: 0 0 12px; color: #1e40af; font-size: 16px;">Contacta con nosotros</h4>
+                <p style="margin: 0; color: #64748b; font-size: 14px;">Te responderemos por email en menos de 24 horas.</p>
               </div>
               
-              <div style="display: grid; gap: 12px; margin-bottom: 20px;">
-                <button onclick="openWhatsAppSales('${plan}')" style="background: #25d366; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#128c7e'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#25d366'; this.style.transform='translateY(0)'">
-                  <div style="font-size: 20px;">📱</div>
-                  <div>
-                    <div style="font-weight: 600;">WhatsApp</div>
-                    <div style="font-size: 12px; opacity: 0.9;">Respuesta inmediata</div>
-                  </div>
-                </button>
-                
-                <button onclick="openEmailSales('${plan}')" style="background: #2563eb; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#1d4ed8'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2563eb'; this.style.transform='translateY(0)'">
+              <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                <button onclick="openEmailSales('${plan}')" style="background: #2563eb; color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: all 0.2s ease;" onmouseover="this.style.background='#1d4ed8'; this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#2563eb'; this.style.transform='translateY(0)'">
                   <div style="font-size: 20px;">📧</div>
                   <div>
-                    <div style="font-weight: 600;">Email</div>
+                    <div style="font-weight: 600;">Contactar por Email</div>
                     <div style="font-size: 12px; opacity: 0.9;">Respuesta en 24h</div>
                   </div>
                 </button>
@@ -2494,7 +2427,7 @@
               
               <div style="background: #f8fafc; border-radius: 8px; padding: 16px; text-align: center;">
                 <div style="color: #64748b; font-size: 14px;">
-                  <strong>💡 Consejo:</strong> Si tienes prisa, usa WhatsApp para respuesta inmediata
+                  <strong>💡 Consejo:</strong> Te responderemos por email en menos de 24 horas
                 </div>
               </div>
             </div>
@@ -2506,15 +2439,6 @@
         document.body.style.overflow = 'hidden';
       }
 
-      // Función para abrir WhatsApp de ventas
-      function openWhatsAppSales(plan) {
-        const planText = plan ? ` (${plan})` : '';
-        const message = `Hola, me interesa Delfín Check-in${planText}. ¿Podrían darme más información sobre precios y funcionalidades?`;
-        const waUrl = `https://wa.me/34600000000?text=${encodeURIComponent(message)}`;
-        window.open(waUrl, '_blank');
-        document.querySelector('.sales-modal')?.remove();
-        document.body.style.overflow = '';
-      }
 
       // Función para abrir email de ventas
       function openEmailSales(plan) {
@@ -2529,7 +2453,6 @@
 
       // Hacer las funciones globales
       window.openSalesContact = openSalesContact;
-      window.openWhatsAppSales = openWhatsAppSales;
       window.openEmailSales = openEmailSales;
 
       // Reemplazar enlaces de ventas con la nueva función
