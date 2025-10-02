@@ -2018,15 +2018,26 @@
         return;
       }
       
-      // Crear mensaje para WhatsApp
-      const waMessage = `Nueva consulta desde la web:%0D%0A%0D%0ANombre: ${name}%0D%0AEmail: ${email}%0D%0ATeléfono: ${phone || 'No proporcionado'}%0D%0AEmpresa: ${business || 'No proporcionada'}%0D%0A%0D%0AMensaje:%0D%0A${message}`;
-      const waUrl = `https://wa.me/34600000000?text=${encodeURIComponent(waMessage)}`;
+      // Crear mensaje para email
+      const subject = `Nueva consulta desde la web - ${name}`;
+      const emailBody = `Nueva consulta desde la web:
+
+Nombre: ${name}
+Email: ${email}
+Teléfono: ${phone || 'No proporcionado'}
+Empresa: ${business || 'No proporcionada'}
+
+Mensaje:
+${message}`;
       
-      // Abrir WhatsApp
-      window.open(waUrl, '_blank');
+      // Crear enlace mailto
+      const mailtoUrl = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      
+      // Abrir cliente de email
+      window.location.href = mailtoUrl;
       
       // Mostrar confirmación
-      alert('¡Mensaje enviado! Te contactaremos pronto.');
+      alert('¡Redirigiendo a tu cliente de email! Completa el envío desde allí.');
       
       // Limpiar formulario
       $('#contactForm').reset();
@@ -2445,7 +2456,7 @@
       window.openEmailSales = openEmailSales;
 
       // Reemplazar enlaces de ventas con la nueva función
-      document.querySelectorAll('a[href*="ventas@ejemplo.com"]').forEach(link => {
+      document.querySelectorAll('a[href*="contacto@delfincheckin.com"]').forEach(link => {
         const href = link.getAttribute('href');
         const plan = href.includes('mensual') ? 'Plan Mensual' : 
                     href.includes('anual') ? 'Plan Anual' : 
