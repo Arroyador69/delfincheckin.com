@@ -1137,7 +1137,7 @@
             </div>
           </div>
           <div class="cta" style="margin-top: 20px; justify-content: center;">
-            <a class="btn primary" href="mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in" target="_blank">Email directo</a>
+            <a class="btn primary" href="mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in" target="_blank" onclick="handleEmailDirecto(event)">Email directo</a>
           </div>
         </div>
       </div>
@@ -2005,6 +2005,48 @@
     updateCalculator();
 
 
+    // Función para manejar el botón "Email directo" en Opera GX
+    function handleEmailDirecto(event) {
+      const isOperaGX = navigator.userAgent.includes('OPR') || navigator.userAgent.includes('Opera');
+      
+      if (isOperaGX) {
+        event.preventDefault();
+        const mailtoUrl = 'mailto:contacto@delfincheckin.com?subject=Consulta%20Delfin%20Check-in';
+        const newWindow = window.open(mailtoUrl, '_blank');
+        
+        if (!newWindow) {
+          // Si se bloquea, mostrar modal alternativo
+          const modal = document.createElement('div');
+          modal.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.8); z-index: 10000; display: flex; 
+            align-items: center; justify-content: center; font-family: Arial, sans-serif;
+          `;
+          
+          modal.innerHTML = `
+            <div style="background: white; padding: 30px; border-radius: 15px; max-width: 400px; width: 90%; text-align: center;">
+              <h3 style="color: #2563eb; margin-bottom: 20px;">📧 Tu navegador bloquea el envío automático</h3>
+              <p style="margin-bottom: 15px;">Copia este email y envíalo manualmente:</p>
+              <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #e2e8f0;">
+                <strong style="color: #2563eb; font-size: 18px;">contacto@delfincheckin.com</strong>
+              </div>
+              <p style="margin-bottom: 15px;">Asunto: <strong>Consulta Delfin Check-in</strong></p>
+              <div style="margin-top: 20px;">
+                <button onclick="this.parentElement.parentElement.parentElement.remove();" style="background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                  ✅ Entendido, he copiado el email
+                </button>
+              </div>
+            </div>
+          `;
+          
+          document.body.appendChild(modal);
+        }
+      }
+    }
+    
+    // Hacer la función global
+    window.handleEmailDirecto = handleEmailDirecto;
+
     // Formulario de Contacto
     $('#sendContact').addEventListener('click', (e) => {
       e.preventDefault();
@@ -2043,9 +2085,22 @@ ${message}`;
       // Crear enlace mailto
       const mailtoUrl = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
       
+      // Detectar si es Opera GX u otro navegador que puede bloquear mailto
+      const isOperaGX = navigator.userAgent.includes('OPR') || navigator.userAgent.includes('Opera');
+      
       // Abrir cliente de email
       try {
-        window.location.href = mailtoUrl;
+        // Para Opera GX, usar window.open en lugar de window.location.href
+        if (isOperaGX) {
+          const newWindow = window.open(mailtoUrl, '_blank');
+          if (!newWindow) {
+            // Si se bloquea, mostrar alternativa
+            showEmailAlternative(subject, emailBody);
+            return;
+          }
+        } else {
+          window.location.href = mailtoUrl;
+        }
         
         // Mostrar confirmación después de un breve delay
         setTimeout(() => {
@@ -2056,7 +2111,39 @@ ${message}`;
         $('#contactForm').reset();
       } catch (error) {
         console.error('Error al abrir cliente de email:', error);
-        alert('Error al abrir el cliente de email. Por favor, copia este email: contacto@delfincheckin.com');
+        showEmailAlternative(subject, emailBody);
+      }
+      
+      // Función para mostrar alternativa cuando mailto falla
+      function showEmailAlternative(subject, body) {
+        const emailText = `contacto@delfincheckin.com`;
+        const fullMessage = `Asunto: ${subject}\n\nMensaje:\n${body}`;
+        
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+          position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+          background: rgba(0,0,0,0.8); z-index: 10000; display: flex; 
+          align-items: center; justify-content: center; font-family: Arial, sans-serif;
+        `;
+        
+        modal.innerHTML = `
+          <div style="background: white; padding: 30px; border-radius: 15px; max-width: 500px; width: 90%; text-align: center;">
+            <h3 style="color: #2563eb; margin-bottom: 20px;">📧 Tu navegador bloquea el envío automático</h3>
+            <p style="margin-bottom: 15px;">Copia este email y envíalo manualmente:</p>
+            <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin: 15px 0; border: 2px solid #e2e8f0;">
+              <strong style="color: #2563eb; font-size: 18px;">${emailText}</strong>
+            </div>
+            <p style="margin-bottom: 15px;">Y copia este mensaje:</p>
+            <textarea readonly style="width: 100%; height: 200px; padding: 10px; border: 1px solid #d1d5db; border-radius: 8px; font-family: monospace; font-size: 12px; resize: vertical;">${fullMessage}</textarea>
+            <div style="margin-top: 20px;">
+              <button onclick="this.parentElement.parentElement.parentElement.remove(); $('#contactForm').reset();" style="background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                ✅ Entendido, he copiado la información
+              </button>
+            </div>
+          </div>
+        `;
+        
+        document.body.appendChild(modal);
       }
     });
 
