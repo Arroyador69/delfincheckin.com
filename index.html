@@ -3,6 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <title>Delfín Check‑in · Software de gestión hotelera y auto check‑in</title>
   <meta name="description" content="Delfín Check‑in: software para hoteles y alojamientos con reservas, check‑in online, gestión de habitaciones y panel de administración sencillo. Plan mensual o anual.">
   <meta name="keywords" content="software hotel, channel manager, check-in online, PMS, reservas, gestión de hoteles, motor de reservas">
@@ -2548,6 +2551,9 @@ ${message}`;
       }).join('');
       tbody.innerHTML = rows;
     })();
+    
+    // Cache busting - Última actualización: ${new Date().toISOString()}
+    console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
   </script>
 </body>
 </html>
