@@ -2651,6 +2651,34 @@ ${message}`;
       tbody.innerHTML = rows;
     })();
     
+    // Función para manejar contratación de planes
+    function startPayment(planType) {
+      let planText, subject, body, price;
+      
+      if (planType === 'monthly') {
+        planText = 'mensual';
+        price = '14,99€ por propiedad/mes';
+        subject = 'Contratar Plan Mensual - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan mensual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+      } else if (planType === 'yearly') {
+        planText = 'anual';
+        price = '149,90€ por propiedad/año (16,7% descuento)';
+        subject = 'Contratar Plan Anual - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan anual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+      } else if (planType === 'volume') {
+        planText = 'volumen';
+        price = 'Descuentos por volumen (hasta 25% descuento)';
+        subject = 'Consulta Plan Volumen - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa el plan con descuentos por volumen de Delfín Check-in.%0D%0A%0D%0A${price}%0D%0A%0D%0A¿Podrían darme más información sobre:%0D%0A- Precios específicos según número de propiedades%0D%0A- Proceso de contratación%0D%0A- Condiciones del plan%0D%0A%0D%0AGracias.`;
+      }
+      
+      const mailto = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailto;
+    }
+    
+    // Hacer la función global
+    window.startPayment = startPayment;
+    
     // Cache busting - Última actualización: ${new Date().toISOString()}
     console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
   </script>
