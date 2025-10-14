@@ -978,79 +978,61 @@
 
     <section id="precio" class="section container">
       <h2 data-es="Precios simples y claros" data-en="Simple and clear pricing">Precios simples y claros</h2>
-      <p class="lead" data-es="Precio por propiedad: mensual o anual con descuento. Descuento especial a partir de 5 propiedades. <strong>Precio vigente hasta el próximo ajuste.</strong>" data-en="Price per property: monthly or annual with discount. Special discount from 5 properties. <strong>Current price until next adjustment.</strong>">Precio por propiedad: mensual o anual con descuento. Descuento especial a partir de 5 propiedades. <strong>Precio vigente hasta el próximo ajuste.</strong></p>
+      <p class="lead" data-es="Precio por propiedad con descuentos por volumen. Cuantas más propiedades, mejor precio por unidad. <strong>Precio vigente hasta el próximo ajuste.</strong>" data-en="Price per property with volume discounts. More properties, better price per unit. <strong>Current price until next adjustment.</strong>">Precio por propiedad con descuentos por volumen. Cuantas más propiedades, mejor precio por unidad. <strong>Precio vigente hasta el próximo ajuste.</strong></p>
       
-      <!-- Comparación de planes -->
+      <!-- Tabla de precios por volumen -->
       <div class="card" style="margin-bottom: 32px; padding: 24px;">
-        <h3 style="text-align: center; margin-bottom: 24px;" data-es="Comparación de planes" data-en="Plan comparison">Comparación de planes</h3>
+        <h3 style="text-align: center; margin-bottom: 24px;" data-es="Precios por volumen" data-en="Volume pricing">Precios por volumen</h3>
+        <p style="text-align: center; margin-bottom: 24px; color: #64748b; font-size: 16px;" data-es="Cuanto más propiedades tengas, mejor precio por unidad obtienes" data-en="The more properties you have, the better price per unit you get">Cuanto más propiedades tengas, mejor precio por unidad obtienes</p>
+        
         <div style="overflow-x: auto;">
-          <table style="width: 100%; border-collapse: collapse; min-width: 600px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 16px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
             <thead>
-              <tr style="background: #f8fafc;">
-                <th style="padding: 16px 12px; text-align: left; border-bottom: 2px solid var(--border); font-weight: 600;" data-es="Características" data-en="Features">Características</th>
-                <th style="padding: 16px 12px; text-align: center; border-bottom: 2px solid var(--border); font-weight: 600;" data-es="Mensual" data-en="Monthly">Mensual</th>
-                <th style="padding: 16px 12px; text-align: center; border-bottom: 2px solid var(--border); font-weight: 600; background: #e0f2fe; color: #2563eb;" data-es="Anual (Recomendado)" data-en="Annual (Recommended)">Anual (Recomendado)</th>
-                <th style="padding: 16px 12px; text-align: center; border-bottom: 2px solid var(--border); font-weight: 600;" data-es="Volumen (5+ propiedades)" data-en="Volume (5+ properties)">Volumen (5+ propiedades)</th>
+              <tr style="background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white;">
+                <th style="padding: 20px 16px; text-align: left; font-weight: 700; font-size: 18px;">N° de propiedades</th>
+                <th style="padding: 20px 16px; text-align: center; font-weight: 700; font-size: 18px;">Descuento</th>
+                <th style="padding: 20px 16px; text-align: center; font-weight: 700; font-size: 18px;">Precio unitario mensual</th>
+                <th style="padding: 20px 16px; text-align: center; font-weight: 700; font-size: 18px;">Total mensual</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); font-weight: 500;" data-es="Precio por propiedad" data-en="Price per property">Precio por propiedad</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; font-weight: 600;">4€/mes</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; font-weight: 600; background: #f0f9ff; color: #2563eb;">40€/año (3,33€/mes)</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; font-weight: 600;" data-es="Precio negociable" data-en="Negotiable price">Precio negociable</td>
+              <tr style="border-bottom: 1px solid #e5e7eb;">
+                <td style="padding: 16px; font-weight: 600; color: #1f2937;">1 propiedad</td>
+                <td style="padding: 16px; text-align: center; color: #6b7280;">-</td>
+                <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">14,99 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">14,99 €</td>
               </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Gestión de reservas" data-en="Reservation management">Gestión de reservas</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
+              <tr style="border-bottom: 1px solid #e5e7eb; background: #f8fafc;">
+                <td style="padding: 16px; font-weight: 600; color: #1f2937;">2 propiedades</td>
+                <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">10%</td>
+                <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">13,49 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">26,98 €</td>
               </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Check-in online" data-en="Online check-in">Check-in online</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
+              <tr style="border-bottom: 1px solid #e5e7eb;">
+                <td style="padding: 16px; font-weight: 600; color: #1f2937;">4 propiedades</td>
+                <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">15%</td>
+                <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">12,74 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">50,96 €</td>
               </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Registro de viajeros" data-en="Traveler registration">Registro de viajeros</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
+              <tr style="border-bottom: 1px solid #e5e7eb; background: #f8fafc;">
+                <td style="padding: 16px; font-weight: 600; color: #1f2937;">5-9 propiedades</td>
+                <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">20%</td>
+                <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">11,99 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">59,95 €</td>
               </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Exportación CSV/Excel" data-en="CSV/Excel export">Exportación CSV/Excel</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Soporte por email" data-en="Email support">Soporte por email</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">✅</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;" data-es="✅ Prioritario" data-en="✅ Priority">✅ Prioritario</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;" data-es="✅ Dedicado" data-en="✅ Dedicated">✅ Dedicado</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Onboarding" data-en="Onboarding">Onboarding</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;" data-es="Básico" data-en="Basic">Básico</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;" data-es="✅ Asistido" data-en="✅ Assisted">✅ Asistido</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;" data-es="✅ Personalizado" data-en="✅ Customized">✅ Personalizado</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Facturación" data-en="Billing">Facturación</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;" data-es="Individual" data-en="Individual">Individual</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff;" data-es="Individual" data-en="Individual">Individual</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;" data-es="✅ Unificada" data-en="✅ Unified">✅ Unificada</td>
-              </tr>
-              <tr>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border);" data-es="Ahorro anual" data-en="Annual savings">Ahorro anual</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center;">—</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; background: #f0f9ff; color: #16a34a; font-weight: 600;" data-es="8€ por propiedad" data-en="8€ per property">8€ por propiedad</td>
-                <td style="padding: 12px; border-bottom: 1px solid var(--border); text-align: center; color: #16a34a; font-weight: 600;" data-es="Hasta 30% descuento" data-en="Up to 30% discount">Hasta 30% descuento</td>
+              <tr style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);">
+                <td style="padding: 16px; font-weight: 700; color: #92400e;">10+ propiedades</td>
+                <td style="padding: 16px; text-align: center; color: #059669; font-weight: 700;">25%</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #92400e;">11,24 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 800; color: #92400e; font-size: 20px;">112,40 €</td>
               </tr>
             </tbody>
           </table>
         </div>
+        
+        <div style="margin-top: 24px; padding: 20px; background: #ecfdf5; border-radius: 12px; border-left: 4px solid #10b981;">
+          <h4 style="margin: 0 0 12px 0; color: #065f46; font-weight: 700;">💡 Descuento anual adicional</h4>
+          <p style="margin: 0; color: #047857; font-size: 16px;" data-es="Todos los planes incluyen un 16,7% de descuento adicional si pagas anualmente (equivalente a 2 meses gratis)" data-en="All plans include an additional 16.7% discount if you pay annually (equivalent to 2 months free)">Todos los planes incluyen un <strong>16,7% de descuento adicional</strong> si pagas anualmente (equivalente a 2 meses gratis)</p>
         </div>
       </div>
       
@@ -1111,9 +1093,8 @@
                 <select id="calcPlan" class="calculator-input" style="width: 100%; height: 50px; border-radius: 12px; border: 2px solid #e2e8f0; padding: 0 50px 0 20px; font-size: 16px; font-weight: 500; background: white; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.05); appearance: none; -webkit-appearance: none; -moz-appearance: none;"
                         onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
                         onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.05)'">
-                  <option value="monthly">💳 Mensual (4€/propiedad)</option>
-                  <option value="yearly" selected>🎯 Anual (40€/propiedad) - RECOMENDADO</option>
-                  <option value="volume">🚀 Volumen (5+ propiedades)</option>
+                  <option value="monthly">💳 Mensual (14,99€/propiedad)</option>
+                  <option value="yearly" selected>🎯 Anual (descuento 16,7%) - RECOMENDADO</option>
                 </select>
                 <!-- Flecha personalizada para el select -->
                 <div style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); pointer-events: none; color: #2563eb; font-size: 16px; font-weight: bold;">▼</div>
@@ -1128,9 +1109,9 @@
             <div style="position: absolute; bottom: -30px; left: -30px; width: 80px; height: 80px; background: linear-gradient(135deg, #16a34a, #15803d); border-radius: 50%; opacity: 0.1;"></div>
             
             <div style="position: relative; z-index: 1;">
-              <div style="font-size: 36px; font-weight: 900; color: #2563eb; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);" id="calcTotal">40€/año</div>
-              <div style="color: #64748b; margin-bottom: 16px; font-size: 16px; font-weight: 500;" id="calcPerProperty">40€ por propiedad</div>
-              <div style="color: #16a34a; font-weight: 700; font-size: 18px; padding: 8px 16px; background: rgba(22, 163, 74, 0.1); border-radius: 20px; display: inline-block;" id="calcSavings">Ahorras 8€ al año</div>
+              <div style="font-size: 36px; font-weight: 900; color: #2563eb; margin-bottom: 12px; text-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);" id="calcTotal">149,90€/año</div>
+              <div style="color: #64748b; margin-bottom: 16px; font-size: 16px; font-weight: 500;" id="calcPerProperty">14,99€ por propiedad</div>
+              <div style="color: #16a34a; font-weight: 700; font-size: 18px; padding: 8px 16px; background: rgba(22, 163, 74, 0.1); border-radius: 20px; display: inline-block;" id="calcSavings">Ahorras 29,90€ al año</div>
             </div>
           </div>
           
@@ -1139,8 +1120,8 @@
       
       <div class="pricing">
         <article class="card" itemscope itemtype="https://schema.org/Offer">
-          <h3 itemprop="name">Suscripción mensual</h3>
-          <div class="price"><strong itemprop="price" content="4">4€</strong><small>/ propiedad / mes</small></div>
+          <h3 itemprop="name">Plan mensual</h3>
+          <div class="price"><strong itemprop="price" content="14.99">14,99€</strong><small>/ propiedad / mes</small></div>
           <meta itemprop="priceCurrency" content="EUR">
           <ul class="features">
             <li>Gestión manual de reservas</li>
@@ -1157,28 +1138,34 @@
         <article class="card" itemscope itemtype="https://schema.org/Offer" style="border: 2px solid #2563eb; position: relative;">
           <div style="position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #2563eb; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600;">Recomendado</div>
           <h3 itemprop="name">Plan anual</h3>
-          <div class="price"><strong itemprop="price" content="40">40€</strong><small>/ propiedad / año</small></div>
+          <div class="price"><strong itemprop="price" content="149.90">149,90€</strong><small>/ propiedad / año</small></div>
           <meta itemprop="priceCurrency" content="EUR">
           <ul class="features">
             <li>Todo lo del mensual</li>
-            <li>Descuento por pago anual</li>
+            <li>Descuento 16,7% por pago anual</li>
             <li>Soporte prioritario</li>
             <li>Onboarding asistido</li>
-            <li>Equivale a 3,33€/mes</li>
+            <li>Equivale a 12,49€/mes</li>
           </ul>
           <div class="cta">
             <button class="btn primary" onclick="startPayment('yearly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
           </div>
-          <p class="note">Ahorra 8€ al año por propiedad.</p>
+          <p class="note">Ahorra 29,90€ al año por propiedad.</p>
         </article>
         <article class="card" itemscope itemtype="https://schema.org/Offer">
           <h3 itemprop="name">Descuentos por volumen</h3>
-          <div class="price"><strong>Especial desde 3</strong><small>propiedades</small></div>
-          <div class="price"><strong>Mejor precio desde 8</strong><small>propiedades</small></div>
-          <p class="note" style="margin: 8px 0 16px;">Condiciones detalladas al contactar.</p>
+          <div class="price"><strong>Hasta 25%</strong><small>descuento</small></div>
+          <div class="price"><strong>Desde 2 propiedades</strong><small>mejor precio</small></div>
+          <ul class="features">
+            <li>2 propiedades: 13,49€ cada una</li>
+            <li>4 propiedades: 12,74€ cada una</li>
+            <li>5-9 propiedades: 11,99€ cada una</li>
+            <li>10+ propiedades: 11,24€ cada una</li>
+          </ul>
           <div class="cta">
             <button class="btn primary" onclick="startPayment('volume')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
           </div>
+          <p class="note">Descuentos automáticos según volumen.</p>
         </article>
       </div>
       
@@ -1758,52 +1745,85 @@
       set('kpi-profit', money(profit));
     })();
 
-    // Calculadora de precios
+    // Calculadora de precios por volumen
     function updateCalculator() {
       const properties = parseInt($('#calcProperties').value) || 1;
       const plan = $('#calcPlan').value;
       
-      let pricePerProperty, total, savings, perPropertyText, savingsText;
+      let pricePerProperty, total, savings, perPropertyText, savingsText, discount;
       
-      if (plan === 'monthly') {
-        pricePerProperty = 4;
-        total = properties * pricePerProperty;
-        perPropertyText = `${pricePerProperty}€ por propiedad`;
-        savingsText = 'Sin descuento';
-      } else if (plan === 'yearly') {
-        pricePerProperty = 40;
-        total = properties * pricePerProperty;
-        perPropertyText = `${pricePerProperty}€ por propiedad`;
-        const monthlyEquivalent = properties * 4 * 12;
-        savings = monthlyEquivalent - total;
-        savingsText = `Ahorras ${savings}€ al año`;
-      } else if (plan === 'volume') {
-        if (properties < 5) {
-          pricePerProperty = 40;
-          total = properties * pricePerProperty;
-          perPropertyText = `${pricePerProperty}€ por propiedad`;
-          savingsText = 'Mínimo 5 propiedades para descuento';
+      // Calcular precio por propiedad según volumen
+      if (properties === 1) {
+        pricePerProperty = 14.99;
+        discount = 0;
+      } else if (properties === 2) {
+        pricePerProperty = 13.49;
+        discount = 10;
+      } else if (properties >= 3 && properties <= 4) {
+        pricePerProperty = 12.74;
+        discount = 15;
+      } else if (properties >= 5 && properties <= 9) {
+        pricePerProperty = 11.99;
+        discount = 20;
+      } else if (properties >= 10) {
+        pricePerProperty = 11.24;
+        discount = 25;
+      } else {
+        // Fallback para números intermedios
+        if (properties < 3) {
+          pricePerProperty = 13.49;
+          discount = 10;
+        } else if (properties < 5) {
+          pricePerProperty = 12.74;
+          discount = 15;
+        } else if (properties < 10) {
+          pricePerProperty = 11.99;
+          discount = 20;
         } else {
-          pricePerProperty = Math.round(40 * 0.7); // 30% descuento
-          total = properties * pricePerProperty;
-          perPropertyText = `${pricePerProperty}€ por propiedad (descuento aplicado)`;
-          const regularPrice = properties * 40;
-          savings = regularPrice - total;
-          savingsText = `Ahorras ${savings}€ al año`;
+          pricePerProperty = 11.24;
+          discount = 25;
         }
       }
       
-      const periodText = plan === 'yearly' ? '/año' : plan === 'monthly' ? '/mes' : '/año';
+      // Calcular totales
+      const monthlyTotal = properties * pricePerProperty;
+      const yearlyTotal = monthlyTotal * 12;
+      const yearlyDiscount = yearlyTotal * 0.167; // 16.7% descuento anual
+      const finalYearlyTotal = yearlyTotal - yearlyDiscount;
+      
+      // Calcular ahorros
+      const regularMonthlyPrice = properties * 14.99;
+      const regularYearlyPrice = regularMonthlyPrice * 12;
+      const volumeSavings = regularYearlyPrice - yearlyTotal;
+      const totalSavings = volumeSavings + yearlyDiscount;
+      
+      if (plan === 'monthly') {
+        total = monthlyTotal;
+        perPropertyText = `${pricePerProperty.toFixed(2)}€ por propiedad`;
+        if (discount > 0) {
+          savingsText = `${discount}% descuento por volumen`;
+        } else {
+          savingsText = 'Precio base';
+        }
+      } else if (plan === 'yearly') {
+        total = finalYearlyTotal;
+        perPropertyText = `${pricePerProperty.toFixed(2)}€ por propiedad`;
+        savingsText = `Ahorras ${totalSavings.toFixed(2)}€ al año`;
+      }
+      
+      const periodText = plan === 'yearly' ? '/año' : '/mes';
         
-      $('#calcTotal').textContent = `${total}€${periodText}`;
+      $('#calcTotal').textContent = `${total.toFixed(2)}€${periodText}`;
       $('#calcPerProperty').textContent = perPropertyText;
       $('#calcSavings').textContent = savingsText;
       
       // Cambiar color según ahorro
-      if (savings > 0) {
+      if (totalSavings > 0 || discount > 0) {
         $('#calcSavings').style.color = '#16a34a';
+        $('#calcSavings').style.background = 'rgba(22, 163, 74, 0.1)';
       } else {
         $('#calcSavings').style.color = '#64748b';
+        $('#calcSavings').style.background = 'rgba(100, 116, 139, 0.1)';
       }
     }
     
@@ -2731,6 +2751,34 @@ ${message}`;
       }).join('');
       tbody.innerHTML = rows;
     })();
+    
+    // Función para manejar contratación de planes
+    function startPayment(planType) {
+      let planText, subject, body, price;
+      
+      if (planType === 'monthly') {
+        planText = 'mensual';
+        price = '14,99€ por propiedad/mes';
+        subject = 'Contratar Plan Mensual - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan mensual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+      } else if (planType === 'yearly') {
+        planText = 'anual';
+        price = '149,90€ por propiedad/año (16,7% descuento)';
+        subject = 'Contratar Plan Anual - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan anual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+      } else if (planType === 'volume') {
+        planText = 'volumen';
+        price = 'Descuentos por volumen (hasta 25% descuento)';
+        subject = 'Consulta Plan Volumen - Delfín Check-in';
+        body = `Hola,%0D%0A%0D%0AMe interesa el plan con descuentos por volumen de Delfín Check-in.%0D%0A%0D%0A${price}%0D%0A%0D%0A¿Podrían darme más información sobre:%0D%0A- Precios específicos según número de propiedades%0D%0A- Proceso de contratación%0D%0A- Condiciones del plan%0D%0A%0D%0AGracias.`;
+      }
+      
+      const mailto = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailto;
+    }
+    
+    // Hacer la función global
+    window.startPayment = startPayment;
     
     // Cache busting - Última actualización: ${new Date().toISOString()}
     console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
