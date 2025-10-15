@@ -2752,33 +2752,55 @@ ${message}`;
       tbody.innerHTML = rows;
     })();
     
-    // Función para manejar contratación de planes
+    // Función para manejar contratación de planes - ahora abre modal de Stripe
     function startPayment(planType) {
-      let planText, subject, body, price;
+      openPaymentModal(planType);
+    }
+
+    // Función para abrir el modal de pago con Stripe
+    function openPaymentModal(planType) {
+      currentPlan = planType;
+      const modal = $('#paymentModal');
+      const planName = $('#planName');
+      const planPrice = $('#planPrice');
+      const planDescription = $('#planDescription');
       
+      // Inicializar con 1 propiedad por defecto
+      const properties = 1;
+      
+      // Configurar información del plan
+      let pricePerProperty, total, planText;
       if (planType === 'monthly') {
-        planText = 'mensual';
-        price = '14,99€ por propiedad/mes';
-        subject = 'Contratar Plan Mensual - Delfín Check-in';
-        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan mensual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+        planText = 'Plan Mensual';
+        pricePerProperty = '14,99€/mes';
+        total = properties * 14.99;
       } else if (planType === 'yearly') {
-        planText = 'anual';
-        price = '149,90€ por propiedad/año (16,7% descuento)';
-        subject = 'Contratar Plan Anual - Delfín Check-in';
-        body = `Hola,%0D%0A%0D%0AMe interesa contratar el plan anual de Delfín Check-in.%0D%0A%0D%0APrecio: ${price}%0D%0A%0D%0A¿Podrían enviarme la información para proceder con la contratación?%0D%0A%0D%0AGracias.`;
+        planText = 'Plan Anual';
+        pricePerProperty = '149,90€/año';
+        total = properties * 149.90;
       } else if (planType === 'volume') {
-        planText = 'volumen';
-        price = 'Descuentos por volumen (hasta 25% descuento)';
-        subject = 'Consulta Plan Volumen - Delfín Check-in';
-        body = `Hola,%0D%0A%0D%0AMe interesa el plan con descuentos por volumen de Delfín Check-in.%0D%0A%0D%0A${price}%0D%0A%0D%0A¿Podrían darme más información sobre:%0D%0A- Precios específicos según número de propiedades%0D%0A- Proceso de contratación%0D%0A- Condiciones del plan%0D%0A%0D%0AGracias.`;
+        planText = 'Plan por Volumen';
+        pricePerProperty = 'Consultar precio';
+        total = 0; // Se calculará según propiedades
       }
       
-      const mailto = `mailto:contacto@delfincheckin.com?subject=${encodeURIComponent(subject)}&body=${body}`;
-      window.location.href = mailto;
+      // Actualizar el modal con la información del plan
+      planName.textContent = planText;
+      planPrice.textContent = `${total.toFixed(2)}€`;
+      planDescription.textContent = `${pricePerProperty} por propiedad`;
+      
+      // Configurar el selector de propiedades
+      $('#paymentProperties').value = properties;
+      updatePaymentTotal();
+      
+      // Mostrar el modal
+      modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
     }
     
-    // Hacer la función global
+    // Hacer las funciones globales
     window.startPayment = startPayment;
+    window.openPaymentModal = openPaymentModal;
     
     // Cache busting - Última actualización: ${new Date().toISOString()}
     console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
