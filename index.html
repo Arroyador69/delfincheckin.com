@@ -1515,16 +1515,10 @@
           <div id="cardErrors" style="color: #dc2626; margin-bottom: 15px; font-size: 14px;"></div>
         </div>
         
-        <button type="submit" id="submitPayment" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; display: none;">
-          <span id="buttonText">💳 Pagar ahora</span>
+        <button type="submit" id="submitPayment" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
+          <span id="buttonText">💳 Pagar con Stripe</span>
           <span id="spinner" style="display: none;">⏳ Procesando...</span>
         </button>
-        
-        <!-- Mensaje temporal para verificar campos de tarjeta -->
-        <div style="margin-top: 15px; padding: 15px; background: #f0f9ff; border: 2px solid #2563eb; border-radius: 8px; text-align: center;">
-          <p style="margin: 0; color: #1e40af; font-weight: 600;">✅ Campos de tarjeta visibles - Verificando funcionalidad</p>
-          <p style="margin: 5px 0 0; color: #64748b; font-size: 14px;">Los campos de Stripe deberían aparecer arriba</p>
-        </div>
         
         <div style="margin-top: 15px; text-align: center; font-size: 12px; color: #64748b;">
           🔒 Pago 100% seguro procesado por Stripe
@@ -2423,85 +2417,6 @@ ${message}`;
       });
     }
 
-    // Función para iniciar el pago
-    function startPayment(plan) {
-      currentPlan = plan;
-      const modal = $('#paymentModal');
-      const planName = $('#planName');
-      const planPrice = $('#planPrice');
-      const planDescription = $('#planDescription');
-      
-      // Inicializar con 1 propiedad por defecto
-      const properties = 1;
-      
-      // Configurar información del plan
-      let pricePerProperty, total, planText;
-      if (plan === 'monthly') {
-        planText = 'Plan Mensual';
-        pricePerProperty = '4€/mes';
-        total = properties * 4;
-      } else if (plan === 'yearly') {
-        planText = 'Plan Anual';
-        pricePerProperty = '40€/año';
-        total = properties * 40;
-      } else if (plan === 'volume') {
-        planText = 'Plan Volumen';
-        if (properties >= 5) {
-          // Aplicar descuento del 30% para 5+ propiedades
-          const discountedPrice = Math.round(40 * 0.7); // 28€ por propiedad
-          pricePerProperty = `${discountedPrice}€/año (descuento aplicado)`;
-          total = properties * discountedPrice;
-        } else {
-          pricePerProperty = '40€/año (mínimo 5 propiedades)';
-          total = properties * 40;
-        }
-      }
-      
-      // Actualizar información en el modal
-      planName.textContent = planText;
-      planPrice.textContent = pricePerProperty;
-      $('#planProperties').textContent = properties + (properties === 1 ? ' propiedad' : ' propiedades');
-      $('#totalPrice').textContent = total === 'Contactar' ? 'Contactar para precio' : `${total}€${plan === 'monthly' ? '/mes' : '/año'}`;
-      
-      // Configurar el campo de propiedades
-      $('#paymentProperties').value = properties;
-      
-      // Event listener para actualizar precio cuando cambie el número de propiedades
-      $('#paymentProperties').addEventListener('input', function() {
-        const newProperties = parseInt(this.value) || 1;
-        let newTotal, newPricePerProperty;
-        
-        if (plan === 'monthly') {
-          newPricePerProperty = '4€/mes';
-          newTotal = newProperties * 4;
-        } else if (plan === 'yearly') {
-          newPricePerProperty = '40€/año';
-          newTotal = newProperties * 40;
-        } else if (plan === 'volume') {
-          if (newProperties >= 5) {
-            const discountedPrice = Math.round(40 * 0.7); // 28€ por propiedad
-            newPricePerProperty = `${discountedPrice}€/año (descuento aplicado)`;
-            newTotal = newProperties * discountedPrice;
-          } else {
-            newPricePerProperty = '40€/año (mínimo 5 propiedades)';
-            newTotal = newProperties * 40;
-          }
-        }
-        
-        $('#planProperties').textContent = newProperties + (newProperties === 1 ? ' propiedad' : ' propiedades');
-        $('#planPrice').textContent = newPricePerProperty;
-        $('#totalPrice').textContent = `${newTotal}€${plan === 'monthly' ? '/mes' : '/año'}`;
-      });
-      
-      
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      
-      // Inicializar Stripe si no está inicializado
-      if (!elements) {
-        initializeStripe();
-      }
-    }
 
     // Cerrar modal de pago
     function closePaymentModal() {
