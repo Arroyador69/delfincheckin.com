@@ -1515,7 +1515,47 @@
           <div id="cardErrors" style="color: #dc2626; margin-bottom: 15px; font-size: 14px;"></div>
         </div>
         
-        <button type="submit" id="submitPayment" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
+        <!-- Términos y Condiciones -->
+        <div style="margin-bottom: 20px; padding: 15px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+          <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px;">
+            <input type="checkbox" id="termsAccepted" style="margin-top: 3px; width: 16px; height: 16px;" required>
+            <label for="termsAccepted" style="font-size: 13px; line-height: 1.4; color: #374151; cursor: pointer;">
+              ☐ Declaro haber leído y aceptado los Términos y Condiciones, la Política de Privacidad y los Supuestos de Uso del servicio Delfín Check-in, y consiento el tratamiento de mis datos conforme a lo dispuesto en la normativa vigente de protección de datos.
+            </label>
+          </div>
+          
+          <!-- Botón para mostrar/ocultar términos detallados -->
+          <button type="button" id="toggleTerms" style="background: none; border: none; color: #2563eb; font-size: 12px; text-decoration: underline; cursor: pointer; padding: 0; margin-bottom: 10px;">
+            Ver términos detallados
+          </button>
+          
+          <!-- Términos detallados desplegables -->
+          <div id="detailedTerms" style="display: none; background: white; border: 1px solid #d1d5db; border-radius: 6px; padding: 15px; font-size: 12px; line-height: 1.5; color: #374151;">
+            <p style="font-weight: 600; margin: 0 0 10px 0;">Al aceptar, confirmo que:</p>
+            
+            <div style="margin-bottom: 15px;">
+              <p style="margin: 0 0 8px 0;">• Comprendo que Delfín Check-in es una herramienta de gestión que facilita la creación, almacenamiento y exportación de ficheros de registro de viajeros conforme al Real Decreto 933/2021, pero que no realiza el envío automático al MIR ni sustituye las obligaciones legales del titular del alojamiento.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Soy responsable de la veracidad, exactitud y conservación de los datos introducidos en los formularios de registro.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Entiendo que la IA y las funciones disponibles (por ejemplo, chatbot en Telegram o WhatsApp) actúan como asistencia complementaria y no como servicio oficial de verificación, firma o presentación telemática ante las autoridades.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Acepto que los datos procesados se almacenarán de forma segura durante el tiempo necesario para cumplir con las finalidades del servicio y la normativa aplicable.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Reconozco que el servicio requiere una suscripción activa (mensual o anual), cuyo pago otorga acceso al software y sus funcionalidades, sin implicar custodia ni certificación oficial de registros.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Comprendo que pueden producirse interrupciones temporales por mantenimiento, actualizaciones o causas técnicas ajenas a la plataforma, y que estas no darán lugar a compensaciones salvo en casos de incidencia prolongada.</p>
+              
+              <p style="margin: 0 0 8px 0;">• Acepto que los precios, condiciones y funcionalidades del servicio podrán actualizarse, comunicándose siempre por medios electrónicos con antelación razonable.</p>
+              
+              <p style="margin: 0 0 8px 0;">• He revisado las políticas aplicables en <a href="terminos-servicio.html" target="_blank" style="color: #2563eb; text-decoration: underline;">Términos de Servicio</a> y <a href="politica-privacidad.html" target="_blank" style="color: #2563eb; text-decoration: underline;">Política de Privacidad</a> y las acepto expresamente antes de realizar el pago.</p>
+            </div>
+
+            <p style="font-weight: 600; margin: 0; border-top: 1px solid #e5e7eb; padding-top: 10px;">Al continuar, confirmo mi conformidad y doy consentimiento informado para la prestación del servicio.</p>
+          </div>
+        </div>
+        
+        <button type="submit" id="submitPayment" style="width: 100%; height: 50px; background: #2563eb; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;" disabled>
           <span id="buttonText">💳 Pagar ahora</span>
           <span id="spinner" style="display: none;">⏳ Procesando...</span>
         </button>
@@ -2528,6 +2568,12 @@ ${message}`;
         return;
       }
       
+      // Verificar que los términos estén aceptados
+      if (!$('#termsAccepted').checked) {
+        alert('Debes aceptar los términos y condiciones para continuar con el pago.');
+        return;
+      }
+      
       // Mostrar spinner
       buttonText.style.display = 'none';
       spinner.style.display = 'inline';
@@ -2584,6 +2630,34 @@ ${message}`;
         buttonText.style.display = 'inline';
         spinner.style.display = 'none';
         submitButton.disabled = false;
+      }
+    });
+
+    // Manejar checkbox de términos y condiciones
+    $('#termsAccepted').addEventListener('change', function() {
+      const submitButton = $('#submitPayment');
+      submitButton.disabled = !this.checked;
+      
+      if (this.checked) {
+        submitButton.style.background = '#2563eb';
+        submitButton.style.cursor = 'pointer';
+      } else {
+        submitButton.style.background = '#9ca3af';
+        submitButton.style.cursor = 'not-allowed';
+      }
+    });
+
+    // Manejar botón de términos desplegables
+    $('#toggleTerms').addEventListener('click', function() {
+      const detailedTerms = $('#detailedTerms');
+      const isVisible = detailedTerms.style.display !== 'none';
+      
+      if (isVisible) {
+        detailedTerms.style.display = 'none';
+        this.textContent = 'Ver términos detallados';
+      } else {
+        detailedTerms.style.display = 'block';
+        this.textContent = 'Ocultar términos detallados';
       }
     });
 
