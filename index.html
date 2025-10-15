@@ -1605,8 +1605,8 @@
     const $ = (s) => document.querySelector(s);
     const mapLang = { es:'Español', en:'English', fr:'Français', de:'Deutsch', it:'Italiano' };
     
-    // Inicializar Stripe (reemplaza con tu clave pública)
-    const stripe = Stripe('pk_test_51RGg0AGayGuUgznnZ1FfHOEfSlHEdiSAhSGKO41ckEowveEs4aojJVdEcrx3MpJUp4dmfLeZ84ybN9iCe5ClzU3p00bKSWKKWR'); // Clave de prueba
+    // Inicializar Stripe con clave de prueba
+    const stripe = Stripe('pk_test_51RGg0AGayGuUgznnZ1FfHOEfSlHEdiSAhSGKO41ckEowveEs4aojJVdEcrx3MpJUp4dmfLeZ84ybN9iCe5ClzU3p00bKSWKKWR');
     const openModal = () => { $('#previewModal').style.display = 'flex'; document.body.style.overflow='hidden'; };
     const closeModal = () => { $('#previewModal').style.display = 'none'; document.body.style.overflow=''; };
     $('#previewClose').addEventListener('click', closeModal);
