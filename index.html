@@ -2793,6 +2793,9 @@ ${message}`;
       $('#paymentProperties').value = properties;
       updatePaymentTotal();
       
+      // Inicializar Stripe Elements para mostrar los campos de la tarjeta
+      initializeStripe();
+      
       // Mostrar el modal
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
