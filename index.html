@@ -63,6 +63,7 @@
     .btn:hover{ border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.06) }
     .btn.primary{ background: linear-gradient(135deg, var(--brand), #2bb3ff); border: none; color: #0a1020; font-weight:700; box-shadow: 0 6px 20px var(--ring) }
     .btn.primary:hover{ filter: brightness(1.05) }
+    .btn.primary{ cursor: pointer !important; pointer-events: auto !important; }
 
     /* Hero */
     .hero{ padding: 56px 0 28px }
@@ -1131,7 +1132,7 @@
             <li>Soporte por email</li>
           </ul>
           <div class="cta">
-            <button class="btn primary" onclick="startPayment('monthly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
+            <button class="btn primary" onclick="startPayment('monthly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700; cursor: pointer; pointer-events: auto; user-select: none; border: none; background: #2563eb; color: white; border-radius: 8px;">Contratar</button>
           </div>
           <p class="note">Sin permanencia. Cancela cuando quieras.</p>
         </article>
@@ -1148,7 +1149,7 @@
             <li>Equivale a 12,49€/mes</li>
           </ul>
           <div class="cta">
-            <button class="btn primary" onclick="startPayment('yearly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
+            <button class="btn primary" onclick="startPayment('yearly')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700; cursor: pointer; pointer-events: auto; user-select: none; border: none; background: #2563eb; color: white; border-radius: 8px;">Contratar</button>
           </div>
           <p class="note">Ahorra 29,90€ al año por propiedad.</p>
         </article>
@@ -1163,7 +1164,7 @@
             <li>10+ propiedades: 11,24€ cada una</li>
           </ul>
           <div class="cta">
-            <button class="btn primary" onclick="startPayment('volume')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700;">Contratar</button>
+            <button class="btn primary" onclick="startPayment('volume')" style="width: 100%; padding: 16px; font-size: 18px; font-weight: 700; cursor: pointer; pointer-events: auto; user-select: none; border: none; background: #2563eb; color: white; border-radius: 8px;">Contratar</button>
           </div>
           <p class="note">Descuentos automáticos según volumen.</p>
         </article>
@@ -2675,6 +2676,7 @@ ${message}`;
     
     // Función para manejar contratación de planes - ahora abre modal de Stripe
     function startPayment(planType) {
+      console.log('🚀 startPayment llamado con plan:', planType);
       openPaymentModal(planType);
     }
 
@@ -2725,6 +2727,12 @@ ${message}`;
     // Hacer las funciones globales
     window.startPayment = startPayment;
     window.openPaymentModal = openPaymentModal;
+    
+    // Test para verificar que los botones funcionan
+    console.log('🔧 Funciones cargadas:', {
+      startPayment: typeof window.startPayment,
+      openPaymentModal: typeof window.openPaymentModal
+    });
     
     // Cache busting - Última actualización: ${new Date().toISOString()}
     console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
