@@ -2496,9 +2496,11 @@ ${message}`;
       const spinner = $('#spinner');
       const properties = parseInt($('#paymentProperties').value) || 1;
       const email = $('#paymentEmail').value;
-      const name = $('#paymentName').value;
+      const firstName = $('#paymentFirstName').value;
+      const lastName = $('#paymentLastName').value;
+      const name = `${firstName} ${lastName}`;
       
-      if (!email || !name) {
+      if (!email || !firstName || !lastName) {
         alert('Por favor, completa todos los campos obligatorios.');
         return;
       }
