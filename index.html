@@ -2682,11 +2682,13 @@ ${message}`;
 
     // Función para abrir el modal de pago con Stripe
     function openPaymentModal(planType) {
+      console.log('🔧 openPaymentModal llamado con:', planType);
       currentPlan = planType;
       const modal = $('#paymentModal');
       const planName = $('#planName');
       const planPrice = $('#planPrice');
-      const planDescription = $('#planDescription');
+      const planProperties = $('#planProperties');
+      const totalPrice = $('#totalPrice');
       
       // Inicializar con 1 propiedad por defecto
       const properties = 1;
@@ -2708,13 +2710,14 @@ ${message}`;
       }
       
       // Actualizar el modal con la información del plan
-      planName.textContent = planText;
-      planPrice.textContent = `${total.toFixed(2)}€`;
-      planDescription.textContent = `${pricePerProperty} por propiedad`;
+      if (planName) planName.textContent = planText;
+      if (planPrice) planPrice.textContent = `${total.toFixed(2)}€`;
+      if (planProperties) planProperties.textContent = `${properties} propiedad${properties > 1 ? 'es' : ''}`;
+      if (totalPrice) totalPrice.textContent = `${total.toFixed(2)}€`;
       
       // Configurar el selector de propiedades
-      $('#paymentProperties').value = properties;
-      updatePaymentTotal();
+      const paymentPropertiesInput = $('#paymentProperties');
+      if (paymentPropertiesInput) paymentPropertiesInput.value = properties;
       
       // Inicializar Stripe Elements para mostrar los campos de la tarjeta
       initializeStripe();
