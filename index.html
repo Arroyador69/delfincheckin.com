@@ -2694,30 +2694,29 @@ ${message}`;
       const properties = 1;
       
       // Configurar información del plan
-      let pricePerProperty, total, planText;
+      let planText;
       if (planType === 'monthly') {
         planText = 'Plan Mensual';
-        pricePerProperty = '14,99€/mes';
-        total = properties * 14.99;
       } else if (planType === 'yearly') {
         planText = 'Plan Anual';
-        pricePerProperty = '149,90€/año';
-        total = properties * 149.90;
       } else if (planType === 'volume') {
         planText = 'Plan por Volumen';
-        pricePerProperty = 'Consultar precio';
-        total = 0; // Se calculará según propiedades
       }
       
       // Actualizar el modal con la información del plan
       if (planName) planName.textContent = planText;
-      if (planPrice) planPrice.textContent = `${total.toFixed(2)}€`;
-      if (planProperties) planProperties.textContent = `${properties} propiedad${properties > 1 ? 'es' : ''}`;
-      if (totalPrice) totalPrice.textContent = `${total.toFixed(2)}€`;
+      
+      // Llamar a updatePaymentTotal para calcular los precios correctos
+      updatePaymentTotal();
       
       // Configurar el selector de propiedades
       const paymentPropertiesInput = $('#paymentProperties');
-      if (paymentPropertiesInput) paymentPropertiesInput.value = properties;
+      if (paymentPropertiesInput) {
+        paymentPropertiesInput.value = properties;
+        // Agregar event listener para actualizar precios en tiempo real
+        paymentPropertiesInput.addEventListener('input', updatePaymentTotal);
+        paymentPropertiesInput.addEventListener('change', updatePaymentTotal);
+      }
       
       // Inicializar Stripe Elements para mostrar los campos de la tarjeta
       initializeStripe();
@@ -2726,10 +2725,53 @@ ${message}`;
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
+
+    // Función para calcular precios por volumen
+    function getVolumePrice(properties) {
+      if (properties === 1) return 14.99;
+      if (properties === 2) return 13.49;
+      if (properties >= 3 && properties <= 4) return 12.74;
+      if (properties >= 5 && properties <= 9) return 11.99;
+      if (properties >= 10) return 11.24;
+      return 14.99; // Default
+    }
+
+    // Función para actualizar el total en tiempo real
+    function updatePaymentTotal() {
+      const properties = parseInt($('#paymentProperties').value) || 1;
+      const planProperties = $('#planProperties');
+      const planPrice = $('#planPrice');
+      const totalPrice = $('#totalPrice');
+      
+      let pricePerProperty, total, description;
+      
+      if (currentPlan === 'monthly') {
+        pricePerProperty = getVolumePrice(properties);
+        total = properties * pricePerProperty;
+        description = `${pricePerProperty.toFixed(2)}€/mes`;
+      } else if (currentPlan === 'yearly') {
+        const monthlyPrice = getVolumePrice(properties);
+        const yearlyPrice = monthlyPrice * 12;
+        const annualDiscount = yearlyPrice * 0.167; // 16.7% descuento
+        pricePerProperty = yearlyPrice - annualDiscount;
+        total = properties * pricePerProperty;
+        description = `${pricePerProperty.toFixed(2)}€/año`;
+      } else if (currentPlan === 'volume') {
+        pricePerProperty = getVolumePrice(properties);
+        total = properties * pricePerProperty;
+        description = `${pricePerProperty.toFixed(2)}€/mes`;
+      }
+      
+      // Actualizar los elementos del modal
+      if (planProperties) planProperties.textContent = `${properties} propiedad${properties > 1 ? 'es' : ''}`;
+      if (planPrice) planPrice.textContent = description;
+      if (totalPrice) totalPrice.textContent = `${total.toFixed(2)}€`;
+    }
     
     // Hacer las funciones globales
     window.startPayment = startPayment;
     window.openPaymentModal = openPaymentModal;
+    window.updatePaymentTotal = updatePaymentTotal;
     
     // Test para verificar que los botones funcionan
     console.log('🔧 Funciones cargadas:', {
