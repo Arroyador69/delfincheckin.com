@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Pago Exitoso! - Delfín Check-in</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 40px;
+            color: white;
+        }
+        
+        h1 {
+            color: #1f2937;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .success-message {
+            color: #6b7280;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .email-notice {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .email-notice h3 {
+            color: #0369a1;
+            font-size: 18px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .email-notice ul {
+            color: #374151;
+            font-size: 14px;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        
+        .email-notice li {
+            margin-bottom: 8px;
+        }
+        
+        .warning-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-box h4 {
+            color: #92400e;
+            font-size: 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .warning-box p {
+            color: #451a03;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+        
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+        
+        .footer-note {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            color: #9ca3af;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 480px) {
+            .success-container {
+                padding: 30px 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✅</div>
+        
+        <h1>¡Pago Procesado Exitosamente!</h1>
+        
+        <p class="success-message">
+            Gracias por contratar Delfín Check-in. Tu suscripción ha sido activada y pronto recibirás acceso a tu panel de administración.
+        </p>
+        
+        <div class="email-notice">
+            <h3>
+                📧 <span>¡Revisa tu Email!</span>
+            </h3>
+            <ul>
+                <li><strong>Busca en tu bandeja de entrada</strong> un email de "Delfín Check-in"</li>
+                <li><strong>Revisa la carpeta de spam/correo no deseado</strong> si no lo encuentras</li>
+                <li><strong>El email contiene:</strong> tu contraseña temporal y enlace de acceso</li>
+                <li><strong>Panel de administración:</strong> admin.delfincheckin.com</li>
+            </ul>
+        </div>
+        
+        <div class="warning-box">
+            <h4>
+                ⚠️ <span>Importante - Seguridad</span>
+            </h4>
+            <p>
+                <strong>DEBES cambiar la contraseña temporal</strong> nada más entrar por primera vez. 
+                Es obligatorio por seguridad y para proteger tu cuenta.
+            </p>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="https://admin.delfincheckin.com" class="btn btn-primary" target="_blank">
+                🚀 Ir al Panel de Administración
+            </a>
+            <a href="https://delfincheckin.com" class="btn btn-secondary">
+                🏠 Volver al Inicio
+            </a>
+        </div>
+        
+        <div class="footer-note">
+            <p>
+                <strong>¿No recibiste el email?</strong><br>
+                Espera 2-3 minutos y revisa todas las carpetas. Si después de 10 minutos no lo encuentras, 
+                contacta con soporte en <strong>contacto@delfincheckin.com</strong>
+            </p>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-redirect después de 30 segundos si no hay interacción
+        let autoRedirectTimer;
+        let userInteracted = false;
+        
+        // Detectar interacción del usuario
+        document.addEventListener('click', () => {
+            userInteracted = true;
+            if (autoRedirectTimer) {
+                clearTimeout(autoRedirectTimer);
+            }
+        });
+        
+        // Configurar auto-redirect
+        setTimeout(() => {
+            if (!userInteracted) {
+                autoRedirectTimer = setTimeout(() => {
+                    window.location.href = 'https://admin.delfincheckin.com';
+                }, 30000); // 30 segundos
+            }
+        }, 5000); // Esperar 5 segundos antes de activar el timer
+        
+        // Log para debugging
+        console.log('✅ Página de éxito cargada - Pago procesado correctamente');
+    </script>
+</body>
+</html>
