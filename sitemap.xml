@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Página principal -->
+  <url>
+    <loc>https://delfincheckin.com/</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Página de éxito -->
+  <url>
+    <loc>https://delfincheckin.com/success.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Términos de servicio -->
+  <url>
+    <loc>https://delfincheckin.com/terminos-servicio.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Aviso legal -->
+  <url>
+    <loc>https://delfincheckin.com/aviso-legal.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Política de cookies -->
+  <url>
+    <loc>https://delfincheckin.com/politica-cookies.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Política de privacidad -->
+  <url>
+    <loc>https://delfincheckin.com/politica-privacidad.html</loc>
+    <lastmod>2024-12-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+</urlset>
