@@ -1294,12 +1294,12 @@
             </div>
           </div>
           
-          <!-- Botón de contratar con Stripe -->
+          <!-- Botón de contratar -->
           <button onclick="openStripePaymentFromCalculator()" 
                   style="width: 100%; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); transition: all 0.3s ease;"
                   onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
                   onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'">
-            💳 Contratar ahora con Stripe
+            💳 Contratar
           </button>
         </div>
       </div>
@@ -2463,14 +2463,20 @@
     // Inicializar calculadora
     updateCalculator();
 
-    // Función para abrir Stripe desde la calculadora
+    // Función para abrir modal de pago desde la calculadora
     function openStripePaymentFromCalculator() {
       const properties = parseInt($('#calcProperties').value) || 1;
       const plan = $('#calcPlan').value;
-      const planId = plan === 'monthly' ? 'basic' : 'basic_yearly';
+      const planType = plan === 'monthly' ? 'monthly' : 'yearly';
       
-      // Redirigir a checkout con parámetros
-      window.location.href = `https://admin.delfincheckin.com/checkout-rooms?properties=${properties}&plan=${planId}`;
+      // Establecer valores en el modal antes de abrirlo
+      const paymentPropertiesInput = $('#paymentProperties');
+      if (paymentPropertiesInput) {
+        paymentPropertiesInput.value = properties;
+      }
+      
+      // Abrir el modal con el plan seleccionado
+      openPaymentModal(planType);
     }
     
     // Hacer la función global
@@ -3185,6 +3191,40 @@ ${message}`;
     
     // Cache busting - Última actualización: ${new Date().toISOString()}
     console.log('Delfín Check-in cargado correctamente - Versión:', new Date().toISOString());
+    
+    // Verificar si hay parámetros en la URL para abrir el modal automáticamente
+    (function checkUrlParams() {
+      const hash = window.location.hash;
+      if (hash && hash.includes('openModal=true')) {
+        const params = new URLSearchParams(hash.split('?')[1] || '');
+        const properties = parseInt(params.get('properties')) || 1;
+        const planType = params.get('plan') || 'yearly';
+        
+        // Establecer valores en la calculadora
+        const calcProperties = $('#calcProperties');
+        const calcPlan = $('#calcPlan');
+        if (calcProperties) calcProperties.value = properties;
+        if (calcPlan) calcPlan.value = planType;
+        
+        // Actualizar calculadora
+        if (typeof updateCalculator === 'function') {
+          updateCalculator();
+        }
+        
+        // Establecer valores en el modal
+        const paymentPropertiesInput = $('#paymentProperties');
+        if (paymentPropertiesInput) {
+          paymentPropertiesInput.value = properties;
+        }
+        
+        // Abrir el modal después de un breve delay para asegurar que todo está cargado
+        setTimeout(() => {
+          if (typeof openPaymentModal === 'function') {
+            openPaymentModal(planType);
+          }
+        }, 500);
+      }
+    })();
   </script>
 </body>
 </html>
