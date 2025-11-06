@@ -1294,6 +1294,13 @@
             </div>
           </div>
           
+          <!-- Botón de contratar con Stripe -->
+          <button onclick="openStripePaymentFromCalculator()" 
+                  style="width: 100%; margin-top: 24px; padding: 16px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); transition: all 0.3s ease;"
+                  onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
+                  onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'">
+            💳 Contratar ahora con Stripe
+          </button>
         </div>
       </div>
       
@@ -2456,6 +2463,18 @@
     // Inicializar calculadora
     updateCalculator();
 
+    // Función para abrir Stripe desde la calculadora
+    function openStripePaymentFromCalculator() {
+      const properties = parseInt($('#calcProperties').value) || 1;
+      const plan = $('#calcPlan').value;
+      const planId = plan === 'monthly' ? 'basic' : 'basic_yearly';
+      
+      // Redirigir a checkout con parámetros
+      window.location.href = `https://admin.delfincheckin.com/checkout-rooms?properties=${properties}&plan=${planId}`;
+    }
+    
+    // Hacer la función global
+    window.openStripePaymentFromCalculator = openStripePaymentFromCalculator;
 
     // Función para manejar el botón "Email directo" en Opera GX
     function handleEmailDirecto(event) {
