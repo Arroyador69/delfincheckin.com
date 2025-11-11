@@ -876,6 +876,53 @@
       </div>
     </section>
 
+    <!-- Enlaces de pagos directos -->
+    <section id="enlaces-pagos" class="section container" aria-labelledby="links-title">
+      <div style="background: #ffffff; border: 1px solid rgba(15,23,42,0.08); border-radius: 24px; padding: clamp(24px, 4vw, 40px); box-shadow: 0 15px 40px rgba(15,23,42,0.08); display: grid; gap: 24px;">
+        <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <span style="background: rgba(37,99,235,0.1); color: #1d4ed8; font-weight: 700; font-size: 14px; padding: 6px 14px; border-radius: 999px;">Pagos directos</span>
+          <h2 id="links-title" style="margin: 0; font-size: clamp(26px, 4vw, 36px); color: #0f172a;">Crea enlaces de cobro personalizados en segundos</h2>
+          <p style="margin: 0; font-size: 18px; color: #475569; max-width: 720px; line-height: 1.6;">
+            Define las fechas de estancia, introduce el importe que has acordado con tu huésped y genera un enlace único de pago. Lo compartes por WhatsApp o email y el huésped paga de forma segura. El dinero aterriza en tu cuenta bancaria sin esperar a liquidaciones de Booking o Airbnb.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
+          <div style="background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(37,99,235,0.12)); border-radius: 16px; padding: 20px; border: 1px solid rgba(37,99,235,0.15);">
+            <div style="font-size: 32px; margin-bottom: 12px;">🗓️</div>
+            <h3 style="margin: 0 0 8px; color: #1d4ed8; font-size: 18px;">Configura la reserva</h3>
+            <p style="margin: 0; color: #475569; line-height: 1.6;">Selecciona fechas de check‑in y check‑out, número de noches y cualquier comentario para el huésped.</p>
+          </div>
+
+          <div style="background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(16,185,129,0.12)); border-radius: 16px; padding: 20px; border: 1px solid rgba(16,185,129,0.15);">
+            <div style="font-size: 32px; margin-bottom: 12px;">💶</div>
+            <h3 style="margin: 0 0 8px; color: #047857; font-size: 18px;">Elige el importe</h3>
+            <p style="margin: 0; color: #475569; line-height: 1.6;">Introduce la cantidad exacta que habéis acordado (reserva completa o señal) y genera el enlace en un clic.</p>
+          </div>
+
+          <div style="background: linear-gradient(135deg, rgba(244,114,182,0.08), rgba(67,56,202,0.08)); border-radius: 16px; padding: 20px; border: 1px solid rgba(124,58,237,0.15);">
+            <div style="font-size: 32px; margin-bottom: 12px;">📲</div>
+            <h3 style="margin: 0 0 8px; color: #6d28d9; font-size: 18px;">Comparte y cobra</h3>
+            <p style="margin: 0; color: #475569; line-height: 1.6;">Envía el enlace por WhatsApp, SMS o email. El huésped paga con tarjeta y recibes el dinero directamente en tu cuenta bancaria.</p>
+          </div>
+        </div>
+
+        <div style="display: grid; gap: 14px; padding: 18px; border-radius: 16px; border: 1px dashed rgba(15,23,42,0.12); background: rgba(15,23,42,0.02);">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <span style="width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(37,99,235,0.12); color: #1d4ed8; font-size: 20px;">🔗</span>
+              <div>
+                <p style="margin: 0; font-size: 16px; color: #0f172a; font-weight: 600;">Ejemplo de enlace generado</p>
+                <p style="margin: 2px 0 0; font-size: 14px; color: #64748b;">https://delfincheckin.com/pay/apt-malaga-12may-14may</p>
+              </div>
+            </div>
+            <button onclick="navigator.clipboard.writeText('https://delfincheckin.com/pay/apt-malaga-12may-14may')" class="btn" style="border-radius: 999px;">Copiar</button>
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #94a3b8;">Todos los pagos pasan por Stripe con SCA, recibes liquidación diaria y controlas las devoluciones desde tu panel.</p>
+        </div>
+      </div>
+    </section>
+
     <!-- Vista previa tipo admin/dashboard -->
     <section id="dashboard" class="section container" aria-labelledby="dashboard-title">
       <h2 id="dashboard-title" data-es="Vista previa del Dashboard" data-en="Dashboard Preview">Vista previa del Dashboard</h2>
