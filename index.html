@@ -1363,12 +1363,18 @@
                 <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">26,98 €</td>
               </tr>
               <tr style="border-bottom: 1px solid #e5e7eb;">
+                <td style="padding: 16px; font-weight: 600; color: #1f2937;">3 propiedades</td>
+                <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">10%</td>
+                <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">13,49 €</td>
+                <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">40,47 €</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #e5e7eb; background: #f8fafc;">
                 <td style="padding: 16px; font-weight: 600; color: #1f2937;">4 propiedades</td>
                 <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">15%</td>
                 <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">12,74 €</td>
                 <td style="padding: 16px; text-align: center; font-weight: 700; color: #1f2937; font-size: 18px;">50,96 €</td>
               </tr>
-              <tr style="border-bottom: 1px solid #e5e7eb; background: #f8fafc;">
+              <tr style="border-bottom: 1px solid #e5e7eb;">
                 <td style="padding: 16px; font-weight: 600; color: #1f2937;">5-9 propiedades</td>
                 <td style="padding: 16px; text-align: center; color: #059669; font-weight: 600;">20%</td>
                 <td style="padding: 16px; text-align: center; font-weight: 600; color: #1f2937;">11,99 €</td>
@@ -1530,6 +1536,7 @@
           <div class="price"><strong>Desde 2 propiedades</strong><small>mejor precio</small></div>
           <ul class="features">
             <li>2 propiedades: 13,49€ cada una</li>
+            <li>3 propiedades: 13,49€ cada una</li>
             <li>4 propiedades: 12,74€ cada una</li>
             <li>5-9 propiedades: 11,99€ cada una</li>
             <li>10+ propiedades: 11,24€ cada una</li>
@@ -2279,10 +2286,10 @@
       if (properties === 1) {
         pricePerProperty = 14.99;
         discount = 0;
-      } else if (properties === 2) {
+      } else if (properties === 2 || properties === 3) {
         pricePerProperty = 13.49;
         discount = 10;
-      } else if (properties >= 3 && properties <= 4) {
+      } else if (properties === 4) {
         pricePerProperty = 12.74;
         discount = 15;
       } else if (properties >= 5 && properties <= 9) {
@@ -2293,7 +2300,7 @@
         discount = 25;
       } else {
         // Fallback para números intermedios
-        if (properties < 3) {
+        if (properties < 4) {
           pricePerProperty = 13.49;
           discount = 10;
         } else if (properties < 5) {
@@ -3312,8 +3319,8 @@ ${message}`;
     // Función para calcular precios por volumen
     function getVolumePrice(properties) {
       if (properties === 1) return 14.99;
-      if (properties === 2) return 13.49;
-      if (properties >= 3 && properties <= 4) return 12.74;
+      if (properties === 2 || properties === 3) return 13.49;
+      if (properties === 4) return 12.74;
       if (properties >= 5 && properties <= 9) return 11.99;
       if (properties >= 10) return 11.24;
       return 14.99; // Default
