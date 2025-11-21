@@ -3099,14 +3099,14 @@ ${message}`;
         
         const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
           payment_method: paymentMethod?.id,
-        }).catch((confirmError: any) => {
+        }).catch((confirmError) => {
           // Capturar errores de red o de Stripe
           console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
           
           // Si es un error 404 o resource_missing, es que el payment intent ya fue procesado
-          if (confirmError?.message?.includes('404') || 
-              confirmError?.message?.includes('No such payment_intent') ||
-              confirmError?.code === 'resource_missing') {
+          if ((confirmError && confirmError.message && confirmError.message.includes('404')) || 
+              (confirmError && confirmError.message && confirmError.message.includes('No such payment_intent')) ||
+              (confirmError && confirmError.code === 'resource_missing')) {
             return {
               error: {
                 type: 'invalid_request_error',
