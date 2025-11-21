@@ -3049,7 +3049,16 @@ ${message}`;
         });
         
         if (!response.ok) {
-          throw new Error('Error al crear el pago');
+          // Intentar obtener el mensaje de error del servidor
+          let errorMessage = 'Error al crear el pago';
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.error || errorData.message || errorMessage;
+            console.error('❌ [LANDING] Error del servidor:', errorData);
+          } catch (e) {
+            console.error('❌ [LANDING] No se pudo parsear el error del servidor:', e);
+          }
+          throw new Error(errorMessage);
         }
         
         const data = await response.json();
