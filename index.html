@@ -2785,6 +2785,10 @@ ${message}`;
       const modal = $('#paymentModal');
       modal.style.display = 'none';
       document.body.style.overflow = '';
+      // Limpiar estado del pago al cerrar
+      currentPaymentIntentId = null;
+      isProcessingPayment = false;
+      $('#cardErrors').textContent = '';
     }
 
     // Event listeners para el modal de pago
@@ -2796,8 +2800,16 @@ ${message}`;
     });
 
     // Manejar envío del formulario de pago
+    let isProcessingPayment = false; // Prevenir múltiples confirmaciones
+    
     $('#paymentForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+      
+      // Prevenir múltiples envíos
+      if (isProcessingPayment) {
+        console.warn('⚠️ [LANDING] Pago ya en proceso, ignorando envío duplicado');
+        return;
+      }
       
       const submitButton = $('#submitPayment');
       const buttonText = $('#buttonText');
@@ -2819,10 +2831,17 @@ ${message}`;
         return;
       }
       
+      // Verificar que el cardElement esté montado
+      if (!cardElement) {
+        alert('Error: Los campos de tarjeta no están listos. Por favor, recarga la página.');
+        return;
+      }
+      
       // Mostrar spinner
       buttonText.style.display = 'none';
       spinner.style.display = 'inline';
       submitButton.disabled = true;
+      isProcessingPayment = true;
       
       try {
         // Mapear plan de la landing page al planId que espera el backend
@@ -2846,35 +2865,170 @@ ${message}`;
           throw new Error('Error al crear el pago');
         }
         
-        const {client_secret} = await response.json();
+        const data = await response.json();
+        const {client_secret} = data;
         
-        // Confirmar el pago
+        if (!client_secret) {
+          throw new Error('No se recibió client_secret del servidor');
+        }
+        
+        // Extraer el payment intent ID del client_secret (formato: pi_xxx_secret_yyy)
+        const paymentIntentId = client_secret.split('_secret_')[0];
+        currentPaymentIntentId = paymentIntentId;
+        
+        console.log('💳 [LANDING] Payment Intentando confirmar Payment Intent:', {
+          paymentIntentId: paymentIntentId,
+          clientSecretPrefix: client_secret.substring(0, 20) + '...'
+        });
+        
+        // Crear Payment Method primero, luego confirmar el Payment Intent
+        const {error: pmError, paymentMethod} = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardElement,
+          billing_details: {
+            name: name,
+            email: email,
+          },
+        });
+        
+        if (pmError) {
+          console.error('❌ [LANDING] Error creando Payment Method:', pmError);
+          throw new Error(pmError.message);
+        }
+        
+        console.log('✅ [LANDING] Payment Method creado:', paymentMethod?.id);
+        
+        // Verificar que el client_secret sea válido antes de confirmar
+        if (!client_secret || !client_secret.includes('_secret_')) {
+          throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
+        }
+        
+        // Confirmar el Payment Intent con el Payment Method
+        console.log('💳 [LANDING] Intentando confirmar Payment Intent:', {
+          paymentIntentId: paymentIntentId,
+          hasPaymentMethod: !!paymentMethod?.id,
+          clientSecretLength: client_secret.length
+        });
+        
         const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: name,
-              email: email,
-            },
+          payment_method: paymentMethod?.id,
+        }).catch((confirmError: any) => {
+          // Capturar errores de red o de Stripe
+          console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+          
+          // Si es un error 404 o resource_missing, es que el payment intent ya fue procesado
+          if (confirmError?.message?.includes('404') || 
+              confirmError?.message?.includes('No such payment_intent') ||
+              confirmError?.code === 'resource_missing') {
+            return {
+              error: {
+                type: 'invalid_request_error',
+                code: 'resource_missing',
+                message: 'El pago ya fue procesado o expiró. Por favor, crea un nuevo pago.'
+              },
+              paymentIntent: null
+            };
           }
+          
+          // Para otros errores, re-lanzar
+          throw confirmError;
+        });
+        
+        console.log('💳 [LANDING] Resultado de confirmación:', {
+          error: error?.message || null,
+          errorType: error?.type || null,
+          paymentIntentStatus: paymentIntent?.status || null,
+          paymentIntentId: paymentIntent?.id || null
         });
         
         if (error) {
-          $('#cardErrors').textContent = error.message;
-        } else if (paymentIntent.status === 'succeeded') {
-          // Pago exitoso - Redirigir a página de éxito
-          console.log('✅ Pago exitoso, redirigiendo a página de confirmación');
-          window.location.href = 'success.html';
+          // Manejar errores específicos de Stripe
+          let errorMessage = error.message;
+          
+          // Verificar si el payment intent ya fue procesado o no existe
+          if (error.code === 'resource_missing' || 
+              error.type === 'invalid_request_error' ||
+              error.message?.includes('No such payment_intent') ||
+              error.message?.includes('resource_missing')) {
+            errorMessage = 'El pago ya fue procesado o expiró. Por favor, cierra este modal y crea un nuevo pago.';
+            console.error('❌ [LANDING] Payment Intent no encontrado o ya procesado:', {
+              errorCode: error.code,
+              errorType: error.type,
+              errorMessage: error.message,
+              paymentIntentId: paymentIntentId
+            });
+          } else if (error.type === 'card_error') {
+            errorMessage = `Error en la tarjeta: ${error.message}`;
+          } else if (error.type === 'validation_error') {
+            errorMessage = `Error de validación: ${error.message}`;
+          } else if (error.message?.includes('404') || error.message?.includes('not found')) {
+            errorMessage = 'El pago ya fue procesado o el servidor no pudo encontrar el pago. Por favor, intenta crear un nuevo pago.';
+          }
+          
+          $('#cardErrors').textContent = errorMessage;
+          throw new Error(errorMessage);
+        }
+        
+        if (paymentIntent) {
+          console.log('✅ [LANDING] Payment Intent confirmado:', {
+            id: paymentIntent.id,
+            status: paymentIntent.status,
+            amount: paymentIntent.amount
+          });
+          
+          if (paymentIntent.status === 'succeeded') {
+            // Pago exitoso - Redirigir a página de éxito
+            console.log('✅ Pago exitoso, redirigiendo a página de confirmación');
+            window.location.href = 'success.html';
+            return; // Salir antes del finally
+          } else if (paymentIntent.status === 'requires_action') {
+            // Requiere autenticación adicional (3D Secure)
+            console.log('⚠️ [LANDING] Pago requiere acción adicional (3D Secure)');
+            // Stripe manejará esto automáticamente, solo esperamos
+            return;
+          } else {
+            console.warn('⚠️ [LANDING] Payment Intent en estado inesperado:', paymentIntent.status);
+            throw new Error(`El pago está en estado: ${paymentIntent.status}. Por favor, contacta con soporte.`);
+          }
+        } else {
+          throw new Error('No se recibió respuesta del servidor de pago.');
         }
         
       } catch (error) {
-        console.error('Error:', error);
-        alert('Error al procesar el pago. Por favor, inténtalo de nuevo.');
+        console.error('❌ [LANDING] Error procesando pago:', error);
+        
+        let errorMessage = 'Error al procesar el pago. Por favor, inténtalo de nuevo.';
+        
+        if (error instanceof Error) {
+          errorMessage = error.message;
+          
+          // Si el error indica que el payment intent no existe o ya fue procesado
+          if (error.message.includes('404') || 
+              error.message.includes('No such payment_intent') ||
+              error.message.includes('ya fue procesado') ||
+              error.message.includes('resource_missing')) {
+            errorMessage = 'El pago ya fue procesado o expiró. Por favor, cierra este modal y crea un nuevo pago.';
+            
+            // Limpiar el payment intent actual para forzar crear uno nuevo
+            currentPaymentIntentId = null;
+            
+            // Mostrar mensaje más claro al usuario
+            alert('⚠️ El pago anterior ya fue procesado. Por favor, cierra este modal y vuelve a intentar desde el principio.');
+          }
+        }
+        
+        $('#cardErrors').textContent = errorMessage;
+        
+        // Solo mostrar alert si no es un error de payment intent ya procesado
+        if (!errorMessage.includes('ya fue procesado')) {
+          alert(errorMessage);
+        }
       } finally {
-        // Ocultar spinner
+        // Ocultar spinner y re-habilitar botón
         buttonText.style.display = 'inline';
         spinner.style.display = 'none';
         submitButton.disabled = false;
+        isProcessingPayment = false;
       }
     });
 
@@ -3080,6 +3234,22 @@ ${message}`;
     // Función para abrir el modal de pago con Stripe
     function openPaymentModal(planType) {
       console.log('🔧 openPaymentModal llamado con:', planType);
+      
+      // Limpiar estado anterior del pago
+      currentPaymentIntentId = null;
+      isProcessingPayment = false;
+      $('#cardErrors').textContent = '';
+      
+      // Destruir cardElement anterior si existe
+      if (cardElement) {
+        try {
+          cardElement.unmount();
+        } catch (e) {
+          console.warn('⚠️ Error al destruir cardElement anterior:', e);
+        }
+        cardElement = null;
+      }
+      
       currentPlan = planType;
       const modal = $('#paymentModal');
       const planName = $('#planName');
