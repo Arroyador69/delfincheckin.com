@@ -3108,43 +3108,26 @@ ${message}`;
           throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
         }
         
-        // IMPORTANTE: Confirmar el Payment Intent desde el backend para evitar problemas de desajuste de claves API
-        console.log('💳 [LANDING] Confirmando Payment Intent desde backend:', {
+        // IMPORTANTE: Usar confirmCardPayment directamente con el client_secret
+        // El client_secret ya contiene la información necesaria para confirmar el Payment Intent
+        // y Stripe manejará automáticamente la asociación del Payment Method
+        console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment:', {
           paymentIntentId: paymentIntentId,
-          paymentMethodId: paymentMethod?.id
+          paymentMethodId: paymentMethod?.id,
+          clientSecretPrefix: client_secret.substring(0, 20) + '...'
         });
         
-        // Confirmar el Payment Intent desde el backend
-        const confirmResponse = await fetch('https://admin.delfincheckin.com/api/stripe/confirm-payment-intent', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+        // Confirmar el Payment Intent directamente usando confirmCardPayment
+        // Esto es el flujo estándar de Stripe y evita problemas de desajuste de claves
+        const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: name,
+              email: email,
+            },
           },
-          body: JSON.stringify({
-            payment_intent_id: paymentIntentId,
-            payment_method_id: paymentMethod?.id
-          })
         });
-        
-        if (!confirmResponse.ok) {
-          const confirmError = await confirmResponse.json();
-          throw new Error(confirmError.error || 'Error al confirmar el payment intent');
-        }
-        
-        const confirmData = await confirmResponse.json();
-        
-        let error = null;
-        let paymentIntent = confirmData.payment_intent;
-        
-        // Si requiere acción adicional (como 3D Secure), manejarla con Stripe.js
-        if (confirmData.requires_action && confirmData.next_action) {
-          console.log('⚠️ [LANDING] Payment Intent requiere acción adicional (3D Secure), confirmando con Stripe.js...');
-          
-          const {error: confirmError, paymentIntent: confirmedPI} = await stripe.confirmCardPayment(client_secret);
-          
-          error = confirmError;
-          paymentIntent = confirmedPI || paymentIntent;
-        }
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
           error: error?.message || null,
