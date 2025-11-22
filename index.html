@@ -3109,42 +3109,83 @@ ${message}`;
         }
         
         // IMPORTANTE: Para payment intents con confirmation_method: "manual",
-        // NO necesitamos actualizar desde el backend. confirmCardPayment maneja todo automáticamente:
-        // - Actualiza el Payment Intent con el Payment Method
-        // - Cambia el estado a requires_confirmation
-        // - Confirma el pago
-        console.log('💳 [LANDING] Confirmando Payment Intent directamente con confirmCardPayment:', {
+        // confirmCardPayment maneja la actualización y confirmación automáticamente.
+        // Sin embargo, si hay un error 404, puede ser por desajuste de claves API o el PI fue cancelado.
+        // En ese caso, creamos un nuevo Payment Intent y lo confirmamos.
+        console.log('💳 [LANDING] Intentando confirmar Payment Intent:', {
           paymentIntentId: paymentIntentId,
           paymentMethodId: paymentMethod?.id,
-          clientSecretLength: client_secret.length
+          clientSecretLength: client_secret.length,
+          statusBeforeConfirm: status
         });
         
-        // Usar confirmCardPayment directamente - maneja actualización y confirmación en un solo paso
-        const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
-          payment_method: paymentMethod?.id,
-        }).catch((confirmError) => {
-          // Capturar errores de red o de Stripe
-          console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+        let error, paymentIntent;
+        let clientSecretToUse = client_secret;
+        let paymentIntentIdToUse = paymentIntentId;
+        
+        try {
+          // Intentar confirmar el Payment Intent
+          const result = await stripe.confirmCardPayment(clientSecretToUse, {
+            payment_method: paymentMethod?.id,
+          }).catch(async (confirmError) => {
+            console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+            
+            // Si es un error 404 de resource_missing para payment_intent, crear uno nuevo
+            if (confirmError && 
+                confirmError.code === 'resource_missing' && 
+                confirmError.message && 
+                confirmError.message.includes('No such payment_intent')) {
+              
+              console.warn('⚠️ [LANDING] Payment Intent no encontrado, creando uno nuevo...');
+              
+              // Crear un nuevo Payment Intent y confirmarlo inmediatamente
+              const newResponse = await fetch('https://admin.delfincheckin.com/api/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  planId: currentPlan === 'yearly' ? 'basic_yearly' : 'basic',
+                  properties: 1,
+                  email: email,
+                  name: name
+                })
+              });
+              
+              if (!newResponse.ok) {
+                const newError = await newResponse.json();
+                throw new Error(newError.error || 'Error al crear nuevo payment intent');
+              }
+              
+              const newData = await newResponse.json();
+              const newClientSecret = newData.client_secret;
+              const newPaymentIntentId = newData.payment_intent_id || newClientSecret.split('_secret_')[0];
+              
+              console.log('✅ [LANDING] Nuevo Payment Intent creado:', {
+                paymentIntentId: newPaymentIntentId,
+                clientSecretLength: newClientSecret.length
+              });
+              
+              // Confirmar el nuevo Payment Intent
+              const retryResult = await stripe.confirmCardPayment(newClientSecret, {
+                payment_method: paymentMethod?.id,
+              });
+              
+              return retryResult;
+            }
+            
+            // Para otros errores, re-lanzar
+            throw confirmError;
+          });
           
-          // Manejar errores específicos
-          if (confirmError && confirmError.code === 'resource_missing') {
-            // Si es resource_missing, puede ser que el payment intent o payment method no existan
-            const errorMessage = confirmError.message || 'Error al procesar el pago';
-            return {
-              error: {
-                type: 'invalid_request_error',
-                code: 'resource_missing',
-                message: errorMessage.includes('payment_intent') 
-                  ? 'Error al encontrar el pago. Por favor, intenta de nuevo.' 
-                  : 'Error al procesar el método de pago. Por favor, intenta de nuevo.'
-              },
-              paymentIntent: null
-            };
-          }
+          error = result.error;
+          paymentIntent = result.paymentIntent;
           
-          // Para otros errores, re-lanzar para que se manejen correctamente
-          throw confirmError;
-        })
+        } catch (finalError) {
+          // Si todo falla, re-lanzar el error
+          console.error('❌ [LANDING] Error final al confirmar pago:', finalError);
+          throw finalError;
+        }
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
           error: error?.message || null,
