@@ -3108,39 +3108,99 @@ ${message}`;
           throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
         }
         
-        // IMPORTANTE: Para payment intents con payment_method_types y confirmation_method: "manual",
-        // usamos confirmCardPayment que es el método estándar y más robusto.
-        console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment:', {
-          paymentIntentId: paymentIntentId,
-          paymentMethodId: paymentMethod?.id,
-          clientSecretLength: client_secret.length
-        });
+        // IMPORTANTE: Para payment intents con confirmation_method: "manual",
+        // debemos actualizar primero el Payment Intent con el Payment Method desde el backend,
+        // y luego confirmarlo. Esto cambia el estado de requires_payment_method a requires_confirmation.
+        console.log('💳 [LANDING] Actualizando Payment Intent con Payment Method antes de confirmar...');
         
-        // Usar confirmCardPayment - método estándar y robusto para payment_method_types con confirmation_method: manual
-        const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
-          payment_method: paymentMethod?.id,
-        }).catch((confirmError) => {
-          // Capturar errores de red o de Stripe
-          console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+        let error, paymentIntent;
+        
+        try {
+          // Primero actualizar el Payment Intent con el Payment Method desde el backend
+          const updateResponse = await fetch('https://admin.delfincheckin.com/api/stripe/update-payment-intent', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              payment_intent_id: paymentIntentId,
+              payment_method_id: paymentMethod?.id
+            })
+          });
           
-          // Solo mostrar el mensaje de error si realmente es un error de resource_missing
-          if (confirmError && 
-              confirmError.code === 'resource_missing' && 
-              confirmError.message && 
-              confirmError.message.includes('No such payment_intent')) {
-            return {
-              error: {
-                type: 'invalid_request_error',
-                code: 'resource_missing',
-                message: 'Error al procesar el pago. Por favor, intenta de nuevo.'
-              },
-              paymentIntent: null
-            };
+          if (!updateResponse.ok) {
+            const updateError = await updateResponse.json();
+            console.error('❌ [LANDING] Error actualizando Payment Intent:', updateError);
+            throw new Error(updateError.error || 'Error al actualizar el payment intent');
           }
           
-          // Para otros errores, re-lanzar para que se manejen correctamente
-          throw confirmError;
-        })
+          const updateData = await updateResponse.json();
+          console.log('✅ [LANDING] Payment Intent actualizado:', {
+            paymentIntentId: updateData.payment_intent_id,
+            status: updateData.status,
+            requiresConfirmation: updateData.requires_confirmation
+          });
+          
+          // Obtener el client_secret actualizado si está disponible
+          const clientSecretToUse = updateData.client_secret || client_secret;
+          
+          // Ahora confirmar el Payment Intent - después de actualizar, el estado es requires_confirmation
+          console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment:', {
+            paymentIntentId: paymentIntentId,
+            paymentMethodId: paymentMethod?.id,
+            clientSecretLength: clientSecretToUse.length,
+            statusAfterUpdate: updateData.status
+          });
+          
+          // Usar confirmCardPayment después de actualizar el Payment Intent
+          const result = await stripe.confirmCardPayment(clientSecretToUse, {
+            payment_method: paymentMethod?.id,
+          }).catch((confirmError) => {
+            console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+            
+            // Manejar errores específicos
+            if (confirmError && 
+                confirmError.code === 'resource_missing' && 
+                confirmError.message && 
+                confirmError.message.includes('No such payment_intent')) {
+              return {
+                error: {
+                  type: 'invalid_request_error',
+                  code: 'resource_missing',
+                  message: 'Error al procesar el pago. Por favor, intenta de nuevo.'
+                },
+                paymentIntent: null
+              };
+            }
+            
+            throw confirmError;
+          });
+          
+          error = result.error;
+          paymentIntent = result.paymentIntent;
+          
+        } catch (updateError) {
+          // Si falla la actualización, intentar confirmar directamente (fallback)
+          console.warn('⚠️ [LANDING] Error actualizando Payment Intent, intentando confirmación directa:', updateError);
+          
+          const result = await stripe.confirmCardPayment(client_secret, {
+            payment_method: paymentMethod?.id,
+          });
+          
+          error = result.error;
+          paymentIntent = result.paymentIntent;
+          
+          if (error) {
+            throw new Error(error.message || 'Error al confirmar el pago');
+          }
+          
+          // Si el pago fue exitoso directamente, manejar el flujo
+          if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')) {
+            console.log('✅ Pago exitoso/en proceso, redirigiendo. Estado:', paymentIntent.status);
+            window.location.href = 'success.html';
+            return;
+          }
+        }
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
           error: error?.message || null,
