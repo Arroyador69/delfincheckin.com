@@ -3086,7 +3086,13 @@ ${message}`;
           throw new Error(`El payment intent está en estado: ${status}. Por favor, crea un nuevo pago.`);
         }
         
-        // Crear Payment Method primero, luego confirmar el Payment Intent
+        // Verificar que el client_secret sea válido antes de confirmar
+        if (!client_secret || !client_secret.includes('_secret_')) {
+          throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
+        }
+        
+        // Crear Payment Method primero (igual que en book-delfincheckin.com que funciona)
+        console.log('💳 [LANDING] Creando Payment Method...');
         const {error: pmError, paymentMethod} = await stripe.createPaymentMethod({
           type: 'card',
           card: cardElement,
@@ -3101,32 +3107,22 @@ ${message}`;
           throw new Error(pmError.message);
         }
         
-        console.log('✅ [LANDING] Payment Method creado:', paymentMethod?.id);
-        
-        // Verificar que el client_secret sea válido antes de confirmar
-        if (!client_secret || !client_secret.includes('_secret_')) {
-          throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
+        if (!paymentMethod?.id) {
+          throw new Error('No se pudo crear el Payment Method. Por favor, verifica los datos de la tarjeta.');
         }
         
-        // IMPORTANTE: Usar confirmCardPayment directamente con el client_secret
-        // El client_secret ya contiene la información necesaria para confirmar el Payment Intent
-        // y Stripe manejará automáticamente la asociación del Payment Method
+        console.log('✅ [LANDING] Payment Method creado:', paymentMethod.id);
+        
+        // Confirmar el Payment Intent usando el Payment Method ID (flujo estándar que funciona)
         console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment:', {
           paymentIntentId: paymentIntentId,
-          paymentMethodId: paymentMethod?.id,
+          paymentMethodId: paymentMethod.id,
           clientSecretPrefix: client_secret.substring(0, 20) + '...'
         });
         
-        // Confirmar el Payment Intent directamente usando confirmCardPayment
-        // Esto es el flujo estándar de Stripe y evita problemas de desajuste de claves
+        // Usar confirmCardPayment con el payment_method ID (igual que en book-delfincheckin.com)
         const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
-          payment_method: {
-            card: cardElement,
-            billing_details: {
-              name: name,
-              email: email,
-            },
-          },
+          payment_method: paymentMethod.id,
         });
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
