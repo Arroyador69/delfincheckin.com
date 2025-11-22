@@ -3108,29 +3108,22 @@ ${message}`;
           throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
         }
         
-        // IMPORTANTE: Para payment intents con automatic_payment_methods y confirmation_method: "automatic",
-        // NO necesitamos actualizar el Payment Intent desde el backend.
-        // Podemos confirmar directamente usando confirmPayment, que maneja todo automáticamente.
-        console.log('💳 [LANDING] Confirmando Payment Intent directamente con confirmPayment:', {
+        // IMPORTANTE: Para payment intents con payment_method_types y confirmation_method: "manual",
+        // usamos confirmCardPayment que es el método estándar y más robusto.
+        console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment:', {
           paymentIntentId: paymentIntentId,
           paymentMethodId: paymentMethod?.id,
           clientSecretLength: client_secret.length
         });
         
-        // Usar confirmPayment directamente - es el método correcto para automatic_payment_methods
-        const {error, paymentIntent} = await stripe.confirmPayment({
-          clientSecret: client_secret,
-          confirmParams: {
-            payment_method: paymentMethod?.id,
-            return_url: window.location.origin + '/success.html'
-          },
-          redirect: 'if_required' // Solo redirigir si es necesario (3D Secure, etc.)
+        // Usar confirmCardPayment - método estándar y robusto para payment_method_types con confirmation_method: manual
+        const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
+          payment_method: paymentMethod?.id,
         }).catch((confirmError) => {
           // Capturar errores de red o de Stripe
           console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
           
-          // Solo mostrar el mensaje de "pago expirado" si realmente es un error de resource_missing
-          // y el mensaje específicamente menciona que el payment intent no existe
+          // Solo mostrar el mensaje de error si realmente es un error de resource_missing
           if (confirmError && 
               confirmError.code === 'resource_missing' && 
               confirmError.message && 
@@ -3139,7 +3132,7 @@ ${message}`;
               error: {
                 type: 'invalid_request_error',
                 code: 'resource_missing',
-                message: 'El payment intent no se encontró. Por favor, intenta de nuevo.'
+                message: 'Error al procesar el pago. Por favor, intenta de nuevo.'
               },
               paymentIntent: null
             };
