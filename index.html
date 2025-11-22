@@ -3114,6 +3114,7 @@ ${message}`;
         console.log('💳 [LANDING] Actualizando Payment Intent con Payment Method antes de confirmar...');
         
         let error, paymentIntent;
+        let updateData = null;
         
         try {
           // Primero actualizar el Payment Intent con el Payment Method desde el backend
@@ -3134,7 +3135,7 @@ ${message}`;
             // Continuar con la confirmación directamente si falla la actualización
             console.warn('⚠️ [LANDING] Continuando con confirmación directa sin actualizar primero');
           } else {
-            const updateData = await updateResponse.json();
+            updateData = await updateResponse.json();
             console.log('✅ [LANDING] Payment Intent actualizado:', {
               paymentIntentId: updateData.payment_intent_id,
               status: updateData.status
@@ -3158,26 +3159,52 @@ ${message}`;
           const result = await stripe.confirmCardPayment(clientSecretToUse, {
             payment_method: paymentMethod?.id,
           }).catch((confirmError) => {
-          // Capturar errores de red o de Stripe
-          console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+            // Capturar errores de red o de Stripe
+            console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+            
+            // Si es un error 404 o resource_missing, es que el payment intent ya fue procesado
+            if ((confirmError && confirmError.message && confirmError.message.includes('404')) || 
+                (confirmError && confirmError.message && confirmError.message.includes('No such payment_intent')) ||
+                (confirmError && confirmError.code === 'resource_missing')) {
+              return {
+                error: {
+                  type: 'invalid_request_error',
+                  code: 'resource_missing',
+                  message: 'El pago ya fue procesado o expiró. Por favor, crea un nuevo pago.'
+                },
+                paymentIntent: null
+              };
+            }
+            
+            // Para otros errores, re-lanzar
+            throw confirmError;
+          });
           
-          // Si es un error 404 o resource_missing, es que el payment intent ya fue procesado
-          if ((confirmError && confirmError.message && confirmError.message.includes('404')) || 
-              (confirmError && confirmError.message && confirmError.message.includes('No such payment_intent')) ||
-              (confirmError && confirmError.code === 'resource_missing')) {
-            return {
-              error: {
-                type: 'invalid_request_error',
-                code: 'resource_missing',
-                message: 'El pago ya fue procesado o expiró. Por favor, crea un nuevo pago.'
-              },
-              paymentIntent: null
-            };
+          error = result.error;
+          paymentIntent = result.paymentIntent;
+          
+        } catch (updateError) {
+          // Si falla la actualización, intentar confirmar directamente con confirmCardPayment
+          console.warn('⚠️ [LANDING] Error actualizando Payment Intent, intentando confirmación directa:', updateError);
+          
+          const result = await stripe.confirmCardPayment(client_secret, {
+            payment_method: paymentMethod?.id,
+          });
+          
+          error = result.error;
+          paymentIntent = result.paymentIntent;
+          
+          if (error) {
+            throw new Error(error.message || 'Error al confirmar el pago');
           }
           
-          // Para otros errores, re-lanzar
-          throw confirmError;
-        });
+          // Si el pago fue exitoso directamente, manejar el flujo
+          if (paymentIntent && (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing')) {
+            console.log('✅ Pago exitoso/en proceso, redirigiendo a página de confirmación. Estado:', paymentIntent.status);
+            window.location.href = 'success.html';
+            return;
+          }
+        }
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
           error: error?.message || null,
