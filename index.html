@@ -3189,9 +3189,14 @@ ${message}`;
           // El pago puede estar en diferentes estados dependiendo del método de pago
           // Para tarjetas, normalmente será 'succeeded' inmediatamente
           // Para métodos como SEPA, puede ser 'processing' o 'requires_action'
-          if (paymentIntent.status === 'succeeded') {
-            // Pago exitoso - Redirigir a página de éxito
-            console.log('✅ Pago exitoso, redirigiendo a página de confirmación');
+          // El pago puede estar en diferentes estados:
+          // - 'succeeded': Pago completado exitosamente (webhook se disparará)
+          // - 'processing': Pago en proceso (normal para algunos métodos de pago)
+          // - 'requires_action': Requiere acción adicional (3D Secure, etc.)
+          if (paymentIntent.status === 'succeeded' || paymentIntent.status === 'processing') {
+            // Pago exitoso o en proceso - Redirigir a página de éxito
+            // El webhook se encargará de crear el tenant y enviar el email de onboarding
+            console.log('✅ Pago exitoso/en proceso, redirigiendo a página de confirmación. Estado:', paymentIntent.status);
             window.location.href = 'success.html';
             return; // Salir antes del finally
           } else if (paymentIntent.status === 'requires_action') {
