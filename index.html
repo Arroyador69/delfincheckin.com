@@ -3062,14 +3062,14 @@ ${message}`;
         }
         
         const data = await response.json();
-        const {client_secret, payment_intent_id, status} = data;
+        let {client_secret, payment_intent_id, status} = data; // Usar let para poder reasignar en el retry
         
         if (!client_secret) {
           throw new Error('No se recibió client_secret del servidor');
         }
         
         // Extraer el payment intent ID del client_secret o usar el que viene del servidor
-        const paymentIntentId = payment_intent_id || client_secret.split('_secret_')[0];
+        let paymentIntentId = payment_intent_id || client_secret.split('_secret_')[0]; // Usar let para poder reasignar
         currentPaymentIntentId = paymentIntentId;
         
         console.log('💳 [LANDING] Payment Intent recibido del servidor:', {
