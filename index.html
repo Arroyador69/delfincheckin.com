@@ -3108,17 +3108,22 @@ ${message}`;
           throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
         }
         
-        // Para payment intents con automatic_payment_methods, podemos confirmar directamente
-        // sin necesidad de actualizar el payment intent primero
-        console.log('💳 [LANDING] Confirmando Payment Intent:', {
+        // IMPORTANTE: Para payment intents con automatic_payment_methods y confirmation_method: "automatic",
+        // debemos usar confirmPayment en lugar de confirmCardPayment
+        console.log('💳 [LANDING] Confirmando Payment Intent con confirmPayment:', {
           paymentIntentId: paymentIntentId,
           paymentMethodId: paymentMethod?.id,
           clientSecretLength: client_secret.length
         });
         
-        // Confirmar el Payment Intent directamente con el Payment Method
-        const {error, paymentIntent} = await stripe.confirmCardPayment(client_secret, {
-          payment_method: paymentMethod?.id,
+        // Usar confirmPayment para payment intents con automatic_payment_methods
+        const {error, paymentIntent} = await stripe.confirmPayment({
+          clientSecret: client_secret,
+          confirmParams: {
+            payment_method: paymentMethod?.id,
+            return_url: window.location.origin + '/success.html'
+          },
+          redirect: 'if_required' // Solo redirigir si es necesario (3D Secure, etc.)
         }).catch((confirmError) => {
           // Capturar errores de red o de Stripe
           console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
