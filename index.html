@@ -3144,22 +3144,19 @@ ${message}`;
           // Obtener el client_secret actualizado si la actualización fue exitosa
           const clientSecretToUse = updateData?.client_secret || client_secret;
           
-          // Ahora confirmar el Payment Intent usando confirmPayment
-          console.log('💳 [LANDING] Confirmando Payment Intent con confirmPayment:', {
+          // Después de actualizar el Payment Intent con el Payment Method,
+          // el estado cambia a requires_confirmation, por lo que podemos usar confirmCardPayment
+          console.log('💳 [LANDING] Confirmando Payment Intent con confirmCardPayment (después de actualizar):', {
             paymentIntentId: paymentIntentId,
             paymentMethodId: paymentMethod?.id,
             clientSecretLength: clientSecretToUse.length,
-            usingUpdatedSecret: !!updateData?.client_secret
+            usingUpdatedSecret: !!updateData?.client_secret,
+            updateStatus: updateData?.status
           });
           
-          // Usar confirmPayment para payment intents con automatic_payment_methods
-          const result = await stripe.confirmPayment({
-            clientSecret: clientSecretToUse,
-            confirmParams: {
-              payment_method: paymentMethod?.id,
-              return_url: window.location.origin + '/success.html'
-            },
-            redirect: 'if_required' // Solo redirigir si es necesario (3D Secure, etc.)
+          // Usar confirmCardPayment después de actualizar el Payment Intent
+          const result = await stripe.confirmCardPayment(clientSecretToUse, {
+            payment_method: paymentMethod?.id,
           }).catch((confirmError) => {
           // Capturar errores de red o de Stripe
           console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
