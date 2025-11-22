@@ -3108,23 +3108,59 @@ ${message}`;
           throw new Error('El client_secret recibido no es válido. Por favor, intenta crear un nuevo pago.');
         }
         
-        // IMPORTANTE: Para payment intents con automatic_payment_methods y confirmation_method: "automatic",
-        // debemos usar confirmPayment en lugar de confirmCardPayment
-        console.log('💳 [LANDING] Confirmando Payment Intent con confirmPayment:', {
-          paymentIntentId: paymentIntentId,
-          paymentMethodId: paymentMethod?.id,
-          clientSecretLength: client_secret.length
-        });
+        // IMPORTANTE: Para payment intents con automatic_payment_methods, 
+        // debemos actualizar primero el Payment Intent con el Payment Method desde el backend
+        // y luego confirmarlo, incluso con confirmation_method: "automatic"
+        console.log('💳 [LANDING] Actualizando Payment Intent con Payment Method antes de confirmar...');
         
-        // Usar confirmPayment para payment intents con automatic_payment_methods
-        const {error, paymentIntent} = await stripe.confirmPayment({
-          clientSecret: client_secret,
-          confirmParams: {
-            payment_method: paymentMethod?.id,
-            return_url: window.location.origin + '/success.html'
-          },
-          redirect: 'if_required' // Solo redirigir si es necesario (3D Secure, etc.)
-        }).catch((confirmError) => {
+        let error, paymentIntent;
+        
+        try {
+          // Primero actualizar el Payment Intent con el Payment Method desde el backend
+          const updateResponse = await fetch('https://admin.delfincheckin.com/api/stripe/update-payment-intent', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              payment_intent_id: paymentIntentId,
+              payment_method_id: paymentMethod?.id
+            })
+          });
+          
+          if (!updateResponse.ok) {
+            const updateError = await updateResponse.json();
+            console.error('❌ [LANDING] Error actualizando Payment Intent:', updateError);
+            // Continuar con la confirmación directamente si falla la actualización
+            console.warn('⚠️ [LANDING] Continuando con confirmación directa sin actualizar primero');
+          } else {
+            const updateData = await updateResponse.json();
+            console.log('✅ [LANDING] Payment Intent actualizado:', {
+              paymentIntentId: updateData.payment_intent_id,
+              status: updateData.status
+            });
+          }
+          
+          // Obtener el client_secret actualizado si la actualización fue exitosa
+          const clientSecretToUse = updateData?.client_secret || client_secret;
+          
+          // Ahora confirmar el Payment Intent usando confirmPayment
+          console.log('💳 [LANDING] Confirmando Payment Intent con confirmPayment:', {
+            paymentIntentId: paymentIntentId,
+            paymentMethodId: paymentMethod?.id,
+            clientSecretLength: clientSecretToUse.length,
+            usingUpdatedSecret: !!updateData?.client_secret
+          });
+          
+          // Usar confirmPayment para payment intents con automatic_payment_methods
+          const result = await stripe.confirmPayment({
+            clientSecret: clientSecretToUse,
+            confirmParams: {
+              payment_method: paymentMethod?.id,
+              return_url: window.location.origin + '/success.html'
+            },
+            redirect: 'if_required' // Solo redirigir si es necesario (3D Secure, etc.)
+          }).catch((confirmError) => {
           // Capturar errores de red o de Stripe
           console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
           
