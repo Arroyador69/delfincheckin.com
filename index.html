@@ -3164,12 +3164,15 @@ ${message}`;
               errorMessage: error.message,
               paymentIntentId: paymentIntentId
             });
+            // Resetear el payment intent ID para forzar creación de uno nuevo
+            currentPaymentIntentId = null;
           } else if (error.type === 'card_error') {
             errorMessage = `Error en la tarjeta: ${error.message}`;
           } else if (error.type === 'validation_error') {
             errorMessage = `Error de validación: ${error.message}`;
           } else if (error.message?.includes('404') || error.message?.includes('not found')) {
             errorMessage = 'El pago ya fue procesado o el servidor no pudo encontrar el pago. Por favor, intenta crear un nuevo pago.';
+            currentPaymentIntentId = null;
           }
           
           $('#cardErrors').textContent = errorMessage;
@@ -3183,6 +3186,9 @@ ${message}`;
             amount: paymentIntent.amount
           });
           
+          // El pago puede estar en diferentes estados dependiendo del método de pago
+          // Para tarjetas, normalmente será 'succeeded' inmediatamente
+          // Para métodos como SEPA, puede ser 'processing' o 'requires_action'
           if (paymentIntent.status === 'succeeded') {
             // Pago exitoso - Redirigir a página de éxito
             console.log('✅ Pago exitoso, redirigiendo a página de confirmación');
