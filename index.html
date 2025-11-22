@@ -3110,35 +3110,44 @@ ${message}`;
         
         // IMPORTANTE: Para payment intents con confirmation_method: "manual",
         // confirmCardPayment maneja la actualización y confirmación automáticamente.
-        // Sin embargo, si hay un error 404, puede ser por desajuste de claves API o el PI fue cancelado.
-        // En ese caso, creamos un nuevo Payment Intent y lo confirmamos.
-        console.log('💳 [LANDING] Intentando confirmar Payment Intent:', {
+        // Si falla con 404, creamos un nuevo Payment Intent y lo confirmamos inmediatamente.
+        console.log('💳 [LANDING] Confirmando Payment Intent:', {
           paymentIntentId: paymentIntentId,
           paymentMethodId: paymentMethod?.id,
-          clientSecretLength: client_secret.length,
-          statusBeforeConfirm: status
+          clientSecretLength: client_secret.length
         });
         
         let error, paymentIntent;
-        let clientSecretToUse = client_secret;
-        let paymentIntentIdToUse = paymentIntentId;
+        let attempts = 0;
+        const maxAttempts = 2;
         
-        try {
-          // Intentar confirmar el Payment Intent
-          const result = await stripe.confirmCardPayment(clientSecretToUse, {
-            payment_method: paymentMethod?.id,
-          }).catch(async (confirmError) => {
-            console.error('❌ [LANDING] Error al confirmar Payment Intent:', confirmError);
+        while (attempts < maxAttempts) {
+          attempts++;
+          
+          try {
+            // Intentar confirmar el Payment Intent
+            const result = await stripe.confirmCardPayment(client_secret, {
+              payment_method: paymentMethod?.id,
+            });
             
-            // Si es un error 404 de resource_missing para payment_intent, crear uno nuevo
-            if (confirmError && 
-                confirmError.code === 'resource_missing' && 
-                confirmError.message && 
-                confirmError.message.includes('No such payment_intent')) {
+            error = result.error;
+            paymentIntent = result.paymentIntent;
+            
+            // Si no hay error, salir del loop
+            if (!error) {
+              break;
+            }
+            
+            // Si hay error de resource_missing y es el primer intento, crear un nuevo PI
+            if (error && 
+                error.code === 'resource_missing' && 
+                error.message && 
+                error.message.includes('No such payment_intent') &&
+                attempts < maxAttempts) {
               
-              console.warn('⚠️ [LANDING] Payment Intent no encontrado, creando uno nuevo...');
+              console.warn(`⚠️ [LANDING] Payment Intent no encontrado (intento ${attempts}/${maxAttempts}), creando uno nuevo...`);
               
-              // Crear un nuevo Payment Intent y confirmarlo inmediatamente
+              // Crear un nuevo Payment Intent
               const newResponse = await fetch('https://admin.delfincheckin.com/api/create-payment-intent', {
                 method: 'POST',
                 headers: {
@@ -3146,7 +3155,7 @@ ${message}`;
                 },
                 body: JSON.stringify({
                   planId: currentPlan === 'yearly' ? 'basic_yearly' : 'basic',
-                  properties: 1,
+                  properties: properties,
                   email: email,
                   name: name
                 })
@@ -3158,33 +3167,69 @@ ${message}`;
               }
               
               const newData = await newResponse.json();
-              const newClientSecret = newData.client_secret;
-              const newPaymentIntentId = newData.payment_intent_id || newClientSecret.split('_secret_')[0];
+              client_secret = newData.client_secret;
+              paymentIntentId = newData.payment_intent_id || client_secret.split('_secret_')[0];
+              currentPaymentIntentId = paymentIntentId;
               
-              console.log('✅ [LANDING] Nuevo Payment Intent creado:', {
-                paymentIntentId: newPaymentIntentId,
-                clientSecretLength: newClientSecret.length
+              console.log('✅ [LANDING] Nuevo Payment Intent creado para retry:', {
+                paymentIntentId: paymentIntentId,
+                clientSecretLength: client_secret.length
               });
               
-              // Confirmar el nuevo Payment Intent
-              const retryResult = await stripe.confirmCardPayment(newClientSecret, {
-                payment_method: paymentMethod?.id,
+              // Continuar el loop para intentar confirmar el nuevo Payment Intent
+              continue;
+            }
+            
+            // Para otros errores, salir del loop y manejar
+            break;
+            
+          } catch (confirmError) {
+            console.error(`❌ [LANDING] Error al confirmar Payment Intent (intento ${attempts}):`, confirmError);
+            
+            // Si es resource_missing y es el primer intento, intentar crear uno nuevo
+            if (confirmError && 
+                confirmError.code === 'resource_missing' && 
+                confirmError.message && 
+                confirmError.message.includes('No such payment_intent') &&
+                attempts < maxAttempts) {
+              
+              console.warn(`⚠️ [LANDING] Payment Intent no encontrado en catch (intento ${attempts}/${maxAttempts}), creando uno nuevo...`);
+              
+              // Crear un nuevo Payment Intent
+              const newResponse = await fetch('https://admin.delfincheckin.com/api/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  planId: currentPlan === 'yearly' ? 'basic_yearly' : 'basic',
+                  properties: properties,
+                  email: email,
+                  name: name
+                })
               });
               
-              return retryResult;
+              if (!newResponse.ok) {
+                const newError = await newResponse.json();
+                throw new Error(newError.error || 'Error al crear nuevo payment intent');
+              }
+              
+              const newData = await newResponse.json();
+              client_secret = newData.client_secret;
+              paymentIntentId = newData.payment_intent_id || client_secret.split('_secret_')[0];
+              currentPaymentIntentId = paymentIntentId;
+              
+              console.log('✅ [LANDING] Nuevo Payment Intent creado para retry en catch:', {
+                paymentIntentId: paymentIntentId
+              });
+              
+              // Continuar el loop para intentar confirmar el nuevo Payment Intent
+              continue;
             }
             
             // Para otros errores, re-lanzar
             throw confirmError;
-          });
-          
-          error = result.error;
-          paymentIntent = result.paymentIntent;
-          
-        } catch (finalError) {
-          // Si todo falla, re-lanzar el error
-          console.error('❌ [LANDING] Error final al confirmar pago:', finalError);
-          throw finalError;
+          }
         }
         
         console.log('💳 [LANDING] Resultado de confirmación:', {
