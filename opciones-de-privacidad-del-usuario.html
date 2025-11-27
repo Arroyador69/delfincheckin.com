@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Privacidad del Usuario - Delfín Check-in</title>
+    <meta name="description" content="Opciones de privacidad y control de datos personales en la aplicación móvil y plataforma web de Delfín Check-in.">
+    <link rel="canonical" href="https://delfincheckin.com/opciones-de-privacidad-del-usuario">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐬</text></svg>">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; 
+            line-height: 1.7; 
+            color: #1e293b; 
+            background: #eef6ff;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
+        
+        .header { 
+            background: linear-gradient(135deg, #059669 0%, #047857 50%, #10b981 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header h1 { 
+            text-align: center; 
+            font-size: clamp(28px, 5vw, 42px); 
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .content { 
+            background: white; 
+            padding: 40px;
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .last-updated { 
+            color: #64748b; 
+            font-style: italic; 
+            margin-bottom: 30px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(236, 253, 245, 0.8), rgba(209, 250, 229, 0.5));
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+        
+        h2 { 
+            color: #047857; 
+            margin: 35px 0 18px 0; 
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h2::before {
+            content: '⚙️';
+            font-size: 24px;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        h3 { 
+            color: #475569; 
+            margin: 24px 0 12px 0; 
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-weight: 600;
+        }
+        p { 
+            margin-bottom: 16px; 
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        ul { 
+            margin: 18px 0; 
+            padding-left: 24px; 
+        }
+        li { 
+            margin-bottom: 10px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .option-box {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+            padding: 24px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
+            border-left: 4px solid #059669;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+        }
+        .option-box h3 {
+            color: #047857;
+            margin-top: 0;
+        }
+        .option-box p {
+            margin-bottom: 12px;
+        }
+        .option-box strong {
+            color: #047857;
+            font-weight: 600;
+        }
+        .option-box code {
+            background: rgba(5, 150, 105, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #047857;
+        }
+        
+        .contact-info { 
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+            padding: 24px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
+            border-left: 4px solid #059669;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+        }
+        .contact-info h3 {
+            color: #047857;
+            margin-top: 0;
+        }
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        .contact-info strong {
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .back-link { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px; 
+            color: #059669; 
+            text-decoration: none; 
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08), rgba(16, 185, 129, 0.08));
+            border-radius: 12px;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { 
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(16, 185, 129, 0.12));
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+        }
+        
+        a {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        a:hover {
+            border-bottom-color: #059669;
+        }
+        
+        strong {
+            color: #0f172a;
+        }
+        
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(248, 113, 113, 0.08) 100%);
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #dc2626;
+            margin: 20px 0;
+        }
+        .warning-box strong {
+            color: #dc2626;
+        }
+        
+        @media (max-width: 768px) {
+            .content { padding: 24px; }
+            .header { padding: 30px 0; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>⚙️ Opciones de Privacidad del Usuario</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <p class="last-updated">Última actualización: 24 de noviembre de 2025</p>
+
+            <p>Esta página explica cómo puedes gestionar tu privacidad y controlar tus datos personales en la aplicación móvil y plataforma web de Delfín Check-in. Tienes control total sobre tus datos y puedes ejercer tus derechos en cualquier momento.</p>
+
+            <h2>1. Configuración de Privacidad en la Aplicación Móvil</h2>
+            
+            <div class="option-box">
+                <h3>1.1 Notificaciones Push</h3>
+                <p><strong>Control:</strong> Puedes activar o desactivar las notificaciones push desde la configuración de la aplicación o desde la configuración de tu dispositivo.</p>
+                <p><strong>Cómo hacerlo:</strong></p>
+                <ul>
+                    <li><strong>iOS:</strong> Configuración → Delfín Check-in → Notificaciones</li>
+                    <li><strong>Android:</strong> Configuración → Aplicaciones → Delfín Check-in → Notificaciones</li>
+                    <li><strong>Desde la app:</strong> Menú → Configuración → Notificaciones</li>
+                </ul>
+                <p>Desactivar las notificaciones no afecta la funcionalidad principal de la aplicación, solo dejarás de recibir alertas.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>1.2 Almacenamiento Local (Caché)</h3>
+                <p><strong>Control:</strong> Puedes limpiar el caché de la aplicación en cualquier momento.</p>
+                <p><strong>Cómo hacerlo:</strong></p>
+                <ul>
+                    <li><strong>iOS:</strong> Configuración → General → Almacenamiento del iPhone → Delfín Check-in → "Desinstalar app" (luego reinstalar) o desde la app: Configuración → Limpiar caché</li>
+                    <li><strong>Android:</strong> Configuración → Aplicaciones → Delfín Check-in → Almacenamiento → "Borrar caché"</li>
+                    <li><strong>Desde la app:</strong> Menú → Configuración → Limpiar datos en caché</li>
+                </ul>
+                <p>Limpiar el caché eliminará los datos temporales almacenados localmente, pero no afectará los datos en la plataforma web.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>1.3 Sesión y Autenticación</h3>
+                <p><strong>Control:</strong> Puedes cerrar sesión en cualquier momento desde la aplicación.</p>
+                <p><strong>Cómo hacerlo:</strong> Menú → Configuración → Cerrar sesión</p>
+                <p>Al cerrar sesión, se eliminarán los tokens de autenticación del dispositivo. Para volver a acceder, necesitarás iniciar sesión nuevamente.</p>
+            </div>
+
+            <h2>2. Configuración de Privacidad en la Plataforma Web</h2>
+            
+            <div class="option-box">
+                <h3>2.1 Acceso a tus Datos</h3>
+                <p><strong>Dónde:</strong> Panel de administración → Configuración → Privacidad</p>
+                <p>Desde el panel de administración puedes:</p>
+                <ul>
+                    <li>Ver todos los datos que tenemos sobre ti</li>
+                    <li>Descargar una copia de tus datos en formato JSON o CSV</li>
+                    <li>Revisar el historial de accesos a tu cuenta</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>2.2 Modificar tus Datos</h3>
+                <p><strong>Dónde:</strong> Panel de administración → Configuración → Perfil</p>
+                <p>Puedes actualizar en cualquier momento:</p>
+                <ul>
+                    <li>Nombre y apellidos</li>
+                    <li>Dirección de correo electrónico</li>
+                    <li>Información de la empresa o alojamiento</li>
+                    <li>Contraseña</li>
+                    <li>Preferencias de comunicación</li>
+                </ul>
+            </div>
+
+            <h2>3. Ejercer tus Derechos de Protección de Datos</h2>
+            
+            <div class="option-box">
+                <h3>3.1 Derecho de Acceso</h3>
+                <p><strong>Qué es:</strong> Tienes derecho a conocer qué datos personales tenemos sobre ti y cómo los procesamos.</p>
+                <p><strong>Cómo ejercerlo:</strong></p>
+                <ul>
+                    <li>Envía un email a <strong>contacto@delfincheckin.com</strong> con el asunto "Ejercicio de derecho de acceso"</li>
+                    <li>O desde el panel web: Configuración → Privacidad → "Solicitar copia de mis datos"</li>
+                </ul>
+                <p><strong>Plazo de respuesta:</strong> Te responderemos en un plazo máximo de 1 mes desde la recepción de tu solicitud.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>3.2 Derecho de Rectificación</h3>
+                <p><strong>Qué es:</strong> Puedes solicitar la corrección de datos inexactos o incompletos.</p>
+                <p><strong>Cómo ejercerlo:</strong></p>
+                <ul>
+                    <li>Actualiza directamente desde el panel web: Configuración → Perfil</li>
+                    <li>O envía un email a <strong>contacto@delfincheckin.com</strong> indicando qué datos quieres corregir</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>3.3 Derecho de Supresión (Derecho al Olvido)</h3>
+                <p><strong>Qué es:</strong> Puedes solicitar la eliminación de tus datos personales.</p>
+                <p><strong>Cómo ejercerlo:</strong> Envía un email a <strong>contacto@delfincheckin.com</strong> con el asunto "Solicitud de eliminación de datos"</p>
+                <div class="warning-box">
+                    <p><strong>⚠️ Importante:</strong> La eliminación de datos puede estar limitada por:</p>
+                    <ul>
+                        <li>Obligaciones legales (conservación de datos fiscales durante 6 años)</li>
+                        <li>Obligaciones del sector turístico (conservación de datos de huéspedes durante 3 años)</li>
+                        <li>Datos necesarios para la prestación del servicio activo</li>
+                    </ul>
+                    <p>Te informaremos sobre cualquier limitación antes de proceder.</p>
+                </div>
+            </div>
+
+            <div class="option-box">
+                <h3>3.4 Derecho de Limitación del Tratamiento</h3>
+                <p><strong>Qué es:</strong> Puedes solicitar que limitemos el tratamiento de tus datos en ciertas circunstancias.</p>
+                <p><strong>Cómo ejercerlo:</strong> Envía un email a <strong>contacto@delfincheckin.com</strong> explicando qué limitación deseas y el motivo.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>3.5 Derecho de Portabilidad</h3>
+                <p><strong>Qué es:</strong> Tienes derecho a recibir tus datos en un formato estructurado, de uso común y legible por máquina.</p>
+                <p><strong>Cómo ejercerlo:</strong></p>
+                <ul>
+                    <li>Desde el panel web: Configuración → Privacidad → "Exportar mis datos"</li>
+                    <li>O envía un email a <strong>contacto@delfincheckin.com</strong> solicitando la exportación</li>
+                </ul>
+                <p>Te proporcionaremos tus datos en formato JSON o CSV según prefieras.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>3.6 Derecho de Oposición</h3>
+                <p><strong>Qué es:</strong> Puedes oponerte al tratamiento de tus datos para ciertos fines (como marketing).</p>
+                <p><strong>Cómo ejercerlo:</strong></p>
+                <ul>
+                    <li>Desde el panel web: Configuración → Privacidad → "Preferencias de comunicación"</li>
+                    <li>O envía un email a <strong>contacto@delfincheckin.com</strong> indicando a qué tratamientos te opones</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>3.7 Retirar Consentimiento</h3>
+                <p><strong>Qué es:</strong> Si has dado consentimiento para algún tratamiento específico, puedes retirarlo en cualquier momento.</p>
+                <p><strong>Cómo ejercerlo:</strong></p>
+                <ul>
+                    <li>Para notificaciones: Configuración de la app → Notificaciones</li>
+                    <li>Para comunicaciones de marketing: Panel web → Configuración → Privacidad → "Preferencias de comunicación"</li>
+                    <li>O envía un email a <strong>contacto@delfincheckin.com</strong></li>
+                </ul>
+                <p>La retirada del consentimiento no afectará la licitud del tratamiento basado en el consentimiento antes de su retirada.</p>
+            </div>
+
+            <h2>4. Gestión de Datos de Huéspedes</h2>
+            <p>Como gestor de alojamientos, también gestionas datos de tus huéspedes. Estos datos están sujetos a las mismas protecciones y derechos.</p>
+            
+            <div class="option-box">
+                <h3>4.1 Acceso a Datos de Huéspedes</h3>
+                <p>Puedes acceder a todos los datos de huéspedes desde:</p>
+                <ul>
+                    <li><strong>App móvil:</strong> Sección "Huéspedes" o "Registros"</li>
+                    <li><strong>Plataforma web:</strong> Panel → Registros de Huéspedes</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>4.2 Modificar Datos de Huéspedes</h3>
+                <p>Puedes corregir datos de huéspedes desde:</p>
+                <ul>
+                    <li><strong>App móvil:</strong> Selecciona un huésped → Editar</li>
+                    <li><strong>Plataforma web:</strong> Panel → Registros → Selecciona registro → Editar</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>4.3 Eliminar Datos de Huéspedes</h3>
+                <p>Puedes solicitar la eliminación de datos de huéspedes, pero ten en cuenta:</p>
+                <ul>
+                    <li>Los datos deben conservarse durante 3 años según normativa turística española</li>
+                    <li>Si un huésped solicita la eliminación de sus datos, debemos cumplir con su solicitud (sujeto a obligaciones legales)</li>
+                    <li>Contacta con <strong>contacto@delfincheckin.com</strong> para solicitudes de eliminación</li>
+                </ul>
+            </div>
+
+            <h2>5. Seguridad de tu Cuenta</h2>
+            
+            <div class="option-box">
+                <h3>5.1 Cambiar Contraseña</h3>
+                <p><strong>Dónde:</strong></p>
+                <ul>
+                    <li><strong>App móvil:</strong> Menú → Configuración → Cambiar contraseña</li>
+                    <li><strong>Plataforma web:</strong> Panel → Configuración → Seguridad → Cambiar contraseña</li>
+                </ul>
+                <p>Recomendamos usar una contraseña segura con al menos 12 caracteres, incluyendo mayúsculas, minúsculas, números y símbolos.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>5.2 Autenticación de Dos Factores (2FA)</h3>
+                <p>Actualmente, la autenticación de dos factores está disponible a través de tokens JWT seguros. Estamos trabajando en implementar 2FA adicional para mayor seguridad.</p>
+            </div>
+
+            <div class="option-box">
+                <h3>5.3 Revisar Accesos a tu Cuenta</h3>
+                <p><strong>Dónde:</strong> Panel web → Configuración → Seguridad → "Historial de accesos"</p>
+                <p>Puedes ver:</p>
+                <ul>
+                    <li>Últimos accesos a tu cuenta</li>
+                    <li>Dispositivos desde los que se ha accedido</li>
+                    <li>Ubicaciones aproximadas de los accesos</li>
+                    <li>Actividad sospechosa</li>
+                </ul>
+            </div>
+
+            <div class="option-box">
+                <h3>5.4 Cerrar Sesión en Todos los Dispositivos</h3>
+                <p><strong>Dónde:</strong> Panel web → Configuración → Seguridad → "Cerrar sesión en todos los dispositivos"</p>
+                <p>Esto invalidará todos los tokens de autenticación activos y requerirá que inicies sesión nuevamente en todos tus dispositivos.</p>
+            </div>
+
+            <h2>6. Eliminación de la Aplicación</h2>
+            <p>Si decides eliminar la aplicación móvil de tu dispositivo:</p>
+            <ul>
+                <li>Los datos en caché local se eliminarán automáticamente</li>
+                <li>Los datos en los servidores se mantendrán según los plazos de conservación legales</li>
+                <li>Puedes seguir accediendo a tu cuenta desde la plataforma web</li>
+                <li>Si deseas eliminar completamente tu cuenta, contacta con <strong>contacto@delfincheckin.com</strong></li>
+            </ul>
+
+            <h2>7. Cancelación de la Suscripción</h2>
+            <p>Si cancelas tu suscripción a Delfín Check-in:</p>
+            <ul>
+                <li>Tu cuenta permanecerá activa hasta el final del período de facturación pagado</li>
+                <li>Después de la cancelación, conservaremos tus datos según los plazos legales</li>
+                <li>Puedes solicitar la eliminación de tus datos (sujeto a obligaciones legales)</li>
+                <li>Para cancelar: Panel web → Configuración → Suscripción → Cancelar suscripción</li>
+            </ul>
+
+            <h2>8. Contacto y Soporte</h2>
+            <div class="contact-info">
+                <h3>¿Necesitas Ayuda?</h3>
+                <p>Si tienes preguntas sobre tu privacidad, quieres ejercer tus derechos o necesitas ayuda con la configuración de privacidad, puedes contactarnos:</p>
+                <p><strong>Email:</strong> contacto@delfincheckin.com<br>
+                <strong>Asunto recomendado:</strong> "Consulta de Privacidad" o "Ejercicio de Derechos RGPD"</p>
+                <p><strong>Plazo de respuesta:</strong> Intentamos responder a todas las solicitudes en un plazo máximo de 72 horas laborables.</p>
+            </div>
+
+            <h2>9. Presentar una Reclamación</h2>
+            <p>Si consideras que el tratamiento de tus datos personales no cumple con la normativa de protección de datos, tienes derecho a presentar una reclamación ante la autoridad de control competente:</p>
+            <div class="option-box">
+                <h3>Agencia Española de Protección de Datos (AEPD)</h3>
+                <p><strong>Web:</strong> <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a><br>
+                <strong>Teléfono:</strong> 912 663 517<br>
+                <strong>Dirección:</strong> C/ Jorge Juan, 6, 28001 Madrid, España</p>
+            </div>
+
+            <h2>10. Información Adicional</h2>
+            <p>Para más información sobre cómo tratamos tus datos, consulta:</p>
+            <ul>
+                <li><a href="/politica-privacidad.html">Política de Privacidad general</a></li>
+                <li><a href="/politica-de-privacidad-app.html">Política de Privacidad de la App Móvil</a></li>
+                <li><a href="/terminos-servicio.html">Términos de Servicio</a></li>
+            </ul>
+
+            <a href="index.html" class="back-link">← Volver a la página principal</a>
+        </div>
+    </div>
+</body>
+</html>
+

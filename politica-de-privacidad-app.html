@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad de la App Móvil - Delfín Check-in</title>
+    <meta name="description" content="Política de privacidad de la aplicación móvil Delfín Check-in. Información sobre el tratamiento de datos personales en la app y cumplimiento RGPD.">
+    <link rel="canonical" href="https://delfincheckin.com/politica-de-privacidad-app">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐬</text></svg>">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; 
+            line-height: 1.7; 
+            color: #1e293b; 
+            background: #eef6ff;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 40px; }
+        
+        .header { 
+            background: linear-gradient(135deg, #059669 0%, #047857 50%, #10b981 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(5, 150, 105, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(16,185,129,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .header h1 { 
+            text-align: center; 
+            font-size: clamp(28px, 5vw, 42px); 
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .content { 
+            background: white; 
+            padding: 40px;
+            border-radius: 20px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .last-updated { 
+            color: #64748b; 
+            font-style: italic; 
+            margin-bottom: 30px;
+            padding: 12px 16px;
+            background: linear-gradient(135deg, rgba(236, 253, 245, 0.8), rgba(209, 250, 229, 0.5));
+            border-radius: 10px;
+            border-left: 4px solid #10b981;
+        }
+        
+        h2 { 
+            color: #047857; 
+            margin: 35px 0 18px 0; 
+            font-size: clamp(20px, 3vw, 26px);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h2::before {
+            content: '📱';
+            font-size: 24px;
+        }
+        h2:first-of-type {
+            margin-top: 0;
+        }
+        
+        h3 { 
+            color: #475569; 
+            margin: 24px 0 12px 0; 
+            font-size: clamp(18px, 2.5vw, 22px);
+            font-weight: 600;
+        }
+        p { 
+            margin-bottom: 16px; 
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        ul { 
+            margin: 18px 0; 
+            padding-left: 24px; 
+        }
+        li { 
+            margin-bottom: 10px;
+            color: #475569;
+            line-height: 1.6;
+        }
+        
+        .contact-info { 
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%);
+            padding: 24px; 
+            border-radius: 16px; 
+            margin: 24px 0; 
+            border-left: 4px solid #059669;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.08);
+        }
+        .contact-info h3 {
+            color: #047857;
+            margin-top: 0;
+        }
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        .contact-info strong {
+            color: #047857;
+            font-weight: 600;
+        }
+        
+        .back-link { 
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px; 
+            color: #059669; 
+            text-decoration: none; 
+            font-weight: 600;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.08), rgba(16, 185, 129, 0.08));
+            border-radius: 12px;
+            border: 1px solid rgba(5, 150, 105, 0.15);
+            transition: all 0.3s ease;
+        }
+        .back-link:hover { 
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.12), rgba(16, 185, 129, 0.12));
+            transform: translateX(-4px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+        }
+        
+        a {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+        a:hover {
+            border-bottom-color: #059669;
+        }
+        
+        strong {
+            color: #0f172a;
+        }
+        
+        @media (max-width: 768px) {
+            .content { padding: 24px; }
+            .header { padding: 30px 0; }
+            h2 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>📱 Política de Privacidad de la App Móvil</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <p class="last-updated">Última actualización: 24 de noviembre de 2025</p>
+
+            <h2>1. Información del Responsable</h2>
+            <p><strong>Delfín Check-in</strong><br>
+            Email: contacto@delfincheckin.com<br>
+            Dirección: Málaga, España</p>
+            <p>Esta política de privacidad se aplica específicamente a la aplicación móvil de Delfín Check-in disponible en iOS y Android. La app móvil es un complemento de acceso remoto a la plataforma web de Delfín Check-in (PMS - Property Management System).</p>
+
+            <h2>2. Sobre la Aplicación Móvil</h2>
+            <p>La aplicación móvil de Delfín Check-in permite a los usuarios acceder a su cuenta de la plataforma web desde dispositivos móviles. Para utilizar la aplicación, es necesario tener una cuenta activa en la plataforma web con un plan de pago activo.</p>
+            <p>La app móvil <strong>no almacena datos localmente de forma permanente</strong>. Todos los datos se sincronizan en tiempo real con la plataforma web y se almacenan en servidores seguros.</p>
+
+            <h2>3. Datos que Recopila la Aplicación</h2>
+            
+            <h3>3.1 Datos de autenticación</h3>
+            <ul>
+                <li>Credenciales de acceso (email y contraseña) - almacenadas de forma segura mediante tokens JWT</li>
+                <li>Token de autenticación para mantener la sesión activa</li>
+                <li>Identificador único del dispositivo (para seguridad y prevención de accesos no autorizados)</li>
+            </ul>
+
+            <h3>3.2 Datos sincronizados desde la plataforma web</h3>
+            <p>La aplicación accede y muestra los siguientes datos almacenados en la plataforma web:</p>
+            <ul>
+                <li><strong>Datos de tu cuenta:</strong> Nombre, email, información de la empresa o alojamiento</li>
+                <li><strong>Datos de reservas:</strong> Información sobre reservas activas y pasadas</li>
+                <li><strong>Datos de huéspedes:</strong> Nombres, documentos de identidad (DNI, pasaporte, NIE), fechas de nacimiento, nacionalidades, direcciones, teléfonos, emails</li>
+                <li><strong>Datos de comunicaciones MIR:</strong> Estado de envíos al Ministerio del Interior, referencias, lotes, resultados de comunicaciones</li>
+                <li><strong>Datos de propiedades:</strong> Información sobre tus alojamientos gestionados</li>
+                <li><strong>Estadísticas y reportes:</strong> Datos agregados sobre tu negocio</li>
+            </ul>
+
+            <h3>3.3 Datos de uso de la aplicación</h3>
+            <ul>
+                <li>Registros de acceso y actividad (logs de seguridad)</li>
+                <li>Preferencias de la aplicación (configuración local del dispositivo)</li>
+                <li>Información técnica del dispositivo (modelo, sistema operativo, versión de la app) - solo para soporte técnico</li>
+            </ul>
+
+            <h3>3.4 Permisos de la aplicación</h3>
+            <p>La aplicación puede solicitar los siguientes permisos:</p>
+            <ul>
+                <li><strong>Notificaciones:</strong> Para recibir alertas sobre nuevas reservas, check-ins pendientes y actualizaciones importantes</li>
+                <li><strong>Acceso a Internet:</strong> Necesario para sincronizar datos con la plataforma web</li>
+                <li><strong>Almacenamiento local (caché):</strong> Para mejorar el rendimiento y permitir uso offline limitado</li>
+            </ul>
+            <p><strong>Importante:</strong> La aplicación <strong>NO</strong> accede a tu galería de fotos, contactos, ubicación GPS, cámara o micrófono sin tu consentimiento explícito.</p>
+
+            <h2>4. Finalidad del Tratamiento de Datos</h2>
+            <p>Utilizamos los datos recopilados por la aplicación móvil para:</p>
+            <ul>
+                <li><strong>Autenticación y seguridad:</strong> Verificar tu identidad y proteger tu cuenta</li>
+                <li><strong>Sincronización de datos:</strong> Mantener tus datos actualizados entre la app y la plataforma web</li>
+                <li><strong>Prestación del servicio:</strong> Permitirte gestionar reservas, huéspedes y comunicaciones MIR desde tu móvil</li>
+                <li><strong>Notificaciones:</strong> Enviarte alertas sobre eventos importantes de tu negocio</li>
+                <li><strong>Mejora del servicio:</strong> Analizar el uso de la app para mejorar la experiencia de usuario</li>
+                <li><strong>Soporte técnico:</strong> Ayudarte a resolver problemas técnicos</li>
+                <li><strong>Cumplimiento legal:</strong> Cumplir con obligaciones legales del sector turístico (comunicaciones MIR, registro de viajeros)</li>
+            </ul>
+
+            <h2>5. Base Legal del Tratamiento</h2>
+            <p>El tratamiento de datos en la aplicación móvil se basa en:</p>
+            <ul>
+                <li><strong>Ejecución del contrato:</strong> Para proporcionarte acceso a tu cuenta de la plataforma web desde dispositivos móviles</li>
+                <li><strong>Obligación legal:</strong> Cumplimiento de normativas turísticas españolas (comunicaciones MIR, registro de viajeros según Real Decreto 933/2021)</li>
+                <li><strong>Interés legítimo:</strong> Mejora de la aplicación, seguridad y prevención de fraudes</li>
+                <li><strong>Consentimiento:</strong> Para notificaciones push y funcionalidades opcionales</li>
+            </ul>
+
+            <h2>6. Sincronización con la Plataforma Web</h2>
+            <p>La aplicación móvil se conecta directamente a la plataforma web de Delfín Check-in mediante API segura. Todos los datos que visualizas y gestionas en la app están almacenados en los servidores de la plataforma web, no en tu dispositivo móvil.</p>
+            <p><strong>Características de la sincronización:</strong></p>
+            <ul>
+                <li>Los datos se sincronizan en tiempo real cuando hay conexión a Internet</li>
+                <li>Algunos datos pueden almacenarse temporalmente en caché local para mejorar el rendimiento</li>
+                <li>Los cambios realizados en la app se reflejan inmediatamente en la plataforma web</li>
+                <li>No se almacenan datos sensibles de forma permanente en el dispositivo</li>
+            </ul>
+
+            <h2>7. Datos de Huéspedes y Comunicaciones MIR</h2>
+            <p>Como parte del servicio de gestión hotelera, la aplicación te permite acceder a datos de huéspedes y gestionar comunicaciones con el Ministerio del Interior (MIR).</p>
+            
+            <h3>7.1 Datos de huéspedes</h3>
+            <p>Los datos de huéspedes que gestionas a través de la app incluyen:</p>
+            <ul>
+                <li>Información de identificación (nombre, apellidos, documento de identidad)</li>
+                <li>Datos de contacto (email, teléfono, dirección)</li>
+                <li>Información de la estancia (fechas de entrada/salida, habitación)</li>
+                <li>Datos de registro de viajeros requeridos por normativa española</li>
+            </ul>
+            <p><strong>Base legal:</strong> Estos datos se procesan para cumplir con las obligaciones legales del sector turístico español (Real Decreto 933/2021) y para la gestión de tu negocio.</p>
+
+            <h3>7.2 Comunicaciones MIR</h3>
+            <p>La aplicación permite consultar el estado de las comunicaciones enviadas al Ministerio del Interior:</p>
+            <ul>
+                <li>Partes de Viajero (PV) y Reservas de Hospedaje (RH)</li>
+                <li>Estados de envío, lotes asignados y resultados</li>
+                <li>Errores y mensajes del sistema MIR</li>
+            </ul>
+            <p>Estos datos son necesarios para cumplir con la normativa española de registro de viajeros.</p>
+
+            <h2>8. Compartir Información</h2>
+            <p>Los datos accedidos a través de la aplicación móvil pueden ser compartidos con:</p>
+            <ul>
+                <li><strong>Autoridades competentes:</strong> Ministerio del Interior (MIR) para cumplimiento de normativa de registro de viajeros</li>
+                <li><strong>Proveedores de servicios técnicos:</strong> Servicios de hosting, bases de datos, servicios de notificaciones push (Apple Push Notification Service, Firebase Cloud Messaging)</li>
+                <li><strong>Proveedores de servicios de pago:</strong> Stripe para procesamiento de pagos de suscripciones</li>
+            </ul>
+            <p><strong>No vendemos ni alquilamos tus datos personales ni los datos de tus huéspedes a terceros.</strong></p>
+
+            <h2>9. Seguridad de los Datos</h2>
+            <p>Implementamos medidas técnicas y organizativas para proteger los datos accedidos a través de la aplicación:</p>
+            <ul>
+                <li><strong>Cifrado en tránsito:</strong> Todas las comunicaciones entre la app y los servidores utilizan HTTPS/TLS</li>
+                <li><strong>Autenticación segura:</strong> Tokens JWT con expiración automática</li>
+                <li><strong>Almacenamiento seguro:</strong> Los datos se almacenan en servidores con medidas de seguridad avanzadas</li>
+                <li><strong>Acceso restringido:</strong> Solo personal autorizado puede acceder a los datos</li>
+                <li><strong>Monitoreo de seguridad:</strong> Sistemas de detección de accesos no autorizados</li>
+                <li><strong>Actualizaciones de seguridad:</strong> La app se actualiza regularmente para corregir vulnerabilidades</li>
+            </ul>
+
+            <h2>10. Conservación de Datos</h2>
+            <p>Los datos se conservan según los mismos plazos que en la plataforma web:</p>
+            <ul>
+                <li><strong>Datos de cuenta activa:</strong> Durante la vigencia del contrato y 5 años adicionales</li>
+                <li><strong>Datos de huéspedes:</strong> 3 años según normativa turística española</li>
+                <li><strong>Datos de facturación:</strong> 6 años según normativa fiscal</li>
+                <li><strong>Logs de seguridad:</strong> 1 año para auditoría y seguridad</li>
+                <li><strong>Datos de comunicaciones MIR:</strong> Según normativa del Ministerio del Interior</li>
+            </ul>
+            <p>Al eliminar la aplicación de tu dispositivo, los datos en caché local se eliminan automáticamente. Los datos en los servidores se mantienen según los plazos indicados.</p>
+
+            <h2>11. Tus Derechos</h2>
+            <p>Bajo el Reglamento General de Protección de Datos (RGPD), tienes derecho a:</p>
+            <ul>
+                <li><strong>Acceso:</strong> Conocer qué datos tenemos sobre ti y cómo se procesan</li>
+                <li><strong>Rectificación:</strong> Corregir datos inexactos o incompletos</li>
+                <li><strong>Supresión:</strong> Solicitar la eliminación de tus datos (sujeto a obligaciones legales)</li>
+                <li><strong>Limitación:</strong> Restringir el tratamiento de tus datos en ciertas circunstancias</li>
+                <li><strong>Portabilidad:</strong> Recibir tus datos en formato estructurado y comúnmente usado</li>
+                <li><strong>Oposición:</strong> Oponerte al tratamiento de tus datos para ciertos fines</li>
+                <li><strong>Retirar consentimiento:</strong> Retirar tu consentimiento en cualquier momento (para funcionalidades opcionales)</li>
+            </ul>
+            <p>Para ejercer estos derechos, puedes contactarnos en contacto@delfincheckin.com o a través de la configuración de tu cuenta en la plataforma web.</p>
+
+            <h2>12. Transferencias Internacionales</h2>
+            <p>Algunos de nuestros proveedores de servicios (como servicios de notificaciones push) pueden estar ubicados fuera del Espacio Económico Europeo (EEE). En estos casos, garantizamos un nivel adecuado de protección mediante:</p>
+            <ul>
+                <li>Decisiones de adecuación de la Comisión Europea</li>
+                <li>Cláusulas contractuales tipo aprobadas por la Comisión Europea</li>
+                <li>Certificaciones de privacidad reconocidas (como Privacy Shield Framework o equivalentes)</li>
+            </ul>
+
+            <h2>13. Menores de Edad</h2>
+            <p>Nuestra aplicación no está dirigida a menores de 16 años. No recopilamos intencionadamente datos personales de menores sin el consentimiento de sus padres o tutores legales.</p>
+
+            <h2>14. Cambios en esta Política</h2>
+            <p>Podemos actualizar esta política de privacidad para reflejar cambios en nuestras prácticas o por razones legales, operativas o regulatorias. Te notificaremos cualquier cambio significativo mediante:</p>
+            <ul>
+                <li>Notificación en la aplicación</li>
+                <li>Email a la dirección asociada a tu cuenta</li>
+                <li>Aviso en nuestro sitio web</li>
+            </ul>
+            <p>La fecha de "Última actualización" al inicio de este documento indica cuándo se realizó la última revisión.</p>
+
+            <h2>15. Contacto y Reclamaciones</h2>
+            <div class="contact-info">
+                <h3>Ejercer tus Derechos o Resolver Dudas</h3>
+                <p>Para ejercer tus derechos de protección de datos, resolver dudas sobre esta política o presentar una reclamación, puedes contactarnos en:</p>
+                <p><strong>Email:</strong> contacto@delfincheckin.com<br>
+                <strong>Dirección:</strong> Málaga, España</p>
+                <p>También tienes derecho a presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong> si consideras que el tratamiento de tus datos personales no cumple con la normativa vigente.</p>
+                <p><strong>Web de la AEPD:</strong> <a href="https://www.aepd.es" target="_blank" rel="noopener">www.aepd.es</a></p>
+            </div>
+
+            <h2>16. Información Adicional</h2>
+            <p>Esta política de privacidad complementa la <a href="/politica-privacidad.html">Política de Privacidad general</a> de Delfín Check-in. Para información sobre el tratamiento de datos en la plataforma web, consulta nuestra política de privacidad principal.</p>
+            <p>Para más información sobre cómo gestionar tu privacidad en la aplicación, consulta nuestra página de <a href="/opciones-de-privacidad-del-usuario.html">Opciones de Privacidad del Usuario</a>.</p>
+
+            <a href="index.html" class="back-link">← Volver a la página principal</a>
+        </div>
+    </div>
+</body>
+</html>
+
