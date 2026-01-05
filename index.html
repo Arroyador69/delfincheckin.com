@@ -8,7 +8,7 @@
   <meta http-equiv="Expires" content="0">
   <title>Delfín Check‑in · Software de gestión hotelera y auto check‑in</title>
   <meta name="description" content="Delfín Check‑in: software gratuito para hoteles y alojamientos con reservas, check‑in online, gestión de habitaciones y panel de administración sencillo. Gratis para siempre.">
-  <meta name="keywords" content="software hotel, channel manager, check-in online, PMS, reservas, gestión de hoteles, motor de reservas, sistema hotelero, gestión de alojamientos, check-in automático, reservas online, panel administración hotel, software gestión hotelera España, sistema reservas hoteles, gestión habitaciones hotel, check-in digital hotel, software hotelero profesional, sistema gestión alojamientos turísticos, plataforma hotelera, software para hostales, gestión reservas hoteles, sistema check-in online, software hotelero completo, gestión hotelera digital, sistema reservas alojamientos, software gestión turística, plataforma gestión hotelera, sistema hotelero integrado, software para hoteles pequeños, gestión digital hoteles">
+  <meta name="keywords" content="software hotel, PMS gratis, reservas, gestión de hoteles, motor de reservas, sistema hotelero, gestión de alojamientos, reservas online, panel administración hotel, software gestión hotelera España, sistema reservas hoteles, gestión habitaciones hotel, software hotelero profesional, sistema gestión alojamientos turísticos, plataforma hotelera, software para hostales, gestión reservas hoteles, software hotelero completo, gestión hotelera digital, sistema reservas alojamientos, software gestión turística, plataforma gestión hotelera, sistema hotelero integrado, software para hoteles pequeños, gestión digital hoteles">
   <meta name="author" content="Delfín Check-in">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
@@ -40,7 +40,7 @@
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Delfín Check‑in · Software de gestión hotelera y auto check‑in">
-  <meta property="og:description" content="Software completo para hoteles y alojamientos: gestión de reservas, check-in online automático, panel de administración y más. Planes desde 14,99€/mes.">
+  <meta property="og:description" content="PMS gratuito para hoteles y alojamientos: gestión de reservas, habitaciones y más. Módulo de check-in: 8€/mes. Pre-lanzamiento - Regístrate ahora.">
   <meta property="og:image" content="https://delfincheckin.com/og-image.svg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -54,7 +54,7 @@
   <meta name="twitter:site" content="@delfincheckin">
   <meta name="twitter:creator" content="@delfincheckin">
   <meta name="twitter:title" content="Delfín Check‑in · Software de gestión hotelera y auto check‑in">
-  <meta name="twitter:description" content="Software completo para hoteles: gestión de reservas, check-in online automático, panel de administración. Planes desde 14,99€/mes.">
+  <meta name="twitter:description" content="PMS gratuito para hoteles: gestión de reservas, habitaciones y más. Módulo de check-in: 8€/mes. Pre-lanzamiento - Regístrate ahora.">
   <meta name="twitter:image" content="https://delfincheckin.com/og-image.svg">
   <meta name="twitter:image:alt" content="Delfín Check-in - Software de gestión hotelera">
 
@@ -107,7 +107,7 @@
         "name": "Delfín Check-in",
         "applicationCategory": "BusinessApplication",
         "operatingSystem": "Web Browser",
-        "description": "Software completo para gestión hotelera: reservas, check-in online automático, panel de administración y gestión de habitaciones",
+        "description": "PMS gratuito para gestión hotelera: reservas, gestión de habitaciones y panel de administración. Módulo de check-in: 8€/mes",
         "url": "https://delfincheckin.com/",
         "screenshot": "https://delfincheckin.com/og-image.svg",
         "offers": [
@@ -130,10 +130,10 @@
         },
         "featureList": [
           "Gestión de reservas",
-          "Check-in online automático",
+          "Gestión de habitaciones",
           "Panel de administración",
           "Gestión de habitaciones",
-          "Registro de viajeros",
+          "App móvil iOS y Android",
           "Integración con calendarios",
           "Soporte técnico"
         ]
@@ -1118,87 +1118,11 @@
         </div>
       </div>
       <div class="note" style="margin-top:12px; padding:12px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px;">
-        <strong>Nota sobre integraciones:</strong> Sincronizamos calendarios mediante iCal (importación/exportación) con canales como Booking y Airbnb. Puedes crear reservas manualmente y mantener el calendario actualizado para facilitar el check‑in y el registro de viajeros.
+        <strong>Nota sobre integraciones:</strong> Sincronizamos calendarios mediante iCal (importación/exportación) con canales como Booking y Airbnb. Puedes crear reservas manualmente y mantener el calendario actualizado.
       </div>
     </section>
 
-    <!-- Registro de viajeros / Formulario multi‑idioma -->
-    <section id="registro-viajeros" class="section container" aria-labelledby="registro-title">
-      <h2 id="registro-title">Registro de viajeros (Ministerio del Interior)</h2>
-      <p class="lead">Genera automáticamente las fichas y envíalas según normativa. Pide a tus huéspedes que completen un formulario seguro antes de llegar, disponible en varios idiomas.</p>
 
-      <div class="card">
-        <form id="form-registro" onsubmit="return false">
-          <div style="display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap">
-            <button class="btn" id="previewBtn" type="button">Previsualizar ficha</button>
-          </div>
-          <div class="form-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:12px">
-            <label>
-              <span>Entrada (check‑in)</span>
-              <input id="arrivalDt" type="datetime-local" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Salida (check‑out)</span>
-              <input id="departureDt" type="datetime-local" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Idioma del formulario</span>
-              <select id="lang" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 10px">
-                <option value="es">Español</option>
-                <option value="en">English</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-              </select>
-            </label>
-            <label>
-              <span>Nombre y apellidos</span>
-              <input id="guestName" required placeholder="Nombre del huésped" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Documento (DNI/Pasaporte)</span>
-              <input id="docNumber" required placeholder="Número de documento" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Fecha de nacimiento</span>
-              <input id="birthDate" type="date" required style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Nacionalidad</span>
-              <input id="nationality" placeholder="Ej. Española" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-            <label>
-              <span>Correo</span>
-              <input id="email" type="email" placeholder="email@ejemplo.com" style="width:100%; height:40px; border-radius:10px; background:#0c1428; color:var(--text); border:1px solid rgba(255,255,255,.12); padding:0 12px">
-            </label>
-          </div>
-          <p class="note" style="margin-top:10px">Este es un ejemplo estático para mostrar el flujo. En producción, se validan y almacenan los datos y se generan los ficheros oficiales.</p>
-          <div class="note" style="margin-top:6px">
-            <strong>Ejemplos de parte de viajero:</strong> DNI/NIE o Pasaporte, nombre completo, fecha de nacimiento, nacionalidad, dirección y contacto, fechas de entrada/salida.
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <!-- Instrucciones de uso en 3 pasos -->
-    <section id="instrucciones" class="section container" aria-labelledby="steps-title">
-      <h2 id="steps-title">Cómo usar Delfín Check‑in en 3 pasos</h2>
-      <p class="lead">Guía rápida para enviar, recibir y presentar los partes de viajero.</p>
-      <div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));">
-        <article class="card">
-          <h3>Paso 1 · Enviar formulario</h3>
-          <p class="note">Envía al huésped el enlace del <strong>formulario de registro de parte de viajero</strong> en su idioma.</p>
-        </article>
-        <article class="card">
-          <h3>Paso 2 · Recibir en Delfín Check‑in</h3>
-          <p class="note">Cuando el huésped lo completa, el <strong>parte de viajero</strong> llega automáticamente a <strong>Delfín Check‑in</strong> y queda guardado.</p>
-        </article>
-        <article class="card">
-          <h3>Paso 3 · Envío directo al Ministerio sin coste extra</h3>
-          <p class="note">El sistema envía automáticamente los <strong>partes de viajero</strong> al <strong>Ministerio del Interior de España</strong> siguiendo la normativa, sin coste adicional.</p>
-        </article>
-      </div>
-    </section>
 
     <!-- Datos centralizados y descarga para renta anual -->
     <section id="datos" class="section container" aria-labelledby="datos-title">
@@ -1217,24 +1141,24 @@
       </div>
     </section>
 
-    <!-- Registro Gratis para Siempre -->
+    <!-- Registro Pre-lanzamiento -->
     <section id="registro" class="section container" style="background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%); border-radius: 24px; padding: 48px 24px; margin: 64px auto; max-width: 900px;">
       <div style="text-align: center; color: white; margin-bottom: 32px;">
-        <h2 style="color: white; margin-bottom: 16px; font-size: 36px; font-weight: 800;">🐬 Delfín Check-in es Gratis para Siempre</h2>
+        <h2 style="color: white; margin-bottom: 16px; font-size: 36px; font-weight: 800;">🐬 Delfín Check-in - Pre-lanzamiento</h2>
         <p class="lead" style="color: rgba(255,255,255,0.95); font-size: 20px; line-height: 1.6; margin-bottom: 12px;">
-          Únete a miles de propietarios que ya gestionan sus alojamientos con nuestro PMS completamente gratuito.
+          El PMS es completamente <strong>gratis para siempre</strong>. El módulo de check-in tendrá un coste de <strong>8€ al mes</strong>.
         </p>
         <p style="color: rgba(255,255,255,0.9); font-size: 16px; margin-top: 12px;">
-          Sin costes ocultos, sin límites de tiempo. Para siempre.
+          Estamos en fase de pre-lanzamiento. Regístrate con tu email y te avisaremos cuando esté listo para que seas uno de los primeros en usarlo gratis.
         </p>
       </div>
       
       <div class="card" style="background: white; max-width: 600px; margin: 0 auto; padding: 32px;">
         <div style="text-align: center; margin-bottom: 24px;">
-          <div style="font-size: 48px; margin-bottom: 12px;">🎉</div>
-          <h3 style="color: #0f172a; font-size: 24px; font-weight: 700; margin-bottom: 8px;">Regístrate ahora</h3>
+          <div style="font-size: 48px; margin-bottom: 12px;">🚀</div>
+          <h3 style="color: #0f172a; font-size: 24px; font-weight: 700; margin-bottom: 8px;">Únete a la lista de espera</h3>
           <p style="color: #64748b; font-size: 16px;">
-            Completa el formulario y comienza a usar Delfín Check-in de forma gratuita
+            Regístrate ahora y sé de los primeros en probar Delfín Check-in cuando esté disponible
           </p>
         </div>
         
@@ -1269,7 +1193,7 @@
             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
           >
-            <span id="waitlistSubmitText">🚀 Empezar Gratis Ahora</span>
+            <span id="waitlistSubmitText">📧 Registrarme en Pre-lanzamiento</span>
             <span id="waitlistLoading" style="display: none;">Enviando...</span>
           </button>
           <p id="waitlistMessage" style="margin: 0; padding: 12px; border-radius: 8px; display: none; text-align: center; font-size: 14px;"></p>
@@ -1277,18 +1201,18 @@
         
         <div style="margin-top: 24px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
           <div style="display: flex; align-items: start; gap: 12px;">
-            <div style="font-size: 24px;">✅</div>
+            <div style="font-size: 24px;">ℹ️</div>
             <div>
-              <h4 style="margin: 0 0 8px 0; color: #1e40af; font-weight: 700; font-size: 16px;">¿Qué incluye el plan gratuito?</h4>
+              <h4 style="margin: 0 0 8px 0; color: #1e40af; font-weight: 700; font-size: 16px;">Información importante</h4>
               <ul style="margin: 0; padding-left: 20px; color: #1e40af; font-size: 14px; line-height: 1.8;">
+                <li><strong>PMS completamente gratis</strong> para siempre</li>
+                <li>Módulo de <strong>check-in: 8€ al mes</strong> (opcional)</li>
                 <li>Gestión completa de reservas</li>
-                <li>Check-in online automático</li>
-                <li>Registro de viajeros (MIR)</li>
                 <li>Gestión de habitaciones</li>
                 <li>App móvil para iOS y Android</li>
                 <li>Soporte por email</li>
-                <li>Sin límites de tiempo</li>
-                <li><strong>Gratis para siempre</strong></li>
+                <li>Te avisaremos por email cuando esté listo</li>
+                <li>Los primeros usuarios podrán probarlo gratis</li>
               </ul>
             </div>
           </div>
@@ -1296,56 +1220,6 @@
       </div>
     </section>
 
-    <!-- Waitlist / Lista de Espera -->
-    <section id="waitlist" class="section container" style="background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%); border-radius: 24px; padding: 48px 24px; margin: 64px auto; max-width: 800px;">
-      <div style="text-align: center; color: white; margin-bottom: 32px;">
-        <h2 style="color: white; margin-bottom: 16px; font-size: 32px;">🐬 PMS creado por propietarios, para propietarios</h2>
-        <p class="lead" style="color: rgba(255,255,255,0.95); font-size: 18px; line-height: 1.6;">
-          Estamos construyendo el PMS que siempre quisiste tener. Únete a la lista de espera y sé de los primeros en probarlo gratis.
-        </p>
-        <p style="color: rgba(255,255,255,0.9); font-size: 14px; margin-top: 12px;">
-          Tu feedback temprano nos ayudará a construir exactamente lo que necesitas.
-        </p>
-      </div>
-      <div class="card" style="background: white; max-width: 500px; margin: 0 auto;">
-        <form id="waitlistForm" onsubmit="return submitWaitlist(event)" style="display: grid; gap: 16px;">
-          <label>
-            <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Email *</span>
-            <input 
-              id="waitlistEmail" 
-              type="email" 
-              required 
-              placeholder="tu@email.com" 
-              style="width: 100%; height: 48px; border-radius: 10px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s;"
-              onfocus="this.style.borderColor='#2563eb'"
-              onblur="this.style.borderColor='rgba(15,23,42,.2)'"
-            >
-          </label>
-          <label>
-            <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Nombre (opcional)</span>
-            <input 
-              id="waitlistName" 
-              type="text" 
-              placeholder="Tu nombre" 
-              style="width: 100%; height: 48px; border-radius: 10px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s;"
-              onfocus="this.style.borderColor='#2563eb'"
-              onblur="this.style.borderColor='rgba(15,23,42,.2)'"
-            >
-          </label>
-          <button 
-            type="submit" 
-            id="waitlistSubmit"
-            style="background: #2563eb; color: white; border: none; padding: 16px 32px; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.2s; width: 100%;"
-            onmouseover="this.style.background='#1d4ed8'; this.style.transform='translateY(-2px)'"
-            onmouseout="this.style.background='#2563eb'; this.style.transform='translateY(0)'"
-          >
-            <span id="waitlistSubmitText">Unirme a la lista de espera</span>
-            <span id="waitlistLoading" style="display: none;">Enviando...</span>
-          </button>
-          <p id="waitlistMessage" style="margin: 0; padding: 12px; border-radius: 8px; display: none; text-align: center; font-size: 14px;"></p>
-        </form>
-      </div>
-    </section>
 
     <!-- Formulario de Contacto -->
     <section id="contacto" class="section container">
@@ -1430,7 +1304,7 @@
         <summary>¿Es realmente gratis?</summary>
         <p>
           Sí, Delfín Check-in es completamente gratuito para siempre. No hay costes ocultos, no hay límites de tiempo, y no necesitas cancelar nada porque nunca te cobraremos. 
-          Puedes usar todas las funcionalidades del sistema sin restricciones: gestión de reservas, check-in online, registro de viajeros, app móvil y más.
+          El PMS es completamente gratis para siempre. Incluye gestión de reservas, habitaciones, app móvil y más. El módulo de check-in tiene un coste de 8€ al mes (opcional).
         </p>
       </details>
       <details>
@@ -1446,7 +1320,7 @@
         <p>
           Desde el dashboard generas o programas el envío de un enlace seguro al huésped (por email o WhatsApp). 
           El viajero completa sus datos, adjunta documentación y firma si procede, todo en su idioma. 
-          La información llega validada al sistema y se consolida en el registro de viajeros para su posterior envío al Ministerio del Interior. 
+          El módulo de check-in estará disponible próximamente con un coste de 8€ al mes. 
           Al llegar, el proceso en recepción se reduce a validar identidad y entregar llaves.
         </p>
       </details>
@@ -1454,21 +1328,19 @@
         <summary>¿Puedo exportar datos para la asesoría y la renta?</summary>
         <p>
           Sí. Puedes descargar un único archivo (CSV/Excel) con ingresos, tasas y ocupación filtrado por rango de fechas o ejercicio fiscal. 
-          Además, el registro de viajeros se exporta en los formatos requeridos para su notificación oficial.
+          El PMS incluye gestión completa de reservas y habitaciones de forma gratuita.
         </p>
       </details>
       <details>
         <summary>¿Cómo funciona el registro de viajeros?</summary>
         <p>
-          El sistema de registro de viajeros permite recopilar automáticamente la información de tus huéspedes y enviarla al Ministerio del Interior. 
-          Los huéspedes completan un formulario seguro antes de su llegada, disponible en varios idiomas. 
-          Una vez completado, el sistema genera automáticamente los partes de viajero y los envía según la normativa vigente, sin coste adicional.
+          El módulo de registro de viajeros estará disponible próximamente. Por ahora, el PMS incluye gestión completa de reservas y habitaciones de forma gratuita.
         </p>
       </details>
       <details>
         <summary>¿Qué idiomas soporta el sistema?</summary>
         <p>
-          El check-in online está disponible en español, inglés, francés, alemán, italiano y portugués. 
+          El módulo de check-in estará disponible próximamente con un coste de 8€ al mes. 
           Los formularios se adaptan automáticamente según la ubicación del huésped o pueden seleccionarse manualmente. 
           El panel de administración está en español con soporte para múltiples idiomas en desarrollo.
         </p>
@@ -1522,19 +1394,18 @@
         </p>
       </details>
       <details>
-        <summary>¿Cómo se notifica automáticamente al Ministerio del Interior?</summary>
+        <summary>¿Cuándo estará disponible el módulo de check-in?</summary>
         <p>
-          El sistema genera automáticamente los archivos en el formato oficial requerido por el Ministerio del Interior 
+          Estamos en fase de pre-lanzamiento. El módulo de check-in estará disponible próximamente con un coste de 8€ al mes. 
           y los envía por email o FTP según tu configuración. También puedes descargarlos manualmente y enviarlos 
           a través de tu canal preferido.
         </p>
       </details>
       <details>
-        <summary>¿Puedo probar el sistema antes de contratar?</summary>
+        <summary>¿Puedo probar el sistema?</summary>
         <p>
-          Ofrecemos una prueba gratuita de 14 días sin compromiso. Puedes configurar tu primera propiedad, 
-          probar todas las funcionalidades, importar datos de prueba y ver cómo funciona el check-in completo. 
-          No se requiere tarjeta de crédito para empezar.
+          Estamos en fase de pre-lanzamiento. Regístrate con tu email y te avisaremos cuando esté listo. 
+          Los primeros usuarios podrán probar el PMS completo de forma gratuita, incluyendo el módulo de check-in.
         </p>
       </details>
       <details>
