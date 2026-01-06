@@ -2302,19 +2302,22 @@
     }
     
     // Event listener para el botón de descarga con loading
-    $('#downloadCsvBtn').addEventListener('click', (e) => {
-      e.preventDefault();
-      const btn = e.target;
-      const originalText = btn.textContent;
-      btn.innerHTML = '<span class="loading"></span> Generando CSV...';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        generateReservationsCSV();
-        btn.textContent = originalText;
-        btn.disabled = false;
-      }, 1500);
-    });
+    const downloadCsvBtn = $('#downloadCsvBtn');
+    if (downloadCsvBtn) {
+      downloadCsvBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const btn = e.target;
+        const originalText = btn.textContent;
+        btn.innerHTML = '<span class="loading"></span> Generando CSV...';
+        btn.disabled = true;
+        
+        setTimeout(() => {
+          generateReservationsCSV();
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }, 1500);
+      });
+    }
 
     // Datos aleatorios de KPIs (demo)
     (function fillKpis(){
@@ -2606,11 +2609,16 @@
       btn.style.transform = 'scale(1)';
     }
     
-    // Event listeners para la calculadora
-    $('#calcPlan').addEventListener('change', updateCalculator);
+    // Event listeners para la calculadora (verificar que existan)
+    const calcPlan = $('#calcPlan');
+    if (calcPlan) {
+      calcPlan.addEventListener('change', updateCalculator);
+    }
     
     // Soporte para teclas de flecha en el input de propiedades (aunque sea readonly)
-    $('#calcProperties').addEventListener('keydown', function(e) {
+    const calcProperties = $('#calcProperties');
+    if (calcProperties) {
+      calcProperties.addEventListener('keydown', function(e) {
       if (e.key === 'ArrowUp') {
         e.preventDefault();
         if (!isIncrementing) {
@@ -2664,38 +2672,44 @@
       }
       
       // Botón de incremento - SOLO click simple
-      $('#incrementBtn').addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        addTouchFeedback(this);
-      });
-      
-      $('#incrementBtn').addEventListener('touchend', function(e) {
-        e.preventDefault();
-        removeTouchFeedback(this);
-        singleIncrement(); // Solo un incremento
-      });
-      
-      $('#incrementBtn').addEventListener('touchcancel', function(e) {
-        e.preventDefault();
-        removeTouchFeedback(this);
-      });
+      const incrementBtn = $('#incrementBtn');
+      if (incrementBtn) {
+        incrementBtn.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          addTouchFeedback(this);
+        });
+        
+        incrementBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          removeTouchFeedback(this);
+          singleIncrement(); // Solo un incremento
+        });
+        
+        incrementBtn.addEventListener('touchcancel', function(e) {
+          e.preventDefault();
+          removeTouchFeedback(this);
+        });
+      }
       
       // Botón de decremento - SOLO click simple
-      $('#decrementBtn').addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        addTouchFeedback(this);
-      });
-      
-      $('#decrementBtn').addEventListener('touchend', function(e) {
-        e.preventDefault();
-        removeTouchFeedback(this);
-        singleDecrement(); // Solo un decremento
-      });
-      
-      $('#decrementBtn').addEventListener('touchcancel', function(e) {
-        e.preventDefault();
-        removeTouchFeedback(this);
-      });
+      const decrementBtn = $('#decrementBtn');
+      if (decrementBtn) {
+        decrementBtn.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          addTouchFeedback(this);
+        });
+        
+        decrementBtn.addEventListener('touchend', function(e) {
+          e.preventDefault();
+          removeTouchFeedback(this);
+          singleDecrement(); // Solo un decremento
+        });
+        
+        decrementBtn.addEventListener('touchcancel', function(e) {
+          e.preventDefault();
+          removeTouchFeedback(this);
+        });
+      }
       
       // Prevenir zoom en doble tap
       let lastTouchEnd = 0;
