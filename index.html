@@ -39,7 +39,7 @@
   
   <!-- Security headers -->
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
+  <!-- X-Frame-Options debe configurarse como header HTTP, no como meta tag -->
   <meta http-equiv="X-XSS-Protection" content="1; mode=block">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Delfín Check‑in · Software de gestión hotelera y auto check‑in">
@@ -66,8 +66,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Preload critical resources -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
-  <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Preload de fuente removido - se carga automáticamente con el link de Google Fonts -->
   
   <!-- DNS prefetch for external resources -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -2132,7 +2131,12 @@
     const stripe = Stripe('pk_test_51SIQvIK0hBtqPgKVMDYdtvgWN8FKXJ18sI8Zzd9ksDnuqLPJsyoXVQaAUCf52zhAV04TPJHKcwdpockDjTjFsbAc002y9R9tju');
     const openModal = () => { $('#previewModal').style.display = 'flex'; document.body.style.overflow='hidden'; };
     const closeModal = () => { $('#previewModal').style.display = 'none'; document.body.style.overflow=''; };
-    $('#previewClose').addEventListener('click', closeModal);
+    // Verificar que los elementos existan antes de añadir event listeners
+    const previewClose = $('#previewClose');
+    if (previewClose) {
+      previewClose.addEventListener('click', closeModal);
+    }
+    
     // Función mejorada para previsualización de ficha
     function generatePreviewData() {
       const rnd = (min,max) => Math.floor(Math.random()*(max-min+1))+min;
@@ -2177,23 +2181,35 @@
       };
     }
 
-    $('#previewBtn').addEventListener('click', () => {
-      // Generar datos aleatorios cada vez
-      const data = generatePreviewData();
-      
-      // Actualizar el modal con los datos
-      $('#pv-lang').textContent = data.language;
-      $('#pv-arrival').textContent = data.arrival;
-      $('#pv-departure').textContent = data.departure;
-      $('#pv-name').textContent = data.name;
-      $('#pv-doc').textContent = data.document;
-      $('#pv-birth').textContent = data.birth;
-      $('#pv-nation').textContent = data.nationality;
-      $('#pv-email').textContent = data.email;
-      
-      // Mostrar el modal
-      openModal();
-    });
+    const previewBtn = $('#previewBtn');
+    if (previewBtn) {
+      previewBtn.addEventListener('click', () => {
+        // Generar datos aleatorios cada vez
+        const data = generatePreviewData();
+        
+        // Actualizar el modal con los datos (verificar que existan)
+        const pvLang = $('#pv-lang');
+        const pvArrival = $('#pv-arrival');
+        const pvDeparture = $('#pv-departure');
+        const pvName = $('#pv-name');
+        const pvDoc = $('#pv-doc');
+        const pvBirth = $('#pv-birth');
+        const pvNation = $('#pv-nation');
+        const pvEmail = $('#pv-email');
+        
+        if (pvLang) pvLang.textContent = data.language;
+        if (pvArrival) pvArrival.textContent = data.arrival;
+        if (pvDeparture) pvDeparture.textContent = data.departure;
+        if (pvName) pvName.textContent = data.name;
+        if (pvDoc) pvDoc.textContent = data.document;
+        if (pvBirth) pvBirth.textContent = data.birth;
+        if (pvNation) pvNation.textContent = data.nationality;
+        if (pvEmail) pvEmail.textContent = data.email;
+        
+        // Mostrar el modal
+        openModal();
+      });
+    }
 
 
     // Generar y descargar CSV con datos de reservas
