@@ -2343,8 +2343,16 @@
 
     // Calculadora de precios por volumen
     function updateCalculator() {
-      const properties = parseInt($('#calcProperties').value) || 1;
-      const plan = $('#calcPlan').value;
+      const calcPropertiesEl = $('#calcProperties');
+      const calcPlanEl = $('#calcPlan');
+      
+      // Si los elementos no existen, salir sin error
+      if (!calcPropertiesEl || !calcPlanEl) {
+        return;
+      }
+      
+      const properties = parseInt(calcPropertiesEl.value) || 1;
+      const plan = calcPlanEl.value;
       
       let pricePerProperty, total, savings, perPropertyText, savingsText, discount;
       
@@ -2731,8 +2739,17 @@
       }
     }
     
-    // Inicializar calculadora
-    updateCalculator();
+    // Inicializar calculadora cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        updateCalculator();
+      });
+    } else {
+      // DOM ya está cargado, pero esperar un poco para asegurar que los elementos existan
+      setTimeout(function() {
+        updateCalculator();
+      }, 100);
+    }
 
     // Función para abrir modal de pago desde la calculadora
     function openStripePaymentFromCalculator() {
