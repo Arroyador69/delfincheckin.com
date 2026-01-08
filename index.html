@@ -2447,8 +2447,16 @@
     }
     
     function openCalculator() {
-      const properties = $('#calcProperties').value;
-      const plan = $('#calcPlan').value;
+      const calcPropertiesEl = $('#calcProperties');
+      const calcPlanEl = $('#calcPlan');
+      
+      if (!calcPropertiesEl || !calcPlanEl) {
+        console.warn('Elementos de calculadora no encontrados');
+        return;
+      }
+      
+      const properties = calcPropertiesEl.value;
+      const plan = calcPlanEl.value;
       
       let planText, subject, body;
       planText = plan === 'monthly' ? 'mensual' : plan === 'yearly' ? 'anual' : 'volumen';
@@ -2468,6 +2476,8 @@
     // Funciones para los botones de incremento/decremento
     function incrementProperties() {
       const input = $('#calcProperties');
+      if (!input) return;
+      
       const currentValue = parseInt(input.value) || 1;
       const maxValue = parseInt(input.getAttribute('max')) || 50;
       
@@ -2490,6 +2500,8 @@
 
     function decrementProperties() {
       const input = $('#calcProperties');
+      if (!input) return;
+      
       const currentValue = parseInt(input.value) || 1;
       const minValue = parseInt(input.getAttribute('min')) || 1;
       
@@ -2533,6 +2545,11 @@
         if (!isIncrementing) return;
         
         const input = $('#calcProperties');
+        if (!input) {
+          stopIncrement();
+          return;
+        }
+        
         const currentValue = parseInt(input.value) || 1;
         const maxValue = parseInt(input.getAttribute('max')) || 50;
         
@@ -2590,6 +2607,11 @@
         if (!isDecrementing) return;
         
         const input = $('#calcProperties');
+        if (!input) {
+          stopDecrement();
+          return;
+        }
+        
         const currentValue = parseInt(input.value) || 1;
         const minValue = parseInt(input.getAttribute('min')) || 1;
         
@@ -2748,21 +2770,37 @@
     }
     
     // Inicializar calculadora cuando el DOM esté listo
+    function initializeCalculator() {
+      // Verificar que los elementos existan antes de inicializar
+      if (!$('#calcProperties') || !$('#calcPlan')) {
+        // Intentar de nuevo después de un breve delay
+        setTimeout(initializeCalculator, 200);
+        return;
+      }
+      updateCalculator();
+    }
+    
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', function() {
-        updateCalculator();
+        setTimeout(initializeCalculator, 100);
       });
     } else {
       // DOM ya está cargado, pero esperar un poco para asegurar que los elementos existan
-      setTimeout(function() {
-        updateCalculator();
-      }, 100);
+      setTimeout(initializeCalculator, 200);
     }
 
     // Función para abrir modal de pago desde la calculadora
     function openStripePaymentFromCalculator() {
-      const properties = parseInt($('#calcProperties').value) || 1;
-      const plan = $('#calcPlan').value;
+      const calcPropertiesEl = $('#calcProperties');
+      const calcPlanEl = $('#calcPlan');
+      
+      if (!calcPropertiesEl || !calcPlanEl) {
+        console.warn('Elementos de calculadora no encontrados');
+        return;
+      }
+      
+      const properties = parseInt(calcPropertiesEl.value) || 1;
+      const plan = calcPlanEl.value;
       const planType = plan === 'monthly' ? 'monthly' : 'yearly';
       
       // Establecer valores en el modal antes de abrirlo
