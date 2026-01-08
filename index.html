@@ -2422,19 +2422,27 @@
       const iva = total * 0.21;
       const totalWithVat = total * 1.21;
         
-      $('#calcTotal').textContent = `${totalWithVat.toFixed(2)}€${periodText}`;
-      $('#calcPerProperty').textContent = perPropertyText;
-      $('#calcBase').textContent = `${base.toFixed(2)}€`;
-      $('#calcIVA').textContent = `${iva.toFixed(2)}€`;
-      $('#calcSavings').textContent = savingsText;
+      const calcTotalEl = $('#calcTotal');
+      const calcPerPropertyEl = $('#calcPerProperty');
+      const calcBaseEl = $('#calcBase');
+      const calcIVAEl = $('#calcIVA');
+      const calcSavingsEl = $('#calcSavings');
+      
+      if (calcTotalEl) calcTotalEl.textContent = `${totalWithVat.toFixed(2)}€${periodText}`;
+      if (calcPerPropertyEl) calcPerPropertyEl.textContent = perPropertyText;
+      if (calcBaseEl) calcBaseEl.textContent = `${base.toFixed(2)}€`;
+      if (calcIVAEl) calcIVAEl.textContent = `${iva.toFixed(2)}€`;
+      if (calcSavingsEl) calcSavingsEl.textContent = savingsText;
       
       // Cambiar color según ahorro
-      if (totalSavings > 0 || discount > 0) {
-        $('#calcSavings').style.color = '#16a34a';
-        $('#calcSavings').style.background = 'rgba(22, 163, 74, 0.1)';
-      } else {
-        $('#calcSavings').style.color = '#64748b';
-        $('#calcSavings').style.background = 'rgba(100, 116, 139, 0.1)';
+      if (calcSavingsEl) {
+        if (totalSavings > 0 || discount > 0) {
+          calcSavingsEl.style.color = '#16a34a';
+          calcSavingsEl.style.background = 'rgba(22, 163, 74, 0.1)';
+        } else {
+          calcSavingsEl.style.color = '#64748b';
+          calcSavingsEl.style.background = 'rgba(100, 116, 139, 0.1)';
+        }
       }
     }
     
