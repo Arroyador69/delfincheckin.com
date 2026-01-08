@@ -2619,18 +2619,18 @@
     const calcProperties = $('#calcProperties');
     if (calcProperties) {
       calcProperties.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        if (!isIncrementing) {
-          startIncrement();
+        if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (!isIncrementing) {
+            startIncrement();
+          }
+        } else if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (!isDecrementing) {
+            startDecrement();
+          }
         }
-      } else if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        if (!isDecrementing) {
-          startDecrement();
-        }
-      }
-    });
+      });
 
     // Detener cuando se suelta la tecla
     $('#calcProperties').addEventListener('keyup', function(e) {
