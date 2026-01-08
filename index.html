@@ -2916,6 +2916,32 @@
     
     // Hacer la función global
     window.submitWaitlist = submitWaitlist;
+    
+    // Añadir event listener al formulario waitlist cuando el DOM esté listo
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        const waitlistFormElement = document.getElementById('waitlistForm');
+        if (waitlistFormElement) {
+          waitlistFormElement.addEventListener('submit', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            submitWaitlist(e);
+            return false;
+          });
+        }
+      });
+    } else {
+      // DOM ya está cargado
+      const waitlistFormElement = document.getElementById('waitlistForm');
+      if (waitlistFormElement) {
+        waitlistFormElement.addEventListener('submit', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          submitWaitlist(e);
+          return false;
+        });
+      }
+    }
 
     // Formulario de Contacto
     $('#sendContact').addEventListener('click', (e) => {
