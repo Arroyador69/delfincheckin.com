@@ -1493,7 +1493,7 @@
           </p>
         </div>
         
-        <form id="waitlistForm" onsubmit="return submitWaitlist(event)" style="display: grid; gap: 20px;">
+        <form id="waitlistForm" onsubmit="submitWaitlist(event); return false;" style="display: grid; gap: 20px;">
           <label>
             <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Email *</span>
             <input 
@@ -1524,10 +1524,10 @@
             onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
           >
-            <span id="waitlistSubmitText">🚀 Quiero ser de los primeros</span>
+            <span id="waitlistSubmitText">🎁 Quiero gratis para siempre</span>
             <span id="waitlistLoading" style="display: none;">Enviando...</span>
           </button>
-          <p id="waitlistMessage" style="margin: 0; padding: 12px; border-radius: 8px; display: none; text-align: center; font-size: 14px;"></p>
+          <div id="waitlistMessage" style="margin: 0; padding: 0; border-radius: 8px; display: none; text-align: left;"></div>
         </form>
         
         <div style="margin-top: 24px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
@@ -2796,7 +2796,10 @@
 
     // Formulario de Waitlist
     async function submitWaitlist(event) {
-      event.preventDefault();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
       
       const emailInput = $('#waitlistEmail');
       const nameInput = $('#waitlistName');
@@ -2804,6 +2807,18 @@
       const submitText = $('#waitlistSubmitText');
       const loadingText = $('#waitlistLoading');
       const messageDiv = $('#waitlistMessage');
+      
+      // Si no existe messageDiv, salir
+      if (!messageDiv) {
+        console.error('No se encontró el elemento waitlistMessage');
+        return false;
+      }
+      
+      // Si no existe emailInput, salir
+      if (!emailInput) {
+        console.error('No se encontró el elemento waitlistEmail');
+        return false;
+      }
       
       const email = emailInput.value.trim();
       const name = nameInput.value.trim();
@@ -2839,21 +2854,49 @@
         const data = await response.json();
         
         if (data.success) {
-          // Éxito
+          // Éxito - Mensaje mejorado con información sobre spam
           messageDiv.style.display = 'block';
           messageDiv.style.background = '#d1fae5';
+          messageDiv.style.border = '2px solid #10b981';
           messageDiv.style.color = '#065f46';
-          messageDiv.textContent = '✅ ¡Te hemos agregado a la lista de espera! Te notificaremos cuando el PMS esté disponible.';
+          messageDiv.style.padding = '20px';
+          messageDiv.innerHTML = `
+            <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #065f46;">
+              ✅ ¡Te hemos agregado a la lista de espera!
+            </div>
+            <p style="margin: 0 0 12px 0; line-height: 1.6;">
+              Te hemos enviado un email de confirmación a <strong>${email}</strong>.
+            </p>
+            <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px; border-radius: 8px; margin-top: 16px;">
+              <p style="margin: 0 0 8px 0; font-weight: 600; color: #065f46;">📧 Importante: Verifica tu correo</p>
+              <ul style="margin: 8px 0 0 0; padding-left: 20px; line-height: 1.8;">
+                <li>Revisa tu <strong>carpeta de spam o correo no deseado</strong></li>
+                <li>Si encuentras el email ahí, <strong>ábrelo y muévelo a la carpeta principal</strong></li>
+                <li>Si no recibes el email en los próximos minutos, escríbenos a <a href="mailto:contacto@delfincheckin.com" style="color: #2563eb; font-weight: 600;">contacto@delfincheckin.com</a></li>
+              </ul>
+            </div>
+            <p style="margin: 16px 0 0 0; font-size: 14px; color: #059669;">
+              Te notificaremos cuando el PMS esté listo para que puedas empezar a usarlo como early adopter.
+            </p>
+          `;
           
           // Limpiar formulario
           emailInput.value = '';
           nameInput.value = '';
+          
+          // Scroll suave al mensaje de éxito
+          messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
           // Error
           messageDiv.style.display = 'block';
           messageDiv.style.background = '#fee2e2';
+          messageDiv.style.border = '2px solid #ef4444';
           messageDiv.style.color = '#991b1b';
-          messageDiv.textContent = data.error || 'Error al agregar a la lista de espera. Por favor, inténtalo de nuevo.';
+          messageDiv.style.padding = '16px';
+          messageDiv.innerHTML = `
+            <div style="font-weight: 600; margin-bottom: 8px;">❌ Error</div>
+            <p style="margin: 0;">${data.error || 'Error al agregar a la lista de espera. Por favor, inténtalo de nuevo.'}</p>
+          `;
         }
       } catch (error) {
         console.error('Error en waitlist:', error);
