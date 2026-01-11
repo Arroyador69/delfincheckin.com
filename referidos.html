@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa de Referidos - Delfín Check-in</title>
+  <meta name="description" content="Gana meses gratis recomendando Delfín Check-in a otros propietarios. Programa de referidos exclusivo para propietarios que usan nuestro PMS.">
+  <link rel="canonical" href="https://delfincheckin.com/referidos">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; 
+      line-height: 1.7; 
+      color: #1e293b; 
+      background: #eef6ff;
+      min-height: 100vh;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+    
+    /* Header de navegación */
+    header {
+      position: sticky; top: 0; z-index: 100; backdrop-filter: saturate(160%) blur(8px);
+      background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid rgba(15,23,42,0.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; max-width: 1180px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .logo { font-size: 32px; line-height: 1; }
+    .brand b { font-weight: 800; letter-spacing: 0.2px; font-size: 22px; color: #0f172a; }
+    .actions { display: flex; gap: 10px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(15,23,42,0.12); background: #ffffff; color: #0f172a; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+    .btn:hover { background: #f8fafc; border-color: rgba(15,23,42,0.18); }
+    .btn.primary { background: #2563eb; color: #ffffff; border-color: #2563eb; box-shadow: 0 6px 18px rgba(37,99,235,0.18); }
+    .btn.primary:hover { filter: brightness(1.05); }
+    
+    /* Header de página */
+    .page-header { 
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 50%, #1e40af 100%);
+      color: white;
+      padding: 60px 0;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .page-header h1 { 
+      text-align: center; 
+      font-size: clamp(32px, 5vw, 48px); 
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      text-align: center;
+      font-size: clamp(16px, 2.5vw, 20px);
+      position: relative;
+      z-index: 1;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .content { 
+      background: white; 
+      padding: 48px;
+      border-radius: 24px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      margin-bottom: 32px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(16,185,129,0.08) 100%);
+      padding: 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+      border-left: 4px solid #2563eb;
+      border: 1px solid rgba(37,99,235,0.15);
+    }
+    
+    .warning-box {
+      background: linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(245,158,11,0.1) 100%);
+      padding: 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+      border-left: 4px solid #f59e0b;
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+    
+    h2 { 
+      color: #1d4ed8; 
+      margin: 40px 0 20px 0; 
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    
+    h3 { 
+      color: #475569; 
+      margin: 28px 0 14px 0; 
+      font-size: clamp(20px, 2.5vw, 24px);
+      font-weight: 600;
+    }
+    p { 
+      margin-bottom: 18px; 
+      color: #334155;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    ul, ol { 
+      margin: 20px 0 20px 24px; 
+      padding-left: 0;
+    }
+    li { 
+      margin-bottom: 12px;
+      color: #475569;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    
+    .reward-card {
+      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(16,185,129,0.06));
+      border: 2px solid rgba(37,99,235,0.15);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .reward-card h3 {
+      color: #1d4ed8;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .reward-card .reward-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #16a34a, #22c55e);
+      color: white;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-left: auto;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: white;
+      padding: 48px;
+      border-radius: 24px;
+      text-align: center;
+      margin: 48px 0;
+    }
+    .cta-section h2 {
+      color: white;
+      margin-top: 0;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.95);
+      font-size: 18px;
+    }
+    .cta-section .btn {
+      margin-top: 24px;
+      background: white;
+      color: #2563eb;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 16px 32px;
+    }
+    .cta-section .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* Footer */
+    footer {
+      color: #64748b;
+      border-top: 1px solid rgba(15,23,42,0.08);
+      margin-top: 48px;
+      padding: 32px 0;
+      background: #ffffff;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+    footer h4 {
+      margin: 0 0 12px;
+      color: #0f172a;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    footer p {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(15,23,42,0.08);
+      padding-top: 24px;
+      text-align: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .content { padding: 32px 24px; }
+      .page-header { padding: 40px 0; }
+      h2 { font-size: 24px; }
+      .nav { flex-direction: column; gap: 16px; }
+      .actions { width: 100%; flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .reward-card { padding: 20px; }
+      .cta-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">🐬</div>
+        <b>Delfín Check‑in</b>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="/#registro">Registro Gratis</a>
+        <a class="btn" href="/">Volver al inicio</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>🏡 Programa de Referidos</h1>
+      <p>Recomienda Delfín Check-in a otros propietarios y consigue meses gratis en nuestros planes</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <div class="warning-box">
+        <h3 style="margin-top: 0; color: #92400e;">⚠️ Estado: Pre-lanzamiento</h3>
+        <p style="margin-bottom: 0; color: #78350f;">
+          <strong>El programa de referidos estará disponible tras el lanzamiento oficial del PMS.</strong> 
+          Por ahora, consigue el PMS gratis para siempre registrándote en la waitlist. 
+          Cuando lancemos, podrás usar tu link de referido desde el panel de administración para recomendar a otros propietarios y empezar a ganar recompensas mensuales.
+        </p>
+      </div>
+
+      <h2>💎 ¿Qué es el Programa de Referidos?</h2>
+      <p>
+        El <strong>Programa de Referidos</strong> es exclusivo para propietarios que usan Delfín Check-in. 
+        Si ya eres usuario de nuestro PMS (Plan Check-in o Pro), puedes recomendar nuestra plataforma a otros propietarios y ganar <strong>meses gratis</strong> en nuestros planes.
+      </p>
+      <p>
+        Cada vez que alguien se registre usando tu link de referido, quedarás vinculado como su referente. 
+        Cuantos más propietarios refieras, más meses gratis acumularás. Las recompensas se aplican automáticamente como créditos de tiempo que se descuentan mes a mes antes de cualquier cobro de Stripe.
+      </p>
+
+      <div class="highlight-box">
+        <h3 style="margin-top: 0; color: #1d4ed8;">📋 Disponible en todos los planes</h3>
+        <p style="margin-bottom: 0;">
+          El programa de referidos está disponible para <strong>todos los propietarios</strong>, independientemente del plan que tengas. 
+          Ya seas usuario del Plan Gratuito, Check-in o Pro, puedes participar y ganar recompensas.
+        </p>
+      </div>
+
+      <h2>🎁 Reglas de Recompensas</h2>
+      <p>Las recompensas son acumulables y se otorgan automáticamente cuando se cumplen las siguientes condiciones:</p>
+
+      <div class="reward-card">
+        <h3>
+          <span>5 Referidos Registrados</span>
+          <span class="reward-badge">1 mes Check-in</span>
+        </h3>
+        <p>
+          Trae <strong>5 referidos registrados</strong> (en cualquier plan, incluido el gratuito) y consigue <strong>1 mes gratis del Plan Check-in</strong>. 
+          Esta recompensa es acumulable: cada 5 referidos registrados que traigas, recibirás otro mes gratis.
+        </p>
+      </div>
+
+      <div class="reward-card">
+        <h3>
+          <span>1 Referido que Paga Plan Check-in</span>
+          <span class="reward-badge">1 mes Check-in</span>
+        </h3>
+        <p>
+          Cuando un referido paga el <strong>Plan Check-in (8€/mes)</strong> por primera vez, automáticamente recibes <strong>1 mes gratis del Plan Check-in</strong>. 
+          Esta recompensa se otorga por cada referido que paga.
+        </p>
+      </div>
+
+      <div class="reward-card">
+        <h3>
+          <span>3 Referidos Activos en Plan Check-in</span>
+          <span class="reward-badge">1 mes Pro</span>
+        </h3>
+        <p>
+          Con <strong>3 referidos activos</strong> pagando el Plan Check-in, consigues <strong>1 mes gratis del Plan Pro (29,99€/mes)</strong>. 
+          Un referido se considera "activo" cuando está pagando el plan de forma recurrente.
+        </p>
+      </div>
+
+      <div class="reward-card">
+        <h3>
+          <span>5 Referidos Activos en Plan Pro</span>
+          <span class="reward-badge">2 meses Pro</span>
+        </h3>
+        <p>
+          Con <strong>5 referidos activos</strong> pagando el Plan Pro, consigues <strong>2 meses gratis del Plan Pro</strong>. 
+          Esta es la recompensa más valiosa y es acumulable: cada 5 referidos Pro que mantengas activos, recibirás otros 2 meses gratis.
+        </p>
+      </div>
+
+      <h2>💳 Cómo Funcionan los Créditos</h2>
+      <p>
+        Las recompensas se aplican como <strong>créditos de tiempo</strong> (meses gratis) que se acumulan en tu cuenta. 
+        Los créditos se descuentan automáticamente antes de cualquier cobro mensual de Stripe.
+      </p>
+      <ul>
+        <li><strong>Prioridad de aplicación:</strong> Si tienes créditos de Plan Pro disponibles, se aplican primero (aunque tengas créditos de Check-in).</li>
+        <li><strong>Débito automático:</strong> Cada mes, antes del cobro, el sistema verifica tus créditos disponibles y los aplica automáticamente.</li>
+        <li><strong>Acumulación:</strong> Los créditos son acumulables, no tienen fecha de expiración y se aplican hasta agotarse.</li>
+        <li><strong>Sin modificación de precios:</strong> Los precios base de los planes no se modifican. Los créditos simplemente reducen el importe a pagar.</li>
+      </ul>
+
+      <h2>🔄 Sistema Multi-nivel</h2>
+      <p>
+        El programa de referidos es <strong>multi-nivel</strong>: si un propietario que referiste también recomienda a otros, 
+        la cadena de referencias se mantiene vinculada. Sin embargo, las recompensas solo se otorgan por tus referidos directos (nivel 1).
+      </p>
+
+      <h2>❌ Cancelación y Pérdida de Recompensas</h2>
+      <p>
+        Si un referido cancela su plan o deja de pagar:
+      </p>
+      <ul>
+        <li>El referido deja de contar como "activo" para las recompensas basadas en referidos activos.</li>
+        <li>Si la cancelación causa que ya no cumplas los requisitos para una recompensa, <strong>no se revocan los créditos ya aplicados</strong>, pero no recibirás nuevas recompensas hasta que vuelvas a cumplir los requisitos.</li>
+        <li>Si el referido se reactiva más tarde, vuelve a contar para las recompensas.</li>
+      </ul>
+
+      <h2>📊 Acceso al Panel de Referidos</h2>
+      <p>
+        Cuando el programa esté activo, podrás acceder a la sección <strong>"Referidos"</strong> desde tu panel de administración de Delfín Check-in. 
+        En esta sección verás:
+      </p>
+      <ul>
+        <li>Tu <strong>link de referido único</strong> para compartir</li>
+        <li><strong>Estadísticas en tiempo real:</strong> número de referidos registrados, activos, y que están pagando</li>
+        <li><strong>Créditos acumulados:</strong> meses gratis disponibles de Plan Check-in y Pro</li>
+        <li><strong>Historial de recompensas:</strong> todas las recompensas que has recibido y cuándo se aplicaron</li>
+        <li><strong>Lista de referidos:</strong> información sobre cada propietario que has referido</li>
+      </ul>
+
+      <h2>📧 Notificaciones por Email</h2>
+      <p>Recibirás emails automáticos cuando:</p>
+      <ul>
+        <li>Alguien se registre usando tu link de referido</li>
+        <li>Un referido active un plan de pago</li>
+        <li>Recibas una nueva recompensa</li>
+        <li>Se aplique un crédito a tu cuenta</li>
+        <li>Un referido cancele su plan</li>
+      </ul>
+
+      <h2>⚖️ Términos y Condiciones</h2>
+      <h3>Elegibilidad</h3>
+      <ul>
+        <li>Debes ser un propietario registrado en Delfín Check-in.</li>
+        <li>El programa está disponible para todos los planes (Gratuito, Check-in, Pro).</li>
+        <li>No puedes referirte a ti mismo usando cuentas múltiples.</li>
+        <li>No puedes usar métodos automatizados o fraudulentos para generar referidos.</li>
+      </ul>
+
+      <h3>Limitaciones</h3>
+      <ul>
+        <li>Las recompensas solo se otorgan por referidos directos (nivel 1).</li>
+        <li>Los créditos son acumulables pero no transferibles.</li>
+        <li>Delfín Check-in se reserva el derecho de auditar y eliminar referidos fraudulentos.</li>
+        <li>El programa puede modificarse o suspenderse en cualquier momento con previo aviso.</li>
+      </ul>
+
+      <h3>Prohibiciones</h3>
+      <ul>
+        <li>Está prohibido el spam o el envío masivo de emails no solicitados.</li>
+        <li>No puedes ofrecer incentivos económicos directos a cambio de registrarse usando tu link.</li>
+        <li>No puedes usar enlaces de referido en publicidad pagada sin autorización previa.</li>
+        <li>Está prohibido crear múltiples cuentas para auto-referirse.</li>
+      </ul>
+
+      <h2>📞 Soporte</h2>
+      <p>
+        Si tienes dudas sobre el programa de referidos o necesitas ayuda, puedes contactarnos en 
+        <a href="mailto:contacto@delfincheckin.com" style="color: #2563eb; text-decoration: underline;">contacto@delfincheckin.com</a>.
+      </p>
+
+      <div class="cta-section">
+        <h2>🚀 ¿Listo para empezar?</h2>
+        <p>
+          <strong>Consigue el PMS gratis para siempre</strong> registrándote ahora en la waitlist. 
+          Cuando lancemos, podrás acceder a tu link de referido desde el panel y empezar a recomendar a otros propietarios para ganar meses gratis.
+        </p>
+        <p style="font-size: 16px; margin-top: 16px;">
+          Piensa a quién recomendar: otros propietarios de alojamientos que conozcas, compañeros del sector, 
+          o cualquier persona que pueda beneficiarse de nuestro PMS. Cada referido cuenta.
+        </p>
+        <a href="/#registro" class="btn primary">Registrarse en la Waitlist</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4>Delfín Check‑in</h4>
+        <p>Software de gestión hotelera y auto check‑in para hostales y apartamentos.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>
+          📧 contacto@delfincheckin.com<br>
+          🕒 Lun-Dom: 9:00-22:00
+        </p>
+      </div>
+      <div>
+        <h4>Programas</h4>
+        <p>
+          <a href="/referidos.html">Programa de Referidos</a><br>
+          <a href="/afiliados.html">Programa de Afiliados</a><br>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <p>
+          <a href="politica-privacidad.html">Política de Privacidad</a><br>
+          <a href="politica-cookies.html">Política de Cookies</a><br>
+          <a href="terminos-servicio.html">Términos de Servicio</a><br>
+          <a href="aviso-legal.html">Aviso Legal</a><br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="margin: 0 0 12px; font-size: 14px;">
+        © <span id="year"></span> Delfín Check‑in · <a href="/#registro" style="color: #2563eb;">Registro Gratis</a>
+      </p>
+      <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
+        <a href="politica-privacidad.html" style="color: #2563eb; margin: 0 8px;">Política de Privacidad</a> ·
+        <a href="terminos-servicio.html" style="color: #2563eb; margin: 0 8px;">Términos de Servicio</a> ·
+        <a href="aviso-legal.html" style="color: #2563eb; margin: 0 8px;">Aviso Legal</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

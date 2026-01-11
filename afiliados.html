@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programa de Afiliados - Delfín Check-in</title>
+  <meta name="description" content="Gana 30% de comisión recurrente recomendando Delfín Check-in. Programa de afiliados abierto a todos, no necesitas ser propietario.">
+  <link rel="canonical" href="https://delfincheckin.com/afiliados">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐬</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif; 
+      line-height: 1.7; 
+      color: #1e293b; 
+      background: #eef6ff;
+      min-height: 100vh;
+    }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px 40px; }
+    
+    /* Header de navegación */
+    header {
+      position: sticky; top: 0; z-index: 100; backdrop-filter: saturate(160%) blur(8px);
+      background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid rgba(15,23,42,0.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; max-width: 1180px; margin: 0 auto; padding-left: 20px; padding-right: 20px; }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .logo { font-size: 32px; line-height: 1; }
+    .brand b { font-weight: 800; letter-spacing: 0.2px; font-size: 22px; color: #0f172a; }
+    .actions { display: flex; gap: 10px; align-items: center; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 42px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(15,23,42,0.12); background: #ffffff; color: #0f172a; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+    .btn:hover { background: #f8fafc; border-color: rgba(15,23,42,0.18); }
+    .btn.primary { background: linear-gradient(135deg, #7c3aed, #8b5cf6); color: #ffffff; border-color: #7c3aed; box-shadow: 0 6px 18px rgba(124,58,237,0.25); }
+    .btn.primary:hover { filter: brightness(1.05); transform: translateY(-2px); }
+    
+    /* Header de página */
+    .page-header { 
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
+      color: white;
+      padding: 60px 0;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -5%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .page-header h1 { 
+      text-align: center; 
+      font-size: clamp(32px, 5vw, 48px); 
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 16px;
+    }
+    .page-header p {
+      text-align: center;
+      font-size: clamp(16px, 2.5vw, 20px);
+      position: relative;
+      z-index: 1;
+      opacity: 0.95;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .content { 
+      background: white; 
+      padding: 48px;
+      border-radius: 24px; 
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      margin-bottom: 32px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(124,58,237,0.08) 0%, rgba(139,92,246,0.08) 100%);
+      padding: 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+      border-left: 4px solid #7c3aed;
+      border: 1px solid rgba(124,58,237,0.15);
+    }
+    
+    .warning-box {
+      background: linear-gradient(135deg, rgba(251,191,36,0.1) 0%, rgba(245,158,11,0.1) 100%);
+      padding: 24px;
+      border-radius: 16px;
+      margin: 24px 0;
+      border-left: 4px solid #f59e0b;
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+    
+    h2 { 
+      color: #6d28d9; 
+      margin: 40px 0 20px 0; 
+      font-size: clamp(24px, 3.5vw, 32px);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2:first-of-type {
+      margin-top: 0;
+    }
+    
+    h3 { 
+      color: #475569; 
+      margin: 28px 0 14px 0; 
+      font-size: clamp(20px, 2.5vw, 24px);
+      font-weight: 600;
+    }
+    p { 
+      margin-bottom: 18px; 
+      color: #334155;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    ul, ol { 
+      margin: 20px 0 20px 24px; 
+      padding-left: 0;
+    }
+    li { 
+      margin-bottom: 12px;
+      color: #475569;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+    
+    .commission-card {
+      background: linear-gradient(135deg, rgba(124,58,237,0.06), rgba(139,92,246,0.06));
+      border: 2px solid rgba(124,58,237,0.15);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .commission-card .rate {
+      font-size: 64px;
+      font-weight: 800;
+      color: #7c3aed;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .commission-card .description {
+      font-size: 20px;
+      color: #475569;
+      margin-bottom: 0;
+    }
+    
+    .plan-card {
+      background: linear-gradient(135deg, rgba(37,99,235,0.06), rgba(16,185,129,0.06));
+      border: 2px solid rgba(37,99,235,0.15);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    .plan-card h3 {
+      color: #1d4ed8;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .plan-card .price {
+      font-size: 32px;
+      font-weight: 800;
+      color: #1d4ed8;
+      margin: 12px 0;
+    }
+    
+    .cta-section {
+      background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+      color: white;
+      padding: 48px;
+      border-radius: 24px;
+      text-align: center;
+      margin: 48px 0;
+    }
+    .cta-section h2 {
+      color: white;
+      margin-top: 0;
+    }
+    .cta-section p {
+      color: rgba(255,255,255,0.95);
+      font-size: 18px;
+    }
+    .cta-section .btn {
+      margin-top: 24px;
+      background: white;
+      color: #7c3aed;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 16px 32px;
+    }
+    .cta-section .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    
+    /* Footer */
+    footer {
+      color: #64748b;
+      border-top: 1px solid rgba(15,23,42,0.08);
+      margin-top: 48px;
+      padding: 32px 0;
+      background: #ffffff;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+      max-width: 1180px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+    }
+    footer h4 {
+      margin: 0 0 12px;
+      color: #0f172a;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    footer p {
+      margin: 0;
+      color: #64748b;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(15,23,42,0.08);
+      padding-top: 24px;
+      text-align: center;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    
+    @media (max-width: 768px) {
+      .content { padding: 32px 24px; }
+      .page-header { padding: 40px 0; }
+      h2 { font-size: 24px; }
+      .nav { flex-direction: column; gap: 16px; }
+      .actions { width: 100%; flex-direction: column; }
+      .actions .btn { width: 100%; }
+      .commission-card { padding: 24px; }
+      .commission-card .rate { font-size: 48px; }
+      .cta-section { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">🐬</div>
+        <b>Delfín Check‑in</b>
+      </div>
+      <div class="actions">
+        <a class="btn primary" href="https://affiliates.delfincheckin.com/register">Registrarse como Afiliado</a>
+        <a class="btn" href="/">Volver al inicio</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-header">
+    <div class="container">
+      <h1>💰 Programa de Afiliados</h1>
+      <p>Gana 30% de comisión recurrente recomendando Delfín Check-in. No necesitas ser propietario.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <div class="highlight-box">
+        <h3 style="margin-top: 0; color: #6d28d9;">🚀 Ya puedes registrarte</h3>
+        <p style="margin-bottom: 0;">
+          <strong>El programa de afiliados ya está disponible.</strong> Puedes registrarte ahora y empezar a recomendar Delfín Check-in. 
+          Los usuarios que refieras entrarán en nuestra waitlist y, cuando lancemos el PMS y empiecen a pagar planes, empezarás a recibir comisiones automáticamente.
+        </p>
+      </div>
+
+      <div class="warning-box">
+        <h3 style="margin-top: 0; color: #92400e;">⚠️ Estado: Pre-lanzamiento</h3>
+        <p style="margin-bottom: 0; color: #78350f;">
+          <strong>Estamos en fase de pre-lanzamiento.</strong> Los usuarios que refieras entrarán en nuestra waitlist. 
+          Cuando lancemos el PMS y estos usuarios se registren y empiecen a pagar planes de pago (Check-in o Pro), empezarás a recibir comisiones mensuales automáticamente. 
+          Por ahora, las comisiones empezarán a pagarse cuando el PMS esté completamente lanzado y los clientes empiecen a pagar.
+        </p>
+      </div>
+
+      <h2>💎 ¿Qué es el Programa de Afiliados?</h2>
+      <p>
+        El <strong>Programa de Afiliados</strong> está abierto a <strong>todo el mundo</strong>, no necesitas ser propietario ni usar Delfín Check-in. 
+        Si conoces a propietarios de alojamientos que podrían beneficiarse de nuestro PMS, puedes recomendarles Delfín Check-in y ganar <strong>30% de comisión recurrente</strong> por cada cliente activo que refieras.
+      </p>
+      <p>
+        Cada vez que alguien se registre usando tu link de afiliado, quedarás vinculado como su afiliado. 
+        Cuando ese cliente pague un plan de pago (Check-in o Pro), empezarás a recibir comisiones mensuales automáticamente mientras el cliente se mantenga activo.
+      </p>
+
+      <div class="commission-card">
+        <div class="rate">30%</div>
+        <p class="description">
+          <strong>Comisión recurrente mensual</strong><br>
+          Sin IVA. Pagos automáticos a tu cuenta bancaria mientras tus clientes se mantengan activos.
+        </p>
+      </div>
+
+      <h2>📊 Planes que Generan Comisiones</h2>
+      <p>Las comisiones se generan solo por los planes de pago, no por el plan gratuito:</p>
+
+      <div class="plan-card">
+        <h3>
+          <span>Plan Check-in</span>
+        </h3>
+        <div class="price">8€/mes</div>
+        <p>
+          Plan de pago mensual que incluye el módulo de check-in digital con envío al Ministerio del Interior. 
+          <strong>Comisión: 2,40€/mes</strong> (30% de 8€) mientras el cliente esté activo.
+        </p>
+      </div>
+
+      <div class="plan-card">
+        <h3>
+          <span>Plan Pro</span>
+        </h3>
+        <div class="price">29,99€/mes</div>
+        <p>
+          Plan premium con todas las funcionalidades avanzadas. 
+          <strong>Comisión: 8,997€/mes</strong> (30% de 29,99€) mientras el cliente esté activo.
+        </p>
+      </div>
+
+      <div class="highlight-box">
+        <h3 style="margin-top: 0; color: #64748b;">ℹ️ Plan Gratuito</h3>
+        <p style="margin-bottom: 0;">
+          El <strong>Plan Gratuito</strong> no genera comisiones. Las comisiones solo se pagan cuando los clientes referidos están pagando planes de pago (Check-in o Pro).
+        </p>
+      </div>
+
+      <h2>💳 Cómo Funcionan las Comisiones</h2>
+      <p>
+        Las comisiones se calculan y pagan automáticamente cada mes mientras tus clientes referidos estén activos y pagando.
+      </p>
+      <ul>
+        <li><strong>Cálculo automático:</strong> Cada mes, cuando un cliente referido paga su plan, se calcula automáticamente tu 30% de comisión.</li>
+        <li><strong>Pagos mensuales:</strong> Las comisiones se acumulan mensualmente y se pagan automáticamente a tu cuenta bancaria (una vez configurada).</li>
+        <li><strong>Recurrente:</strong> Mientras el cliente se mantenga activo y pagando, seguirás recibiendo comisiones mes a mes.</li>
+        <li><strong>Sin IVA:</strong> Las comisiones se calculan sin IVA (30% del precio base del plan).</li>
+        <li><strong>Cancelación:</strong> Si un cliente cancela su plan, las comisiones se detienen automáticamente. Si se reactiva más tarde, las comisiones se reanudan.</li>
+      </ul>
+
+      <h2>📊 Panel de Afiliados</h2>
+      <p>
+        Cuando te registres como afiliado, tendrás acceso a tu <strong>panel personal de afiliados</strong> donde podrás:
+      </p>
+      <ul>
+        <li>Ver tu <strong>link de afiliado único</strong> para compartir</li>
+        <li><strong>Estadísticas en tiempo real:</strong> número de clicks, registros, clientes activos, comisiones pendientes y pagadas</li>
+        <li><strong>Ingresos mensuales y totales:</strong> seguimiento de todas tus comisiones</li>
+        <li><strong>Historial de pagos:</strong> registro completo de todas las comisiones pagadas</li>
+        <li><strong>Lista de clientes:</strong> información sobre cada cliente que has referido</li>
+        <li><strong>Configuración:</strong> gestión de tus datos bancarios para recibir pagos</li>
+      </ul>
+
+      <h2>🏦 Configuración de Pagos</h2>
+      <p>
+        Para recibir las comisiones, deberás configurar tus <strong>datos bancarios</strong> en el panel de afiliados:
+      </p>
+      <ul>
+        <li><strong>IBAN:</strong> Número de cuenta bancaria internacional</li>
+        <li><strong>Titular:</strong> Nombre del titular de la cuenta</li>
+        <li><strong>SWIFT/BIC:</strong> Código de identificación bancaria (si es necesario)</li>
+      </ul>
+      <p>
+        Los pagos se realizarán automáticamente mediante transferencias bancarias programadas. 
+        Una vez configurados tus datos bancarios, recibirás las comisiones automáticamente cada mes.
+      </p>
+
+      <div class="warning-box">
+        <h3 style="margin-top: 0; color: #92400e;">⚠️ Importante: Configuración de Datos Bancarios</h3>
+        <p style="margin-bottom: 0; color: #78350f;">
+          Para recibir las comisiones, <strong>debes configurar tus datos bancarios</strong> en el panel de afiliados. 
+          Si no los has configurado aún, verás un aviso en tu panel recordándote que debes completar esta información.
+        </p>
+      </div>
+
+      <h2>📧 Notificaciones por Email</h2>
+      <p>Recibirás emails automáticos cuando:</p>
+      <ul>
+        <li>Alguien haga click en tu link de afiliado</li>
+        <li>Un cliente se registre usando tu link</li>
+        <li>Un cliente referido active un plan de pago</li>
+        <li>Se genere una nueva comisión</li>
+        <li>Se realice un pago mensual</li>
+        <li>Un cliente cancele su plan</li>
+      </ul>
+
+      <h2>⚖️ Términos y Condiciones</h2>
+      <h3>Elegibilidad</h3>
+      <ul>
+        <li>El programa está abierto a todo el mundo, no necesitas ser propietario ni usar Delfín Check-in.</li>
+        <li>Debes ser mayor de edad y tener capacidad legal para contratar.</li>
+        <li>No puedes referirte a ti mismo usando tu propio link de afiliado.</li>
+        <li>No puedes usar métodos automatizados o fraudulentos para generar clicks o registros.</li>
+      </ul>
+
+      <h3>Comisiones</h3>
+      <ul>
+        <li>Las comisiones solo se generan por planes de pago (Check-in y Pro), no por el plan gratuito.</li>
+        <li>La comisión es del 30% del precio base del plan, sin IVA.</li>
+        <li>Las comisiones son recurrentes mientras el cliente se mantenga activo.</li>
+        <li>Los pagos se realizan automáticamente mediante transferencias bancarias.</li>
+        <li>Delfín Check-in se reserva el derecho de auditar y eliminar comisiones fraudulentas.</li>
+      </ul>
+
+      <h3>Prohibiciones</h3>
+      <ul>
+        <li>Está prohibido el spam o el envío masivo de emails no solicitados.</li>
+        <li>No puedes ofrecer incentivos económicos directos a cambio de registrarse usando tu link.</li>
+        <li>No puedes usar enlaces de afiliado en publicidad pagada sin autorización previa.</li>
+        <li>Está prohibido crear múltiples cuentas para auto-referirse.</li>
+        <li>No puedes usar métodos automatizados (bots, scripts) para generar clicks o registros.</li>
+      </ul>
+
+      <h3>Modificaciones del Programa</h3>
+      <ul>
+        <li>Delfín Check-in se reserva el derecho de modificar o suspender el programa en cualquier momento con previo aviso.</li>
+        <li>Cualquier cambio en las condiciones del programa se comunicará con al menos 30 días de antelación.</li>
+        <li>Las comisiones ya generadas no se verán afectadas por cambios futuros en el programa.</li>
+      </ul>
+
+      <h2>📞 Soporte</h2>
+      <p>
+        Si tienes dudas sobre el programa de afiliados o necesitas ayuda, puedes contactarnos en 
+        <a href="mailto:contacto@delfincheckin.com" style="color: #7c3aed; text-decoration: underline;">contacto@delfincheckin.com</a>.
+      </p>
+
+      <div class="cta-section">
+        <h2>🚀 ¿Listo para empezar a ganar?</h2>
+        <p>
+          <strong>Regístrate ahora</strong> en el programa de afiliados y empieza a recomendar Delfín Check-in. 
+          Los usuarios que refieras entrarán en nuestra waitlist y, cuando lancemos el PMS y empiecen a pagar, empezarás a recibir comisiones automáticamente.
+        </p>
+        <p style="font-size: 16px; margin-top: 16px;">
+          No necesitas ser propietario ni usar nuestro PMS. Si conoces a propietarios de alojamientos que podrían beneficiarse de Delfín Check-in, 
+          comparte tu link de afiliado y empieza a ganar comisiones recurrentes.
+        </p>
+        <a href="https://affiliates.delfincheckin.com/register" class="btn primary">Registrarse como Afiliado</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4>Delfín Check‑in</h4>
+        <p>Software de gestión hotelera y auto check‑in para hostales y apartamentos.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>
+          📧 contacto@delfincheckin.com<br>
+          🕒 Lun-Dom: 9:00-22:00
+        </p>
+      </div>
+      <div>
+        <h4>Programas</h4>
+        <p>
+          <a href="/referidos.html">Programa de Referidos</a><br>
+          <a href="/afiliados.html">Programa de Afiliados</a><br>
+        </p>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <p>
+          <a href="politica-privacidad.html">Política de Privacidad</a><br>
+          <a href="politica-cookies.html">Política de Cookies</a><br>
+          <a href="terminos-servicio.html">Términos de Servicio</a><br>
+          <a href="aviso-legal.html">Aviso Legal</a><br>
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p style="margin: 0 0 12px; font-size: 14px;">
+        © <span id="year"></span> Delfín Check‑in · <a href="/#registro" style="color: #2563eb;">Registro Gratis</a>
+      </p>
+      <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
+        <a href="politica-privacidad.html" style="color: #2563eb; margin: 0 8px;">Política de Privacidad</a> ·
+        <a href="terminos-servicio.html" style="color: #2563eb; margin: 0 8px;">Términos de Servicio</a> ·
+        <a href="aviso-legal.html" style="color: #2563eb; margin: 0 8px;">Aviso Legal</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
