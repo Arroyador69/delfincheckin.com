@@ -7,7 +7,7 @@
   <!-- Página principal -->
   <url>
     <loc>https://delfincheckin.com/</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -15,15 +15,31 @@
   <!-- Página de éxito -->
   <url>
     <loc>https://delfincheckin.com/success.html</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
+  </url>
+
+  <!-- Afiliados -->
+  <url>
+    <loc>https://delfincheckin.com/afiliados.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Referidos -->
+  <url>
+    <loc>https://delfincheckin.com/referidos.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
   <!-- Términos de servicio -->
   <url>
     <loc>https://delfincheckin.com/terminos-servicio.html</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -31,7 +47,7 @@
   <!-- Aviso legal -->
   <url>
     <loc>https://delfincheckin.com/aviso-legal.html</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -39,7 +55,7 @@
   <!-- Política de cookies -->
   <url>
     <loc>https://delfincheckin.com/politica-cookies.html</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -47,9 +63,25 @@
   <!-- Política de privacidad -->
   <url>
     <loc>https://delfincheckin.com/politica-privacidad.html</loc>
-    <lastmod>2024-12-26</lastmod>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
+  </url>
+
+  <!-- Política de privacidad app -->
+  <url>
+    <loc>https://delfincheckin.com/politica-de-privacidad-app.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Opciones de privacidad del usuario -->
+  <url>
+    <loc>https://delfincheckin.com/opciones-de-privacidad-del-usuario.html</loc>
+    <lastmod>2025-01-27</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
