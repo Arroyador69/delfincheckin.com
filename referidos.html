@@ -81,7 +81,8 @@
       font-size: clamp(16px, 2.5vw, 20px);
       position: relative;
       z-index: 1;
-      opacity: 0.95;
+      opacity: 1;
+      color: rgba(255, 255, 255, 0.95);
       max-width: 800px;
       margin: 0 auto;
     }
@@ -297,11 +298,11 @@
       <h2>💎 ¿Qué es el Programa de Referidos?</h2>
       <p>
         El <strong>Programa de Referidos</strong> es exclusivo para propietarios que usan Delfín Check-in. 
-        Si ya eres usuario de nuestro PMS (Plan Check-in o Pro), puedes recomendar nuestra plataforma a otros propietarios y ganar <strong>meses gratis</strong> en nuestros planes.
+        Si ya eres usuario de nuestro PMS (Plan Check-in o Pro) y también el plan gratis, puedes recomendar nuestra plataforma a otros propietarios y ganar <strong>meses gratis</strong> en nuestros planes.
       </p>
       <p>
         Cada vez que alguien se registre usando tu link de referido, quedarás vinculado como su referente. 
-        Cuantos más propietarios refieras, más meses gratis acumularás. Las recompensas se aplican automáticamente como créditos de tiempo que se descuentan mes a mes antes de cualquier cobro de Stripe.
+        Cuantos más propietarios refieras, más meses gratis acumularás en los planes de pago. Las recompensas se aplican automáticamente como créditos de tiempo que se descuentan mes a mes antes de cualquier cobro del plan de pago.
       </p>
 
       <div class="highlight-box">
@@ -323,6 +324,7 @@
         <p>
           Trae <strong>5 referidos registrados</strong> (en cualquier plan, incluido el gratuito) y consigue <strong>1 mes gratis del Plan Check-in</strong>. 
           Esta recompensa es acumulable: cada 5 referidos registrados que traigas, recibirás otro mes gratis.
+          <strong>Importante:</strong> Cada referido debe ser único (no se puede repetir) y propietarios activos en el PMS aunque sean del plan gratis.
         </p>
       </div>
 
@@ -362,7 +364,7 @@
       <h2>💳 Cómo Funcionan los Créditos</h2>
       <p>
         Las recompensas se aplican como <strong>créditos de tiempo</strong> (meses gratis) que se acumulan en tu cuenta. 
-        Los créditos se descuentan automáticamente antes de cualquier cobro mensual de Stripe.
+        Los créditos se descuentan automáticamente antes de cualquier cobro mensual de Delfín Check-in.
       </p>
       <ul>
         <li><strong>Prioridad de aplicación:</strong> Si tienes créditos de Plan Pro disponibles, se aplican primero (aunque tengas créditos de Check-in).</li>
@@ -384,7 +386,7 @@
       <ul>
         <li>El referido deja de contar como "activo" para las recompensas basadas en referidos activos.</li>
         <li>Si la cancelación causa que ya no cumplas los requisitos para una recompensa, <strong>no se revocan los créditos ya aplicados</strong>, pero no recibirás nuevas recompensas hasta que vuelvas a cumplir los requisitos.</li>
-        <li>Si el referido se reactiva más tarde, vuelve a contar para las recompensas.</li>
+        <li><strong>Importante:</strong> Si un referido cancela, ya sale del programa de referidos. Aunque se reactive más tarde, ese referido ya perdió la oportunidad de contar para recompensas. Solo debe estar activo por un mes ya que solo se activa una vez, y para que cuente para otra recompensa deberán ser otros los referidos activos.</li>
       </ul>
 
       <h2>📊 Acceso al Panel de Referidos</h2>
@@ -401,7 +403,7 @@
       </ul>
 
       <h2>📧 Notificaciones por Email</h2>
-      <p>Recibirás emails automáticos cuando:</p>
+      <p>Recibirás emails cuando:</p>
       <ul>
         <li>Alguien se registre usando tu link de referido</li>
         <li>Un referido active un plan de pago</li>
@@ -415,6 +417,7 @@
       <ul>
         <li>Debes ser un propietario registrado en Delfín Check-in.</li>
         <li>El programa está disponible para todos los planes (Gratuito, Check-in, Pro).</li>
+        <li>El propietario debe ser activo usando el software de Delfín Check-in.</li>
         <li>No puedes referirte a ti mismo usando cuentas múltiples.</li>
         <li>No puedes usar métodos automatizados o fraudulentos para generar referidos.</li>
       </ul>
