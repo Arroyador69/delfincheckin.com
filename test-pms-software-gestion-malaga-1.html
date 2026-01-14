@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PMS y Software de Gestión Hotelera en Málaga | Lista de Espera</title>
-  <meta name="description" content="Estamos diseñando el PMS de gestión en la nube con todo lo que necesitas para gestionar tu alquiler vacacional. Únete a la lista de espera y sé de los primeros en acceder.">
+  <title>Software RD 933 y check-in en Málaga</title>
+  <meta name="description" content="Software de gestión para alquiler vacacional en Málaga">
   <meta name="robots" content="noindex, nofollow">
   <link rel="canonical" href="https://delfincheckin.com/test-pms-software-gestion-malaga-1">
   
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="PMS y Software de Gestión Hotelera en Málaga | Lista de Espera">
-  <meta property="og:description" content="Estamos diseñando el PMS de gestión en la nube con todo lo que necesitas para gestionar tu alquiler vacacional. Únete a la lista de espera y sé de los primeros en acceder.">
+  <meta property="og:title" content="Software RD 933 y check-in en Málaga">
+  <meta property="og:description" content="Software de gestión para alquiler vacacional en Málaga">
   <meta property="og:url" content="https://delfincheckin.com/test-pms-software-gestion-malaga-1">
   <meta property="og:site_name" content="Delfín Check-in">
   
@@ -35,7 +35,7 @@
       "@type": "State"
     }
   },
-  "description": "Estamos diseñando el PMS de gestión en la nube con todo lo que necesitas para gestionar tu alquiler vacacional. Únete a la lista de espera y sé de los primeros en acceder.",
+  "description": "",
   "operatingSystem": "Web",
   "applicationCategory": "BusinessApplication"
 }
@@ -47,92 +47,82 @@
   
   <style>
     :root{
-      --bg: #0b1220;
-      --card: #0f1629;
-      --text: #e5ecff;
-      --muted: #9fb0d1;
-      --brand: #44c0ff;
-      --accent: #7cf07c;
-      --danger: #ff6b6b;
-      --ring: rgba(68,192,255,0.35);
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --brand: #2563eb;
+      --accent: #16a34a;
+      --danger: #ef4444;
+      --ring: rgba(37,99,235,0.1);
       --maxw: 1180px;
       --radius: 14px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --border: rgba(255,255,255,.06);
+      --shadow: 0 2px 8px rgba(0,0,0,0.1);
+      --border: #e2e8f0;
     }
     *{ box-sizing: border-box }
     html,body{ height:100%; margin: 0; }
     body{
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
-      background: radial-gradient(1200px 800px at 70% -10%, rgba(68,192,255,.15), transparent), linear-gradient(180deg, #0b1220 0%, #0a1020 100%);
+      background: #ffffff;
     }
     a{ color: var(--brand); text-decoration: none }
+    a:hover{ text-decoration: underline; }
     .container{ max-width: var(--maxw); margin:0 auto; padding: 0 20px }
     
     /* Header */
     header{
       position: sticky; top:0; z-index:100; backdrop-filter: saturate(160%) blur(8px);
-      background: rgba(11,18,32,.6); border-bottom: 1px solid rgba(255,255,255,.06);
+      background: #ffffff; border-bottom: 1px solid var(--border);
     }
     .nav{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0 }
     .brand{ display:flex; gap:12px; align-items:center }
     .logo{ font-size:32px; line-height:1; display:grid; place-items:center }
-    .brand b{ font-weight:800; letter-spacing:.2px; font-size:22px }
+    .brand b{ font-weight:800; letter-spacing:.2px; font-size:22px; color: #0f172a; }
     .actions{ display:flex; gap:10px; align-items:center }
-    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; height:40px; padding:0 14px; border-radius:10px; border:1px solid rgba(255,255,255,.12); color:var(--text); background: rgba(255,255,255,.03); cursor: pointer; }
-    .btn:hover{ border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.06) }
-    .btn.primary{ background: linear-gradient(135deg, var(--brand), #2bb3ff); border: none; color: #0a1020; font-weight:700; box-shadow: 0 6px 20px var(--ring) }
-    .btn.primary:hover{ filter: brightness(1.05) }
+    .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; height:40px; padding:0 14px; border-radius:10px; border:1px solid rgba(15,23,42,.12); color:#0f172a; background: #ffffff; cursor: pointer; }
+    .btn:hover{ border-color: rgba(15,23,42,.18); background: #f8fafc; }
+    .btn.primary{ background: #2563eb; border: none; color: #ffffff; font-weight:700; box-shadow: 0 6px 18px var(--ring) }
+    .btn.primary:hover{ background: #1d4ed8; }
     
     /* Contenido del artículo */
     main {
       max-width: 860px;
       margin: 0 auto;
       padding: 2rem;
-      background: rgba(15,22,41,0.4);
-      border-radius: var(--radius);
+      background: #ffffff;
       margin-top: 2rem;
       margin-bottom: 2rem;
     }
-    main h1 { font-size: 2.25rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--text); }
-    main h2 { font-size: 1.75rem; margin-top: 1.5rem; margin-bottom: 1rem; color: var(--text); }
-    main h3 { font-size: 1.35rem; margin-top: 1.25rem; margin-bottom: 0.75rem; color: var(--text); }
-    main ul, main ol { margin: 1rem 0; padding-left: 2rem; color: var(--muted); }
-    main p { margin: 1rem 0; color: var(--muted); line-height: 1.7; }
+    main h1 { font-size: 2.25rem; margin-top: 2rem; margin-bottom: 1rem; color: #0b1220; font-weight: 800; line-height: 1.2; }
+    main h2 { font-size: 1.75rem; margin-top: 1.5rem; margin-bottom: 1rem; color: #0b1220; font-weight: 700; }
+    main h3 { font-size: 1.35rem; margin-top: 1.25rem; margin-bottom: 0.75rem; color: #0b1220; font-weight: 600; }
+    main ul, main ol { margin: 1rem 0; padding-left: 2rem; color: #475569; line-height: 1.8; }
+    main p { margin: 1rem 0; color: #475569; line-height: 1.7; font-size: 16px; }
     main a { color: var(--brand); }
     main a:hover { text-decoration: underline; }
     main code, main pre {
-      background: rgba(0,0,0,0.3);
-      color: #000000;
+      background: #f1f5f9;
+      color: #0f172a;
       padding: 2px 6px;
       border-radius: 4px;
       font-family: 'Courier New', monospace;
-      font-weight: 600;
+      font-weight: 500;
     }
     main pre {
       padding: 1rem;
       overflow-x: auto;
-      color: #000000;
-      font-weight: 600;
+      background: #f8fafc;
+      border: 1px solid var(--border);
     }
     
     /* Footer */
-    footer{ color:var(--muted); border-top:1px solid rgba(255,255,255,.06); margin-top:32px; padding:14px 0 26px }
+    footer{ color: #64748b; border-top:1px solid var(--border); margin-top:32px; padding:14px 0 26px; background: #ffffff; }
     .footer-content{ display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 20px; }
-    footer h4{ margin: 0 0 10px; color: var(--text); }
-    footer p{ margin: 0; color: var(--muted); font-size: 14px; }
-    
-    @media (max-width: 768px) {
-      header{ background:#ffffff; border-bottom:1px solid var(--border); backdrop-filter: none; }
-      .brand b{ color: #0f172a; }
-      footer{ background:#ffffff; border-top:1px solid var(--border) }
-      footer h4{ color: #0f172a; }
-      footer p{ color: #64748b; }
-      main{ background: #ffffff; color: #0f172a; }
-      main h1, main h2, main h3{ color: #0b1220; }
-      main p, main li{ color: #475569; }
-    }
+    footer h4{ margin: 0 0 10px; color: #0f172a; }
+    footer p{ margin: 0; color: #64748b; font-size: 14px; }
+    footer a{ color: var(--brand); }
   </style>
 </head>
 <body>
@@ -150,88 +140,39 @@
   </div>
 </header>
   <main>
-    <h1>H1: &quot;PMS y Software de Gestión Hotelera en Málaga: Todo lo que Necesitas&quot;</h1>
-<p>La gestión de alquileres vacacionales en Málaga, una de las ciudades más visitadas de Andalucía, puede ser un desafío sin las herramientas adecuadas. Aquí es donde entra en juego un PMS (Property Management System). Este sistema permite a los propietarios y administradores de propiedades gestionar reservas, cumplir con normativas y optimizar la experiencia del huésped, todo desde una única plataforma. Estamos diseñando el PMS de gestión en la nube con todas las funcionalidades necesarias para que puedas gestionar tu alquiler vacacional de forma profesional.</p>
+    <h1>PMS y Software de Gestión Hotelera en Málaga: Todo lo que Necesitas</h1>
+<p>Si eres propietario de un alquiler vacacional en Málaga, sabes lo complicado que puede ser gestionar reservas, check-ins y la normativa local. Aquí es donde entra en juego un PMS (Property Management System). Este software especializado es esencial para optimizar la gestión de tu propiedad, y estamos diseñando el PMS de gestión en la nube con todas las funcionalidades necesarias para que puedas manejar tu alquiler de forma profesional.</p>
 <h2>¿Qué es un PMS (Property Management System)?</h2>
-<p>Un PMS es una herramienta integral que permite la gestión eficiente de propiedades de alquiler. Facilita el manejo de reservas, la administración de habitaciones, el check-in digital, la facturación y mucho más. Con un PMS, los propietarios de alquileres vacacionales en Málaga pueden automatizar tareas que, de otro modo, consumirían mucho tiempo. Como parte de este esfuerzo, estamos diseñando el PMS de gestión en la nube con todo lo que se necesita para que puedas llevar tu negocio al siguiente nivel.</p>
+<p>Un PMS, o sistema de gestión de propiedades, es una herramienta integral que permite a los propietarios de alquileres vacacionales gestionar todos los aspectos de su negocio desde un solo lugar. Esto incluye la gestión de reservas, el control de habitaciones, el check-in digital, la facturación y mucho más. Estamos diseñando el PMS de gestión en la nube con todo lo que se necesita para facilitarte la vida y mejorar la experiencia de tus huéspedes.</p>
 <h2>Funcionalidades que Incluirá Nuestro PMS</h2>
-<p>Nuestro PMS en la nube será una solución completa que incluirá:</p>
+<p>Nuestro PMS estará diseñado específicamente para satisfacer las necesidades de los propietarios en Málaga. Algunas de las funcionalidades clave que incluirá son:</p>
 <ul>
-<li><strong>Gestión completa de reservas y calendario</strong>: Sincroniza tus reservas en tiempo real para evitar overbookings.</li>
-<li><strong>Check-in digital y cumplimiento normativo (RD 933)</strong>: Facilita el proceso de llegada de los huéspedes y asegura que cumplas con las normativas locales.</li>
-<li><strong>Microsite de reservas directas sin comisiones</strong>: Permite a tus clientes reservar directamente, aumentando tus márgenes de beneficio.</li>
-<li><strong>Facturación automática</strong>: Generación de facturas sin esfuerzo, ahorrando tiempo y evitando errores.</li>
-<li><strong>Gestión de múltiples propiedades</strong>: Controla fácilmente varias propiedades desde una única interfaz.</li>
-<li><strong>App móvil para gestión desde cualquier lugar</strong>: Monitorea y gestiona tu negocio en cualquier momento y lugar.</li>
-<li><strong>Y mucho más...</strong>: Otras funcionalidades innovadoras que se adaptan a tus necesidades específicas.</li>
+<li><strong>Gestión completa de reservas y calendario:</strong> Visualiza y gestiona todas tus reservas en un solo calendario.</li>
+<li><strong>Check-in digital y cumplimiento normativo (RD 933):</strong> Facilita el proceso de check-in y asegúrate de cumplir con la normativa local.</li>
+<li><strong>Microsite de reservas directas sin comisiones:</strong> Los huéspedes podrán reservar directamente a través de tu microsite, lo que te permitirá evitar comisiones de plataformas externas.</li>
+<li><strong>Facturación automática:</strong> Genera facturas de manera automática y evita errores manuales.</li>
+<li><strong>Gestión de múltiples propiedades:</strong> Si tienes varias propiedades, podrás gestionarlas todas desde una única plataforma.</li>
+<li><strong>App móvil para gestión desde cualquier lugar:</strong> Gestiona tu negocio desde cualquier lugar con nuestra app móvil.</li>
+<li><strong>Y mucho más...</strong></li>
 </ul>
 <h2>Por Qué Necesitas un PMS Profesional</h2>
-<p>La normativa RD 933 en Málaga establece requisitos específicos para la gestión de alquileres vacacionales, como la obligación de registrar a los huéspedes y cumplir con las normativas de seguridad. Muchos propietarios han enfrentado multas por no cumplir con estas regulaciones. Un PMS profesional no solo facilita el cumplimiento normativo, sino que también proporciona un nivel de profesionalismo que puede mejorar la experiencia del huésped y, en última instancia, aumentar la rentabilidad. Nuestro PMS en la nube está diseñado para resolver estos problemas, asegurando que tu negocio se mantenga en conformidad y maximice su potencial.</p>
+<p>Málaga es un destino turístico popular, lo que significa que la competencia es feroz. Un PMS profesional no solo te ayuda a gestionar tu propiedad de manera más eficiente, sino que también asegura que estés cumpliendo con la normativa local, como el RD 933, que regula los alquileres vacacionales en Andalucía. Muchos propietarios han enfrentado sanciones por no cumplir con estas normativas, pero con nuestro PMS en la nube, podrás asegurarte de que todo esté en orden.</p>
 <h2>Estamos Diseñando el PMS Completo en la Nube</h2>
-<p>Estamos en el proceso de diseñar un PMS de gestión en la nube que integra todas las características necesarias para gestionar tu alquiler vacacional de forma profesional. Aquellos que se apunten a nuestra lista de espera tendrán acceso prioritario y beneficios especiales, incluyendo la oportunidad de influir en el desarrollo de nuevas funcionalidades. No te quedes fuera; suscríbete y sé de los primeros en experimentar esta revolucionaria herramienta.</p>
+<p>Estamos diseñando el PMS de gestión en la nube con todo lo que se necesita para ayudarte a gestionar tu alquiler vacacional de forma profesional. Además, aquellos que se apunten a nuestra lista de espera tendrán acceso prioritario y beneficios especiales en el lanzamiento. No te pierdas la oportunidad de estar entre los primeros en acceder a esta herramienta revolucionaria.</p>
 <h2>Preguntas frecuentes sobre PMS</h2>
-<p><strong>¿Qué es un PMS?</strong><br>Un PMS es un software que ayuda a los propietarios y administradores de propiedades a gestionar reservas, facturación y otros aspectos operativos de un alquiler vacacional.</p>
-<p><strong>¿Cuándo lanzarán el PMS?</strong><br>Estamos trabajando en su desarrollo y esperamos lanzarlo en los próximos meses. Al unirte a la lista de espera, recibirás actualizaciones sobre el progreso.</p>
-<p><strong>¿Qué funcionalidades incluirá el PMS?</strong><br>Incluirá gestión de reservas, check-in digital, microsite de reservas, facturación automática, y mucho más.</p>
-<p><strong>¿Cómo puedo apuntarme a la lista de espera?</strong><br>Simplemente visita nuestra página web y completa el formulario de inscripción para ser uno de los primeros en acceder al PMS.</p>
+<h3>1. ¿Qué es un PMS y cómo puede ayudarme?</h3>
+<p>Un PMS es un sistema que centraliza la gestión de reservas, facturación, y cumplimiento normativo, facilitando la administración de tu alquiler vacacional.</p>
+<h3>2. ¿Cuándo lanzarán el PMS?</h3>
+<p>Estamos trabajando arduamente para lanzarlo pronto. Los detalles específicos estarán disponibles para quienes se registren en nuestra lista de espera.</p>
+<h3>3. ¿Qué incluirá el PMS?</h3>
+<p>Nuestro PMS incluirá funcionalidades como gestión de reservas, facturación automática, check-in digital, y mucho más.</p>
+<h3>4. ¿Cómo puedo apuntarme a la lista de espera?</h3>
+<p>Puedes registrarte fácilmente en nuestra página web y serás notificado de todas las actualizaciones y lanzamientos.</p>
 <h2>Datos locales útiles</h2>
-<ol>
-<li><strong>Turismo de Málaga</strong>: La oficina de turismo local ofrece información valiosa sobre la normativa de alquileres turísticos y recursos para propietarios.</li>
-<li><strong>Ayuntamiento de Málaga</strong>: Proporciona información sobre la regulación del alquiler vacacional, incluyendo el cumplimiento del RD 933.</li>
-<li><strong>Asociaciones de propietarios</strong>: Organizaciones como la Asociación de Alquileres Vacacionales de Málaga ofrecen soporte y formación a los propietarios de alquileres turísticos.</li>
-</ol>
-<pre><code class="language-json">{
-  &quot;@context&quot;: &quot;https://schema.org&quot;,
-  &quot;@type&quot;: &quot;WebPage&quot;,
-  &quot;name&quot;: &quot;PMS y Software de Gestión Hotelera en Málaga&quot;,
-  &quot;description&quot;: &quot;Estamos diseñando el PMS de gestión en la nube con todo lo que se necesita para gestionar tu alquiler vacacional de forma profesional.&quot;,
-  &quot;url&quot;: &quot;https://www.tusitio.com/pms-software-gestion-Málaga&quot;,
-  &quot;potentialAction&quot;: {
-    &quot;@type&quot;: &quot;RegisterAction&quot;,
-    &quot;target&quot;: &quot;https://www.tusitio.com/pms-software-gestion-Málaga#waitlist&quot;,
-    &quot;name&quot;: &quot;Únete a la lista de espera&quot;
-  }
-}
-</code></pre>
-<pre><code class="language-json">{
-  &quot;@context&quot;: &quot;https://schema.org&quot;,
-  &quot;@type&quot;: &quot;Organization&quot;,
-  &quot;name&quot;: &quot;Tu Empresa de PMS&quot;,
-  &quot;url&quot;: &quot;https://www.tusitio.com&quot;,
-  &quot;logo&quot;: &quot;https://www.tusitio.com/logo.png&quot;,
-  &quot;sameAs&quot;: [
-    &quot;https://www.facebook.com/tusitio&quot;,
-    &quot;https://www.twitter.com/tusitio&quot;,
-    &quot;https://www.linkedin.com/company/tusitio&quot;
-  ]
-}
-</code></pre>
-<pre><code class="language-json">{
-  &quot;@context&quot;: &quot;https://schema.org&quot;,
-  &quot;@type&quot;: &quot;SoftwareApplication&quot;,
-  &quot;name&quot;: &quot;PMS de Gestión en la Nube&quot;,
-  &quot;operatingSystem&quot;: &quot;Web&quot;,
-  &quot;applicationCategory&quot;: &quot;BusinessApplication&quot;,
-  &quot;description&quot;: &quot;PMS de gestión en la nube para alquileres vacacionales, con gestión de reservas, facturación y cumplimiento normativo.&quot;,
-  &quot;offers&quot;: {
-    &quot;@type&quot;: &quot;Offer&quot;,
-    &quot;url&quot;: &quot;https://www.tusitio.com/pms-software-gestion-Málaga#waitlist&quot;,
-    &quot;priceCurrency&quot;: &quot;EUR&quot;,
-    &quot;price&quot;: &quot;0.00&quot;,
-    &quot;itemOffered&quot;: {
-      &quot;@type&quot;: &quot;Product&quot;,
-      &quot;name&quot;: &quot;PMS de Gestión en la Nube&quot;
-    }
-  }
-}
-</code></pre>
-<p>Este artículo está diseñado para captar leads interesados en nuestro PMS y software de gestión hotelera, brindando información relevante y local adaptada a las necesidades de los propietarios de alquileres vacacionales en Málaga.</p>
-<h2>Enlaces relacionados</h2>
 <ul>
-<li><a href="https://delfincheckin.com/rd-933-guia-completa">Guía completa sobre RD 933</a></li>
-<li><a href="https://delfincheckin.com/envio-partes-sin-internet">Enviar partes sin internet</a></li>
-<li><a href="https://delfincheckin.com/microsite-reservas">Microsite de reservas</a></li>
-<li><a href="https://delfincheckin.com/checkout"><strong>Comprar ahora →</strong></a></li>
+<li><strong>Turismo de Málaga:</strong> La entidad local que regula y promueve el turismo en la ciudad. Puedes consultar su sitio web para obtener información sobre normativas vigentes.</li>
+<li><strong>Ayuntamiento de Málaga:</strong> Aquí encontrarás información sobre las regulaciones de alquileres vacacionales y el cumplimiento de la normativa RD 933.</li>
+<li><strong>Asociación de Alquileres Vacacionales de Andalucía:</strong> Una organización que ofrece recursos y apoyo a propietarios de alquileres vacacionales en la región.</li>
 </ul>
 
     
