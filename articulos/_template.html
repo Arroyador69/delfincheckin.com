@@ -607,7 +607,7 @@
     </article>
 
     <!-- Sección de Waitlist -->
-    <div class="waitlist-section">
+    <div class="waitlist-section" id="registro">
       <h2>🚀 ¿Listo para simplificar tu gestión?</h2>
       <p>Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito de Delfín Check-in</p>
       
@@ -935,7 +935,7 @@
       
       // Scroll suave hacia la sección de waitlist
       setTimeout(() => {
-        const waitlistSection = document.getElementById('waitlist-section');
+        const waitlistSection = document.getElementById('registro');
         if (waitlistSection) {
           waitlistSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
