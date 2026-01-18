@@ -1,5 +1,13 @@
 # 📝 INSTRUCCIONES PARA CREAR NUEVOS ARTÍCULOS
 
+## 🎉 ACTUALIZACIÓN - Popup Mejorado (Enero 2026)
+
+**El popup ahora tiene mejor UX:**
+- ✅ **Sin formulario duplicado**: Solo muestra un botón CTA
+- ✅ **Scroll suave a waitlist**: Al hacer clic, cierra y baja a la sección de waitlist completa
+- ✅ **Usuarios ven todo**: Todas las características de la waitlist están visibles
+- ✅ **Ya integrado**: El template `_template.html` ya incluye este comportamiento
+
 ## ⚠️ IMPORTANTE: MANTENER CONSISTENCIA TOTAL CON LA LANDING
 
 Cada artículo DEBE tener EXACTAMENTE los mismos elementos visuales y funcionales que la landing page (`index.html`).
