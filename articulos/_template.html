@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <!-- REEMPLAZAR EN CADA ARTÍCULO -->
+  <title>{{ARTICLE_TITLE}} | Delfín Check-in</title>
+  <meta name="description" content="{{META_DESCRIPTION}}">
+  <meta name="keywords" content="{{META_KEYWORDS}}">
+  <link rel="canonical" href="https://delfincheckin.com/articulos/{{ARTICLE_SLUG}}">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://delfincheckin.com/articulos/{{ARTICLE_SLUG}}">
+  <meta property="og:title" content="{{ARTICLE_TITLE}}">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
+  <meta property="og:image" content="https://delfincheckin.com/og-image.svg">
+  <meta property="article:published_time" content="{{PUBLISHED_DATE}}">
+  <meta property="article:author" content="Delfín Check-in">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://delfincheckin.com/articulos/{{ARTICLE_SLUG}}">
+  <meta name="twitter:title" content="{{ARTICLE_TITLE}}">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+  <meta name="twitter:image" content="https://delfincheckin.com/og-image.svg">
+  
+  <!-- SEO Avanzado -->
+  <meta name="author" content="Delfín Check-in">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="language" content="Spanish">
+  <meta name="geo.region" content="ES">
+  <meta name="theme-color" content="#44c0ff">
+  
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ARTICLE_TITLE}}",
+    "description": "{{META_DESCRIPTION}}",
+    "image": "https://delfincheckin.com/og-image.svg",
+    "author": {
+      "@type": "Organization",
+      "name": "Delfín Check-in",
+      "url": "https://delfincheckin.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Delfín Check-in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://delfincheckin.com/og-image.svg"
+      }
+    },
+    "datePublished": "{{PUBLISHED_DATE}}",
+    "dateModified": "{{MODIFIED_DATE}}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://delfincheckin.com/articulos/{{ARTICLE_SLUG}}"
+    }
+  }
+  </script>
+  
+  <style>
+    :root {
+      --bg: #eef6ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #2563eb;
+      --accent: #16a34a;
+      --danger: #ef4444;
+      --border: rgba(15,23,42,.08);
+      --maxw: 1200px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    
+    html { scroll-behavior: smooth; }
+    
+    /* Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+    
+    .nav {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+    }
+    
+    .logo { font-size: 28px; }
+    
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+    }
+    
+    .btn {
+      display: inline-block;
+      height: 42px;
+      padding: 0 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: #ffffff;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      line-height: 40px;
+      text-align: center;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    }
+    
+    .btn.primary {
+      background: var(--brand);
+      color: #ffffff;
+      border-color: var(--brand);
+      box-shadow: 0 4px 12px rgba(37,99,235,.25);
+    }
+    
+    .btn.primary:hover {
+      box-shadow: 0 6px 18px rgba(37,99,235,.35);
+    }
+    
+    /* Container principal */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    
+    /* Artículo */
+    article {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+      margin-bottom: 40px;
+    }
+    
+    article h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .article-meta {
+      display: flex;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .article-content h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 40px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+    
+    .article-content h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    
+    .article-content p {
+      margin-bottom: 20px;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+    
+    .article-content ul, .article-content ol {
+      margin: 20px 0 20px 24px;
+    }
+    
+    .article-content li {
+      margin-bottom: 8px;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    
+    .article-content strong {
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    .article-content em {
+      font-style: italic;
+    }
+    
+    .article-content a {
+      color: var(--brand);
+      text-decoration: underline;
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid var(--brand);
+      background: rgba(37,99,235,.05);
+      padding: 16px 20px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(68,192,255,0.1) 0%, rgba(124,240,124,0.1) 100%);
+      border: 2px solid rgba(68,192,255,0.3);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+    
+    .highlight-box h3 {
+      margin-top: 0;
+      color: var(--brand);
+    }
+    
+    /* Waitlist Form en artículo */
+    .waitlist-section {
+      background: linear-gradient(135deg, var(--brand) 0%, #1d4ed8 100%);
+      color: white;
+      padding: 48px;
+      border-radius: 16px;
+      margin: 48px 0;
+      text-align: center;
+    }
+    
+    .waitlist-section h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: white;
+    }
+    
+    .waitlist-section p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+    
+    .waitlist-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .waitlist-form input {
+      height: 48px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.15);
+      color: white;
+      font-size: 16px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .waitlist-form input::placeholder {
+      color: rgba(255,255,255,.7);
+    }
+    
+    .waitlist-form button {
+      height: 52px;
+      background: white;
+      color: var(--brand);
+      border: none;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 17px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .waitlist-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,.2);
+    }
+    
+    .waitlist-form button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    
+    .form-message {
+      margin-top: 16px;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    .form-message.success {
+      background: rgba(16,185,129,.2);
+      color: #10b981;
+    }
+    
+    .form-message.error {
+      background: rgba(239,68,68,.2);
+      color: #ef4444;
+    }
+    
+    /* FAQs */
+    .faq-section {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+      margin-bottom: 40px;
+    }
+    
+    .faq-section h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    details {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    
+    summary {
+      font-weight: 600;
+      font-size: 17px;
+      cursor: pointer;
+      list-style: none;
+    }
+    
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    
+    summary::after {
+      content: '+';
+      float: right;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--brand);
+    }
+    
+    details[open] summary::after {
+      content: '−';
+    }
+    
+    details p {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    
+    /* Footer */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--border);
+      padding: 48px 20px 32px;
+    }
+    
+    .footer-content {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .footer-content h4 {
+      margin-bottom: 12px;
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .footer-content p, .footer-content a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      display: block;
+      line-height: 1.8;
+    }
+    
+    .footer-content a:hover {
+      color: var(--brand);
+    }
+    
+    .footer-bottom {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    
+    /* Popup de Waitlist */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,.6);
+      z-index: 1000;
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .popup-overlay.show {
+      display: flex;
+    }
+    
+    .popup-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 25px 80px rgba(0,0,0,.4);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: var(--muted);
+      line-height: 1;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+    
+    .popup-close:hover {
+      background: rgba(0,0,0,.05);
+      color: var(--text);
+    }
+    
+    .popup-content h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+      color: var(--brand);
+    }
+    
+    .popup-content p {
+      color: var(--muted);
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      article {
+        padding: 32px 24px;
+      }
+      
+      article h1 {
+        font-size: 32px;
+      }
+      
+      .article-content h2 {
+        font-size: 26px;
+      }
+      
+      .article-content h3 {
+        font-size: 20px;
+      }
+      
+      .waitlist-section {
+        padding: 32px 24px;
+      }
+      
+      .faq-section {
+        padding: 32px 24px;
+      }
+      
+      .nav-actions {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <a href="https://delfincheckin.com" class="brand">
+        <div class="logo" aria-hidden="true">🐬</div>
+        <b>Delfín Check‑in</b>
+      </a>
+      <div class="nav-actions">
+        <a class="btn primary" href="https://delfincheckin.com#registro">Registro Gratis</a>
+        <a class="btn" href="https://delfincheckin.com#caracteristicas">Funciones</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Artículo Principal -->
+    <article>
+      <h1>{{ARTICLE_TITLE}}</h1>
+      <div class="article-meta">
+        <span>📅 {{PUBLISH_DATE}}</span>
+        <span>✍️ Delfín Check-in</span>
+        <span>⏱️ {{READ_TIME}} min lectura</span>
+      </div>
+      
+      <div class="article-content">
+        <!-- CONTENIDO DEL ARTÍCULO AQUÍ -->
+        {{ARTICLE_CONTENT}}
+      </div>
+    </article>
+
+    <!-- Sección de Waitlist -->
+    <div class="waitlist-section">
+      <h2>🚀 ¿Listo para simplificar tu gestión?</h2>
+      <p>Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito de Delfín Check-in</p>
+      
+      <form class="waitlist-form" id="waitlistForm">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu email" required>
+        <button type="submit" id="submitBtn">
+          <span id="btnText">Unirme a la Lista de Espera</span>
+        </button>
+        <div id="formMessage" class="form-message" style="display: none;"></div>
+      </form>
+    </div>
+
+    <!-- FAQs -->
+    <div class="faq-section">
+      <h2>Preguntas frecuentes</h2>
+      
+      <details>
+        <summary>¿Es realmente gratis?</summary>
+        <p>
+          <strong>Sí, el Plan Gratuito (Básico) es completamente gratis.</strong> Se financia mediante anuncios elegantes y discretos en el panel de administración. 
+          No hay costes ocultos, y no necesitas cancelar nada porque nunca te cobraremos por el plan básico.
+          <br><br>
+          <strong>Incluye:</strong> Gestión de reservas, habitaciones, exportación de datos, panel de administración y app móvil (próximamente).
+          <br><br>
+          <strong>No incluye:</strong> El módulo de check-in digital (envío al Ministerio del Interior) que siempre costará 8€/mes.
+        </p>
+      </details>
+      
+      <details>
+        <summary>¿Es gratis para siempre?</summary>
+        <p>
+          <strong>Los primeros usuarios que se registren ahora tendrán acceso permanente al Plan Gratuito (Básico) sin coste mensual.</strong>
+          <br><br>
+          Esto significa que mientras mantengas tu cuenta activa, no te cobraremos ningún coste mensual por el plan básico.
+        </p>
+      </details>
+      
+      <details>
+        <summary>¿Necesito tarjeta?</summary>
+        <p>
+          <strong>No, no necesitas tarjeta de crédito para el Plan Gratuito (Básico).</strong>
+          <br><br>
+          Solo necesitarás proporcionar un método de pago si decides contratar el Plan Check-in (8€/mes) para acceder al módulo de check-in digital y envío al Ministerio del Interior.
+        </p>
+      </details>
+      
+      <details>
+        <summary>¿Cómo funciona el módulo de check-in digital?</summary>
+        <p>
+          El módulo de check-in digital permite a tus huéspedes completar su información antes de llegar y envía automáticamente 
+          los registros al <strong>Ministerio del Interior de España</strong> según la normativa vigente (RD 933/2021).
+          <br><br>
+          <strong>Este módulo siempre tendrá un coste de 8€ al mes</strong>, sin excepciones.
+        </p>
+      </details>
+      
+      <details>
+        <summary>¿Puedo exportar datos para la asesoría y la renta?</summary>
+        <p>
+          Sí. Puedes descargar un único archivo (CSV/Excel) con ingresos, tasas y ocupación filtrado por rango de fechas o ejercicio fiscal. 
+          El PMS incluye gestión completa de reservas y habitaciones de forma gratuita.
+        </p>
+      </details>
+      
+      <details>
+        <summary>¿Qué seguridad tienen los datos de mis huéspedes?</summary>
+        <p>
+          Cumplimos con el RGPD y la normativa española de protección de datos. Los datos se almacenan en servidores seguros 
+          en la UE con cifrado de extremo a extremo. Realizamos copias de seguridad diarias.
+        </p>
+      </details>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h4>Delfín Check‑in</h4>
+        <p>Software de gestión hotelera y auto check‑in para hostales y apartamentos.</p>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <p>
+          📧 contacto@delfincheckin.com<br>
+          🕒 Lun-Dom: 9:00-22:00
+        </p>
+      </div>
+      <div>
+        <h4>Programas</h4>
+        <a href="https://delfincheckin.com/referidos.html">Programa de Referidos</a>
+        <a href="https://delfincheckin.com/afiliados.html">Programa de Afiliados</a>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <a href="https://delfincheckin.com/politica-privacidad.html">Política de Privacidad</a>
+        <a href="https://delfincheckin.com/politica-cookies.html">Política de Cookies</a>
+        <a href="https://delfincheckin.com/terminos-servicio.html">Términos de Servicio</a>
+        <a href="https://delfincheckin.com/aviso-legal.html">Aviso Legal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Delfín Check‑in · Software de gestión hotelera</p>
+      <p style="margin-top: 12px; font-size: 12px; color: #94a3b8;">
+        El Plan Gratuito (Básico) se financia con anuncios elegantes y discretos. El Plan Check-in tiene un coste de 8€/mes. Sin costes ocultos.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Popup de Waitlist -->
+  <div class="popup-overlay" id="popupWaitlist">
+    <div class="popup-content">
+      <button class="popup-close" id="closePopup">&times;</button>
+      <h3>🐬 ¿Te interesa Delfín Check-in?</h3>
+      <p>Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito</p>
+      
+      <form class="waitlist-form" id="popupForm">
+        <input type="text" name="name" placeholder="Tu nombre" required>
+        <input type="email" name="email" placeholder="Tu email" required>
+        <button type="submit" id="popupSubmitBtn">
+          <span id="popupBtnText">Unirme Ahora</span>
+        </button>
+        <div id="popupFormMessage" class="form-message" style="display: none;"></div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Configuración
+    const ARTICLE_SLUG = '{{ARTICLE_SLUG}}';
+    const ADMIN_API_URL = 'https://admin.delfincheckin.com/api';
+    let sessionId = null;
+    let sessionStartTime = Date.now();
+    let maxScrollDepth = 0;
+    let timeOnPage = 0;
+    let popupShown = false;
+
+    // Generar o recuperar session ID
+    function getSessionId() {
+      let sid = sessionStorage.getItem('delfin_session_id');
+      if (!sid) {
+        sid = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('delfin_session_id', sid);
+      }
+      return sid;
+    }
+
+    sessionId = getSessionId();
+
+    // Detectar tipo de dispositivo
+    function getDeviceType() {
+      const width = window.innerWidth;
+      if (width < 768) return 'mobile';
+      if (width < 1024) return 'tablet';
+      return 'desktop';
+    }
+
+    // Tracking de eventos
+    async function trackEvent(eventType, eventData = {}, sessionData = {}) {
+      try {
+        await fetch(`${ADMIN_API_URL}/blog/analytics/track`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            article_slug: ARTICLE_SLUG,
+            session_id: sessionId,
+            event_type: eventType,
+            event_data: eventData,
+            session_data: {
+              referrer: document.referrer || null,
+              utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+              utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+              utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+              user_agent: navigator.userAgent,
+              device_type: getDeviceType(),
+              time_on_page: timeOnPage,
+              scroll_depth: maxScrollDepth,
+              ...sessionData
+            }
+          })
+        });
+      } catch (error) {
+        console.error('Error tracking event:', error);
+      }
+    }
+
+    // Page view inicial
+    trackEvent('page_view');
+
+    // Tracking de scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      maxScrollDepth = Math.max(maxScrollDepth, scrollPercent);
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        trackEvent('scroll', { scroll_percent: scrollPercent });
+      }, 1000);
+    });
+
+    // Tracking de tiempo en página
+    setInterval(() => {
+      timeOnPage = Math.floor((Date.now() - sessionStartTime) / 1000);
+      trackEvent(null, {}, {}); // Solo actualizar sesión sin evento específico
+    }, 15000); // Cada 15 segundos
+
+    // Mostrar popup después de 20 segundos o al 50% de scroll
+    let popupTimeout = setTimeout(() => {
+      if (!popupShown && maxScrollDepth > 50) {
+        showPopup();
+      }
+    }, 20000);
+
+    window.addEventListener('scroll', () => {
+      if (!popupShown && maxScrollDepth > 50) {
+        clearTimeout(popupTimeout);
+        showPopup();
+      }
+    });
+
+    function showPopup() {
+      if (popupShown) return;
+      if (localStorage.getItem('delfin_popup_closed') === 'true') return;
+      
+      popupShown = true;
+      document.getElementById('popupWaitlist').classList.add('show');
+      trackEvent('popup_view', {}, { popup_viewed: true });
+    }
+
+    function closePopup() {
+      document.getElementById('popupWaitlist').classList.remove('show');
+      localStorage.setItem('delfin_popup_closed', 'true');
+      trackEvent('popup_close', {}, { popup_closed: true });
+    }
+
+    document.getElementById('closePopup').addEventListener('click', closePopup);
+
+    // Formularios de waitlist
+    async function handleWaitlistSubmit(e, formId, messageId, btnId, btnTextId) {
+      e.preventDefault();
+      
+      const form = document.getElementById(formId);
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const btn = document.getElementById(btnId);
+      const btnText = document.getElementById(btnTextId);
+      const message = document.getElementById(messageId);
+      
+      // Deshabilitar botón
+      btn.disabled = true;
+      btnText.textContent = 'Enviando...';
+      
+      try {
+        // Track form start
+        trackEvent('form_start');
+        
+        const response = await fetch(`${ADMIN_API_URL}/blog/waitlist`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            source: `article:${ARTICLE_SLUG}`
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Track conversión
+          trackEvent('form_submit', {}, { conversion: true, popup_clicked: formId === 'popupForm' });
+          
+          message.textContent = data.message;
+          message.className = 'form-message success';
+          message.style.display = 'block';
+          
+          form.reset();
+          
+          // Cerrar popup si es del popup
+          if (formId === 'popupForm') {
+            setTimeout(() => {
+              closePopup();
+            }, 2000);
+          }
+        } else {
+          throw new Error(data.error || 'Error al enviar');
+        }
+      } catch (error) {
+        message.textContent = 'Error al enviar. Por favor, inténtalo de nuevo.';
+        message.className = 'form-message error';
+        message.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btnText.textContent = formId === 'popupForm' ? 'Unirme Ahora' : 'Unirme a la Lista de Espera';
+      }
+    }
+
+    // Form inline
+    document.getElementById('waitlistForm').addEventListener('submit', (e) => {
+      handleWaitlistSubmit(e, 'waitlistForm', 'formMessage', 'submitBtn', 'btnText');
+    });
+
+    // Form popup
+    document.getElementById('popupForm').addEventListener('submit', (e) => {
+      handleWaitlistSubmit(e, 'popupForm', 'popupFormMessage', 'popupSubmitBtn', 'popupBtnText');
+    });
+
+    // Año en footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Track salida
+    window.addEventListener('beforeunload', () => {
+      trackEvent('exit', { time_on_page: timeOnPage, scroll_depth: maxScrollDepth });
+    });
+  </script>
+</body>
+</html>
