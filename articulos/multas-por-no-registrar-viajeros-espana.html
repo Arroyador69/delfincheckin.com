@@ -1277,43 +1277,20 @@
     <div class="popup-content" style="background: white; border-radius: 20px; padding: 40px; max-width: 500px; width: 90%; box-shadow: 0 25px 80px rgba(0,0,0,.4); position: relative; animation: slideUp 0.3s ease-out;">
       <button class="popup-close" id="closePopup" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 32px; cursor: pointer; color: #64748b; line-height: 1; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.2s ease;">&times;</button>
       
-      <div style="text-align: center; margin-bottom: 24px;">
+      <div style="text-align: center;">
         <div style="font-size: 48px; margin-bottom: 12px;">🐬</div>
         <h3 style="font-size: 28px; margin-bottom: 12px; color: #2563eb; font-weight: 700;">¿Te interesa Delfín Check-in?</h3>
-        <p style="color: #64748b; margin-bottom: 0; font-size: 16px;">Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito</p>
-      </div>
-      
-      <form id="popupForm" style="display: grid; gap: 12px;">
-        <input 
-          type="text" 
-          name="name" 
-          placeholder="Tu nombre" 
-          required
-          style="height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #ffffff; color: #0f172a; font-size: 16px; transition: border-color 0.2s;"
-          onfocus="this.style.borderColor='#2563eb'"
-          onblur="this.style.borderColor='#e2e8f0'"
-        >
-        <input 
-          type="email" 
-          name="email" 
-          placeholder="Tu email" 
-          required
-          style="height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #e2e8f0; background: #ffffff; color: #0f172a; font-size: 16px; transition: border-color 0.2s;"
-          onfocus="this.style.borderColor='#2563eb'"
-          onblur="this.style.borderColor='#e2e8f0'"
-        >
+        <p style="color: #64748b; margin-bottom: 24px; font-size: 16px;">Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito</p>
+        
         <button 
-          type="submit" 
-          id="popupSubmitBtn"
-          style="height: 52px; background: #2563eb; color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.2s ease;"
+          id="popupCtaBtn"
+          style="height: 52px; width: 100%; background: #2563eb; color: white; border: none; border-radius: 10px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.2s ease;"
           onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'"
         >
-          <span id="popupBtnText">Unirme Ahora</span>
-          <span id="popupLoading" style="display: none;">Enviando...</span>
+          Quiero acceso anticipado
         </button>
-        <div id="popupFormMessage" style="margin: 8px 0 0; padding: 12px; border-radius: 8px; display: none; text-align: center; font-size: 14px; font-weight: 600;"></div>
-      </form>
+      </div>
     </div>
   </div>
 
@@ -1505,9 +1482,18 @@
       handleWaitlistSubmit(e, 'waitlistForm', 'waitlistMessage', 'waitlistSubmit', 'waitlistSubmitText');
     });
 
-    // Form popup
-    document.getElementById('popupForm').addEventListener('submit', (e) => {
-      handleWaitlistSubmit(e, 'popupForm', 'popupFormMessage', 'popupSubmitBtn', 'popupBtnText');
+    // Botón CTA del popup - cerrar y hacer scroll a waitlist
+    document.getElementById('popupCtaBtn').addEventListener('click', () => {
+      closePopup();
+      trackEvent('popup_cta_click', {}, { popup_clicked: true });
+      
+      // Scroll suave hacia la sección de waitlist
+      setTimeout(() => {
+        const waitlistSection = document.getElementById('waitlist-section');
+        if (waitlistSection) {
+          waitlistSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300); // Pequeño delay para que se vea el cierre del popup
     });
 
     // Año en footer
