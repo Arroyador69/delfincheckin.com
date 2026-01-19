@@ -6,6 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- Build: 2026-01-19-v3 -->
   
   <title>Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos) | Delfín Check-in</title>
   <meta name="description" content="Descubre los errores más comunes al enviar datos al SES del Ministerio del Interior y cómo evitarlos. Guía práctica para propietarios de alquiler vacacional.">
@@ -588,28 +589,31 @@
   </style>
 </head>
 <body>
-
   <!-- Header -->
   <header>
-    <div class="header-content">
-      <a href="/" class="logo">
-        <span class="logo-icon">🐬</span>
-        <span>Delfín Check-in</span>
+    <div class="nav">
+      <a href="https://delfincheckin.com" class="brand">
+        <div class="logo" aria-hidden="true">🐬</div>
+        <b>Delfín Check‑in</b>
       </a>
-      <a href="/" class="back-btn">
-        ← Volver al inicio
-      </a>
+      <div class="nav-actions">
+        <a class="btn primary" href="https://delfincheckin.com#registro">Registro Gratis</a>
+        <a class="btn" href="https://delfincheckin.com#caracteristicas">Funciones</a>
+      </div>
     </div>
   </header>
 
-  <!-- Article Header -->
-  <div class="article-header">
-    <h1>Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos)</h1>
-    <div class="article-meta">
-      <span>📅 19 de enero de 2026</span>
-      <span>•</span>
-      <span>⏱️ 8 min de lectura</span>
-      <span>•</span>
+  <main class="container">
+    <!-- Artículo Principal -->
+    <article>
+      <h1>Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos)</h1>
+      <div class="article-meta">
+        <span>📅 19 de enero de 2026</span>
+        <span>✍️ Delfín Check-in</span>
+        <span>⏱️ 8 min lectura</span>
+      </div>
+      
+      <div class="article-content">
       <span>✍️ Equipo Delfín Check-in</span>
     </div>
   </div>
@@ -798,198 +802,100 @@
 
     <h2>6. Errores técnicos y de conexión</h2>
 
-    <h3>Error: No verificar que el envío fue exitoso</h3>
-    <p>A veces el envío falla por problemas de conexión, errores del servidor del SES, o timeouts.</p>
-
-    <div class="highlight-box">
-      <p><strong>⚠️ Error común:</strong> Asumir que el envío fue exitoso sin verificar la respuesta del servidor.</p>
-    </div>
-
-    <h3>Cómo evitarlo:</h3>
-    <ul>
-      <li>Verifica siempre el código de respuesta del servidor (200 = éxito)</li>
-      <li>Guarda un log de todos los envíos realizados</li>
-      <li>Si el envío falla, reintenta automáticamente</li>
-      <li>Notifica al usuario si hay algún problema</li>
-    </ul>
-
-    <h3>Error: No guardar comprobante del envío</h3>
-    <p>Es fundamental <strong>conservar pruebas</strong> de que se envió el parte de viajeros correctamente.</p>
-
-    <div class="highlight-box">
-      <p><strong>⚠️ Error común:</strong> No guardar el justificante de envío y no poder demostrarlo ante una inspección.</p>
-    </div>
-
-    <h3>Cómo evitarlo:</h3>
-    <ul>
-      <li>Guarda todos los comprobantes de envío automáticamente</li>
-      <li>Incluye fecha, hora, y número de confirmación</li>
-      <li>Almacena los comprobantes durante al menos 3 años</li>
-    </ul>
-
-    <h2>7. Errores de procedimiento interno</h2>
-
-    <h3>Error: No tener un responsable claro del envío</h3>
-    <p>En propiedades gestionadas por terceros, es común que no esté claro <strong>quién debe enviar los datos</strong>.</p>
-
-    <div class="highlight-box">
-      <p><strong>⚠️ Error común:</strong> El propietario asume que el gestor lo hace, y el gestor asume que lo hace el propietario. Resultado: nadie lo envía.</p>
-    </div>
-
-    <h3>Cómo evitarlo:</h3>
-    <ul>
-      <li>Define claramente en el contrato quién es el responsable</li>
-      <li>Si el gestor es responsable, asegúrate de que tenga acceso al SES</li>
-      <li>Si el propietario es responsable, establece un proceso claro de comunicación</li>
-    </ul>
-
-    <h3>Error: No revisar los datos antes de enviar</h3>
-    <p>La prisa y el volumen de reservas pueden llevar a enviar datos sin revisión previa.</p>
-
-    <div class="highlight-box">
-      <p><strong>⚠️ Error común:</strong> Copiar mal un número de pasaporte y enviarlo directamente sin verificar.</p>
-    </div>
-
-    <h3>Cómo evitarlo:</h3>
-    <ul>
-      <li>Implementa una revisión visual antes de cada envío</li>
-      <li>Usa validaciones automáticas de formato</li>
-      <li>Para múltiples reservas, haz una revisión por lotes</li>
-    </ul>
-
-    <h2>Buenas prácticas para evitar errores</h2>
-
-    <p>Para minimizar errores al enviar datos al SES, te recomendamos:</p>
-
-    <ol>
-      <li><strong>Digitaliza el proceso:</strong> Usa un sistema de check-in online que capture los datos directamente del documento de identidad (OCR).</li>
-      <li><strong>Automatiza el envío:</strong> Configura tu sistema para enviar los datos al SES automáticamente tras el check-in.</li>
-      <li><strong>Valida en tiempo real:</strong> Implementa validaciones que detecten errores antes de enviar.</li>
-      <li><strong>Guarda comprobantes:</strong> Conserva todos los justificantes de envío durante al menos 3 años.</li>
-      <li><strong>Forma a tu equipo:</strong> Si tienes personal, asegúrate de que conozcan los requisitos y procedimientos.</li>
-      <li><strong>Revisa periódicamente:</strong> Haz auditorías mensuales para verificar que todos los envíos se realizaron correctamente.</li>
-    </ol>
-
-    <h2>Consecuencias de enviar datos incorrectos</h2>
-
-    <p>Enviar datos incorrectos o incompletos al SES puede tener las siguientes consecuencias:</p>
-
-    <ul>
-      <li><strong>Multas:</strong> Entre 100€ y 30.000€ según la gravedad y reincidencia</li>
-      <li><strong>Rechazo del envío:</strong> Tendrás que corregir y reenviar manualmente</li>
-      <li><strong>Inspecciones:</strong> Pueden derivar en una inspección presencial</li>
-      <li><strong>Suspensión de actividad:</strong> En casos graves de reincidencia</li>
-    </ul>
-
-    <h2>Conclusión</h2>
-
-    <p>Enviar correctamente los datos de huéspedes al SES no es complicado si conoces los errores más comunes y cómo evitarlos. La clave está en:</p>
-
-    <ul>
-      <li>Validar los datos antes de enviarlos</li>
-      <li>Automatizar el proceso para reducir errores humanos</li>
-      <li>Guardar comprobantes de todos los envíos</li>
-      <li>Tener procedimientos claros y responsables definidos</li>
-    </ul>
-
-    <p><strong>¿Necesitas ayuda para cumplir con la normativa sin complicaciones?</strong> En Delfín Check-in te ofrecemos una solución completa que automatiza todo el proceso, valida los datos automáticamente y envía los partes al SES sin errores.</p>
-
-  </article>
-
-  <!-- Sección de Waitlist -->
-  <section id="registro" class="section" style="background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%); border-radius: 24px; padding: 48px 24px; margin: 64px auto; max-width: 900px; box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);">
-    <div style="text-align: center; color: white; margin-bottom: 32px;">
-      <div style="font-size: 64px; margin-bottom: 16px;">🐬</div>
-      <h2 style="color: white; margin-bottom: 16px; font-size: 42px; font-weight: 900; text-shadow: 0 4px 12px rgba(0,0,0,0.2);">El software de gestión hotelera (PMS) que estabas esperando</h2>
-      <p class="lead" style="color: rgba(255,255,255,0.95); font-size: 22px; line-height: 1.6; margin-bottom: 16px; font-weight: 600;">
-        <strong>Acceso gratuito al plan básico si te apuntas ya.</strong> De propietarios, para propietarios.
-      </p>
-      <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin-top: 12px; line-height: 1.6;">
-        Estamos en la fase final de desarrollo. <strong>Regístrate ahora</strong> y sé de los primeros en probarlo cuando lancemos. 
-        <br><strong style="font-size: 20px;">Los primeros usuarios tendrán acceso permanente al Plan Gratuito (Básico) sin coste mensual.</strong>
-        <br><span style="font-size: 16px; opacity: 0.9;">El módulo de check-in digital (envío al Ministerio del Interior) siempre costará 8€/mes.</span>
-      </p>
-      <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px);">
-        <p style="margin: 0; font-size: 16px; font-weight: 600;">📱 Apps móviles en desarrollo | 💯 Plan Básico Gratis | 💰 Check-in: 8€/mes</p>
-      </div>
-    </div>
-    
-    <div class="card" style="background: white; max-width: 600px; margin: 0 auto; padding: 32px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);">
-      <div style="text-align: center; margin-bottom: 24px;">
-        <div style="font-size: 48px; margin-bottom: 12px;">🎯</div>
-        <h3 style="color: #0f172a; font-size: 28px; font-weight: 800; margin-bottom: 8px;">🎁 Consigue acceso permanente al plan básico</h3>
-        <p style="color: #64748b; font-size: 18px; line-height: 1.6;">
-          Únete a la lista de espera y recibe acceso prioritario cuando lancemos. 
-          <strong style="color: #2563eb;">Los primeros usuarios tendrán acceso permanente al Plan Gratuito (Básico) sin coste mensual.</strong>
+    <!-- Sección de Waitlist -->
+    <section id="registro" class="section" style="background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%); border-radius: 24px; padding: 48px 24px; margin: 64px auto; max-width: 900px; box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);">
+      <div style="text-align: center; color: white; margin-bottom: 32px;">
+        <div style="font-size: 64px; margin-bottom: 16px;">🐬</div>
+        <h2 style="color: white; margin-bottom: 16px; font-size: 42px; font-weight: 900; text-shadow: 0 4px 12px rgba(0,0,0,0.2);">El software de gestión hotelera (PMS) que estabas esperando</h2>
+        <p class="lead" style="color: rgba(255,255,255,0.95); font-size: 22px; line-height: 1.6; margin-bottom: 16px; font-weight: 600;">
+          <strong>Acceso gratuito al plan básico si te apuntas ya.</strong> De propietarios, para propietarios.
         </p>
+        <p style="color: rgba(255,255,255,0.9); font-size: 18px; margin-top: 12px; line-height: 1.6;">
+          Estamos en la fase final de desarrollo. <strong>Regístrate ahora</strong> y sé de los primeros en probarlo cuando lancemos. 
+          <br><strong style="font-size: 20px;">Los primeros usuarios tendrán acceso permanente al Plan Gratuito (Básico) sin coste mensual.</strong>
+          <br><span style="font-size: 16px; opacity: 0.9;">El módulo de check-in digital (envío al Ministerio del Interior) siempre costará 8€/mes.</span>
+        </p>
+        <div style="margin-top: 24px; padding: 16px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px);">
+          <p style="margin: 0; font-size: 16px; font-weight: 600;">📱 Apps móviles en desarrollo | 💯 Plan Básico Gratis | 💰 Check-in: 8€/mes</p>
+        </div>
       </div>
       
-      <form id="waitlistForm" style="display: grid; gap: 20px;">
-        <label>
-          <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Email *</span>
-          <input 
-            id="waitlistEmail" 
-            type="email" 
-            name="email"
-            required 
-            placeholder="tu@email.com" 
-            style="width: 100%; height: 52px; border-radius: 12px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s; font-family: inherit;"
-            onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
-            onblur="this.style.borderColor='rgba(15,23,42,.2)'; this.style.boxShadow='none'"
+      <div class="card" style="background: white; max-width: 600px; margin: 0 auto; padding: 32px;">
+        <div style="text-align: center; margin-bottom: 24px;">
+          <div style="font-size: 48px; margin-bottom: 12px;">🎯</div>
+          <h3 style="color: #0f172a; font-size: 28px; font-weight: 800; margin-bottom: 8px;">🎁 Consigue acceso permanente al plan básico</h3>
+          <p style="color: #64748b; font-size: 18px; line-height: 1.6;">
+            Únete a la lista de espera y recibe acceso prioritario cuando lancemos. 
+            <strong style="color: #2563eb;">Los primeros usuarios tendrán acceso permanente al Plan Gratuito (Básico) sin coste mensual.</strong>
+          </p>
+        </div>
+        
+        <form id="waitlistForm" style="display: grid; gap: 20px;">
+          <label>
+            <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Email *</span>
+            <input 
+              id="waitlistEmail" 
+              type="email" 
+              name="email"
+              required 
+              placeholder="tu@email.com" 
+              style="width: 100%; height: 52px; border-radius: 12px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
+              onblur="this.style.borderColor='rgba(15,23,42,.2)'; this.style.boxShadow='none'"
+            >
+          </label>
+          <label>
+            <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Nombre (opcional)</span>
+            <input 
+              id="waitlistName"
+              type="text" 
+              name="name"
+              placeholder="Tu nombre" 
+              style="width: 100%; height: 52px; border-radius: 12px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s;"
+              onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
+              onblur="this.style.borderColor='rgba(15,23,42,.2)'; this.style.boxShadow='none'"
+            >
+          </label>
+          <button 
+            type="submit" 
+            id="waitlistSubmit"
+            style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 18px 32px; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);"
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
           >
-        </label>
-        <label>
-          <span style="display: block; margin-bottom: 8px; font-weight: 600; color: #0f172a;">Nombre (opcional)</span>
-          <input 
-            id="waitlistName"
-            type="text" 
-            name="name"
-            placeholder="Tu nombre" 
-            style="width: 100%; height: 52px; border-radius: 12px; background: #ffffff; color: #0f172a; border: 2px solid rgba(15,23,42,.2); padding: 0 16px; font-size: 16px; transition: border-color 0.2s; font-family: inherit;"
-            onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
-            onblur="this.style.borderColor='rgba(15,23,42,.2)'; this.style.boxShadow='none'"
-          >
-        </label>
-        <button 
-          type="submit" 
-          id="waitlistSubmit"
-          style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; padding: 18px 32px; border-radius: 12px; font-size: 18px; font-weight: 700; cursor: pointer; transition: all 0.2s; width: 100%; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); font-family: inherit;"
-          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
-          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
-        >
-          <span id="waitlistSubmitText">🎁 Quiero acceso permanente al plan básico</span>
-          <span id="waitlistLoading" style="display: none;">Enviando...</span>
-        </button>
-        <div id="waitlistMessage" style="margin: 0; padding: 0; border-radius: 8px; display: none; text-align: left;"></div>
-      </form>
-      
-      <div style="margin-top: 24px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
-        <div style="display: flex; align-items: start; gap: 12px;">
-          <div style="font-size: 24px;">ℹ️</div>
-          <div>
-            <h4 style="margin: 0 0 8px 0; color: #1e40af; font-weight: 700; font-size: 18px;">✨ Plan Gratuito (Básico) - Incluye esto</h4>
-            <ul style="margin: 0; padding-left: 20px; color: #1e40af; font-size: 15px; line-height: 2;">
-              <li><strong>✅ Gestión de reservas</strong> - Gestiona todas tus reservas desde un panel intuitivo</li>
-              <li><strong>✅ Gestión de habitaciones o propiedades</strong> - Controla tu inventario</li>
-              <li><strong>✅ Exportación de datos</strong> - CSV/Excel</li>
-              <li><strong>✅ Panel de administración</strong> - Intuitivo y potente</li>
-              <li><strong>✅ Soporte por email</strong> - Siempre disponible</li>
-              <li><strong>✅ App móvil</strong> - iOS y Android (próximamente)</li>
-              <li><strong>🔗 Crea enlaces de pago personalizados</strong> - Define fechas, importe acordado y genera un enlace único de pago. Compártelo por WhatsApp o email y el huésped paga de forma segura. El dinero entra directamente en tu cuenta bancaria.</li>
-              <li><strong>🌐 Microsite para reservas directas</strong> - Crea en minutos una página pública para tu alojamiento, comparte el enlace en redes o con tus huéspedes y recibe reservas directas. Con pagos directos las comisiones se reducen y el dinero entra en tu cuenta sin esperas.</li>
-              <li><strong>💡 Financiado con anuncios</strong> - Elegantes y discretos, sin coste mensual para ti</li>
-              <li style="margin-top: 12px; padding-top: 12px; border-top: 2px solid #bae6fd;">
-                <strong style="font-size: 16px; color: #059669;">🎁 Los primeros usuarios: tendrás acceso permanente al plan básico sin coste mensual</strong>
-              </li>
-              <li style="color: #dc2626; font-size: 14px; margin-top: 12px; font-weight: 600;">
-                ❌ <strong>No incluye:</strong> Check-in digital (8€/mes) ni envío al Ministerio del Interior
-              </li>
-            </ul>
+            <span id="waitlistSubmitText">🎁 Quiero acceso permanente al plan básico</span>
+            <span id="waitlistLoading" style="display: none;">Enviando...</span>
+          </button>
+          <div id="waitlistMessage" style="margin: 0; padding: 0; border-radius: 8px; display: none; text-align: left;"></div>
+        </form>
+        
+        <div style="margin-top: 24px; padding: 20px; background: #f0f9ff; border-radius: 12px; border-left: 4px solid #2563eb;">
+          <div style="display: flex; align-items: start; gap: 12px;">
+            <div style="font-size: 24px;">ℹ️</div>
+            <div>
+              <h4 style="margin: 0 0 8px 0; color: #1e40af; font-weight: 700; font-size: 18px;">✨ Plan Gratuito (Básico) - Incluye esto</h4>
+              <ul style="margin: 0; padding-left: 20px; color: #1e40af; font-size: 15px; line-height: 2;">
+                <li><strong>✅ Gestión de reservas</strong> - Gestiona todas tus reservas desde un panel intuitivo</li>
+                <li><strong>✅ Gestión de habitaciones o propiedades</strong> - Controla tu inventario</li>
+                <li><strong>✅ Exportación de datos</strong> - CSV/Excel</li>
+                <li><strong>✅ Panel de administración</strong> - Intuitivo y potente</li>
+                <li><strong>✅ Soporte por email</strong> - Siempre disponible</li>
+                <li><strong>✅ App móvil</strong> - iOS y Android (próximamente)</li>
+                <li><strong>🔗 Crea enlaces de pago personalizados</strong> - Define fechas, importe acordado y genera un enlace único de pago. Compártelo por WhatsApp o email y el huésped paga de forma segura. El dinero entra directamente en tu cuenta bancaria.</li>
+                <li><strong>🌐 Microsite para reservas directas</strong> - Crea en minutos una página pública para tu alojamiento, comparte el enlace en redes o con tus huéspedes y recibe reservas directas. Con pagos directos las comisiones se reducen y el dinero entra en tu cuenta sin esperas.</li>
+                <li><strong>💡 Financiado con anuncios</strong> - Elegantes y discretos, sin coste mensual para ti</li>
+                <li style="margin-top: 12px; padding-top: 12px; border-top: 2px solid #bae6fd;">
+                  <strong style="font-size: 16px; color: #059669;">🎁 Los primeros usuarios: tendrás acceso permanente al plan básico sin coste mensual</strong>
+                </li>
+                <li style="color: #dc2626; font-size: 14px; margin-top: 12px; font-weight: 600;">
+                  ❌ <strong>No incluye:</strong> Check-in digital (8€/mes) ni envío al Ministerio del Interior
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
     <!-- FAQs -->
     <div class="faq-section">
@@ -1392,7 +1298,7 @@
 
   <script>
     // Configuración
-    const ARTICLE_SLUG = 'multas-por-no-registrar-viajeros-espana';
+    const ARTICLE_SLUG = 'errores-frecuentes-enviar-datos-huespedes-ses';
     const ADMIN_API_URL = 'https://admin.delfincheckin.com/api';
     let sessionId = null;
     let sessionStartTime = Date.now();
