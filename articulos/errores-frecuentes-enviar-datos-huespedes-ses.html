@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  
+  <title>Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos) | Delfín Check-in</title>
+  <meta name="description" content="Descubre los errores más comunes al enviar datos al SES del Ministerio del Interior y cómo evitarlos. Guía práctica para propietarios de alquiler vacacional.">
+  <meta name="keywords" content="errores ses, envío datos huéspedes, ses ministerio interior, partes de viajeros, alquiler vacacional, registro viajeros, errores comunes ses">
+  <link rel="canonical" href="https://delfincheckin.com/articulos/errores-frecuentes-enviar-datos-huespedes-ses">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://delfincheckin.com/articulos/errores-frecuentes-enviar-datos-huespedes-ses">
+  <meta property="og:title" content="Errores frecuentes al enviar datos de huéspedes al SES">
+  <meta property="og:description" content="Descubre los errores más comunes al enviar datos al SES del Ministerio del Interior y cómo evitarlos. Guía práctica para propietarios de alquiler vacacional.">
+  <meta property="og:image" content="https://delfincheckin.com/og-image.svg">
+  <meta property="article:published_time" content="2026-01-19T12:00:00+00:00">
+  <meta property="article:author" content="Delfín Check-in">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://delfincheckin.com/articulos/errores-frecuentes-enviar-datos-huespedes-ses">
+  <meta name="twitter:title" content="Errores frecuentes al enviar datos de huéspedes al SES">
+  <meta name="twitter:description" content="Descubre los errores más comunes al enviar datos al SES del Ministerio del Interior y cómo evitarlos. Guía práctica para propietarios de alquiler vacacional.">
+  <meta name="twitter:image" content="https://delfincheckin.com/og-image.svg">
+  
+  <!-- SEO Avanzado -->
+  <meta name="author" content="Delfín Check-in">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="language" content="Spanish">
+  <meta name="geo.region" content="ES">
+  <meta name="theme-color" content="#44c0ff">
+  
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos)",
+    "description": "Descubre los errores más comunes al enviar datos al SES del Ministerio del Interior y cómo evitarlos. Guía práctica para propietarios de alquiler vacacional.",
+    "image": "https://delfincheckin.com/og-image.svg",
+    "author": {
+      "@type": "Organization",
+      "name": "Delfín Check-in",
+      "url": "https://delfincheckin.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Delfín Check-in",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://delfincheckin.com/og-image.svg"
+      }
+    },
+    "datePublished": "2026-01-19T12:00:00+00:00",
+    "dateModified": "2026-01-19T12:00:00+00:00",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://delfincheckin.com/articulos/errores-frecuentes-enviar-datos-huespedes-ses"
+    }
+  }
+  </script>
+  
+  <style>
+    :root {
+      --bg: #eef6ff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #2563eb;
+      --accent: #16a34a;
+      --danger: #ef4444;
+      --border: rgba(15,23,42,.08);
+      --maxw: 1200px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Header */
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+    }
+    
+    .header-content {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 700;
+      font-size: 22px;
+    }
+    
+    .logo-icon { font-size: 32px; }
+    
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.2s;
+      font-size: 14px;
+    }
+    
+    .back-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+    
+    /* Artículo */
+    .article-header {
+      background: linear-gradient(135deg, var(--brand) 0%, #1d4ed8 100%);
+      color: white;
+      padding: 64px 24px;
+      text-align: center;
+    }
+    
+    .article-header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      max-width: 900px;
+      margin: 0 auto 16px;
+      line-height: 1.2;
+    }
+    
+    .article-meta {
+      font-size: 15px;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .article-content {
+      max-width: 800px;
+      margin: 48px auto;
+      padding: 0 24px;
+      background: white;
+      border-radius: 16px;
+      padding: 48px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    }
+    
+    .article-content h2 {
+      font-size: 32px;
+      margin-top: 48px;
+      margin-bottom: 20px;
+      color: var(--brand);
+      font-weight: 700;
+    }
+    
+    .article-content h3 {
+      font-size: 24px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .article-content p {
+      margin-bottom: 20px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+    
+    .article-content ul, .article-content ol {
+      margin: 24px 0;
+      padding-left: 32px;
+    }
+    
+    .article-content li {
+      margin-bottom: 12px;
+      font-size: 17px;
+      color: var(--muted);
+    }
+    
+    .article-content strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid var(--brand);
+      padding-left: 20px;
+      margin: 32px 0;
+      font-style: italic;
+      color: var(--muted);
+      background: #f0f9ff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
+    .highlight-box {
+      background: #fef3c7;
+      border-left: 4px solid #f59e0b;
+      padding: 20px;
+      margin: 32px 0;
+      border-radius: 8px;
+    }
+    
+    .highlight-box p:last-child {
+      margin-bottom: 0;
+    }
+    
+    /* Waitlist Section */
+    .waitlist-section {
+      background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%);
+      color: white;
+      padding: 48px;
+      border-radius: 16px;
+      margin: 48px 0;
+      text-align: center;
+    }
+    
+    .waitlist-section h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+      color: white;
+    }
+    
+    .waitlist-section p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      opacity: 0.95;
+    }
+    
+    /* Footer */
+    footer {
+      background: #1e293b;
+      color: white;
+      padding: 48px 24px 24px;
+      margin-top: 64px;
+    }
+    
+    .footer-content {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-section h3 {
+      font-size: 18px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    
+    .footer-section p, .footer-section a {
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      transition: color 0.2s;
+    }
+    
+    .footer-section a:hover {
+      color: white;
+    }
+    
+    .footer-bottom {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 24px;
+      text-align: center;
+      color: rgba(255,255,255,.5);
+      font-size: 14px;
+      margin-top: 40px;
+    }
+    
+    /* Popup */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15,23,42,.6);
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .popup-overlay.show { display: flex; }
+    
+    .popup-content {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 25px 80px rgba(0,0,0,.4);
+      position: relative;
+      animation: slideUp 0.3s ease-out;
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: #64748b;
+      line-height: 1;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+    }
+    
+    .popup-close:hover {
+      background: rgba(0,0,0,.05);
+      color: var(--text);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    
+    /* FAQ Section */
+    .faq-section {
+      max-width: 900px;
+      margin: 64px auto;
+      padding: 0 24px;
+    }
+    
+    .faq-section h2 {
+      font-size: 36px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+    
+    .faq-item {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .faq-item:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+    }
+    
+    .faq-question {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    
+    .faq-answer {
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.6;
+      display: none;
+    }
+    
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    
+    .faq-toggle {
+      font-size: 24px;
+      transition: transform 0.3s;
+    }
+    
+    .faq-item.active .faq-toggle {
+      transform: rotate(45deg);
+    }
+    
+    /* Form */
+    .waitlist-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .waitlist-form input {
+      padding: 16px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-radius: 12px;
+      font-size: 16px;
+      background: rgba(255,255,255,.95);
+    }
+    
+    .waitlist-form button {
+      padding: 18px;
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .waitlist-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(29,78,216,.4);
+    }
+    
+    .form-message {
+      padding: 16px;
+      border-radius: 8px;
+      margin-top: 16px;
+      text-align: center;
+      font-weight: 600;
+    }
+    
+    .form-message.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+    
+    .form-message.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .article-header h1 { font-size: 32px; }
+      .article-content { padding: 32px 24px; }
+      .article-content h2 { font-size: 28px; }
+      .waitlist-section { padding: 32px 24px; }
+      .popup-content { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">
+        <span class="logo-icon">🐬</span>
+        <span>Delfín Check-in</span>
+      </a>
+      <a href="/" class="back-btn">
+        ← Volver al inicio
+      </a>
+    </div>
+  </header>
+
+  <!-- Article Header -->
+  <div class="article-header">
+    <h1>Errores frecuentes al enviar datos de huéspedes al SES (y cómo evitarlos)</h1>
+    <div class="article-meta">
+      <span>📅 19 de enero de 2026</span>
+      <span>•</span>
+      <span>⏱️ 8 min de lectura</span>
+      <span>•</span>
+      <span>✍️ Equipo Delfín Check-in</span>
+    </div>
+  </div>
+
+  <!-- Article Content -->
+  <article class="article-content">
+    
+    <p><strong>El Sistema de Entrada y Salida (SES)</strong> del Ministerio del Interior es obligatorio para todos los alojamientos turísticos en España. Sin embargo, muchos propietarios y gestores cometen errores que pueden resultar en <strong>multas de hasta 30.000€</strong> o en envíos rechazados que requieren corrección manual.</p>
+
+    <p>En este artículo, identificamos los <strong>errores más frecuentes</strong> al enviar datos de huéspedes al SES y te explicamos cómo evitarlos para cumplir con la normativa sin complicaciones.</p>
+
+    <h2>1. Errores en la identificación del huésped</h2>
+
+    <h3>Error: Tipo de documento incorrecto</h3>
+    <p>Uno de los errores más comunes es seleccionar el tipo de documento equivocado. El SES diferencia entre:</p>
+    <ul>
+      <li><strong>DNI:</strong> Solo para ciudadanos españoles</li>
+      <li><strong>NIE:</strong> Para extranjeros residentes en España</li>
+      <li><strong>Pasaporte:</strong> Para extranjeros no residentes</li>
+      <li><strong>Otros documentos:</strong> Certificados de identidad, etc.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar un NIE como DNI o viceversa. El sistema rechazará automáticamente el envío.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Verifica siempre el tipo de documento antes de enviarlo</li>
+      <li>Pide al huésped que confirme su tipo de documento</li>
+      <li>Usa herramientas que validen el formato del documento automáticamente</li>
+    </ul>
+
+    <h3>Error: Número de documento con formato incorrecto</h3>
+    <p>Cada tipo de documento tiene un formato específico:</p>
+    <ul>
+      <li><strong>DNI:</strong> 8 dígitos + 1 letra (ej: 12345678Z)</li>
+      <li><strong>NIE:</strong> 1 letra (X, Y, Z) + 7 dígitos + 1 letra (ej: X1234567L)</li>
+      <li><strong>Pasaporte:</strong> Varía según país, generalmente alfanumérico</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Incluir espacios, guiones o caracteres especiales en el número de documento.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Limpia los datos eliminando espacios y caracteres especiales</li>
+      <li>Valida el formato del DNI/NIE con su letra de control</li>
+      <li>Para pasaportes, acepta solo letras y números</li>
+    </ul>
+
+    <h2>2. Errores en los datos personales</h2>
+
+    <h3>Error: Nombre y apellidos invertidos</h3>
+    <p>En muchos países, el orden de nombre y apellidos es diferente al español. Por ejemplo, en China el apellido va primero.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar "Wang Li" como nombre cuando "Wang" es el apellido y "Li" el nombre.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Pide al huésped que indique claramente su nombre y apellidos</li>
+      <li>Compara con el documento de identidad</li>
+      <li>Si tienes dudas, pregunta directamente al huésped</li>
+    </ul>
+
+    <h3>Error: Caracteres especiales en nombres</h3>
+    <p>El SES tiene limitaciones con caracteres especiales, acentos y caracteres no latinos (árabe, cirílico, chino, etc.).</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar "François" tal cual, cuando el sistema puede rechazarlo por la "ç".</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Transcribe los nombres tal como aparecen en el documento oficial</li>
+      <li>Para caracteres especiales, usa el equivalente latino (ñ → n, ç → c)</li>
+      <li>Evita emojis, símbolos o caracteres raros</li>
+    </ul>
+
+    <h3>Error: Fecha de nacimiento incorrecta</h3>
+    <p>El formato de fecha varía según el país. En España usamos DD/MM/AAAA, pero en otros países es MM/DD/AAAA o AAAA-MM-DD.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Interpretar 03/05/1990 como 3 de mayo cuando es 5 de marzo.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Confirma siempre el formato de fecha con el huésped</li>
+      <li>Usa un selector de fecha visual para evitar confusiones</li>
+      <li>Valida que la edad tenga sentido (mayor de 18 años, menor de 120)</li>
+    </ul>
+
+    <h2>3. Errores en las fechas de entrada y salida</h2>
+
+    <h3>Error: Enviar después del plazo legal</h3>
+    <p>El RD 933/2021 establece que los datos deben enviarse <strong>antes de las 24 horas posteriores a la entrada</strong> del huésped.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar los datos 2-3 días después de la entrada del huésped, cuando ya es tarde.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Envía los datos el mismo día de la entrada del huésped</li>
+      <li>Automatiza el envío para que se haga inmediatamente tras el check-in</li>
+      <li>Si usas check-in online, configura el envío automático al SES</li>
+    </ul>
+
+    <h3>Error: Fecha de entrada posterior a la de salida</h3>
+    <p>Parece obvio, pero ocurre más de lo que pensamos, especialmente al introducir datos manualmente.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Confundir las fechas al copiarlas de un formulario o reserva.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Valida que la fecha de salida sea posterior a la de entrada</li>
+      <li>Usa calendarios interactivos que bloqueen fechas inválidas</li>
+      <li>Revisa los datos antes de enviar</li>
+    </ul>
+
+    <h3>Error: Formato de hora incorrecto</h3>
+    <p>El SES requiere el formato de 24 horas (HH:MM), no el formato AM/PM.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar "02:00 PM" cuando debe ser "14:00".</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Usa siempre el formato de 24 horas</li>
+      <li>Convierte automáticamente AM/PM a formato 24h</li>
+      <li>Valida que la hora esté entre 00:00 y 23:59</li>
+    </ul>
+
+    <h2>4. Errores en el número de viajeros</h2>
+
+    <h3>Error: No enviar todos los viajeros de la reserva</h3>
+    <p><strong>Cada huésped mayor de 14 años</strong> debe ser registrado individualmente, incluso si viajan juntos.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Enviar solo al titular de la reserva y olvidar a los acompañantes.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Pregunta siempre cuántas personas van a alojarse</li>
+      <li>Solicita los datos de todos los adultos (mayores de 14 años)</li>
+      <li>Verifica el número de viajeros antes de cerrar la reserva</li>
+    </ul>
+
+    <h3>Error: Incluir menores de 14 años</h3>
+    <p>Los menores de 14 años <strong>NO deben ser registrados</strong> individualmente en el SES.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Registrar a un niño de 10 años, lo cual el sistema puede rechazar.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Confirma la edad de cada viajero</li>
+      <li>Filtra automáticamente menores de 14 años</li>
+      <li>Solo registra adultos y adolescentes de 14+ años</li>
+    </ul>
+
+    <h2>5. Errores con el código de establecimiento</h2>
+
+    <h3>Error: Usar un código de establecimiento incorrecto</h3>
+    <p>Cada alojamiento turístico tiene un <strong>código único de establecimiento</strong> asignado por la Policía Nacional.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Usar el código del registro turístico autonómico en lugar del código del SES.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Solicita tu código de establecimiento ante la Policía Nacional</li>
+      <li>Guarda el código en un lugar seguro</li>
+      <li>No confundas el código del SES con otros registros (turismo, hacienda)</li>
+    </ul>
+
+    <h2>6. Errores técnicos y de conexión</h2>
+
+    <h3>Error: No verificar que el envío fue exitoso</h3>
+    <p>A veces el envío falla por problemas de conexión, errores del servidor del SES, o timeouts.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Asumir que el envío fue exitoso sin verificar la respuesta del servidor.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Verifica siempre el código de respuesta del servidor (200 = éxito)</li>
+      <li>Guarda un log de todos los envíos realizados</li>
+      <li>Si el envío falla, reintenta automáticamente</li>
+      <li>Notifica al usuario si hay algún problema</li>
+    </ul>
+
+    <h3>Error: No guardar comprobante del envío</h3>
+    <p>Es fundamental <strong>conservar pruebas</strong> de que se envió el parte de viajeros correctamente.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> No guardar el justificante de envío y no poder demostrarlo ante una inspección.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Guarda todos los comprobantes de envío automáticamente</li>
+      <li>Incluye fecha, hora, y número de confirmación</li>
+      <li>Almacena los comprobantes durante al menos 3 años</li>
+    </ul>
+
+    <h2>7. Errores de procedimiento interno</h2>
+
+    <h3>Error: No tener un responsable claro del envío</h3>
+    <p>En propiedades gestionadas por terceros, es común que no esté claro <strong>quién debe enviar los datos</strong>.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> El propietario asume que el gestor lo hace, y el gestor asume que lo hace el propietario. Resultado: nadie lo envía.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Define claramente en el contrato quién es el responsable</li>
+      <li>Si el gestor es responsable, asegúrate de que tenga acceso al SES</li>
+      <li>Si el propietario es responsable, establece un proceso claro de comunicación</li>
+    </ul>
+
+    <h3>Error: No revisar los datos antes de enviar</h3>
+    <p>La prisa y el volumen de reservas pueden llevar a enviar datos sin revisión previa.</p>
+
+    <div class="highlight-box">
+      <p><strong>⚠️ Error común:</strong> Copiar mal un número de pasaporte y enviarlo directamente sin verificar.</p>
+    </div>
+
+    <h3>Cómo evitarlo:</h3>
+    <ul>
+      <li>Implementa una revisión visual antes de cada envío</li>
+      <li>Usa validaciones automáticas de formato</li>
+      <li>Para múltiples reservas, haz una revisión por lotes</li>
+    </ul>
+
+    <h2>Buenas prácticas para evitar errores</h2>
+
+    <p>Para minimizar errores al enviar datos al SES, te recomendamos:</p>
+
+    <ol>
+      <li><strong>Digitaliza el proceso:</strong> Usa un sistema de check-in online que capture los datos directamente del documento de identidad (OCR).</li>
+      <li><strong>Automatiza el envío:</strong> Configura tu sistema para enviar los datos al SES automáticamente tras el check-in.</li>
+      <li><strong>Valida en tiempo real:</strong> Implementa validaciones que detecten errores antes de enviar.</li>
+      <li><strong>Guarda comprobantes:</strong> Conserva todos los justificantes de envío durante al menos 3 años.</li>
+      <li><strong>Forma a tu equipo:</strong> Si tienes personal, asegúrate de que conozcan los requisitos y procedimientos.</li>
+      <li><strong>Revisa periódicamente:</strong> Haz auditorías mensuales para verificar que todos los envíos se realizaron correctamente.</li>
+    </ol>
+
+    <h2>Consecuencias de enviar datos incorrectos</h2>
+
+    <p>Enviar datos incorrectos o incompletos al SES puede tener las siguientes consecuencias:</p>
+
+    <ul>
+      <li><strong>Multas:</strong> Entre 100€ y 30.000€ según la gravedad y reincidencia</li>
+      <li><strong>Rechazo del envío:</strong> Tendrás que corregir y reenviar manualmente</li>
+      <li><strong>Inspecciones:</strong> Pueden derivar en una inspección presencial</li>
+      <li><strong>Suspensión de actividad:</strong> En casos graves de reincidencia</li>
+    </ul>
+
+    <h2>Conclusión</h2>
+
+    <p>Enviar correctamente los datos de huéspedes al SES no es complicado si conoces los errores más comunes y cómo evitarlos. La clave está en:</p>
+
+    <ul>
+      <li>Validar los datos antes de enviarlos</li>
+      <li>Automatizar el proceso para reducir errores humanos</li>
+      <li>Guardar comprobantes de todos los envíos</li>
+      <li>Tener procedimientos claros y responsables definidos</li>
+    </ul>
+
+    <p><strong>¿Necesitas ayuda para cumplir con la normativa sin complicaciones?</strong> En Delfín Check-in te ofrecemos una solución completa que automatiza todo el proceso, valida los datos automáticamente y envía los partes al SES sin errores.</p>
+
+  </article>
+
+  <!-- Sección de Waitlist -->
+  <section id="registro" class="section" style="background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%); border-radius: 24px; padding: 48px 24px; margin: 64px auto; max-width: 900px; box-shadow: 0 20px 60px rgba(37, 99, 235, 0.3);">
+    <div style="text-align: center; color: white; margin-bottom: 32px;">
+      <div style="font-size: 64px; margin-bottom: 16px;">🐬</div>
+      <h2 style="font-size: 42px; font-weight: 900; margin-bottom: 12px; line-height: 1.2;">¿Listo para simplificar la gestión de tus huéspedes?</h2>
+      <p style="font-size: 20px; opacity: 0.95; max-width: 600px; margin: 0 auto;">Únete a nuestra lista de espera y sé de los primeros en acceder al <strong>Plan Básico Gratuito</strong> de Delfín Check-in</p>
+    </div>
+
+    <div style="background: white; border-radius: 20px; padding: 32px; max-width: 600px; margin: 0 auto; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);">
+      <div style="text-align: center; margin-bottom: 24px;">
+        <span style="font-size: 48px; display: inline-block; margin-bottom: 8px;">🎯</span>
+        <h3 style="font-size: 24px; font-weight: 700; color: #0f172a; margin-bottom: 16px;">¿Qué incluye el Plan Básico Gratuito?</h3>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-bottom: 32px;">
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Gestión de reservas</strong></span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Gestión de habitaciones o propiedades</strong></span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Exportación de datos</strong> (CSV/Excel)</span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Panel de administración</strong></span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Soporte por email</strong></span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">✅</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">App móvil</strong> (iOS y Android próximamente)</span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">🔗</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;">Crea <strong style="color: #0f172a;">enlaces de pago</strong> personalizados</span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">🌐</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #0f172a;">Microsite</strong> para reservas directas</span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">💡</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;">Financiado con <strong style="color: #0f172a;">anuncios</strong></span>
+        </div>
+        <div style="display: flex; align-items: start; gap: 12px;">
+          <span style="font-size: 20px; flex-shrink: 0;">🎁</span>
+          <span style="color: #475569; font-size: 15px; line-height: 1.5;"><strong style="color: #2563eb;">Los primeros usuarios:</strong> acceso permanente sin coste mensual</span>
+        </div>
+      </div>
+
+      <div style="background: #f0f9ff; border-left: 4px solid #2563eb; padding: 16px; border-radius: 8px; margin-bottom: 24px;">
+        <p style="color: #0f172a; font-size: 14px; margin: 0; line-height: 1.6;"><strong>❌ No incluye:</strong> Check-in digital (8€/mes) ni envío al Ministerio del Interior</p>
+      </div>
+
+      <form class="waitlist-form" id="waitlistForm" style="display: flex; flex-direction: column; gap: 12px;">
+        <input 
+          type="text" 
+          name="name" 
+          placeholder="Tu nombre" 
+          required
+          style="height: 52px; padding: 0 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; font-family: inherit; transition: all 0.2s;"
+          onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
+          onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'"
+        >
+        <input 
+          type="email" 
+          name="email" 
+          placeholder="Tu email" 
+          required
+          style="height: 52px; padding: 0 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; font-family: inherit; transition: all 0.2s;"
+          onfocus="this.style.borderColor='#2563eb'; this.style.boxShadow='0 0 0 3px rgba(37, 99, 235, 0.1)'"
+          onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'"
+        >
+        <button 
+          type="submit" 
+          id="waitlistSubmit"
+          style="height: 52px; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 12px; font-size: 17px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
+        >
+          <span id="waitlistSubmitText">🚀 Quiero acceso anticipado</span>
+        </button>
+        <div id="waitlistMessage" class="form-message" style="display: none;"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Preguntas Frecuentes -->
+  <section class="faq-section">
+    <h2>❓ Preguntas Frecuentes</h2>
+    
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Cuándo estará disponible Delfín Check-in?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Estamos en fase de desarrollo y esperamos lanzar la versión beta en los próximos meses. Los primeros usuarios de la lista de espera tendrán acceso prioritario.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿El Plan Básico Gratuito es realmente gratis?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, el Plan Básico Gratuito no tiene coste mensual. Se financia con anuncios no intrusivos. Los primeros usuarios que se unan a la lista de espera tendrán acceso permanente al plan básico sin coste, aunque en el futuro podría convertirse en un plan de pago para nuevos usuarios.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué incluye el check-in digital de 8€/mes?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        El check-in digital (opcional) permite a tus huéspedes rellenar sus datos online antes de llegar, con escaneo automático de documentos (OCR). Esto ahorra tiempo y mejora la experiencia del huésped. Es un complemento opcional al Plan Básico.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Cómo funciona el envío al Ministerio del Interior?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        El envío al Ministerio del Interior (partes de viajeros) es un servicio adicional que automatiza el cumplimiento del RD 933/2021. Este servicio no está incluido en el Plan Básico Gratuito y tiene un coste adicional.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo gestionar varias propiedades?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, el Plan Básico Gratuito permite gestionar múltiples propiedades o habitaciones desde una única cuenta. Es perfecto para propietarios con varios apartamentos o pequeños hostales.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Necesito conocimientos técnicos para usar Delfín Check-in?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        No. Delfín Check-in está diseñado para ser intuitivo y fácil de usar, incluso si no tienes experiencia con software de gestión hotelera. Incluiremos tutoriales y soporte por email.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo migrar mis datos desde otro sistema?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, ofrecemos herramientas de importación para traer tus reservas y datos desde hojas de cálculo (Excel/CSV) u otros sistemas. Te ayudaremos en el proceso de migración.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué datos puedo exportar?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Puedes exportar todas tus reservas, datos de huéspedes, ingresos y estadísticas en formato CSV o Excel. Tus datos son tuyos y siempre tendrás acceso completo a ellos.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Habrá app móvil?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, estamos desarrollando apps nativas para iOS y Android que estarán disponibles próximamente. Mientras tanto, la versión web está optimizada para móviles.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Cómo funcionan los enlaces de pago personalizados?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Puedes crear enlaces de pago únicos para cada reserva y enviarlos a tus huéspedes por WhatsApp, email o SMS. Ellos pagan online de forma segura y tú recibes el dinero directamente en tu cuenta (a través de Stripe).
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué es el microsite de reservas directas?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Es una pequeña página web personalizada donde tus huéspedes pueden ver disponibilidad y hacer reservas directamente, sin comisiones de Airbnb o Booking. Tú controlas los precios y condiciones.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Los anuncios serán molestos?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        No. Los anuncios serán discretos y relevantes para el sector turístico. Nunca mostraremos anuncios intrusivos, popups o que interfieran con tu trabajo. Si prefieres una experiencia sin anuncios, habrá planes de pago disponibles.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo cancelar en cualquier momento?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, no hay permanencia. Puedes dejar de usar Delfín Check-in cuando quieras y exportar todos tus datos. El Plan Básico Gratuito no requiere tarjeta de crédito ni compromiso.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Mis datos están seguros?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, cumplimos con el RGPD europeo. Usamos cifrado SSL/TLS, almacenamiento seguro en servidores europeos y nunca compartimos tus datos con terceros sin tu consentimiento.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Ofrecen soporte técnico?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, el Plan Básico Gratuito incluye soporte por email. Responderemos tus consultas en un plazo máximo de 48 horas laborables. Los planes de pago tendrán soporte prioritario y chat en vivo.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo integrar Delfín Check-in con Airbnb o Booking?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        De momento no ofrecemos integración automática con OTAs (Airbnb, Booking, etc.), pero puedes importar las reservas manualmente o mediante CSV. Las integraciones con OTAs están en nuestro roadmap para el futuro.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué diferencia a Delfín Check-in de otros PMS?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Delfín Check-in es el único PMS que ofrece un Plan Básico Gratuito completo y funcional, sin limitaciones artificiales. Estamos enfocados en pequeños propietarios y hostales, no en grandes cadenas. Nuestra misión es democratizar el acceso a herramientas profesionales de gestión hotelera.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Habrá planes de pago en el futuro?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, ofreceremos planes de pago con funcionalidades avanzadas como: integración con OTAs, channel manager, informes avanzados, automatizaciones, API, y más. Pero el Plan Básico Gratuito seguirá existiendo siempre, y los primeros usuarios tendrán acceso permanente sin coste.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo probar Delfín Check-in antes de comprometerme?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Sí, cuando lancemos la versión beta, podrás probar todas las funcionalidades sin compromiso. El Plan Básico Gratuito no requiere tarjeta de crédito para empezar.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Dónde puedo ver una demo de Delfín Check-in?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Estamos preparando videos demostrativos y una versión de prueba interactiva. Los usuarios de la lista de espera serán los primeros en recibir acceso a la demo y al beta privado.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Cómo puedo sugerir nuevas funcionalidades?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Escuchamos a nuestra comunidad. Una vez tengas acceso a Delfín Check-in, podrás enviar sugerencias directamente desde la app o por email. Las funcionalidades más solicitadas tendrán prioridad en nuestro roadmap.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué pasa si mi pregunta no está aquí?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Escríbenos a <a href="mailto:contacto@delfincheckin.com" style="color: #2563eb; text-decoration: underline;">contacto@delfincheckin.com</a> y te responderemos lo antes posible. También puedes unirte a la lista de espera y recibirás actualizaciones periódicas con más información.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Por qué debería registrarme ahora en la lista de espera?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Los primeros usuarios de la lista de espera tendrán: 1) Acceso prioritario al beta, 2) Acceso permanente al Plan Básico Gratuito (incluso si en el futuro se convierte en plan de pago), 3) Posibilidad de influir en el desarrollo del producto con sus sugerencias, y 4) Condiciones especiales en los planes de pago.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Cómo puedo estar al tanto de las novedades?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        Únete a nuestra lista de espera y recibirás actualizaciones por email sobre el progreso del desarrollo, nuevas funcionalidades, fecha de lanzamiento y acceso anticipado al beta.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Puedo recomendar Delfín Check-in a otros propietarios?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        ¡Sí, por favor! Cuantos más usuarios tengamos en la comunidad, mejor podremos desarrollar el producto. En el futuro, implementaremos un programa de referidos con beneficios para quienes recomienden Delfín Check-in.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Delfín Check-in funcionará en mi país?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        De momento, Delfín Check-in está optimizado para España y el cumplimiento de la normativa española (RD 933/2021). En el futuro, planeamos expandirnos a otros países europeos y latinoamericanos.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        <span>¿Qué idiomas soportará Delfín Check-in?</span>
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-answer">
+        En el lanzamiento inicial, Delfín Check-in estará disponible en español. Posteriormente añadiremos inglés, francés, alemán y otros idiomas según la demanda de nuestra comunidad.
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Delfín Check-in</h3>
+        <p>Software de gestión hotelera y auto check-in para hostales y apartamentos.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <p>Email: <a href="mailto:contacto@delfincheckin.com">contacto@delfincheckin.com</a></p>
+        <p>Horario: Lun-Dom: 9:00-22:00</p>
+      </div>
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <a href="/politica-privacidad.html">Política de Privacidad</a>
+        <a href="/politica-cookies.html">Política de Cookies</a>
+        <a href="/terminos-servicio.html">Términos de Servicio</a>
+        <a href="/aviso-legal.html">Aviso Legal</a>
+        <a href="#" onclick="alert('Gestión de cookies próximamente'); return false;">Gestionar Cookies</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Delfín Check-in. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <!-- Popup de Waitlist -->
+  <div class="popup-overlay" id="popupWaitlist" style="display: none;">
+    <div class="popup-content">
+      <button class="popup-close" id="closePopup">&times;</button>
+      
+      <div style="text-align: center;">
+        <div style="font-size: 48px; margin-bottom: 12px;">🐬</div>
+        <h3 style="font-size: 28px; margin-bottom: 12px; color: #2563eb; font-weight: 700;">¿Te interesa Delfín Check-in?</h3>
+        <p style="color: #64748b; margin-bottom: 24px; font-size: 16px;">Únete a nuestra lista de espera y sé de los primeros en acceder al Plan Básico Gratuito</p>
+        
+        <button 
+          id="popupCtaBtn"
+          style="height: 52px; width: 100%; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; border: none; border-radius: 12px; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);"
+          onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(37, 99, 235, 0.4)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(37, 99, 235, 0.3)'"
+        >
+          🎁 Quiero acceso permanente al plan básico
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuración
+    const ARTICLE_SLUG = 'errores-frecuentes-enviar-datos-huespedes-ses';
+    const ADMIN_API_URL = 'https://admin.delfincheckin.com/api';
+    let sessionId = null;
+    let sessionStartTime = Date.now();
+    let maxScrollDepth = 0;
+    let timeOnPage = 0;
+    let popupShown = false;
+
+    // Generar o recuperar session ID
+    function getSessionId() {
+      let sid = sessionStorage.getItem('delfin_session_id');
+      if (!sid) {
+        sid = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        sessionStorage.setItem('delfin_session_id', sid);
+      }
+      return sid;
+    }
+
+    sessionId = getSessionId();
+
+    // Detectar tipo de dispositivo
+    function getDeviceType() {
+      const width = window.innerWidth;
+      if (width < 768) return 'mobile';
+      if (width < 1024) return 'tablet';
+      return 'desktop';
+    }
+
+    // Tracking de eventos
+    async function trackEvent(eventType, eventData = {}, sessionData = {}) {
+      try {
+        const payload = {
+          article_slug: ARTICLE_SLUG,
+          session_id: sessionId,
+          event_type: eventType,
+          event_data: eventData,
+          session_data: {
+            referrer: document.referrer || null,
+            utm_source: new URLSearchParams(window.location.search).get('utm_source'),
+            utm_medium: new URLSearchParams(window.location.search).get('utm_medium'),
+            utm_campaign: new URLSearchParams(window.location.search).get('utm_campaign'),
+            user_agent: navigator.userAgent,
+            device_type: getDeviceType(),
+            time_on_page: timeOnPage,
+            scroll_depth: maxScrollDepth,
+            ...sessionData
+          }
+        };
+        
+        console.log('📊 [CLIENT] Enviando tracking:', { event_type: eventType, article_slug: ARTICLE_SLUG });
+        
+        const response = await fetch(`${ADMIN_API_URL}/blog/analytics/track`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          console.log('✅ [CLIENT] Tracking exitoso:', eventType);
+        } else {
+          console.error('❌ [CLIENT] Error en tracking:', result);
+        }
+      } catch (error) {
+        console.error('❌ [CLIENT] Error de red en tracking:', error);
+      }
+    }
+
+    // Page view inicial
+    trackEvent('page_view');
+
+    // Tracking de scroll
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      const scrollPercent = Math.round(
+        (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+      );
+      maxScrollDepth = Math.max(maxScrollDepth, scrollPercent);
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        trackEvent('scroll', { scroll_percent: scrollPercent });
+      }, 1000);
+    });
+
+    // Tracking de tiempo en página
+    setInterval(() => {
+      timeOnPage = Math.floor((Date.now() - sessionStartTime) / 1000);
+      trackEvent(null, {}, {}); // Solo actualizar sesión
+    }, 15000); // Cada 15 segundos
+
+    // Mostrar popup después de 20 segundos o al 50% de scroll
+    let popupTimeout = setTimeout(() => {
+      if (!popupShown && !localStorage.getItem('delfin_popup_closed')) {
+        showPopup();
+      }
+    }, 20000);
+
+    window.addEventListener('scroll', () => {
+      const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      if (scrollPercent > 50 && !popupShown && !localStorage.getItem('delfin_popup_closed')) {
+        clearTimeout(popupTimeout);
+        showPopup();
+      }
+    });
+
+    function showPopup() {
+      popupShown = true;
+      const popup = document.getElementById('popupWaitlist');
+      popup.style.display = 'flex';
+      trackEvent('popup_view', {}, { popup_viewed: true });
+    }
+
+    function closePopup() {
+      const popup = document.getElementById('popupWaitlist');
+      popup.style.display = 'none';
+      localStorage.setItem('delfin_popup_closed', 'true');
+      trackEvent('popup_close', {}, { popup_closed: true });
+    }
+
+    document.getElementById('closePopup').addEventListener('click', closePopup);
+    
+    // Cerrar popup al hacer clic fuera
+    document.getElementById('popupWaitlist').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePopup();
+      }
+    });
+
+    // Formularios de waitlist
+    async function handleWaitlistSubmit(e, formId, messageId, btnId, btnTextId) {
+      e.preventDefault();
+      
+      const form = e.target;
+      const message = document.getElementById(messageId);
+      const submitBtn = document.getElementById(btnId);
+      const btnText = document.getElementById(btnTextId);
+      const originalText = btnText.textContent;
+      
+      // Deshabilitar botón
+      submitBtn.disabled = true;
+      btnText.textContent = '⏳ Enviando...';
+      
+      const formData = new FormData(form);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      
+      try {
+        // Track form start
+        trackEvent('form_start');
+        
+        const response = await fetch(`${ADMIN_API_URL}/blog/waitlist`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name,
+            email,
+            source: `article:${ARTICLE_SLUG}`
+          })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+          // Track conversión
+          trackEvent('form_submit', {}, { conversion: true, popup_clicked: formId === 'popupForm' });
+          
+          message.textContent = data.message;
+          message.className = 'form-message success';
+          message.style.display = 'block';
+          form.reset();
+          
+          // Cerrar popup si es del popup
+          if (formId === 'popupForm') {
+            setTimeout(() => {
+              closePopup();
+            }, 2000);
+          }
+        } else {
+          throw new Error(data.error || 'Error al enviar');
+        }
+      } catch (error) {
+        message.textContent = error.message || 'Error al enviar. Inténtalo de nuevo.';
+        message.className = 'form-message error';
+        message.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        btnText.textContent = originalText;
+      }
+    }
+
+    // Form inline
+    document.getElementById('waitlistForm').addEventListener('submit', (e) => {
+      handleWaitlistSubmit(e, 'waitlistForm', 'waitlistMessage', 'waitlistSubmit', 'waitlistSubmitText');
+    });
+
+    // Botón CTA del popup - cerrar y hacer scroll a waitlist
+    document.getElementById('popupCtaBtn').addEventListener('click', () => {
+      closePopup();
+      trackEvent('popup_cta_click', {}, { popup_clicked: true });
+      
+      // Scroll suave hacia la sección de waitlist
+      setTimeout(() => {
+        const waitlistSection = document.getElementById('registro');
+        if (waitlistSection) {
+          waitlistSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300); // Pequeño delay para que se vea el cierre del popup
+    });
+
+    // Track salida
+    window.addEventListener('beforeunload', () => {
+      trackEvent('exit', { time_on_page: timeOnPage, scroll_depth: maxScrollDepth });
+    });
+
+    // FAQs Toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const wasActive = item.classList.contains('active');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+        if (!wasActive) {
+          item.classList.add('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
