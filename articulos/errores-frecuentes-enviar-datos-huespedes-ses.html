@@ -1466,17 +1466,43 @@
           // Track conversión
           trackEvent('form_submit', {}, { conversion: true, popup_clicked: formId === 'popupForm' });
           
-          message.textContent = data.message;
-          message.className = 'form-message success';
+          // Mostrar mensaje de éxito detallado (igual que landing)
           message.style.display = 'block';
+          message.style.background = '#d1fae5';
+          message.style.border = '2px solid #10b981';
+          message.style.borderRadius = '12px';
+          message.style.padding = '24px';
+          message.style.color = '#065f46';
+          message.innerHTML = `
+            <div style="font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #065f46;">
+              ✅ ¡Te hemos agregado a la lista de espera!
+            </div>
+            <p style="margin: 0 0 12px 0; line-height: 1.6;">
+              Te hemos enviado un email de confirmación a <strong>${email}</strong>.
+            </p>
+            <div style="background: #ecfdf5; border-left: 4px solid #10b981; padding: 16px; border-radius: 8px; margin-top: 16px;">
+              <p style="margin: 0 0 8px 0; font-weight: 600; color: #065f46;">📧 Importante: Verifica tu correo</p>
+              <ul style="margin: 8px 0 0 0; padding-left: 20px; line-height: 1.8;">
+                <li>Revisa tu <strong>carpeta de spam o correo no deseado</strong></li>
+                <li>Si encuentras el email ahí, <strong>ábrelo y muévelo a la carpeta principal</strong></li>
+                <li>Si no recibes el email en los próximos minutos, escríbenos a <a href="mailto:contacto@delfincheckin.com" style="color: #2563eb; font-weight: 600;">contacto@delfincheckin.com</a></li>
+              </ul>
+            </div>
+            <p style="margin: 16px 0 0 0; font-size: 14px; color: #059669;">
+              Te notificaremos cuando el PMS esté listo para que puedas empezar a usarlo como early adopter.
+            </p>
+          `;
           
           form.reset();
+          
+          // Scroll suave al mensaje de éxito
+          message.scrollIntoView({ behavior: 'smooth', block: 'center' });
           
           // Cerrar popup si es del popup
           if (formId === 'popupForm') {
             setTimeout(() => {
               closePopup();
-            }, 2000);
+            }, 3000); // Aumentado a 3 segundos para que se lea el mensaje
           }
         } else {
           throw new Error(data.error || 'Error al enviar');
