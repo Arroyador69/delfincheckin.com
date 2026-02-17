@@ -319,10 +319,11 @@
     trackEvent('page_view');
     window.addEventListener('scroll', () => { const p = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100); maxScrollDepth = Math.max(maxScrollDepth, p); });
     setInterval(() => { timeOnPage = Math.floor((Date.now() - sessionStartTime) / 1000); }, 15000);
-    let popupT = setTimeout(() => { if (!popupShown && maxScrollDepth > 50) showPopup(); }, 20000);
-    window.addEventListener('scroll', () => { if (!popupShown && maxScrollDepth > 50) { clearTimeout(popupT); showPopup(); } });
-    function showPopup() { if (popupShown || localStorage.getItem('delfin_popup_closed') === 'true') return; popupShown = true; document.getElementById('popupWaitlist').style.display = 'flex'; trackEvent('popup_view'); }
-    function closePopup() { document.getElementById('popupWaitlist').style.display = 'none'; localStorage.setItem('delfin_popup_closed', 'true'); trackEvent('popup_close'); }
+    const POPUP_STORAGE_KEY = 'delfin_popup_closed_article_' + ARTICLE_SLUG;
+    let popupT = setTimeout(() => { if (!popupShown) showPopup(); }, 10000);
+    window.addEventListener('scroll', () => { if (!popupShown && maxScrollDepth >= 50) { clearTimeout(popupT); showPopup(); } });
+    function showPopup() { if (popupShown || localStorage.getItem(POPUP_STORAGE_KEY) === 'true') return; popupShown = true; var el = document.getElementById('popupWaitlist'); if (el) { el.style.display = 'flex'; el.classList.add('show'); } trackEvent('popup_view'); }
+    function closePopup() { var el = document.getElementById('popupWaitlist'); if (el) { el.style.display = 'none'; el.classList.remove('show'); } localStorage.setItem(POPUP_STORAGE_KEY, 'true'); trackEvent('popup_close'); }
     document.getElementById('closePopup').addEventListener('click', closePopup);
     document.getElementById('popupWaitlist').addEventListener('click', function(e) { if (e.target === this) closePopup(); });
     document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
