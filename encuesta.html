@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Encuesta Delfín Check-in · Lista de espera</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%);
+      min-height: 100vh;
+      padding: 24px 16px;
+      color: #0f172a;
+    }
+    .container { max-width: 640px; margin: 0 auto; }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 32px 24px;
+      box-shadow: 0 20px 60px rgba(37, 99, 235, 0.25);
+    }
+    .header {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 24px;
+    }
+    .header .logo { font-size: 48px; margin-bottom: 8px; }
+    .header h1 { font-size: 24px; font-weight: 800; margin: 0; text-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .header p { margin: 8px 0 0; opacity: 0.95; font-size: 16px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-weight: 600; color: #0f172a; margin-bottom: 8px; font-size: 15px; }
+    .form-group .hint { font-size: 13px; color: #64748b; font-weight: 400; margin-top: 4px; }
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid rgba(15,23,42,.2);
+      border-radius: 12px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    textarea { min-height: 80px; resize: vertical; }
+    .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .radio-group label, .checkbox-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+    .radio-group input:checked + label,
+    .radio-group label:has(input:checked),
+    .checkbox-group label:has(input:checked) {
+      background: #f0f9ff;
+      border-color: #2563eb;
+      color: #1d4ed8;
+    }
+    .radio-group input, .checkbox-group input { margin: 0; }
+    .plans-summary {
+      background: #f0f9ff;
+      border-left: 4px solid #2563eb;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .plans-summary h4 { margin: 0 0 12px; color: #1e40af; font-size: 16px; }
+    .plans-summary ul { margin: 0; padding-left: 20px; }
+    .plans-summary li { margin-bottom: 6px; }
+    .submit-btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 16px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+    .submit-btn:hover { filter: brightness(1.05); }
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+    .message { padding: 16px; border-radius: 12px; margin-top: 16px; display: none; }
+    .message.success { background: #dcfce7; border: 1px solid #22c55e; color: #166534; }
+    .message.error { background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; }
+    .footer { text-align: center; margin-top: 24px; color: rgba(255,255,255,0.9); font-size: 14px; }
+    .footer a { color: #fff; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🐬</div>
+      <h1>Encuesta Delfín Check-in</h1>
+      <p>Menos de 2 minutos. Tu opinión nos ayuda a mejorar el software.</p>
+    </div>
+    <div class="card">
+      <form id="surveyForm">
+        <input type="hidden" id="tid" name="tid" value="" />
+
+        <div class="form-group" id="emailGroup" style="display: none;">
+          <label for="email">Email (requerido si no has llegado desde el correo)</label>
+          <input type="email" name="email" id="email" placeholder="tu@email.com" />
+        </div>
+
+        <div class="form-group">
+          <label><input type="checkbox" name="want_beta" id="want_beta" value="true" /> ¿Te gustaría probar Delfín Check-in en acceso avanzado y darnos feedback?</label>
+        </div>
+
+        <div class="form-group">
+          <label for="properties_count">¿Cuántas propiedades o habitaciones gestionas (o gestionarías)?</label>
+          <div class="radio-group" id="properties_count">
+            <label><input type="radio" name="properties_count" value="1-2" /> 1-2</label>
+            <label><input type="radio" name="properties_count" value="3-5" /> 3-5</label>
+            <label><input type="radio" name="properties_count" value="6-10" /> 6-10</label>
+            <label><input type="radio" name="properties_count" value="more" /> Más de 10</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="what_features">¿Qué te gustaría que tuviera el software? (opcional)</label>
+          <textarea name="what_features" id="what_features" placeholder="Ej: sincronización con Airbnb, informes de ocupación..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Tipo de alojamiento</label>
+          <div class="radio-group">
+            <label><input type="radio" name="accommodation_type" value="Apartamento" /> Apartamento</label>
+            <label><input type="radio" name="accommodation_type" value="Casa" /> Casa</label>
+            <label><input type="radio" name="accommodation_type" value="Habitación" /> Habitación</label>
+            <label><input type="radio" name="accommodation_type" value="Varios" /> Varios</label>
+            <label><input type="radio" name="accommodation_type" value="Otro" /> Otro</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Tienes ya reservas directas (fuera de Airbnb/Booking)?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="has_direct_reservations" value="Sí" /> Sí</label>
+            <label><input type="radio" name="has_direct_reservations" value="No" /> No</label>
+            <label><input type="radio" name="has_direct_reservations" value="Próximamente" /> Próximamente</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="current_software">¿Qué software de gestión usas ahora? (opcional)</label>
+          <input type="text" name="current_software" id="current_software" placeholder="Nombre del PMS o channel manager" />
+        </div>
+
+        <div class="form-group">
+          <label>¿Cuánto pagas al mes por ese software? (opcional)</label>
+          <div class="radio-group">
+            <label><input type="radio" name="current_monthly_pay" value="No pago / 0 €" /> No pago / 0 €</label>
+            <label><input type="radio" name="current_monthly_pay" value="1-20 €" /> 1-20 €</label>
+            <label><input type="radio" name="current_monthly_pay" value="21-50 €" /> 21-50 €</label>
+            <label><input type="radio" name="current_monthly_pay" value="51-100 €" /> 51-100 €</label>
+            <label><input type="radio" name="current_monthly_pay" value="Más de 100 €" /> Más de 100 €</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Resumen de planes (qué incluye cada uno)</label>
+          <div class="plans-summary">
+            <h4>📌 Plan Básico — 0 €/mes</h4>
+            <ul>
+              <li>Hasta 2 propiedades. Con anuncios.</li>
+              <li>Formulario y listado de viajeros. Descarga XML (subida manual al Ministerio). Reservas directas (9% comisión). Sin envío automático MIR.</li>
+            </ul>
+            <h4>📌 Plan Check-in — 2 €/mes + 2 € por propiedad</h4>
+            <ul>
+              <li>Propiedades ilimitadas (cada una suma 2 €/mes). Con anuncios.</li>
+              <li>Envío automático al Ministerio (MIR). Check-in digital. Reservas directas (9% comisión).</li>
+            </ul>
+            <h4>📌 Plan Standard — 9,99 €/mes</h4>
+            <ul>
+              <li>4 propiedades incluidas; a partir de la 5.ª, +2 €/mes cada una. Sin anuncios.</li>
+              <li>Todo lo del Check-in. Reservas directas (9% comisión).</li>
+            </ul>
+            <h4>📌 Plan Pro — 29,99 €/mes</h4>
+            <ul>
+              <li>6 propiedades incluidas; a partir de la 7.ª, +2 €/mes cada una. Sin anuncios.</li>
+              <li>Todo lo del Standard. Reservas directas con solo <strong>5% comisión</strong>. Soporte prioritario.</li>
+            </ul>
+          </div>
+          <label for="plan_choice">Con lo que ofrecemos arriba, ¿cuál elegirías hoy?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="plan_choice" value="Básico" /> Básico</label>
+            <label><input type="radio" name="plan_choice" value="Check-in" /> Check-in</label>
+            <label><input type="radio" name="plan_choice" value="Standard" /> Standard</label>
+            <label><input type="radio" name="plan_choice" value="Pro" /> Pro</label>
+            <label><input type="radio" name="plan_choice" value="No estoy seguro" /> No estoy seguro</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>¿Te parece el precio…?</label>
+          <div class="radio-group">
+            <label><input type="radio" name="price_perception" value="Muy barato" /> Muy barato</label>
+            <label><input type="radio" name="price_perception" value="Adecuado" /> Adecuado</label>
+            <label><input type="radio" name="price_perception" value="Un poco caro" /> Un poco caro</label>
+            <label><input type="radio" name="price_perception" value="Muy caro" /> Muy caro</label>
+            <label><input type="radio" name="price_perception" value="No sé aún" /> No sé aún</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="comments">¿Algo más que quieras comentarnos? (opcional)</label>
+          <textarea name="comments" id="comments" placeholder="Cualquier sugerencia o duda..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">Enviar encuesta</button>
+        <div id="message" class="message"></div>
+      </form>
+    </div>
+    <p class="footer">
+      <a href="https://delfincheckin.com">delfincheckin.com</a> · Delfín Check-in
+    </p>
+  </div>
+
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var tid = params.get('tid') || '';
+      document.getElementById('tid').value = tid;
+      if (!tid) document.getElementById('emailGroup').style.display = 'block';
+
+      function val(name) {
+        var el = document.querySelector('input[name="' + name + '"]:checked');
+        return el ? el.value : null;
+      }
+
+      document.getElementById('surveyForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('submitBtn');
+        var msg = document.getElementById('message');
+        btn.disabled = true;
+        msg.style.display = 'none';
+
+        var form = e.target;
+        var wantBeta = form.want_beta && form.want_beta.checked;
+        var answers = {
+          want_beta: wantBeta,
+          properties_count: val('properties_count'),
+          what_features: (form.what_features && form.what_features.value.trim()) || null,
+          accommodation_type: val('accommodation_type'),
+          has_direct_reservations: val('has_direct_reservations'),
+          current_software: (form.current_software && form.current_software.value.trim()) || null,
+          current_monthly_pay: val('current_monthly_pay'),
+          plan_choice: val('plan_choice'),
+          price_perception: val('price_perception'),
+          comments: (form.comments && form.comments.value.trim()) || null
+        };
+
+        var emailVal = form.email && form.email.value.trim();
+        if (!tid && !emailVal) {
+          msg.style.display = 'block';
+          msg.className = 'message error';
+          msg.textContent = 'Indica tu email si no has llegado desde el correo.';
+          btn.disabled = false;
+          return;
+        }
+
+        var payload = {
+          tid: tid || undefined,
+          email: emailVal || undefined,
+          answers: answers
+        };
+
+        fetch('https://admin.delfincheckin.com/api/waitlist/survey', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function(r) { return r.json(); })
+          .then(function(data) {
+            msg.style.display = 'block';
+            if (data.success) {
+              msg.className = 'message success';
+              msg.textContent = 'Gracias por completar la encuesta. Tu opinión nos ayuda mucho.';
+            } else {
+              msg.className = 'message error';
+              msg.textContent = data.error || 'Error al enviar. Inténtalo de nuevo.';
+              btn.disabled = false;
+            }
+          })
+          .catch(function() {
+            msg.style.display = 'block';
+            msg.className = 'message error';
+            msg.textContent = 'Error de conexión. Inténtalo de nuevo.';
+            btn.disabled = false;
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
