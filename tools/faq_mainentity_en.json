@@ -1,0 +1,170 @@
+[
+  {
+    "@type": "Question",
+    "name": "Is it really free?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, the Free (Basic) plan is completely free. It is funded by tasteful, unobtrusive ads in the admin panel. There are no hidden fees, and you never need to cancel because we will never charge you for the basic plan. Early users get permanent access with no monthly fee. Includes: reservation management, rooms, data export, admin panel and mobile app (coming soon). Not included: the digital check-in module (submission to the Spanish Ministry of the Interior), which is always €8/month. You never need to enter a credit card for the basic plan—no tricks or fine print."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How does the digital check-in module work?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The digital check-in module lets guests complete their details before arrival and automatically submits records to the Spanish Ministry of the Interior under current rules (RD 933/2021). It is included in the Check-in plan (from €2/month + €2 per property), Standard (€9.99/month, 1 property included + €2 per extra) and Pro (€29.99/month, 1 property included + €2 per extra). Includes: digital check-in form, automatic Ministry submission, compliance-focused workflow and priority support."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How does online check-in work?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Copy the link from the “Registrations” or “Forms” section of your dashboard and send it to guests. You can add it to Airbnb or Booking message templates so guests receive it automatically when a booking is made. You confirm receipt and then send check-in instructions and house rules. The traveller completes their data, uploads documents and signs if needed, in their own language. On arrival you mainly verify identity and hand over keys."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I export data for my accountant and tax return?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. You can download a single CSV/Excel file with revenue, fees and occupancy filtered by date range or tax year. The PMS includes full reservation and room management at no charge on the free tier."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How does traveller registration work?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Traveller registration with automatic Ministry submission is available on the Check-in plan (from €2/month + €2/property), Standard (€9.99/month) and Pro (€29.99/month). You can confirm that the guest has completed the data and that both the Traveller Report (PV) and Lodging Reservation (RH) have been sent to the Spanish Ministry of the Interior—required under RD 933/2021."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What languages does the system support?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The panel and management experience are available in five languages: Spanish, French, English, Italian and Portuguese. The guest check-in form is also translated so travellers can complete their details in their language."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What does the free plan include and exclude?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Basic plan (€0/month): up to 1 property, traveller form and list, XML download, direct bookings (9% fee), ad-funded. Does not include automatic Ministry submission. For full legal compliance: Check-in (€2/month + €2/property), Standard (€9.99/month, 1 property included + €2/extra) or Pro (€29.99/month, 1 property included + €2/extra, 5% fee on direct bookings)."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How secure is my guests’ data?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We comply with GDPR and Spanish data-protection law. Data is stored on secure EU servers with encryption in transit and at rest. We run daily backups and use security practices including two-factor authentication options and 24/7 monitoring."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I customise the check-in form?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No, the form is not customisable, but it is complete for regulatory requirements. If you need something else or something is unclear, write to contacto@delfincheckin.com and we will be happy to help."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I export my data?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, you can export all your data in CSV/Excel for accounting, tax filing or any other use. Data is always available to export without restrictions."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What if I have no internet?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The system works offline: guests can complete check-in without a connection and data syncs automatically when connectivity returns. Information is stored locally so no registration is lost."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Is there a limit on guests or bookings?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "There are no limits on guests, bookings or queries. Our plans are based on the number of properties, not transaction volume. You can run a small apartment or a large hotel with the same functionality."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "When will the check-in module be available?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "As soon as the free PMS version launches you will be able to subscribe to this module too. We will email you when it is ready so you can start using it immediately."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I try the system?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Sign up with your email and access the free Basic plan (up to 1 property). Paid plans: Check-in (€2/month + €2/property), Standard (€9.99/month, 1 property included + €2/extra) and Pro (€29.99/month, 1 property included + €2/extra, 5% fee on direct bookings). Paid plans include automatic Ministry of the Interior submission."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What technical support is included?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "We include email support. Queries are answered within 24–48 hours at most. We are here to help with any question or issue."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Do you have a referral programme?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, we have a referral programme for owners using Delfín Check-in. Refer other owners and earn free months on our plans. Examples: 5 registered referrals = 1 free month of Check-in; 1 referral who pays for Check-in = 1 free month of Check-in; 3 active referrals on Check-in = 1 free month of Pro; 5 active referrals on Pro = 2 free months of Pro. Rewards apply as time credits deducted before any monthly charge."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Do you have an affiliate programme?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, we have an affiliate programme open to everyone (you do not need to be an owner). Refer Delfín Check-in and earn 30% recurring monthly commission for each active customer you refer (Check-in, Standard and Pro). Commissions are paid automatically to your bank each month while customers stay active. Ideal for blogs, influencers and businesses."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "What is the difference between referrals and affiliates?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The main difference is who can join and how you are rewarded. Referrals: for owners using Delfín Check-in; you earn free months (time credits) off your bill, based on referrals and plans they buy; managed from your admin panel. Affiliates: open to everyone; 30% recurring cash commission; payouts to your bank; ideal for blogs, influencers and companies."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "Can I join both programmes at once?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes, if you meet the requirements. If you are an owner using Delfín Check-in, you can use referrals for free months and affiliates for cash commission. You cannot refer the same person to both programmes—each person is linked to one programme only. If you are not an owner, you can only join the affiliate programme."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "When do I start earning rewards or commissions?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Referrals: rewards (free months) are granted automatically when conditions are met. Affiliates: commissions start when a referred customer pays for a paid plan (Check-in or Pro). You receive 30% recurring commission each month while they stay active. Payouts go to your bank once configured. Note: we are in pre-launch; programmes will be fully active when the PMS officially launches."
+    }
+  },
+  {
+    "@type": "Question",
+    "name": "How do I get my referral or affiliate link?",
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Referral link: if you are an owner using Delfín Check-in, you will get your unique referral link from the Referrals section in your admin panel when we launch. Affiliate link: register for the affiliate programme; you will get a personal dashboard with your unique link (e.g. affiliates.delfincheckin.com). Both links track sign-ups for rewards or commissions."
+    }
+  }
+]
