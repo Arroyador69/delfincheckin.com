@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <meta name="theme-color" content="#44c0ff" />
+    <title>Delfín Check-in · Signup</title>
+    <meta
+      name="description"
+      content="Create your Delfín Check-in account. Join the waitlist and receive access when available."
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: radial-gradient(1200px 800px at 20% 20%, #e0f2fe 0%, rgba(224, 242, 254, 0) 60%),
+          radial-gradient(900px 600px at 80% 30%, #e9d5ff 0%, rgba(233, 213, 255, 0) 55%),
+          linear-gradient(135deg, #eff6ff 0%, #eef2ff 40%, #f5f3ff 100%);
+      }
+      .card {
+        width: 100%;
+        max-width: 520px;
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        box-shadow: 0 30px 70px rgba(2, 8, 23, 0.15);
+      }
+      .header {
+        padding: 26px 28px;
+        text-align: center;
+        background: linear-gradient(135deg, #44c0ff 0%, #2563eb 100%);
+        color: white;
+      }
+      .header .logo {
+        font-size: 48px;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+      }
+      .header p {
+        margin: 10px 0 0;
+        opacity: 0.92;
+        font-size: 14px;
+        line-height: 1.45;
+        font-weight: 600;
+      }
+      .body {
+        padding: 26px 28px;
+      }
+      label {
+        display: block;
+        font-size: 14px;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 8px;
+      }
+      input {
+        width: 100%;
+        height: 52px;
+        border-radius: 14px;
+        border: 2px solid rgba(15, 23, 42, 0.16);
+        padding: 0 16px;
+        font-size: 16px;
+        color: #0f172a;
+        outline: none;
+        transition: box-shadow 0.15s ease, border-color 0.15s ease;
+        background: #fff;
+      }
+      input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+      .btn {
+        width: 100%;
+        border: none;
+        border-radius: 14px;
+        height: 54px;
+        margin-top: 14px;
+        cursor: pointer;
+        color: white;
+        font-size: 16px;
+        font-weight: 900;
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.35);
+        transition: transform 0.15s ease, opacity 0.15s ease;
+      }
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      .btn:not(:disabled):active {
+        transform: translateY(1px);
+      }
+      .msg {
+        display: none;
+        margin-top: 14px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        font-size: 14px;
+        line-height: 1.45;
+        font-weight: 700;
+      }
+      .msg.ok {
+        display: block;
+        background: #ecfdf5;
+        border: 1px solid #a7f3d0;
+        color: #065f46;
+      }
+      .msg.warn {
+        display: block;
+        background: #fffbeb;
+        border: 1px solid #fcd34d;
+        color: #92400e;
+      }
+      .msg.err {
+        display: block;
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        color: #991b1b;
+      }
+      .footer {
+        padding: 16px 28px 24px;
+        text-align: center;
+        color: #64748b;
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .footer a {
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .footer a:hover {
+        text-decoration: underline;
+      }
+      .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #f1f5f9;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        margin-top: 14px;
+        color: #0f172a;
+        font-weight: 800;
+      }
+      @media (max-width: 420px) {
+        .body,
+        .header,
+        .footer {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <header class="header">
+        <div class="logo">🐬</div>
+        <h1 id="title"></h1>
+        <p id="subtitle"></p>
+      </header>
+
+      <section class="body">
+        <label id="emailLabel" for="email"></label>
+        <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="" />
+
+        <button id="submit" class="btn" type="button"></button>
+
+        <div id="msgOk" class="msg ok"></div>
+        <div id="msgWarn" class="msg warn"></div>
+        <div id="msgErr" class="msg err"></div>
+
+        <div class="pill" id="metaPill" style="display: none;"></div>
+      </section>
+
+      <footer class="footer">
+        <a href="/" id="goHome"></a>
+      </footer>
+    </main>
+
+    <script>
+      const qs = new URLSearchParams(window.location.search);
+      const langRaw = (qs.get('lang') || '').trim().toLowerCase();
+      const source = (qs.get('source') || 'web').trim();
+
+      const lang = (['es', 'en', 'fr', 'it', 'pt'].includes(langRaw) ? langRaw : 'en');
+
+      const copy = {
+        es: {
+          title: 'Crear cuenta',
+          subtitle: 'Déjanos tu email y te enviaremos acceso cuando esté disponible.',
+          emailLabel: 'Email',
+          emailPlaceholder: 'tu@email.com',
+          cta: 'Unirme',
+          ok: 'Listo. Revisa tu email: te avisaremos cuando tengas acceso.',
+          warn: 'Este email ya está en lista de espera o ya tiene cuenta activa.',
+          err: 'No se pudo completar. Inténtalo de nuevo.',
+          home: 'Volver a inicio',
+        },
+        en: {
+          title: 'Create account',
+          subtitle: 'Leave your email and we’ll send you access when it’s available.',
+          emailLabel: 'Email',
+          emailPlaceholder: 'your@email.com',
+          cta: 'Join',
+          ok: 'Done. Check your email—we’ll notify you when you have access.',
+          warn: 'This email is already on the waitlist or has an active account.',
+          err: 'Could not complete. Please try again.',
+          home: 'Back to home',
+        },
+        fr: {
+          title: 'Créer un compte',
+          subtitle: "Laissez votre e-mail et nous vous enverrons l’accès quand il sera disponible.",
+          emailLabel: 'E-mail',
+          emailPlaceholder: 'votre@email.com',
+          cta: 'Rejoindre',
+          ok: "C’est fait. Vérifiez votre e-mail : nous vous préviendrons quand vous aurez accès.",
+          warn: "Cet e-mail est déjà sur la liste d’attente ou a un compte actif.",
+          err: 'Impossible de terminer. Réessayez.',
+          home: "Retour à l’accueil",
+        },
+        it: {
+          title: 'Crea account',
+          subtitle: "Lascia la tua email e ti invieremo l’accesso quando sarà disponibile.",
+          emailLabel: 'Email',
+          emailPlaceholder: 'tua@email.com',
+          cta: 'Unisciti',
+          ok: 'Fatto. Controlla la tua email: ti avviseremo quando avrai accesso.',
+          warn: 'Questa email è già in lista d’attesa o ha un account attivo.',
+          err: 'Impossibile completare. Riprova.',
+          home: 'Torna alla home',
+        },
+        pt: {
+          title: 'Criar conta',
+          subtitle: 'Deixa o teu email e enviamos o acesso quando estiver disponível.',
+          emailLabel: 'E-mail',
+          emailPlaceholder: 'seu@email.com',
+          cta: 'Aderir',
+          ok: 'Feito. Verifica o teu email: avisamos quando tiveres acesso.',
+          warn: 'Este email já está na lista de espera ou tem conta ativa.',
+          err: 'Não foi possível concluir. Tenta novamente.',
+          home: 'Voltar ao início',
+        },
+      };
+
+      const c = copy[lang];
+      document.documentElement.lang = lang;
+      document.title = `Delfín Check-in · ${c.title}`;
+      document.getElementById('title').textContent = c.title;
+      document.getElementById('subtitle').textContent = c.subtitle;
+      document.getElementById('emailLabel').textContent = c.emailLabel;
+
+      const emailEl = document.getElementById('email');
+      emailEl.placeholder = c.emailPlaceholder;
+
+      const submitEl = document.getElementById('submit');
+      submitEl.textContent = c.cta;
+
+      const goHome = document.getElementById('goHome');
+      goHome.textContent = c.home;
+
+      const msgOk = document.getElementById('msgOk');
+      const msgWarn = document.getElementById('msgWarn');
+      const msgErr = document.getElementById('msgErr');
+      const metaPill = document.getElementById('metaPill');
+
+      function resetMsgs() {
+        msgOk.className = 'msg ok';
+        msgWarn.className = 'msg warn';
+        msgErr.className = 'msg err';
+        msgOk.style.display = 'none';
+        msgWarn.style.display = 'none';
+        msgErr.style.display = 'none';
+        msgOk.textContent = '';
+        msgWarn.textContent = '';
+        msgErr.textContent = '';
+      }
+
+      async function submit() {
+        resetMsgs();
+        const email = String(emailEl.value || '').trim().toLowerCase();
+        if (!email) return;
+
+        submitEl.disabled = true;
+        const prevText = submitEl.textContent;
+        submitEl.textContent = '…';
+
+        try {
+          const res = await fetch('https://admin.delfincheckin.com/api/waitlist', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, source }),
+          });
+
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data && data.success) {
+            msgOk.style.display = 'block';
+            msgOk.textContent = c.ok;
+            metaPill.style.display = 'inline-flex';
+            metaPill.textContent = `${source === 'mobile' ? 'Mobile' : 'Web'} · lang=${lang}`;
+            return;
+          }
+          if (data && (data.alreadyInWaitlist || data.alreadyActivated)) {
+            msgWarn.style.display = 'block';
+            msgWarn.textContent = c.warn;
+            return;
+          }
+          msgErr.style.display = 'block';
+          msgErr.textContent = c.err;
+        } catch (e) {
+          msgErr.style.display = 'block';
+          msgErr.textContent = c.err;
+        } finally {
+          submitEl.disabled = false;
+          submitEl.textContent = prevText;
+        }
+      }
+
+      submitEl.addEventListener('click', submit);
+      emailEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') submit();
+      });
+    </script>
+  </body>
+</html>
+
