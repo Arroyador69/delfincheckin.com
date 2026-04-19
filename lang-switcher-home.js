@@ -1,6 +1,5 @@
 /**
- * Selector de idioma en la portada (index.html / en/index.html).
- * ES + EN = esta web; IT, PT, FR, FI = /landing.html?lang= (misma cobertura que producto).
+ * Selector de idioma en la portada (index en /, /en/, /it/, /pt/, /fr/, /fi/).
  */
 (function () {
   var LANGS = [
@@ -15,13 +14,21 @@
   function detectLang() {
     var p = (location.pathname || '/').replace(/\/$/, '') || '/';
     if (p === '/en' || p.indexOf('/en/') === 0) return 'en';
+    if (p === '/it' || p.indexOf('/it/') === 0) return 'it';
+    if (p === '/pt' || p.indexOf('/pt/') === 0) return 'pt';
+    if (p === '/fr' || p.indexOf('/fr/') === 0) return 'fr';
+    if (p === '/fi' || p.indexOf('/fi/') === 0) return 'fi';
     return 'es';
   }
 
   function hrefFor(code) {
     if (code === 'es') return '/';
     if (code === 'en') return '/en/';
-    return '/landing.html?lang=' + encodeURIComponent(code);
+    if (code === 'it') return '/it/';
+    if (code === 'pt') return '/pt/';
+    if (code === 'fr') return '/fr/';
+    if (code === 'fi') return '/fi/';
+    return '/';
   }
 
   function entryFor(code) {
@@ -97,11 +104,7 @@
       btn.appendChild(sn);
       btn.appendChild(svg);
       btn.addEventListener('click', function () {
-        if (L.code === 'es' && detectLang() === 'es') {
-          setOpen(false);
-          return;
-        }
-        if (L.code === 'en' && detectLang() === 'en') {
+        if (L.code === detectLang()) {
           setOpen(false);
           return;
         }
