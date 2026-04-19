@@ -141,6 +141,7 @@
   <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
+  <link rel="stylesheet" href="/lang-switcher-home.css" />
 
   <!-- Schema.org Structured Data -->
   <script type="application/ld+json">
@@ -1450,10 +1451,15 @@
         <b>Delfín Check‑in</b>
       </div>
       <div class="actions">
-        <nav class="lang-switch" role="navigation" aria-label="Idioma / Language">
-          <a href="/" class="lang-switch__btn lang-switch__btn--active" hreflang="es" lang="es" title="Versión en español"><span aria-hidden="true">🇪🇸</span><span class="lang-switch__code">ES</span></a>
-          <a href="/en/" class="lang-switch__btn" hreflang="en" lang="en" title="English version"><span aria-hidden="true">🇬🇧</span><span class="lang-switch__code">EN</span></a>
-        </nav>
+        <div id="home-lang-root" class="home-lang-wrap">
+          <button type="button" id="home-lang-trigger" aria-expanded="false" aria-haspopup="listbox" aria-label="Cambiar idioma">
+            <svg class="hl-globe" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2"/><path stroke-width="2" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            <span id="home-lang-trigger-full" class="hl-desktop">🇪🇸 Español</span>
+            <span id="home-lang-trigger-mobile" class="hl-mobile" aria-hidden="true">🇪🇸</span>
+            <svg class="hl-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div id="home-lang-dd" role="listbox" aria-labelledby="home-lang-trigger"></div>
+        </div>
         <a class="btn primary" href="#registro">Registro Gratis</a>
         <a class="btn" href="#calendario-limpieza" data-es="Calendario limpieza" data-en="Cleaning calendar">Calendario limpieza</a>
         <a class="btn" href="#caracteristicas">Funciones</a>
@@ -4965,6 +4971,7 @@ ${message}`;
     })();
   </script>
 
+  <script src="/lang-switcher-home.js" defer></script>
   <!-- Landing Page Analytics Tracking -->
   <script src="https://admin.delfincheckin.com/landing-tracking.js"></script>
   

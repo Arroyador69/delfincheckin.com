@@ -1,0 +1,121 @@
+/**
+ * Selector 6 idiomas (misma idea que LanguageSwitcher + landing.html).
+ * Cabecera oscura del marketing site.
+ */
+#home-lang-root {
+  position: relative;
+  z-index: 120;
+}
+#home-lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+}
+#home-lang-trigger:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+#home-lang-trigger:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.hl-globe {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #9fb0d1;
+}
+#home-lang-trigger .hl-chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+#home-lang-trigger.hl-open .hl-chevron {
+  transform: rotate(180deg);
+}
+.hl-desktop {
+  display: none;
+}
+.hl-mobile {
+  display: inline;
+  font-size: 1.05rem;
+  line-height: 1;
+}
+@media (min-width: 640px) {
+  .hl-desktop {
+    display: inline;
+  }
+  .hl-mobile {
+    display: none !important;
+  }
+}
+#home-lang-dd {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 13rem;
+  max-width: min(100vw - 1.5rem, 16rem);
+  background: #0f172a;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 6px 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+#home-lang-dd.hl-open {
+  display: block;
+  animation: homeLangIn 0.18s ease;
+}
+@keyframes homeLangIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.home-lang-opt {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: none;
+  background: none;
+  color: #9fb0d1;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+}
+.home-lang-opt:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+.home-lang-opt.hl-active {
+  background: rgba(68, 192, 255, 0.12);
+  color: var(--brand);
+}
+.home-lang-flag {
+  font-size: 1.15rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.home-lang-check {
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: var(--brand);
+}
