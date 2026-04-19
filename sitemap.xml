@@ -12,6 +12,14 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Landing multilingüe (producto, es/en/it/pt/fr/fi) -->
+  <url>
+    <loc>https://delfincheckin.com/landing.html</loc>
+    <lastmod>2026-04-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- Página de éxito -->
   <url>
     <loc>https://delfincheckin.com/success.html</loc>
