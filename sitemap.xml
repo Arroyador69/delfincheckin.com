@@ -28,14 +28,6 @@
     <priority>0.3</priority>
   </url>
 
-  <!-- Afiliados -->
-  <url>
-    <loc>https://delfincheckin.com/afiliados.html</loc>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-
   <!-- Referidos -->
   <url>
     <loc>https://delfincheckin.com/referidos.html</loc>
