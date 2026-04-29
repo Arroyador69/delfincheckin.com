@@ -54,8 +54,8 @@ def head_and_switch(text: str) -> str:
             'content="Hotel PMS with free Basic plan. Paid plans with Ministry of the Interior submission for Spain."',
         ),
         (
-            'content="Delfín Check-in es un software de gestión hotelera (PMS) con Plan Básico gratuito. Los primeros usuarios tienen acceso permanente sin coste mensual. Incluye gestión de reservas, habitaciones, exportación de datos y panel de administración. El módulo de check-in digital con envío al Ministerio del Interior cuesta 8€/mes."',
-            'content="Delfín Check-in is a hotel PMS with a free Basic plan. Early users keep permanent free basic access. Includes reservations, rooms, exports and admin panel. Digital check-in with Ministry submission is €8/month."',
+            'content="Delfín Check-in es un software de gestión hotelera (PMS) con Plan Básico gratuito. Los primeros usuarios tienen acceso permanente sin coste mensual. Incluye gestión de reservas, habitaciones, exportación de datos y panel de administración. El módulo de check-in digital con envío al Ministerio del Interior cuesta 2€/mes."',
+            'content="Delfín Check-in is a hotel PMS with a free Basic plan. Early users keep permanent free basic access. Includes reservations, rooms, exports and admin panel. Digital check-in with Ministry submission is €2/month."',
         ),
         ('<meta http-equiv="content-language" content="es-ES">', '<meta http-equiv="content-language" content="en">'),
         ('<meta name="language" content="Spanish">', '<meta name="language" content="English">', 2),
@@ -720,8 +720,8 @@ REPLACEMENTS: list[tuple[str, str]] = [
     (">Gestionar Cookies</button>", ">Cookie settings</button>"),
     ("<a href=\"#registro\" style=\"color: var(--brand);\">Registro Gratis</a>", "<a href=\"#registro\" style=\"color: var(--brand);\">Free sign-up</a>"),
     (
-        "El Plan Gratuito (Básico) se financia con anuncios elegantes y discretos. El Plan Check-in tiene un coste de 8€/mes. Sin costes ocultos.",
-        "The free Basic plan is ad-funded. The Check-in plan is €8/mo. No hidden fees.",
+        "El Plan Gratuito (Básico) se financia con anuncios elegantes y discretos. El Plan Check-in tiene un coste de 2€/mes. Sin costes ocultos.",
+        "The free Basic plan is ad-funded. The Check-in plan is €2/mo. No hidden fees.",
     ),
     (
         "<strong style=\"color: var(--brand);\">ℹ️ Aviso Legal:</strong> Delfín Check-in se reserva el derecho de modificar las funcionalidades incluidas en cada plan. El servicio mantendrá la disponibilidad de un plan gratuito sin coste mensual, con funcionalidades básicas, conforme a los Términos de Servicio vigentes en cada momento.",

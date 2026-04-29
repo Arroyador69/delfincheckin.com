@@ -39,7 +39,7 @@ Cada artículo DEBE tener EXACTAMENTE los mismos elementos visuales y funcionale
 - 🌐 Microsite para reservas directas
 - 💡 Financiado con anuncios
 - 🎁 Los primeros usuarios: acceso permanente sin coste mensual
-- ❌ **No incluye:** Check-in digital (8€/mes) ni envío al Ministerio del Interior
+- ❌ **No incluye:** Check-in digital (2€/mes) ni envío al Ministerio del Interior
 
 ### 2. POPUP DE WAITLIST
 
