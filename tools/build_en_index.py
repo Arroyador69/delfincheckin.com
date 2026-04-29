@@ -354,8 +354,8 @@ REPLACEMENTS: list[tuple[str, str]] = [
         "<div class=\"check\"><i>✔</i> <strong>Booking engine</strong> — Manage reservations from an intuitive panel</div>",
     ),
     (
-        "<div class=\"check\"><i>✔</i> <strong>5 idiomas</strong> - Español, francés, inglés, italiano y portugués en el panel</div>",
-        "<div class=\"check\"><i>✔</i> <strong>5 languages</strong> — Spanish, French, English, Italian and Portuguese in the panel</div>",
+        "<div class=\"check\"><i>✔</i> <strong>6 idiomas</strong> - Español, francés, inglés, italiano, portugués y finés en el panel</div>",
+        "<div class=\"check\"><i>✔</i> <strong>6 languages</strong> — Spanish, French, English, Italian, Portuguese and Finnish in the panel</div>",
     ),
     (
         "<div class=\"check\"><i>✔</i> <strong>Check-in digital</strong> - Envío al Ministerio del Interior (desde 2€/mes + 2€/propiedad)</div>",
@@ -640,8 +640,8 @@ REPLACEMENTS: list[tuple[str, str]] = [
         "<li><strong>✅ Reservations</strong> — Manage everything from an intuitive panel</li>",
     ),
     (
-        "<li><strong>✅ Interfaz en 5 idiomas</strong> - Español, francés, inglés, italiano y portugués</li>",
-        "<li><strong>✅ 5-language UI</strong> — Spanish, French, English, Italian and Portuguese</li>",
+        "<li><strong>✅ Interfaz en 6 idiomas</strong> - Español, francés, inglés, italiano, portugués y finés</li>",
+        "<li><strong>✅ 6-language UI</strong> — Spanish, French, English, Italian, Portuguese and Finnish</li>",
     ),
     (
         "<li><strong>✅ Gestión de habitaciones o propiedades</strong> - Controla tu inventario</li>",
