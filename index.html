@@ -1440,7 +1440,7 @@
           </button>
           <div id="home-lang-dd" role="listbox" aria-labelledby="home-lang-trigger"></div>
         </div>
-        <a class="btn primary" href="#registro">Registro Gratis</a>
+        <a class="btn primary" href="#registro" data-landing-free-toggle="1">Registro Gratis</a>
         <a class="btn" href="#calendario-limpieza" data-es="Calendario limpieza" data-en="Cleaning calendar">Calendario limpieza</a>
         <a class="btn" href="#caracteristicas">Funciones</a>
       </div>
@@ -1542,7 +1542,7 @@
           </div>
 
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;">
-            <a href="#registro" class="btn primary" style="text-decoration:none;">Quiero mi microsite</a>
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="text-decoration:none;">Quiero mi microsite</a>
             <a href="#caracteristicas" class="btn" style="text-decoration:none;">Ver más funciones</a>
           </div>
         </div>
@@ -1683,7 +1683,7 @@
           </ul>
 
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;">
-            <a href="#registro" class="btn primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
               <span>📥</span>
               <span>Disponible en iOS y Android</span>
             </a>
@@ -2159,7 +2159,7 @@
           <p style="margin: 0 0 24px; color: #64748b; font-size: 16px;">
             Regístrate ahora y sé de los primeros en recibir acceso a la app móvil cuando lancemos.
           </p>
-          <a href="#registro" class="btn primary" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
+          <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
             🚀 Quiero probar la app
           </a>
         </div>
@@ -2271,7 +2271,7 @@
             <li>❌ Envío automático MIR (no incluido)</li>
           </ul>
           <div class="cta" style="margin-top: 24px;">
-            <a href="#registro" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Empezar Gratis</a>
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Empezar Gratis</a>
           </div>
         </article>
 
@@ -2353,7 +2353,8 @@
       </div>
     </section>
     <!-- Plan gratuito: email → onboarding -->
-    <section id="registro" class="section container" style="max-width: 640px; margin: 48px auto;">
+    <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
+    <section class="section container">
       <div class="card" style="padding: 28px;">
         <h2 style="margin-top: 0; font-size: 26px;">Empezar con el plan gratuito</h2>
         <p class="lead" style="margin-bottom: 20px;">Introduce tu email y te enviamos el enlace para activar tu cuenta y completar el onboarding.</p>
@@ -2374,6 +2375,40 @@
         </form>
       </div>
     </section>
+    </div>
+
+    <script data-landing-free-collapse>
+    (function () {
+      var panel = document.getElementById('registro');
+      if (!panel || !panel.classList.contains('landing-free-signup-wrap')) return;
+      var toggles = document.querySelectorAll('[data-landing-free-toggle]');
+      function openPanel() {
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        toggles.forEach(function (t) {
+          t.setAttribute('aria-expanded', 'true');
+        });
+        try {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (e) {
+          panel.scrollIntoView(true);
+        }
+        var input = document.getElementById('landingFreeSignupEmail');
+        if (input) window.setTimeout(function () {
+          input.focus();
+        }, 350);
+      }
+      toggles.forEach(function (el) {
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-controls', 'registro');
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+      if (location.hash === '#registro') openPanel();
+    })();
+    </script>
 
 <!-- Formulario de Contacto -->
     <section id="contacto" class="section container">
@@ -2837,7 +2872,7 @@
         </div>
         <div style="border-top: 1px solid var(--border); padding-top: 15px; text-align: center; color: var(--muted);">
           <p style="margin: 0 0 12px; font-size: 14px;">
-            © <span id="year"></span> Delfín Check‑in · <a href="#registro" style="color: var(--brand);">Registro Gratis</a>
+            © <span id="year"></span> Delfín Check‑in · <a href="#registro" data-landing-free-toggle="1" style="color: var(--brand);">Registro Gratis</a>
           </p>
           <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
             <a href="politica-privacidad.html" style="color: var(--brand); margin: 0 8px;">Política de Privacidad</a> ·

@@ -1420,7 +1420,7 @@
 </button>
 <div aria-labelledby="home-lang-trigger" id="home-lang-dd" role="listbox"></div>
 </div>
-<a class="btn primary" href="#registro">Inscription gratuite</a>
+<a class="btn primary" href="#registro" data-landing-free-toggle="1">Inscription gratuite</a>
 <a class="btn" href="#calendario-limpieza">Calendrier de nettoyage</a>
 <a class="btn" href="#caracteristicas">Caractéristiques</a>
 </div>
@@ -1511,7 +1511,7 @@
 </div>
 </div>
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;">
-<a class="btn primary" href="#registro" style="text-decoration:none;">Je veux mon microsite</a>
+<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="text-decoration:none;">Je veux mon microsite</a>
 <a class="btn" href="#caracteristicas" style="text-decoration:none;">Plus de fonctionnalités</a>
 </div>
 </div>
@@ -1630,7 +1630,7 @@
 </li>
 </ul>
 <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;">
-<a class="btn primary" href="#registro" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
+<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
 <span>📥</span>
 <span>Disponible sur iOS et Android</span>
 </a>
@@ -2075,7 +2075,7 @@
 <div style="text-align: center; padding: 32px; background: white; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
 <h3 style="margin: 0 0 12px; font-size: 24px; font-weight: 700; color: #0f172a;">Vous voulez un accès anticipé ?</h3>
 <p style="margin: 0 0 24px; color: #64748b; font-size: 16px;">Inscrivez-vous maintenant pour être parmi les premiers à essayer l'application mobile dès son lancement.</p>
-<a class="btn primary" href="#registro" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">🚀 Je souhaite un accès anticipé à l'application</a>
+<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">🚀 Je souhaite un accès anticipé à l'application</a>
 </div>
 </div>
 </section>
@@ -2154,7 +2154,7 @@
 <li>❌ Soumission MIR automatique (non incluse)</li>
 </ul>
 <div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="#registro" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Commencez gratuitement</a>
+<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Commencez gratuitement</a>
 </div>
 </article>
 <!-- Plan Check-in -->
@@ -2232,7 +2232,8 @@
 </div>
 </section>
     <!-- Plan gratuit : e-mail → onboarding -->
-    <section id="registro" class="section container" style="max-width: 640px; margin: 48px auto;">
+    <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
+    <section class="section container">
       <div class="card" style="padding: 28px;">
         <h2 style="margin-top: 0; font-size: 26px;">Commencer avec le plan gratuit</h2>
         <p class="lead" style="margin-bottom: 20px;">Saisissez votre e-mail : nous vous enverrons un lien pour activer votre compte et terminer l’onboarding.</p>
@@ -2253,6 +2254,40 @@
         </form>
       </div>
     </section>
+    </div>
+
+    <script data-landing-free-collapse>
+    (function () {
+      var panel = document.getElementById('registro');
+      if (!panel || !panel.classList.contains('landing-free-signup-wrap')) return;
+      var toggles = document.querySelectorAll('[data-landing-free-toggle]');
+      function openPanel() {
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        toggles.forEach(function (t) {
+          t.setAttribute('aria-expanded', 'true');
+        });
+        try {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (e) {
+          panel.scrollIntoView(true);
+        }
+        var input = document.getElementById('landingFreeSignupEmail');
+        if (input) window.setTimeout(function () {
+          input.focus();
+        }, 350);
+      }
+      toggles.forEach(function (el) {
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-controls', 'registro');
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+      if (location.hash === '#registro') openPanel();
+    })();
+    </script>
 
 <!-- Formulario de Contacto -->
 <section class="section container" id="contacto">
@@ -2578,7 +2613,7 @@
 </div>
 <div style="border-top: 1px solid var(--border); padding-top: 15px; text-align: center; color: var(--muted);">
 <p style="margin: 0 0 12px; font-size: 14px;">
-            © <span id="year"></span>Delfin Enregistrement ·<a href="#registro" style="color: var(--brand);">Inscription gratuite</a>
+            © <span id="year"></span>Delfin Enregistrement ·<a href="#registro" data-landing-free-toggle="1" style="color: var(--brand);">Inscription gratuite</a>
 </p>
 <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
 <a href="politica-privacidad.html" style="color: var(--brand); margin: 0 8px;">Politique de confidentialité</a> ·

@@ -1415,7 +1415,7 @@
           <a href="/" class="lang-switch__btn" hreflang="es" lang="es" title="Versión en español"><span aria-hidden="true">🇪🇸</span><span class="lang-switch__code">ES</span></a>
           <a href="/en/" class="lang-switch__btn lang-switch__btn--active" hreflang="en" lang="en" title="English version"><span aria-hidden="true">🇬🇧</span><span class="lang-switch__code">EN</span></a>
         </nav>
-        <a class="btn primary" href="#registro">Free sign-up</a>
+        <a class="btn primary" href="#registro" data-landing-free-toggle="1">Free sign-up</a>
         <a class="btn" href="#calendario-limpieza">Cleaning calendar</a>
         <a class="btn" href="#caracteristicas">Features</a>
       </div>
@@ -1526,7 +1526,7 @@
           </div>
 
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;">
-            <a href="#registro" class="btn primary" style="text-decoration:none;">I want my microsite</a>
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="text-decoration:none;">I want my microsite</a>
             <a href="#caracteristicas" class="btn" style="text-decoration:none;">More features</a>
           </div>
         </div>
@@ -1664,7 +1664,7 @@
           </ul>
 
           <div style="display:flex; flex-wrap:wrap; gap:12px; margin-top:18px;">
-            <a href="#registro" class="btn primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
               <span>📥</span>
               <span>Available on iOS and Android</span>
             </a>
@@ -2140,7 +2140,7 @@
           <p style="margin: 0 0 24px; color: #64748b; font-size: 16px;">
             Sign up now to be among the first to try the mobile app at launch.
           </p>
-          <a href="#registro" class="btn primary" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
+          <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="display: inline-block; padding: 16px 32px; font-size: 18px; font-weight: 700; text-decoration: none; border-radius: 12px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);">
             🚀 I want early app access
           </a>
         </div>
@@ -2252,7 +2252,7 @@
             <li>❌ Automatic MIR submission (not included)</li>
           </ul>
           <div class="cta" style="margin-top: 24px;">
-            <a href="#registro" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Start free</a>
+            <a href="#registro" data-landing-free-toggle="1" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Start free</a>
           </div>
         </article>
 
@@ -2330,7 +2330,8 @@
       </div>
     </section>
     <!-- Free plan: email → onboarding -->
-    <section id="registro" class="section container" style="max-width: 640px; margin: 48px auto;">
+    <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
+    <section class="section container">
       <div class="card" style="padding: 28px;">
         <h2 style="margin-top: 0; font-size: 26px;">Start with the free plan</h2>
         <p class="lead" style="margin-bottom: 20px;">Enter your email and we will send you a link to activate your account and finish onboarding.</p>
@@ -2351,6 +2352,40 @@
         </form>
       </div>
     </section>
+    </div>
+
+    <script data-landing-free-collapse>
+    (function () {
+      var panel = document.getElementById('registro');
+      if (!panel || !panel.classList.contains('landing-free-signup-wrap')) return;
+      var toggles = document.querySelectorAll('[data-landing-free-toggle]');
+      function openPanel() {
+        panel.removeAttribute('hidden');
+        panel.setAttribute('aria-hidden', 'false');
+        toggles.forEach(function (t) {
+          t.setAttribute('aria-expanded', 'true');
+        });
+        try {
+          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } catch (e) {
+          panel.scrollIntoView(true);
+        }
+        var input = document.getElementById('landingFreeSignupEmail');
+        if (input) window.setTimeout(function () {
+          input.focus();
+        }, 350);
+      }
+      toggles.forEach(function (el) {
+        el.setAttribute('aria-expanded', 'false');
+        el.setAttribute('aria-controls', 'registro');
+        el.addEventListener('click', function (e) {
+          e.preventDefault();
+          openPanel();
+        });
+      });
+      if (location.hash === '#registro') openPanel();
+    })();
+    </script>
 
 <!-- Formulario de Contacto -->
     <section id="contacto" class="section container">
@@ -2791,7 +2826,7 @@
         </div>
         <div style="border-top: 1px solid var(--border); padding-top: 15px; text-align: center; color: var(--muted);">
           <p style="margin: 0 0 12px; font-size: 14px;">
-            © <span id="year"></span> Delfín Check‑in · <a href="#registro" style="color: var(--brand);">Free sign-up</a>
+            © <span id="year"></span> Delfín Check‑in · <a href="#registro" data-landing-free-toggle="1" style="color: var(--brand);">Free sign-up</a>
           </p>
           <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
             <a href="politica-privacidad.html" style="color: var(--brand); margin: 0 8px;">Privacy policy</a> ·
