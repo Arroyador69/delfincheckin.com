@@ -3273,7 +3273,7 @@
       const link = document.createElement('a');
       const url = URL.createObjectURL(blob);
       link.setAttribute('href', url);
-      link.setAttribute('download', `reservas_delfin_checkin_${new Date().toISOString().slice(0,10)}.csv`);
+      link.setAttribute('download', `bokningar_delfin_checkin_${new Date().toISOString().slice(0,10)}.csv`);
       link.style.visibility = 'hidden';
       document.body.appendChild(link);
       link.click();
