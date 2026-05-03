@@ -1,5 +1,5 @@
 /**
- * Selector de idioma en la portada (index en /, /en/, /it/, /pt/, /fr/, /fi/).
+ * Selector de idioma en la portada (index en /, /en/, /it/, /pt/, /fr/, /fi/, /sv/).
  */
 (function () {
   var LANGS = [
@@ -9,6 +9,7 @@
     { code: 'pt', name: 'Português', flag: '🇵🇹' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' },
     { code: 'fi', name: 'Suomi', flag: '🇫🇮' },
+    { code: 'sv', name: 'Svenska', flag: '🇸🇪' },
   ];
 
   function detectLang() {
@@ -18,6 +19,7 @@
     if (p === '/pt' || p.indexOf('/pt/') === 0) return 'pt';
     if (p === '/fr' || p.indexOf('/fr/') === 0) return 'fr';
     if (p === '/fi' || p.indexOf('/fi/') === 0) return 'fi';
+    if (p === '/sv' || p.indexOf('/sv/') === 0) return 'sv';
     return 'es';
   }
 
@@ -28,6 +30,7 @@
     if (code === 'pt') return '/pt/';
     if (code === 'fr') return '/fr/';
     if (code === 'fi') return '/fi/';
+    if (code === 'sv') return '/sv/';
     return '/';
   }
 

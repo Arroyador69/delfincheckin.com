@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Translate en/index.html clones (it/pt/fr/fi) using Google Translate (deep-translator).
-Run from repo root: . .venv-translate/bin/activate && python3 scripts/translate_home.py it
+Run from repo root: . .venv-translate/bin/activate && python3 scripts/translate_home.py it|sv|...
 """
 from __future__ import annotations
 
@@ -199,15 +199,16 @@ LOCALE_META = {
     "pt": ("pt-PT", "pt_PT"),
     "fr": ("fr-FR", "fr_FR"),
     "fi": ("fi-FI", "fi_FI"),
+    "sv": ("sv-SE", "sv_SE"),
 }
 
 
 def main() -> None:
     if len(sys.argv) < 2:
-        print("Usage: translate_home.py <it|pt|fr|fi>")
+        print("Usage: translate_home.py <it|pt|fr|fi|sv>")
         sys.exit(1)
     lang = sys.argv[1].lower()
-    targets = {"it": "it", "pt": "pt", "fr": "fr", "fi": "fi"}
+    targets = {"it": "it", "pt": "pt", "fr": "fr", "fi": "fi", "sv": "sv"}
     if lang not in targets:
         print("Unsupported lang")
         sys.exit(1)
