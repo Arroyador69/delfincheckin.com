@@ -13,7 +13,6 @@
   const SCROLL_THRESHOLDS = [25, 50, 75, 100]; // Porcentajes de scroll a trackear
   const POPUP_DELAY = 10000; // 10 segundos
   const POPUP_SCROLL_THRESHOLD = 50; // Mostrar popup al 50% de scroll
-  const SUBSCRIBE_BASE = 'https://admin.delfincheckin.com';
 
   /** Textos del popup según idioma de la landing (html lang). */
   function popupLangCode() {
@@ -24,7 +23,7 @@
   }
 
   function subscribePageUrl() {
-    return SUBSCRIBE_BASE + '/' + popupLangCode() + '/subscribe?source=landing_popup';
+    return '#planes';
   }
 
   const POPUP_COPY = {
@@ -179,6 +178,125 @@
       });
     }
   });
+
+  const FREE_SIGNUP_MSG = {
+    es: {
+      invalid: 'Introduce un email válido.',
+      ok: '<strong>Revisa tu correo.</strong> Te hemos enviado un enlace para continuar con el onboarding.',
+      err: 'No se pudo completar. Inténtalo de nuevo.',
+      net: 'Error de conexión. Inténtalo más tarde.',
+    },
+    en: {
+      invalid: 'Please enter a valid email.',
+      ok: '<strong>Check your inbox.</strong> We sent you a link to finish onboarding.',
+      err: 'Something went wrong. Try again later.',
+      net: 'Connection error. Try again later.',
+    },
+    it: {
+      invalid: 'Inserisci un’email valida.',
+      ok: '<strong>Controlla la posta.</strong> Ti abbiamo inviato un link per continuare l’onboarding.',
+      err: 'Operazione non riuscita. Riprova.',
+      net: 'Errore di connessione. Riprova più tardi.',
+    },
+    pt: {
+      invalid: 'Introduza um email válido.',
+      ok: '<strong>Verifique o seu email.</strong> Enviámos a ligação para continuar o onboarding.',
+      err: 'Não foi possível concluir. Tente novamente.',
+      net: 'Erro de ligação. Tente mais tarde.',
+    },
+    fr: {
+      invalid: 'Veuillez saisir une adresse e-mail valide.',
+      ok: '<strong>Vérifiez votre boîte mail.</strong> Nous vous avons envoyé un lien pour poursuivre l’onboarding.',
+      err: 'Impossible de terminer. Réessayez.',
+      net: 'Erreur de connexion. Réessayez plus tard.',
+    },
+    fi: {
+      invalid: 'Anna kelvollinen sähköpostiosoite.',
+      ok: '<strong>Tarkista postisi.</strong> Lähetimme linkin onboardingin jatkamiseen.',
+      err: 'Toiminto epäonnistui. Yritä uudelleen.',
+      net: 'Yhteysvirhe. Yritä myöhemmin uudelleen.',
+    },
+    sv: {
+      invalid: 'Ange en giltig e-postadress.',
+      ok: '<strong>Kolla din inkorg.</strong> Vi har skickat en länk för att fortsätta onboarding.',
+      err: 'Det gick inte att slutföra. Försök igen.',
+      net: 'Anslutningsfel. Försök igen senare.',
+    },
+  };
+
+  function setupLandingFreeSignup() {
+    const form = document.getElementById('landingFreeSignupForm');
+    if (!form) return;
+
+    const lang = popupLangCode();
+    const copy = FREE_SIGNUP_MSG[lang] || FREE_SIGNUP_MSG.es;
+
+    form.addEventListener('submit', async function(ev) {
+      ev.preventDefault();
+      const locale = form.getAttribute('data-signup-locale') || 'es';
+      const emailEl = document.getElementById('landingFreeSignupEmail');
+      const nameEl = document.getElementById('landingFreeSignupName');
+      const msg = document.getElementById('landingFreeSignupMessage');
+      const submitBtn = document.getElementById('landingFreeSignupSubmit');
+      const tSubmit = document.getElementById('landingFreeSignupSubmitText');
+      const tLoad = document.getElementById('landingFreeSignupLoading');
+      if (!emailEl || !msg || !submitBtn || !tSubmit || !tLoad) return;
+
+      const email = String(emailEl.value || '').trim();
+      const name = nameEl ? String(nameEl.value || '').trim() : '';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        msg.style.display = 'block';
+        msg.style.background = '#fee2e2';
+        msg.style.color = '#991b1b';
+        msg.textContent = copy.invalid;
+        return;
+      }
+
+      submitBtn.disabled = true;
+      tSubmit.style.display = 'none';
+      tLoad.style.display = 'inline';
+
+      try {
+        const res = await fetch('https://admin.delfincheckin.com/api/public/signup-free', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name: name || undefined, locale }),
+        });
+        const data = await res.json().catch(function() {
+          return {};
+        });
+        msg.style.display = 'block';
+        if (data.success) {
+          msg.style.background = '#d1fae5';
+          msg.style.color = '#065f46';
+          msg.innerHTML = copy.ok;
+          emailEl.value = '';
+          if (nameEl) nameEl.value = '';
+          trackEvent('form_submit', { form_id: 'landing_free_signup' });
+        } else {
+          msg.style.background = '#fee2e2';
+          msg.style.color = '#991b1b';
+          msg.textContent = data.error || copy.err;
+        }
+      } catch (err) {
+        msg.style.display = 'block';
+        msg.style.background = '#fee2e2';
+        msg.style.color = '#991b1b';
+        msg.textContent = copy.net;
+      } finally {
+        submitBtn.disabled = false;
+        tSubmit.style.display = 'inline';
+        tLoad.style.display = 'none';
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupLandingFreeSignup);
+  } else {
+    setupLandingFreeSignup();
+  }
 
   // Trackear inicio de formulario waitlist
   const waitlistForm = document.getElementById('waitlistForm');
