@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Google tag (gtag.js) -->
+  
+<section style="margin: 2.5rem 0;">
+  <div style="text-align:center;margin-bottom:1.25rem;">
+    <h2 style="font-size: 2rem; line-height: 1.2; font-weight: 900; color: #0f172a; margin: 0;">
+      Planes claros y transparentes
+    </h2>
+    <p style="margin: 0.5rem 0 0; color: #475569; font-size: 1rem;">
+      Sin sorpresas, sin letra pequeña. Sabes exactamente qué obtienes y qué cuesta.
+    </p>
+  </div>
+
+  <div style="max-width: 980px; margin: 0 auto; border-radius: 18px; background: #eef6ff; padding: 14px;">
+    <div style="display:flex; justify-content:center; margin-bottom: 12px;">
+      <div style="display:inline-flex; gap: 6px; background:#e2e8f0; padding: 6px; border-radius: 999px;">
+        <button type="button" id="delfin-billing-month" style="border:0; cursor:pointer; padding: 8px 12px; border-radius: 999px; font-weight: 900; font-size: 12px; background:#ffffff; color:#0f172a;">
+          Mensual
+        </button>
+        <button type="button" id="delfin-billing-year" style="border:0; cursor:pointer; padding: 8px 12px; border-radius: 999px; font-weight: 900; font-size: 12px; background:transparent; color:#0f172a;">
+          Anual <span style="opacity:0.8; font-weight:900;">(2 meses gratis)</span>
+        </button>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+      <div style="background:#ffffff;border:3px solid #a7f3d0;border-radius:16px;padding:16px;box-shadow:0 10px 22px rgba(15,23,42,0.08);">
+  <div style="text-align:center;">
+    <div style="display:inline-block; font-size: 11px; font-weight: 900; padding: 6px 10px; border-radius: 999px; background: #e2e8f0; color:#0f172a; margin-bottom: 10px;">Plan Gratis</div>
+    <div style="font-size: 18px; font-weight: 950; color:#0f172a; margin: 0;">Plan Básico</div>
+    <div style="margin-top: 10px;">
+      <span style="font-size: 40px; font-weight: 950; color:#0f172a;">0€</span>
+      <span style="color:#475569; font-weight: 800; font-size: 13px;">/mes</span>
+    </div>
+    <div style="margin-top: 8px; color:#475569; font-size: 13px; font-weight: 700;">Hasta 1 propiedad. Con anuncios.</div>
+  </div>
+  <ul style="list-style:none; padding: 14px 0 0 0; margin: 14px 0 0 0; border-top: 1px solid #e2e8f0;">
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Formulario y listado de viajeros</li>
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Descarga XML (subida manual al Ministerio)</li>
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Reservas directas (9% comisión)</li>
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Anuncios discretos</li>
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">❌ Envío automático MIR (no incluido)</li>
+  </ul>
+
+  <button type="button" id="delfin-free-toggle" style="width:100%; margin-top: 14px; text-align:center; background:#16a34a; color:#fff; padding: 12px 14px; border-radius: 12px; font-weight: 900; border: 0; cursor: pointer;">
+    Empezar Gratis
+  </button>
+
+  <div id="delfin-free-form-wrap" style="display:none; margin-top: 12px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+    <label for="delfin-free-email" style="display:block; font-weight: 900; font-size: 13px; color:#0f172a; margin-bottom: 6px;">Email</label>
+    <input id="delfin-free-email" type="email" placeholder="tu@email.com" style="width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 12px; border: 2px solid #cbd5e1; font-size: 14px;" />
+    <button type="button" id="delfin-free-submit" style="width:100%; margin-top: 10px; text-align:center; background:#0f172a; color:#fff; padding: 12px 14px; border-radius: 12px; font-weight: 900; border: 0; cursor: pointer;">
+      Enviar acceso por email
+    </button>
+    <div id="delfin-free-msg" style="margin-top: 10px; font-size: 12px; color:#334155;"></div>
+  </div>
+
+  <script>
+    (function(){
+      try {
+        var toggle = document.getElementById('delfin-free-toggle');
+        var wrap = document.getElementById('delfin-free-form-wrap');
+        var email = document.getElementById('delfin-free-email');
+        var submit = document.getElementById('delfin-free-submit');
+        var msg = document.getElementById('delfin-free-msg');
+        if (!toggle || !wrap || !email || !submit || !msg) return;
+
+        toggle.addEventListener('click', function() {
+          wrap.style.display = wrap.style.display === 'none' ? 'block' : 'none';
+          if (wrap.style.display === 'block') email.focus();
+        });
+
+        submit.addEventListener('click', async function() {
+          var v = String(email.value || '').trim();
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) {
+            msg.textContent = 'Introduce un email válido.';
+            msg.style.color = '#b91c1c';
+            return;
+          }
+          msg.textContent = 'Enviando...';
+          msg.style.color = '#334155';
+          try {
+            var res = await fetch('https://admin.delfincheckin.com/api/public/signup-free', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email: v, locale: 'es' })
+            });
+            var data = await res.json().catch(function(){ return {}; });
+            if (!res.ok || data.success === false) {
+              msg.textContent = (data && data.error) ? String(data.error) : 'No se pudo completar el registro. Inténtalo más tarde.';
+              msg.style.color = '#b91c1c';
+              return;
+            }
+            msg.textContent = 'Listo. Revisa tu correo para continuar con el acceso.';
+            msg.style.color = '#047857';
+          } catch (e) {
+            msg.textContent = 'No se pudo completar el registro. Inténtalo más tarde.';
+            msg.style.color = '#b91c1c';
+          }
+        });
+      } catch (e) {}
+    })();
+  </script>
+</div>
+
+      <div style="background:#ffffff;border:3px solid #93c5fd;border-radius:16px;padding:16px;box-shadow:0 10px 22px rgba(15,23,42,0.08);">
+  <div style="text-align:center;">
+    <div style="display:inline-block; font-size: 11px; font-weight: 900; padding: 6px 10px; border-radius: 999px; background: #e2e8f0; color:#0f172a; margin-bottom: 10px;">Más popular</div>
+    <div style="font-size: 18px; font-weight: 950; color:#0f172a; margin: 0;">Plan Check-in</div>
+    <div style="margin-top: 10px;">
+      <span style="font-size: 40px; font-weight: 950; color:#0f172a;">2€</span>
+      <span style="color:#475569; font-weight: 800; font-size: 13px;">/mes + 2€/propiedad</span>
+    </div>
+    <div style="margin-top: 8px; color:#475569; font-size: 13px; font-weight: 700;">Propiedades ilimitadas. Con anuncios.</div>
+  </div>
+  <ul style="list-style:none; padding: 14px 0 0 0; margin: 14px 0 0 0; border-top: 1px solid #e2e8f0;">
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Envío automático al Ministerio (MIR)</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Check-in digital y registro de viajeros</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Reservas directas (9% comisión)</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Cumplimiento RD 933/2021</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Anuncios discretos</li>
+  </ul>
+  <a
+    href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=checkin"
+    data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=month&amp;plan=checkin"
+    data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=year&amp;plan=checkin"
+    data-delfin-billing-link="1"
+    style="display:block; margin-top: 14px; text-align:center; background:#2563eb; color:#fff; padding: 12px 14px; border-radius: 12px; font-weight: 900; text-decoration:none;"
+  >
+    Contratar Check-in
+  </a>
+</div>
+
+      <div style="background:#ffffff;border:3px solid #fdba74;border-radius:16px;padding:16px;box-shadow:0 10px 22px rgba(15,23,42,0.08);">
+  <div style="text-align:center;">
+    
+    <div style="font-size: 18px; font-weight: 950; color:#0f172a; margin: 0;">Plan Standard</div>
+    <div style="margin-top: 10px;">
+      <span style="font-size: 40px; font-weight: 950; color:#0f172a;">9,99€</span>
+      <span style="color:#475569; font-weight: 800; font-size: 13px;">/mes</span>
+    </div>
+    <div style="margin-top: 8px; color:#475569; font-size: 13px; font-weight: 700;">1 propiedad incluida. Sin anuncios.</div>
+  </div>
+  <ul style="list-style:none; padding: 14px 0 0 0; margin: 14px 0 0 0; border-top: 1px solid #e2e8f0;">
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Todo lo del Check-in</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Sin anuncios</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ 1 propiedad incluida, luego 2€/mes por cada nueva</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Reservas directas (9% comisión)</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Instrucciones de check-in por email al huésped (seguimiento de apertura)</li>
+  </ul>
+  <a
+    href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=standard"
+    data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=month&amp;plan=standard"
+    data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=year&amp;plan=standard"
+    data-delfin-billing-link="1"
+    style="display:block; margin-top: 14px; text-align:center; background:#c2410c; color:#fff; padding: 12px 14px; border-radius: 12px; font-weight: 900; text-decoration:none;"
+  >
+    Contratar Standard
+  </a>
+</div>
+
+      <div style="background:#ffffff;border:3px solid #c4b5fd;border-radius:16px;padding:16px;box-shadow:0 10px 22px rgba(15,23,42,0.08);">
+  <div style="text-align:center;">
+    
+    <div style="font-size: 18px; font-weight: 950; color:#0f172a; margin: 0;">Plan Pro</div>
+    <div style="margin-top: 10px;">
+      <span style="font-size: 40px; font-weight: 950; color:#0f172a;">29,99€</span>
+      <span style="color:#475569; font-weight: 800; font-size: 13px;">/mes</span>
+    </div>
+    <div style="margin-top: 8px; color:#475569; font-size: 13px; font-weight: 700;">1 propiedad incluida, luego 2€/mes por cada adicional. Sin anuncios.</div>
+  </div>
+  <ul style="list-style:none; padding: 14px 0 0 0; margin: 14px 0 0 0; border-top: 1px solid #e2e8f0;">
+    <li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Todo lo del Standard</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ 1 propiedad incluida, luego 2€/mes por cada nueva</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Reservas directas con solo 5% comisión</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Instrucciones de check-in por email al huésped (seguimiento de apertura)</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Reseñas Google + microsite en tu ficha (más visibilidad y reservas directas fuera de Airbnb/Booking)</li><li style="display:flex; gap: 8px; align-items:flex-start; margin: 0 0 8px 0; color:#334155; font-size: 13px; line-height: 1.35;">✅ Sin anuncios, soporte prioritario y copia de seguridad</li>
+  </ul>
+  <a
+    href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=pro"
+    data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=month&amp;plan=pro"
+    data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&amp;seats=1&amp;interval=year&amp;plan=pro"
+    data-delfin-billing-link="1"
+    style="display:block; margin-top: 14px; text-align:center; background:#7c3aed; color:#fff; padding: 12px 14px; border-radius: 12px; font-weight: 900; text-decoration:none;"
+  >
+    Contratar Pro
+  </a>
+</div>
+    </div>
+  </div>
+</section>
+<script>
+  (function(){
+    try {
+      var bM = document.getElementById('delfin-billing-month');
+      var bY = document.getElementById('delfin-billing-year');
+      if (!bM || !bY) return;
+      var links = document.querySelectorAll('[data-delfin-billing-link="1"]');
+      function setMode(mode){
+        try { localStorage.setItem('delfin_billing_interval', mode); } catch (e) {}
+        links.forEach(function(a){
+          var h = (mode === 'year') ? a.getAttribute('data-href-year') : a.getAttribute('data-href-month');
+          if (h) a.setAttribute('href', h);
+        });
+        if (mode === 'year') {
+          bY.style.background = '#ffffff';
+          bM.style.background = 'transparent';
+        } else {
+          bM.style.background = '#ffffff';
+          bY.style.background = 'transparent';
+        }
+      }
+      bM.addEventListener('click', function(){ setMode('month'); });
+      bY.addEventListener('click', function(){ setMode('year'); });
+      var saved = 'month';
+      try { saved = localStorage.getItem('delfin_billing_interval') || 'month'; } catch (e2) {}
+      setMode(saved === 'year' ? 'year' : 'month');
+    } catch (e) {}
+  })();
+  </script>
+</body>
+</html>
