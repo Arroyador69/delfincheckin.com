@@ -11,7 +11,7 @@
   // Configuración
   const API_URL = 'https://admin.delfincheckin.com/api/landing/track';
   const SCROLL_THRESHOLDS = [25, 50, 75, 100]; // Porcentajes de scroll a trackear
-  const POPUP_DELAY = 10000; // 10 segundos
+  const POPUP_DELAY = 8000; // 10 segundos
   const POPUP_SCROLL_THRESHOLD = 50; // Mostrar popup al 50% de scroll
 
   /** Textos del popup según idioma de la landing (html lang). */
