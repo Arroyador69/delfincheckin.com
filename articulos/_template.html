@@ -1100,149 +1100,7 @@
       trackEvent(null, {}, {}); // Solo actualizar sesión
     }, 15000); // Cada 15 segundos
 
-    // Popup ligero de conversión: prueba gratis + MIR
-    (function(){
-      try {
-        function shouldShowPromoPopup() {
-          const key = 'delfin_article_promo_popup_ts';
-          const now = Date.now();
-          const last = Number(localStorage.getItem(key) || '0');
-          // 7 días
-          if (last && now - last < 7 * 24 * 60 * 60 * 1000) return false;
-          localStorage.setItem(key, String(now));
-          return true;
-        }
-
-        function findPlansSection() {
-          // Buscamos el h2 del bloque inyectado de planes
-          const headings = document.querySelectorAll('h2');
-          for (const h of headings) {
-            if (String(h.textContent || '').trim().toLowerCase() === 'planes claros y transparentes') return h;
-          }
-          return null;
-        }
-
-        function buildPromoPopup() {
-          const overlay = document.createElement('div');
-          overlay.setAttribute('data-delfin-article-promo', '1');
-          overlay.style.position = 'fixed';
-          overlay.style.inset = '0';
-          overlay.style.background = 'rgba(15,23,42,.55)';
-          overlay.style.zIndex = '10000';
-          overlay.style.display = 'flex';
-          overlay.style.alignItems = 'center';
-          overlay.style.justifyContent = 'center';
-          overlay.style.padding = '18px';
-
-          const card = document.createElement('div');
-          card.style.background = '#ffffff';
-          card.style.borderRadius = '18px';
-          card.style.maxWidth = '520px';
-          card.style.width = '100%';
-          card.style.boxShadow = '0 30px 90px rgba(0,0,0,.35)';
-          card.style.border = '1px solid rgba(15,23,42,.08)';
-          card.style.padding = '22px';
-          card.style.position = 'relative';
-
-          const close = document.createElement('button');
-          close.type = 'button';
-          close.textContent = '×';
-          close.setAttribute('aria-label', 'Cerrar');
-          close.style.position = 'absolute';
-          close.style.top = '10px';
-          close.style.right = '12px';
-          close.style.width = '38px';
-          close.style.height = '38px';
-          close.style.borderRadius = '999px';
-          close.style.border = '0';
-          close.style.background = 'rgba(15,23,42,.06)';
-          close.style.cursor = 'pointer';
-          close.style.fontSize = '24px';
-          close.style.lineHeight = '1';
-
-          const title = document.createElement('div');
-          title.style.fontWeight = '900';
-          title.style.fontSize = '20px';
-          title.style.color = '#0f172a';
-          title.style.marginBottom = '8px';
-          title.textContent = 'Prueba Delfín Check‑in gratis (1 propiedad)';
-
-          const p = document.createElement('div');
-          p.style.color = '#475569';
-          p.style.fontSize = '14px';
-          p.style.lineHeight = '1.55';
-          p.innerHTML = 'Plan Básico: <strong>1 propiedad gratis</strong> para probarlo hoy. Si necesitas automatizar el <strong>envío de partes de viajeros al Gobierno de España (MIR)</strong>, está disponible desde <strong>2€/mes</strong>.';
-
-          const actions = document.createElement('div');
-          actions.style.display = 'flex';
-          actions.style.gap = '10px';
-          actions.style.marginTop = '14px';
-          actions.style.flexWrap = 'wrap';
-
-          const btnPlans = document.createElement('button');
-          btnPlans.type = 'button';
-          btnPlans.textContent = 'Ver planes';
-          btnPlans.style.background = '#2563eb';
-          btnPlans.style.color = '#ffffff';
-          btnPlans.style.border = '0';
-          btnPlans.style.borderRadius = '12px';
-          btnPlans.style.padding = '12px 14px';
-          btnPlans.style.fontWeight = '900';
-          btnPlans.style.cursor = 'pointer';
-
-          const btnClose = document.createElement('button');
-          btnClose.type = 'button';
-          btnClose.textContent = 'Ahora no';
-          btnClose.style.background = 'rgba(15,23,42,.06)';
-          btnClose.style.color = '#0f172a';
-          btnClose.style.border = '0';
-          btnClose.style.borderRadius = '12px';
-          btnClose.style.padding = '12px 14px';
-          btnClose.style.fontWeight = '900';
-          btnClose.style.cursor = 'pointer';
-
-          function hide() {
-            try { overlay.remove(); } catch (e) {}
-          }
-
-          close.addEventListener('click', hide);
-          btnClose.addEventListener('click', hide);
-          overlay.addEventListener('click', function(e){
-            if (e.target === overlay) hide();
-          });
-          btnPlans.addEventListener('click', function(){
-            hide();
-            const h = findPlansSection();
-            if (h && h.scrollIntoView) h.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          });
-
-          actions.appendChild(btnPlans);
-          actions.appendChild(btnClose);
-
-          card.appendChild(close);
-          card.appendChild(title);
-          card.appendChild(p);
-          card.appendChild(actions);
-          overlay.appendChild(card);
-          return overlay;
-        }
-
-        // Mostrar tras 18s si el usuario ha leído algo o ha hecho scroll
-        setTimeout(function(){
-          try {
-            if (popupShown) return;
-            const depth = Math.round(
-              (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-            );
-            const okDepth = (Number.isFinite(depth) ? depth : 0) > 15;
-            if (!okDepth) return;
-            if (!shouldShowPromoPopup()) return;
-            popupShown = true;
-            document.body.appendChild(buildPromoPopup());
-          } catch (e) {}
-        }, 18000);
-      } catch (e) {}
-    })();
+    // Popup: usamos el mismo de la landing (landing-tracking.js)
 
     // Año en footer
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -1252,5 +1110,8 @@
       trackEvent('exit', { time_on_page: timeOnPage, scroll_depth: maxScrollDepth });
     });
   </script>
+
+  <!-- Reutiliza el popup y tracking de la landing -->
+  <script src="/landing-tracking.js"></script>
 </body>
 </html>
