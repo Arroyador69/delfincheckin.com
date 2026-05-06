@@ -14,6 +14,14 @@
   const POPUP_DELAY = 10000; // 10 segundos
   const POPUP_SCROLL_THRESHOLD = 50; // Mostrar popup al 50% de scroll
 
+  // Storage seguro: en algunos navegadores/modos (p.ej. Safari privada) localStorage puede lanzar excepción.
+  function safeStorageGet(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeStorageSet(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+  }
+
   /** Textos del popup según idioma de la landing (html lang). */
   function popupLangCode() {
     let l = (document.documentElement.getAttribute('lang') || 'es').toLowerCase().split('-')[0];
@@ -73,10 +81,10 @@
 
   // Generar o recuperar session_id
   function getSessionId() {
-    let sessionId = localStorage.getItem('landing_session_id');
+    let sessionId = safeStorageGet('landing_session_id');
     if (!sessionId) {
       sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-      localStorage.setItem('landing_session_id', sessionId);
+      safeStorageSet('landing_session_id', sessionId);
     }
     return sessionId;
   }
@@ -489,7 +497,7 @@
       overlay.style.display = 'none';
       trackEvent('popup_close');
       // Guardar en localStorage que se cerró
-      localStorage.setItem('pms_popup_closed', 'true');
+      safeStorageSet('pms_popup_closed', 'true');
     };
 
     const closeBtn = document.getElementById('pms-popup-close');
@@ -518,7 +526,7 @@
     if (popupShown) return;
     
     // Verificar si ya se cerró antes (localStorage)
-    if (localStorage.getItem('pms_popup_closed')) {
+    if (safeStorageGet('pms_popup_closed')) {
       return;
     }
 
