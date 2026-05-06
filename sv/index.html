@@ -2253,18 +2253,6 @@
         ⚠️ <strong>VIKTIGT:</strong> Permanent tillgång till gratisplanen (Basic) utan månadsavgift finns bara om du anmäler dig nu. Platserna är begränsade. <strong>Registrera dig innan de tar slut.</strong>
       </p>
 
-      <!-- Månadsvis / Årlig -->
-      <div style="display:flex; justify-content:center; margin: -8px 0 28px;">
-        <div style="display:inline-flex; gap: 8px; background:#e2e8f0; padding: 8px; border-radius: 999px;">
-          <button type="button" id="billing-month" style="border:0; cursor:pointer; padding: 10px 14px; border-radius: 999px; font-weight: 900; font-size: 13px; background:#ffffff; color:#0f172a;">
-            Månadsvis
-          </button>
-          <button type="button" id="billing-year" style="border:0; cursor:pointer; padding: 10px 14px; border-radius: 999px; font-weight: 900; font-size: 13px; background:transparent; color:#0f172a;">
-            Årlig <span style="opacity:0.8; font-weight:900;">(2 månader gratis)</span>
-          </button>
-        </div>
-      </div>
-      
       <div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
         <!-- Plan Básico -->
         <article class="card" style="border: 2px solid #e2e8f0; position: relative;">
@@ -2305,7 +2293,8 @@
             <li>⚠️ Diskreta annonser</li>
           </ul>
           <div class="cta" style="margin-top: 24px;">
-          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=sv&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=sv&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=sv&seats=1&interval=year" data-billing-link="1" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Teckna Check-in</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=sv&seats=1&interval=month" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Teckna Check-in</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=sv&seats=1&interval=year" class="btn" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(37,99,235,.35); background: rgba(37,99,235,.06); color: #1d4ed8;">Årlig (2 månader gratis)</a>
           </div>
         </article>
 
@@ -2326,7 +2315,8 @@
             <li>✅ Incheckningsinstruktioner per e-post till gästen <strong>(öppningsstatistik)</strong></li>
           </ul>
           <div class="cta" style="margin-top: 24px;">
-          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=sv&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=sv&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=sv&seats=1&interval=year" data-billing-link="1" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Teckna Standard</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=sv&seats=1&interval=month" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Teckna Standard</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=sv&seats=1&interval=year" class="btn" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(217,119,6,.35); background: rgba(217,119,6,.08); color: #92400e;">Årlig (2 månader gratis)</a>
           </div>
         </article>
 
@@ -2348,7 +2338,8 @@
             <li>✅ Utan annonser, prioriterad support och säkerhetskopiering</li>
           </ul>
           <div class="cta" style="margin-top: 24px;">
-          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=sv&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=sv&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=sv&seats=1&interval=year" data-billing-link="1" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Teckna Pro</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=sv&seats=1&interval=month" class="btn primary" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Teckna Pro</a>
+          <a href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=sv&seats=1&interval=year" class="btn" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(124,58,237,.35); background: rgba(124,58,237,.08); color: #5b21b6;">Årlig (2 månader gratis)</a>
           </div>
         </article>
       </div>
@@ -2364,35 +2355,7 @@
         </ul>
       </div>
     </section>
-    <script>
-      (function(){
-        try {
-          var bM = document.getElementById('billing-month');
-          var bY = document.getElementById('billing-year');
-          if (!bM || !bY) return;
-          var links = document.querySelectorAll('[data-billing-link=\"1\"]');
-          function setMode(mode){
-            try { localStorage.setItem('delfin_billing_interval', mode); } catch (e) {}
-            links.forEach(function(a){
-              var h = (mode === 'year') ? a.getAttribute('data-href-year') : a.getAttribute('data-href-month');
-              if (h) a.setAttribute('href', h);
-            });
-            if (mode === 'year') {
-              bY.style.background = '#ffffff';
-              bM.style.background = 'transparent';
-            } else {
-              bM.style.background = '#ffffff';
-              bY.style.background = 'transparent';
-            }
-          }
-          bM.addEventListener('click', function(){ setMode('month'); });
-          bY.addEventListener('click', function(){ setMode('year'); });
-          var saved = 'month';
-          try { saved = localStorage.getItem('delfin_billing_interval') || 'month'; } catch (e2) {}
-          setMode(saved === 'year' ? 'year' : 'month');
-        } catch (e) {}
-      })();
-    </script>
+    <!-- (Planer) Två knappar: månadsvis + årlig. -->
     <!-- Gratisplan: e-post → onboarding -->
     <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
     <section class="section container">
