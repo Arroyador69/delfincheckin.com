@@ -297,7 +297,7 @@
     }
     
     /* Waitlist Form en artículo */
-    .waitlist-section {
+    .wl-section {
       background: linear-gradient(135deg, var(--brand) 0%, #1d4ed8 100%);
       color: white;
       padding: 48px;
@@ -306,19 +306,19 @@
       text-align: center;
     }
     
-    .waitlist-section h2 {
+    .wl-section h2 {
       font-size: 32px;
       margin-bottom: 16px;
       color: white;
     }
     
-    .waitlist-section p {
+    .wl-section p {
       font-size: 18px;
       margin-bottom: 32px;
       opacity: 0.95;
     }
     
-    .waitlist-form {
+    .wl-form {
       max-width: 500px;
       margin: 0 auto;
       display: flex;
@@ -326,7 +326,7 @@
       gap: 12px;
     }
     
-    .waitlist-form input {
+    .wl-form input {
       height: 48px;
       padding: 0 16px;
       border-radius: 10px;
@@ -337,11 +337,11 @@
       backdrop-filter: blur(10px);
     }
     
-    .waitlist-form input::placeholder {
+    .wl-form input::placeholder {
       color: rgba(255,255,255,.7);
     }
     
-    .waitlist-form button {
+    .wl-form button {
       height: 52px;
       background: white;
       color: var(--brand);
@@ -353,12 +353,12 @@
       transition: all 0.3s ease;
     }
     
-    .waitlist-form button:hover {
+    .wl-form button:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0,0,0,.2);
     }
     
-    .waitlist-form button:disabled {
+    .wl-form button:disabled {
       opacity: 0.7;
       cursor: not-allowed;
     }
@@ -579,7 +579,7 @@
         font-size: 20px;
       }
       
-      .waitlist-section {
+      .wl-section {
         padding: 32px 24px;
       }
       
@@ -1099,6 +1099,150 @@
       timeOnPage = Math.floor((Date.now() - sessionStartTime) / 1000);
       trackEvent(null, {}, {}); // Solo actualizar sesión
     }, 15000); // Cada 15 segundos
+
+    // Popup ligero de conversión: prueba gratis + MIR
+    (function(){
+      try {
+        function shouldShowPromoPopup() {
+          const key = 'delfin_article_promo_popup_ts';
+          const now = Date.now();
+          const last = Number(localStorage.getItem(key) || '0');
+          // 7 días
+          if (last && now - last < 7 * 24 * 60 * 60 * 1000) return false;
+          localStorage.setItem(key, String(now));
+          return true;
+        }
+
+        function findPlansSection() {
+          // Buscamos el h2 del bloque inyectado de planes
+          const headings = document.querySelectorAll('h2');
+          for (const h of headings) {
+            if (String(h.textContent || '').trim().toLowerCase() === 'planes claros y transparentes') return h;
+          }
+          return null;
+        }
+
+        function buildPromoPopup() {
+          const overlay = document.createElement('div');
+          overlay.setAttribute('data-delfin-article-promo', '1');
+          overlay.style.position = 'fixed';
+          overlay.style.inset = '0';
+          overlay.style.background = 'rgba(15,23,42,.55)';
+          overlay.style.zIndex = '10000';
+          overlay.style.display = 'flex';
+          overlay.style.alignItems = 'center';
+          overlay.style.justifyContent = 'center';
+          overlay.style.padding = '18px';
+
+          const card = document.createElement('div');
+          card.style.background = '#ffffff';
+          card.style.borderRadius = '18px';
+          card.style.maxWidth = '520px';
+          card.style.width = '100%';
+          card.style.boxShadow = '0 30px 90px rgba(0,0,0,.35)';
+          card.style.border = '1px solid rgba(15,23,42,.08)';
+          card.style.padding = '22px';
+          card.style.position = 'relative';
+
+          const close = document.createElement('button');
+          close.type = 'button';
+          close.textContent = '×';
+          close.setAttribute('aria-label', 'Cerrar');
+          close.style.position = 'absolute';
+          close.style.top = '10px';
+          close.style.right = '12px';
+          close.style.width = '38px';
+          close.style.height = '38px';
+          close.style.borderRadius = '999px';
+          close.style.border = '0';
+          close.style.background = 'rgba(15,23,42,.06)';
+          close.style.cursor = 'pointer';
+          close.style.fontSize = '24px';
+          close.style.lineHeight = '1';
+
+          const title = document.createElement('div');
+          title.style.fontWeight = '900';
+          title.style.fontSize = '20px';
+          title.style.color = '#0f172a';
+          title.style.marginBottom = '8px';
+          title.textContent = 'Prueba Delfín Check‑in gratis (1 propiedad)';
+
+          const p = document.createElement('div');
+          p.style.color = '#475569';
+          p.style.fontSize = '14px';
+          p.style.lineHeight = '1.55';
+          p.innerHTML = 'Plan Básico: <strong>0€</strong>. Si necesitas automatizar el <strong>envío al Ministerio (MIR)</strong>, está disponible desde <strong>2€/mes</strong>.';
+
+          const actions = document.createElement('div');
+          actions.style.display = 'flex';
+          actions.style.gap = '10px';
+          actions.style.marginTop = '14px';
+          actions.style.flexWrap = 'wrap';
+
+          const btnPlans = document.createElement('button');
+          btnPlans.type = 'button';
+          btnPlans.textContent = 'Ver planes';
+          btnPlans.style.background = '#2563eb';
+          btnPlans.style.color = '#ffffff';
+          btnPlans.style.border = '0';
+          btnPlans.style.borderRadius = '12px';
+          btnPlans.style.padding = '12px 14px';
+          btnPlans.style.fontWeight = '900';
+          btnPlans.style.cursor = 'pointer';
+
+          const btnClose = document.createElement('button');
+          btnClose.type = 'button';
+          btnClose.textContent = 'Ahora no';
+          btnClose.style.background = 'rgba(15,23,42,.06)';
+          btnClose.style.color = '#0f172a';
+          btnClose.style.border = '0';
+          btnClose.style.borderRadius = '12px';
+          btnClose.style.padding = '12px 14px';
+          btnClose.style.fontWeight = '900';
+          btnClose.style.cursor = 'pointer';
+
+          function hide() {
+            try { overlay.remove(); } catch (e) {}
+          }
+
+          close.addEventListener('click', hide);
+          btnClose.addEventListener('click', hide);
+          overlay.addEventListener('click', function(e){
+            if (e.target === overlay) hide();
+          });
+          btnPlans.addEventListener('click', function(){
+            hide();
+            const h = findPlansSection();
+            if (h && h.scrollIntoView) h.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          });
+
+          actions.appendChild(btnPlans);
+          actions.appendChild(btnClose);
+
+          card.appendChild(close);
+          card.appendChild(title);
+          card.appendChild(p);
+          card.appendChild(actions);
+          overlay.appendChild(card);
+          return overlay;
+        }
+
+        // Mostrar tras 18s si el usuario ha leído algo o ha hecho scroll
+        setTimeout(function(){
+          try {
+            if (popupShown) return;
+            const depth = Math.round(
+              (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
+            );
+            const okDepth = (Number.isFinite(depth) ? depth : 0) > 15;
+            if (!okDepth) return;
+            if (!shouldShowPromoPopup()) return;
+            popupShown = true;
+            document.body.appendChild(buildPromoPopup());
+          } catch (e) {}
+        }, 18000);
+      } catch (e) {}
+    })();
 
     // Año en footer
     document.getElementById('year').textContent = new Date().getFullYear();
