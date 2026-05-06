@@ -28,45 +28,45 @@
 
   const POPUP_COPY = {
     es: {
-      title: 'Elige plan y activa tu suscripción',
-      body: 'Los planes de Delfín Check-in se contratan en la web con pago seguro (Polar). Tras el pago recibirás el acceso por email para completar el onboarding. Sin lista de espera: entra cuando quieras.',
-      cta: 'Ver planes y precios',
+      title: 'Prueba gratis (1 propiedad) hoy',
+      body: 'Activa <strong>1 propiedad gratis</strong> ahora mismo. Si quieres <strong>enviar partes de viajeros al Gobierno de España (MIR)</strong> automáticamente, lo tienes desde <strong>2€/mes</strong>.',
+      cta: 'Activar prueba gratis',
       close: 'Cerrar',
     },
     en: {
-      title: 'Choose a plan and subscribe',
-      body: 'Delfín Check-in plans are purchased on the web with secure checkout (Polar). After payment you will receive access by email to finish onboarding. No waitlist.',
-      cta: 'See plans & pricing',
+      title: 'Try free (1 property) today',
+      body: 'Start now with <strong>1 property free</strong>. If you need automatic <strong>traveller reports submission to Spain (MIR)</strong>, it’s available from <strong>€2/month</strong>.',
+      cta: 'Start free trial',
       close: 'Close',
     },
     it: {
-      title: 'Scegli il piano e attiva l’abbonamento',
-      body: 'I piani Delfín Check-in si acquistano sul web con checkout sicuro (Polar). Dopo il pagamento riceverai l’accesso via email per completare l’onboarding.',
-      cta: 'Vedi piani e prezzi',
+      title: 'Prova gratis (1 proprietà) oggi',
+      body: 'Inizia ora con <strong>1 proprietà gratis</strong>. Se ti serve l’invio automatico dei <strong>dati viaggiatori al Governo spagnolo (MIR)</strong>, è disponibile da <strong>2€/mese</strong>.',
+      cta: 'Inizia la prova',
       close: 'Chiudi',
     },
     pt: {
-      title: 'Escolha o plano e ative a subscrição',
-      body: 'Os planos Delfín Check-in contratam-se na web com pagamento seguro (Polar). Após o pagamento recebe o acesso por email para concluir o onboarding.',
-      cta: 'Ver planos e preços',
+      title: 'Experimente grátis (1 propriedade) hoje',
+      body: 'Comece agora com <strong>1 propriedade grátis</strong>. Se precisar do <strong>envio automático de dados de viajantes ao Governo de Espanha (MIR)</strong>, está disponível a partir de <strong>2€/mês</strong>.',
+      cta: 'Começar grátis',
       close: 'Fechar',
     },
     fr: {
-      title: 'Choisissez une offre et activez l’abonnement',
-      body: 'Les offres Delfín Check-in s’achètent sur le web avec paiement sécurisé (Polar). Après paiement vous recevrez l’accès par e-mail pour terminer l’onboarding.',
-      cta: 'Voir les offres',
+      title: 'Essayez gratuitement (1 propriété) aujourd’hui',
+      body: 'Commencez maintenant avec <strong>1 propriété gratuite</strong>. Si vous avez besoin de l’<strong>envoi automatique des données voyageurs au Gouvernement espagnol (MIR)</strong>, c’est disponible dès <strong>2€/mois</strong>.',
+      cta: 'Commencer l’essai',
       close: 'Fermer',
     },
     fi: {
-      title: 'Valitse suunnitelma ja tilaa',
-      body: 'Delfín Check-in -suunnitelmat ostetaan verkossa turvallisella kassalla (Polar). Maksun jälkeen saat käyttöoikeuden sähköpostitse onboardingia varten.',
-      cta: 'Katso suunnitelmat',
+      title: 'Kokeile ilmaiseksi (1 kohde) tänään',
+      body: 'Aloita nyt: <strong>1 kohde ilmaiseksi</strong>. Jos tarvitset automaattisen <strong>matkustajatietojen lähetyksen Espanjan viranomaisille (MIR)</strong>, se on saatavilla alkaen <strong>2€/kk</strong>.',
+      cta: 'Aloita ilmaiseksi',
       close: 'Sulje',
     },
     sv: {
-      title: 'Välj plan och aktivera prenumerationen',
-      body: 'Delfín Check-in-planer köps på webben med säker betalning (Polar). Efter betalning får du åtkomst via e-post för att slutföra onboarding.',
-      cta: 'Se planer och priser',
+      title: 'Testa gratis (1 boende) idag',
+      body: 'Börja nu med <strong>1 boende gratis</strong>. Om du behöver automatisk <strong>rapportering av resenärsdata till Spanien (MIR)</strong> finns det från <strong>2€/månad</strong>.',
+      cta: 'Starta gratis',
       close: 'Stäng',
     },
   };
@@ -389,7 +389,7 @@
         .replace(/</g, '&lt;')
         .replace(/"/g, '&quot;');
 
-    // Contenido del popup (planes / Polar; sin lista de espera)
+    // Contenido del popup (planes; sin waitlist)
     popup.innerHTML = `
       <button id="pms-popup-close" type="button" style="
         position: absolute;
@@ -422,7 +422,7 @@
         color: #64748b;
         margin: 0 0 24px 0;
         line-height: 1.6;
-      ">${esc(copy.body)}</p>
+      ">${String(copy.body || '')}</p>
       <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
         <a href="${esc(subUrl)}" id="pms-popup-cta" style="
           background: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
