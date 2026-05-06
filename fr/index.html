@@ -2136,6 +2136,17 @@
 <p style="text-align: center; margin-bottom: 40px; font-size: 18px; color: #dc2626; font-weight: 700; padding: 16px; background: #fef2f2; border-radius: 12px; border: 2px solid #dc2626; max-width: 800px; margin-left: auto; margin-right: auto;">
         ⚠️ <strong>IMPORTANT:</strong>L’accès permanent et gratuit au plan Basic est réservé à ceux qui s’inscrivent maintenant. Les places sont limitées.<strong>Inscrivez-vous avant qu'ils ne soient épuisés.</strong>
 </p>
+<!-- Sélecteur Mensuel / Annuel -->
+<div style="display:flex; justify-content:center; margin: -8px 0 28px;">
+  <div style="display:inline-flex; gap: 8px; background:#e2e8f0; padding: 8px; border-radius: 999px;">
+    <button type="button" id="billing-month" style="border:0; cursor:pointer; padding: 10px 14px; border-radius: 999px; font-weight: 900; font-size: 13px; background:#ffffff; color:#0f172a;">
+      Mensuel
+    </button>
+    <button type="button" id="billing-year" style="border:0; cursor:pointer; padding: 10px 14px; border-radius: 999px; font-weight: 900; font-size: 13px; background:transparent; color:#0f172a;">
+      Annuel <span style="opacity:0.8; font-weight:900;">(2 mois offerts)</span>
+    </button>
+  </div>
+</div>
 <div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
 <!-- Plan Básico -->
 <article class="card" style="border: 2px solid #e2e8f0; position: relative;">
@@ -2175,7 +2186,7 @@
 <li>⚠️ Annonces discrètes</li>
 </ul>
 <div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Obtenez l'enregistrement</a>
+<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=year" data-billing-link="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Obtenez l'enregistrement</a>
 </div>
 </article>
 <!-- Plan Standard -->
@@ -2195,7 +2206,7 @@
 <li>✅ E-mail d'instructions d'enregistrement aux invités<strong>(suivi ouvert)</strong></li>
 </ul>
 <div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Obtenez la norme</a>
+<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=year" data-billing-link="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Obtenez la norme</a>
 </div>
 </article>
 <!-- Plan Pro -->
@@ -2216,7 +2227,7 @@
 <li>✅ Pas de publicité, support prioritaire et sauvegardes</li>
 </ul>
 <div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Devenez Pro</a>
+<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=month" data-href-month="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=month" data-href-year="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=year" data-billing-link="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Devenez Pro</a>
 </div>
 </article>
 </div>
@@ -2231,6 +2242,35 @@
 </ul>
 </div>
 </section>
+<script>
+  (function(){
+    try {
+      var bM = document.getElementById('billing-month');
+      var bY = document.getElementById('billing-year');
+      if (!bM || !bY) return;
+      var links = document.querySelectorAll('[data-billing-link=\"1\"]');
+      function setMode(mode){
+        try { localStorage.setItem('delfin_billing_interval', mode); } catch (e) {}
+        links.forEach(function(a){
+          var h = (mode === 'year') ? a.getAttribute('data-href-year') : a.getAttribute('data-href-month');
+          if (h) a.setAttribute('href', h);
+        });
+        if (mode === 'year') {
+          bY.style.background = '#ffffff';
+          bM.style.background = 'transparent';
+        } else {
+          bM.style.background = '#ffffff';
+          bY.style.background = 'transparent';
+        }
+      }
+      bM.addEventListener('click', function(){ setMode('month'); });
+      bY.addEventListener('click', function(){ setMode('year'); });
+      var saved = 'month';
+      try { saved = localStorage.getItem('delfin_billing_interval') || 'month'; } catch (e2) {}
+      setMode(saved === 'year' ? 'year' : 'month');
+    } catch (e) {}
+  })();
+</script>
     <!-- Plan gratuit : e-mail → onboarding -->
     <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
     <section class="section container">
