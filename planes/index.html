@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
+    <meta name="theme-color" content="#44c0ff" />
+    <title>Delfín Check‑in · Planes</title>
+    <meta
+      name="description"
+      content="Elige tu plan: Básico gratis (1 propiedad), Check‑in, Standard o Pro. Pago mensual o anual."
+    />
+    <link rel="canonical" href="https://delfincheckin.com/planes/" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+      .pill { border: 1px solid rgba(15, 23, 42, 0.10); }
+    </style>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+    <header class="border-b border-slate-200/80 bg-white/90 backdrop-blur-sm sticky top-0 z-10">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
+        <a href="/" class="flex items-center gap-3 no-underline">
+          <span class="text-2xl" aria-hidden="true">🐬</span>
+          <span class="font-bold text-lg text-slate-900 tracking-tight">Delfín Check‑in</span>
+        </a>
+        <a
+          href="https://admin.delfincheckin.com/admin-login"
+          class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-white font-semibold shadow-sm hover:bg-blue-700 transition-colors"
+          id="ctaLoginTop"
+        >Entrar</a>
+      </div>
+    </header>
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-14">
+      <div class="text-center">
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Planes</p>
+        <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight">Elige el plan que encaja con tu alojamiento</h1>
+        <p class="mt-3 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
+          Puedes empezar gratis con 1 propiedad. Si necesitas más, cambia de plan en cualquier momento.
+        </p>
+      </div>
+
+      <div class="mt-8 flex items-center justify-center">
+        <div class="pill flex items-center gap-1 rounded-full bg-white px-1.5 py-1 shadow-sm">
+          <button id="btnMonthly" type="button" class="rounded-full px-4 py-2 text-sm font-extrabold bg-slate-900 text-white">
+            Mensual
+          </button>
+          <button id="btnYearly" type="button" class="rounded-full px-4 py-2 text-sm font-extrabold text-slate-700 hover:bg-slate-100">
+            Anual <span class="ml-1 text-xs font-black text-emerald-700">(-2 meses)</span>
+          </button>
+        </div>
+      </div>
+
+      <section class="mt-10 grid gap-6 md:grid-cols-4">
+        <!-- Free / Basic -->
+        <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Básico</p>
+              <h2 class="mt-1 text-lg font-extrabold">Gratis</h2>
+            </div>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700">1 propiedad</span>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+            Para probar el panel. Sin tarjeta, sin coste mensual.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li>✅ Panel de reservas y habitaciones</li>
+            <li>✅ Exportación de datos</li>
+            <li>✅ App móvil</li>
+          </ul>
+          <a href="#registro" class="mt-5 inline-flex w-full items-center justify-center rounded-xl border-2 border-blue-200 bg-white px-4 py-3 text-sm font-extrabold text-blue-700 hover:bg-blue-50">
+            Empezar gratis
+          </a>
+        </article>
+
+        <!-- Check-in -->
+        <article class="rounded-2xl border-2 border-blue-200 bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-black uppercase tracking-wide text-blue-700">Más popular</p>
+              <h2 class="mt-1 text-lg font-extrabold">Check‑in</h2>
+            </div>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">ilimitado</span>
+          </div>
+          <div class="mt-3">
+            <p class="text-3xl font-extrabold tracking-tight">
+              <span id="priceCheckin">2€</span>
+              <span class="text-sm font-extrabold text-slate-500" id="periodCheckin">/mes + 2€/propiedad</span>
+            </p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="noteCheckin">Facturación mensual.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li>✅ Envío automático al Ministerio (MIR)</li>
+            <li>✅ Check‑in digital + registro de viajeros</li>
+            <li>✅ Reservas directas</li>
+          </ul>
+          <a
+            class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-blue-700"
+            data-delfin-billing-link="1"
+            data-plan="checkin"
+            href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=checkin"
+          >Contratar Check‑in</a>
+        </article>
+
+        <!-- Standard -->
+        <article class="rounded-2xl border border-orange-200 bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-black uppercase tracking-wide text-orange-700">Standard</p>
+              <h2 class="mt-1 text-lg font-extrabold">Sin anuncios</h2>
+            </div>
+            <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-black text-orange-700">1 propiedad</span>
+          </div>
+          <div class="mt-3">
+            <p class="text-3xl font-extrabold tracking-tight">
+              <span id="priceStandard">9,99€</span>
+              <span class="text-sm font-extrabold text-slate-500" id="periodStandard">/mes</span>
+            </p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="noteStandard">Facturación mensual.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li>✅ Todo lo de Check‑in</li>
+            <li>✅ Sin anuncios</li>
+            <li>✅ 1 propiedad incluida (extra: 2€/mes)</li>
+          </ul>
+          <a
+            class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-orange-700"
+            data-delfin-billing-link="1"
+            data-plan="standard"
+            href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=standard"
+          >Contratar Standard</a>
+        </article>
+
+        <!-- Pro -->
+        <article class="rounded-2xl border border-violet-200 bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <p class="text-xs font-black uppercase tracking-wide text-violet-700">Pro</p>
+              <h2 class="mt-1 text-lg font-extrabold">Más reservas directas</h2>
+            </div>
+            <span class="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700">1 propiedad</span>
+          </div>
+          <div class="mt-3">
+            <p class="text-3xl font-extrabold tracking-tight">
+              <span id="pricePro">29,99€</span>
+              <span class="text-sm font-extrabold text-slate-500" id="periodPro">/mes</span>
+            </p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="notePro">Facturación mensual.</p>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-slate-700">
+            <li>✅ Todo lo de Standard</li>
+            <li>✅ Microsite + reseñas Google</li>
+            <li>✅ Soporte prioritario</li>
+          </ul>
+          <a
+            class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-violet-700"
+            data-delfin-billing-link="1"
+            data-plan="pro"
+            href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=pro"
+          >Contratar Pro</a>
+        </article>
+      </section>
+
+      <section id="registro" class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div class="flex flex-col md:flex-row md:items-start gap-6">
+          <div class="flex-1">
+            <h2 class="text-xl font-extrabold">Crear cuenta (plan gratis)</h2>
+            <p class="mt-2 text-sm text-slate-600">
+              Introduce tu email y te enviaremos el enlace para activar tu cuenta y completar el onboarding.
+            </p>
+          </div>
+          <div class="flex-1">
+            <form id="landingFreeSignupForm" data-signup-locale="es" class="grid gap-3">
+              <label class="text-sm font-extrabold text-slate-700">
+                Email *
+                <input
+                  id="landingFreeSignupEmail"
+                  type="email"
+                  required
+                  placeholder="tu@email.com"
+                  class="mt-1 w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-500"
+                />
+              </label>
+              <label class="text-sm font-extrabold text-slate-700">
+                Nombre (opcional)
+                <input
+                  id="landingFreeSignupName"
+                  type="text"
+                  placeholder="Tu nombre"
+                  class="mt-1 w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-500"
+                />
+              </label>
+              <button
+                type="submit"
+                id="landingFreeSignupSubmit"
+                class="mt-1 inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-extrabold text-white hover:bg-slate-800"
+              >
+                <span id="landingFreeSignupSubmitText">Enviar enlace al email</span>
+                <span id="landingFreeSignupLoading" style="display:none;">Enviando…</span>
+              </button>
+              <div id="landingFreeSignupMessage" role="status" class="hidden rounded-xl px-4 py-3 text-sm font-bold"></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-slate-100/50 py-8 text-center text-sm text-slate-500">
+      <p>© <span id="year"></span> Delfín Check‑in</p>
+      <p class="mt-2">
+        <a href="/terminos-servicio.html" class="text-blue-600 hover:underline">Términos</a>
+        ·
+        <a href="/politica-privacidad.html" class="text-blue-600 hover:underline">Privacidad</a>
+      </p>
+    </footer>
+
+    <script src="/landing-tracking.js" defer></script>
+    <script>
+      (function () {
+        var yearEl = document.getElementById('year');
+        if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+        function getLocale() {
+          var known = { es: 1, en: 1, fr: 1, it: 1, pt: 1, fi: 1, sv: 1 };
+          try {
+            var qs = new URLSearchParams(location.search || '');
+            var q = String(qs.get('lang') || '').trim().toLowerCase();
+            if (known[q]) return q;
+          } catch {}
+
+          // /en/planes/ (si se sirve algún día), fallback /planes/
+          var parts = (location.pathname || '/').split('/').filter(Boolean);
+          var first = parts[0] || '';
+          return known[first] ? first : 'es';
+        }
+
+        var locale = getLocale();
+        var interval = 'month';
+
+        var btnMonthly = document.getElementById('btnMonthly');
+        var btnYearly = document.getElementById('btnYearly');
+        var planLinks = document.querySelectorAll('a[data-delfin-billing-link="1"][data-plan]');
+        var freeForm = document.getElementById('landingFreeSignupForm');
+        if (freeForm) freeForm.setAttribute('data-signup-locale', locale);
+
+        function setActive(which) {
+          interval = which;
+          if (!btnMonthly || !btnYearly) return;
+          if (which === 'month') {
+            btnMonthly.className = 'rounded-full px-4 py-2 text-sm font-extrabold bg-slate-900 text-white';
+            btnYearly.className = 'rounded-full px-4 py-2 text-sm font-extrabold text-slate-700 hover:bg-slate-100';
+          } else {
+            btnYearly.className = 'rounded-full px-4 py-2 text-sm font-extrabold bg-slate-900 text-white';
+            btnMonthly.className = 'rounded-full px-4 py-2 text-sm font-extrabold text-slate-700 hover:bg-slate-100';
+          }
+
+          var noteSuffix = which === 'year' ? 'Facturación anual (2 meses gratis).' : 'Facturación mensual.';
+          var n1 = document.getElementById('noteCheckin');
+          var n2 = document.getElementById('noteStandard');
+          var n3 = document.getElementById('notePro');
+          if (n1) n1.textContent = noteSuffix;
+          if (n2) n2.textContent = noteSuffix;
+          if (n3) n3.textContent = noteSuffix;
+
+          planLinks.forEach(function (a) {
+            var plan = a.getAttribute('data-plan');
+            if (!plan) return;
+            a.setAttribute(
+              'href',
+              'https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=' +
+                encodeURIComponent(locale) +
+                '&seats=1&interval=' +
+                encodeURIComponent(which) +
+                '&plan=' +
+                encodeURIComponent(plan)
+            );
+          });
+        }
+
+        if (btnMonthly) btnMonthly.addEventListener('click', function () { setActive('month'); });
+        if (btnYearly) btnYearly.addEventListener('click', function () { setActive('year'); });
+        setActive('month');
+      })();
+    </script>
+  </body>
+</html>
+
