@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Delfín Check‑in · Planes</title>
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://delfincheckin.com/planes/" />
+  </head>
+  <body>
+    <script>
+      (function () {
+        try {
+          var target = new URL('/planes/', location.origin);
+          // Preserva parámetros (p.ej. ?lang=es&source=landing) para compatibilidad.
+          target.search = location.search || '';
+          location.replace(target.toString());
+        } catch (e) {
+          location.href = '/planes/';
+        }
+      })();
+    </script>
+    <noscript>
+      <meta http-equiv="refresh" content="0; url=/planes/" />
+      <p>
+        Redirigiendo a <a href="/planes/">/planes/</a>…
+      </p>
+    </noscript>
+  </body>
+</html>
