@@ -17,12 +17,15 @@
     </style>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+    <!-- Header alineado con landing.html -->
     <header class="border-b border-slate-200/80 bg-white/90 backdrop-blur-sm sticky top-0 z-10">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between gap-3">
-        <a href="/" class="flex items-center gap-3 no-underline">
-          <span class="text-2xl" aria-hidden="true">🐬</span>
-          <span class="font-bold text-lg text-slate-900 tracking-tight">Delfín Check‑in</span>
-        </a>
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <a href="/landing.html" class="flex items-center gap-3 hover:opacity-90 no-underline">
+            <span class="text-2xl" aria-hidden="true">🐬</span>
+            <span class="font-bold text-lg text-slate-900 tracking-tight">Delfín Check‑in</span>
+          </a>
+        </div>
         <a
           href="https://admin.delfincheckin.com/admin-login"
           class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-white font-semibold shadow-sm hover:bg-blue-700 transition-colors"
@@ -205,12 +208,16 @@
       </section>
     </main>
 
+    <!-- Footer alineado con landing.html + enlaces legales -->
     <footer class="border-t border-slate-200 bg-slate-100/50 py-8 text-center text-sm text-slate-500">
       <p>© <span id="year"></span> Delfín Check‑in</p>
       <p class="mt-2">
         <a href="/terminos-servicio.html" class="text-blue-600 hover:underline">Términos</a>
         ·
         <a href="/politica-privacidad.html" class="text-blue-600 hover:underline">Privacidad</a>
+      </p>
+      <p class="mt-2">
+        <a href="mailto:contacto@delfincheckin.com" class="text-blue-600 hover:underline">contacto@delfincheckin.com</a>
       </p>
     </footer>
 
