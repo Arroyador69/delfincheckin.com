@@ -67,20 +67,20 @@
     </header>
     <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-14">
       <div class="text-center">
-        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700">Planes</p>
-        <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight">Elige el plan que encaja con tu alojamiento</h1>
-        <p class="mt-3 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
+        <p class="text-sm font-semibold uppercase tracking-wide text-blue-700" data-i18n="eyebrow">Planes</p>
+        <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-tight" data-i18n="heroTitle">Elige el plan que encaja con tu alojamiento</h1>
+        <p class="mt-3 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto" data-i18n="heroSubtitle">
           Puedes empezar gratis con 1 propiedad. Si necesitas más, cambia de plan en cualquier momento.
         </p>
       </div>
 
       <div class="mt-8 flex items-center justify-center">
         <div class="pill flex items-center gap-1 rounded-full bg-white px-1.5 py-1 shadow-sm">
-          <button id="btnMonthly" type="button" class="rounded-full px-4 py-2 text-sm font-extrabold bg-slate-900 text-white">
+          <button id="btnMonthly" type="button" class="rounded-full px-4 py-2 text-sm font-extrabold bg-slate-900 text-white" data-i18n="monthly">
             Mensual
           </button>
           <button id="btnYearly" type="button" class="rounded-full px-4 py-2 text-sm font-extrabold text-slate-700 hover:bg-slate-100">
-            Anual <span class="ml-1 text-xs font-black text-emerald-700">(-2 meses)</span>
+            <span data-i18n="yearly">Anual</span> <span class="ml-1 text-xs font-black text-emerald-700" data-i18n="yearlyHint">(-2 meses)</span>
           </button>
         </div>
       </div>
@@ -90,21 +90,21 @@
         <article class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div class="flex items-start justify-between gap-3">
             <div>
-              <p class="text-xs font-black uppercase tracking-wide text-slate-500">Básico</p>
-              <h2 class="mt-1 text-lg font-extrabold">Gratis</h2>
+              <p class="text-xs font-black uppercase tracking-wide text-slate-500" data-i18n="planBasicLabel">Básico</p>
+              <h2 class="mt-1 text-lg font-extrabold" data-i18n="planBasicName">Gratis</h2>
             </div>
-            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700">1 propiedad</span>
+            <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-700" data-i18n="pillOneProperty">1 propiedad</span>
           </div>
-          <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+          <p class="mt-3 text-sm text-slate-600 leading-relaxed" data-i18n="basicBlurb">
             Para probar el panel. Sin tarjeta, sin coste mensual.
           </p>
           <ul class="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✅ Panel de reservas y habitaciones</li>
-            <li>✅ Exportación de datos</li>
-            <li>✅ App móvil</li>
+            <li data-i18n="basicF0">✅ Panel de reservas y habitaciones</li>
+            <li data-i18n="basicF1">✅ Exportación de datos</li>
+            <li data-i18n="basicF2">✅ App móvil</li>
           </ul>
           <a href="#registro" class="mt-5 inline-flex w-full items-center justify-center rounded-xl border-2 border-blue-200 bg-white px-4 py-3 text-sm font-extrabold text-blue-700 hover:bg-blue-50">
-            Empezar gratis
+            <span data-i18n="ctaStartFree">Empezar gratis</span>
           </a>
         </article>
 
@@ -112,29 +112,29 @@
         <article class="rounded-2xl border-2 border-blue-200 bg-white p-5 shadow-sm">
           <div class="flex items-start justify-between gap-3">
             <div>
-              <p class="text-xs font-black uppercase tracking-wide text-blue-700">Más popular</p>
+              <p class="text-xs font-black uppercase tracking-wide text-blue-700" data-i18n="pillMostPopular">Más popular</p>
               <h2 class="mt-1 text-lg font-extrabold">Check‑in</h2>
             </div>
-            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">ilimitado</span>
+            <span class="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700" data-i18n="pillUnlimited">ilimitado</span>
           </div>
           <div class="mt-3">
             <p class="text-3xl font-extrabold tracking-tight">
               <span id="priceCheckin">2€</span>
-              <span class="text-sm font-extrabold text-slate-500" id="periodCheckin">/mes + 2€/propiedad</span>
+              <span class="text-sm font-extrabold text-slate-500" id="periodCheckin" data-i18n="periodCheckin">/mes + 2€/propiedad</span>
             </p>
-            <p class="mt-1 text-xs font-bold text-slate-500" id="noteCheckin">Facturación mensual.</p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="noteCheckin" data-i18n="noteMonthly">Facturación mensual.</p>
           </div>
           <ul class="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✅ Envío automático al Ministerio (MIR)</li>
-            <li>✅ Check‑in digital + registro de viajeros</li>
-            <li>✅ Reservas directas</li>
+            <li data-i18n="checkinF0">✅ Envío automático al Ministerio (MIR)</li>
+            <li data-i18n="checkinF1">✅ Check‑in digital + registro de viajeros</li>
+            <li data-i18n="checkinF2">✅ Reservas directas</li>
           </ul>
           <a
             class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-blue-700"
             data-delfin-billing-link="1"
             data-plan="checkin"
             href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=checkin"
-          >Contratar Check‑in</a>
+          ><span data-i18n="ctaBuyCheckin">Contratar Check‑in</span></a>
         </article>
 
         <!-- Standard -->
@@ -142,28 +142,28 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <p class="text-xs font-black uppercase tracking-wide text-orange-700">Standard</p>
-              <h2 class="mt-1 text-lg font-extrabold">Sin anuncios</h2>
+              <h2 class="mt-1 text-lg font-extrabold" data-i18n="planStandardName">Sin anuncios</h2>
             </div>
-            <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-black text-orange-700">1 propiedad</span>
+            <span class="rounded-full bg-orange-50 px-3 py-1 text-xs font-black text-orange-700" data-i18n="pillOneProperty">1 propiedad</span>
           </div>
           <div class="mt-3">
             <p class="text-3xl font-extrabold tracking-tight">
               <span id="priceStandard">9,99€</span>
-              <span class="text-sm font-extrabold text-slate-500" id="periodStandard">/mes</span>
+            <span class="text-sm font-extrabold text-slate-500" id="periodStandard" data-i18n="perMonthShort">/mes</span>
             </p>
-            <p class="mt-1 text-xs font-bold text-slate-500" id="noteStandard">Facturación mensual.</p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="noteStandard" data-i18n="noteMonthly">Facturación mensual.</p>
           </div>
           <ul class="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✅ Todo lo de Check‑in</li>
-            <li>✅ Sin anuncios</li>
-            <li>✅ 1 propiedad incluida (extra: 2€/mes)</li>
+            <li data-i18n="standardF0">✅ Todo lo de Check‑in</li>
+            <li data-i18n="standardF1">✅ Sin anuncios</li>
+            <li data-i18n="standardF2">✅ 1 propiedad incluida (extra: 2€/mes)</li>
           </ul>
           <a
             class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-orange-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-orange-700"
             data-delfin-billing-link="1"
             data-plan="standard"
             href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=standard"
-          >Contratar Standard</a>
+          ><span data-i18n="ctaBuyStandard">Contratar Standard</span></a>
         </article>
 
         <!-- Pro -->
@@ -171,57 +171,59 @@
           <div class="flex items-start justify-between gap-3">
             <div>
               <p class="text-xs font-black uppercase tracking-wide text-violet-700">Pro</p>
-              <h2 class="mt-1 text-lg font-extrabold">Más reservas directas</h2>
+              <h2 class="mt-1 text-lg font-extrabold" data-i18n="planProName">Más reservas directas</h2>
             </div>
-            <span class="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700">1 propiedad</span>
+            <span class="rounded-full bg-violet-50 px-3 py-1 text-xs font-black text-violet-700" data-i18n="pillOneProperty">1 propiedad</span>
           </div>
           <div class="mt-3">
             <p class="text-3xl font-extrabold tracking-tight">
               <span id="pricePro">29,99€</span>
-              <span class="text-sm font-extrabold text-slate-500" id="periodPro">/mes</span>
+              <span class="text-sm font-extrabold text-slate-500" id="periodPro" data-i18n="perMonthShort">/mes</span>
             </p>
-            <p class="mt-1 text-xs font-bold text-slate-500" id="notePro">Facturación mensual.</p>
+            <p class="mt-1 text-xs font-bold text-slate-500" id="notePro" data-i18n="noteMonthly">Facturación mensual.</p>
           </div>
           <ul class="mt-4 space-y-2 text-sm text-slate-700">
-            <li>✅ Todo lo de Standard</li>
-            <li>✅ Microsite + reseñas Google</li>
-            <li>✅ Soporte prioritario</li>
+            <li data-i18n="proF0">✅ Todo lo de Standard</li>
+            <li data-i18n="proF1">✅ Microsite + reseñas Google</li>
+            <li data-i18n="proF2">✅ Soporte prioritario</li>
           </ul>
           <a
             class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-violet-600 px-4 py-3 text-sm font-extrabold text-white hover:bg-violet-700"
             data-delfin-billing-link="1"
             data-plan="pro"
             href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?locale=es&seats=1&interval=month&plan=pro"
-          >Contratar Pro</a>
+          ><span data-i18n="ctaBuyPro">Contratar Pro</span></a>
         </article>
       </section>
 
       <section id="registro" class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
         <div class="flex flex-col md:flex-row md:items-start gap-6">
           <div class="flex-1">
-            <h2 class="text-xl font-extrabold">Crear cuenta (plan gratis)</h2>
-            <p class="mt-2 text-sm text-slate-600">
+            <h2 class="text-xl font-extrabold" data-i18n="signupTitle">Crear cuenta (plan gratis)</h2>
+            <p class="mt-2 text-sm text-slate-600" data-i18n="signupBody">
               Introduce tu email y te enviaremos el enlace para activar tu cuenta y completar el onboarding.
             </p>
           </div>
           <div class="flex-1">
             <form id="landingFreeSignupForm" data-signup-locale="es" class="grid gap-3">
               <label class="text-sm font-extrabold text-slate-700">
-                Email *
+                <span data-i18n="emailLabel">Email *</span>
                 <input
                   id="landingFreeSignupEmail"
                   type="email"
                   required
                   placeholder="tu@email.com"
+                  data-i18n-placeholder="emailPlaceholder"
                   class="mt-1 w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-500"
                 />
               </label>
               <label class="text-sm font-extrabold text-slate-700">
-                Nombre (opcional)
+                <span data-i18n="nameLabel">Nombre (opcional)</span>
                 <input
                   id="landingFreeSignupName"
                   type="text"
                   placeholder="Tu nombre"
+                  data-i18n-placeholder="namePlaceholder"
                   class="mt-1 w-full rounded-xl border-2 border-slate-200 bg-white px-4 py-3 text-base text-slate-900 outline-none focus:border-blue-500"
                 />
               </label>
@@ -230,8 +232,8 @@
                 id="landingFreeSignupSubmit"
                 class="mt-1 inline-flex items-center justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-extrabold text-white hover:bg-slate-800"
               >
-                <span id="landingFreeSignupSubmitText">Enviar enlace al email</span>
-                <span id="landingFreeSignupLoading" style="display:none;">Enviando…</span>
+                <span id="landingFreeSignupSubmitText" data-i18n="signupCta">Enviar enlace al email</span>
+                <span id="landingFreeSignupLoading" style="display:none;" data-i18n="signupSending">Enviando…</span>
               </button>
               <div id="landingFreeSignupMessage" role="status" class="hidden rounded-xl px-4 py-3 text-sm font-bold"></div>
             </form>
@@ -256,6 +258,352 @@
     <script src="/landing-tracking.js" defer></script>
     <script>
       (function () {
+        var STR = {
+          es: {
+            title: 'Delfín Check‑in · Planes',
+            description:
+              'Elige tu plan: Básico gratis (1 propiedad), Check‑in, Standard o Pro. Pago mensual o anual.',
+            eyebrow: 'Planes',
+            heroTitle: 'Elige el plan que encaja con tu alojamiento',
+            heroSubtitle:
+              'Puedes empezar gratis con 1 propiedad. Si necesitas más, cambia de plan en cualquier momento.',
+            monthly: 'Mensual',
+            yearly: 'Anual',
+            yearlyHint: '(-2 meses)',
+            planBasicLabel: 'Básico',
+            planBasicName: 'Gratis',
+            pillOneProperty: '1 propiedad',
+            basicBlurb: 'Para probar el panel. Sin tarjeta, sin coste mensual.',
+            basicF0: '✅ Panel de reservas y habitaciones',
+            basicF1: '✅ Exportación de datos',
+            basicF2: '✅ App móvil',
+            ctaStartFree: 'Empezar gratis',
+            pillMostPopular: 'Más popular',
+            pillUnlimited: 'ilimitado',
+            periodCheckin: '/mes + 2€/propiedad',
+            noteMonthly: 'Facturación mensual.',
+            noteYearly: 'Facturación anual (2 meses gratis).',
+            checkinF0: '✅ Envío automático al Ministerio (MIR)',
+            checkinF1: '✅ Check‑in digital + registro de viajeros',
+            checkinF2: '✅ Reservas directas',
+            ctaBuyCheckin: 'Contratar Check‑in',
+            planStandardName: 'Sin anuncios',
+            perMonthShort: '/mes',
+            standardF0: '✅ Todo lo de Check‑in',
+            standardF1: '✅ Sin anuncios',
+            standardF2: '✅ 1 propiedad incluida (extra: 2€/mes)',
+            ctaBuyStandard: 'Contratar Standard',
+            planProName: 'Más reservas directas',
+            proF0: '✅ Todo lo de Standard',
+            proF1: '✅ Microsite + reseñas Google',
+            proF2: '✅ Soporte prioritario',
+            ctaBuyPro: 'Contratar Pro',
+            signupTitle: 'Crear cuenta (plan gratis)',
+            signupBody:
+              'Introduce tu email y te enviaremos el enlace para activar tu cuenta y completar el onboarding.',
+            emailLabel: 'Email *',
+            emailPlaceholder: 'tu@email.com',
+            nameLabel: 'Nombre (opcional)',
+            namePlaceholder: 'Tu nombre',
+            signupCta: 'Enviar enlace al email',
+            signupSending: 'Enviando…',
+          },
+          en: {
+            title: 'Delfín Check‑in · Plans',
+            description:
+              'Choose your plan: Free Basic (1 property), Check‑in, Standard or Pro. Monthly or yearly billing.',
+            eyebrow: 'Plans',
+            heroTitle: 'Choose the plan that fits your accommodation',
+            heroSubtitle:
+              'Start free with 1 property. If you need more, upgrade anytime.',
+            monthly: 'Monthly',
+            yearly: 'Yearly',
+            yearlyHint: '(-2 months)',
+            planBasicLabel: 'Basic',
+            planBasicName: 'Free',
+            pillOneProperty: '1 property',
+            basicBlurb: 'Try the dashboard. No card, no monthly fee.',
+            basicF0: '✅ Bookings & rooms dashboard',
+            basicF1: '✅ Data export',
+            basicF2: '✅ Mobile app',
+            ctaStartFree: 'Start free',
+            pillMostPopular: 'Most popular',
+            pillUnlimited: 'unlimited',
+            periodCheckin: '/mo + €2/property',
+            noteMonthly: 'Billed monthly.',
+            noteYearly: 'Billed yearly (2 months free).',
+            checkinF0: '✅ Automatic reporting to the Ministry (MIR)',
+            checkinF1: '✅ Digital check‑in + guest registration',
+            checkinF2: '✅ Direct bookings',
+            ctaBuyCheckin: 'Get Check‑in',
+            planStandardName: 'No ads',
+            perMonthShort: '/mo',
+            standardF0: '✅ Everything in Check‑in',
+            standardF1: '✅ No ads',
+            standardF2: '✅ 1 property included (extra: €2/mo)',
+            ctaBuyStandard: 'Get Standard',
+            planProName: 'More direct bookings',
+            proF0: '✅ Everything in Standard',
+            proF1: '✅ Microsite + Google reviews',
+            proF2: '✅ Priority support',
+            ctaBuyPro: 'Get Pro',
+            signupTitle: 'Create account (free plan)',
+            signupBody:
+              'Enter your email and we’ll send you a link to activate your account and complete onboarding.',
+            emailLabel: 'Email *',
+            emailPlaceholder: 'you@email.com',
+            nameLabel: 'Name (optional)',
+            namePlaceholder: 'Your name',
+            signupCta: 'Email me the link',
+            signupSending: 'Sending…',
+          },
+          it: {
+            title: 'Delfín Check‑in · Piani',
+            description:
+              'Scegli il tuo piano: Base gratuito (1 proprietà), Check‑in, Standard o Pro. Fatturazione mensile o annuale.',
+            eyebrow: 'Piani',
+            heroTitle: 'Scegli il piano adatto alla tua struttura',
+            heroSubtitle:
+              'Inizia gratis con 1 proprietà. Se ti serve di più, passa a un piano superiore quando vuoi.',
+            monthly: 'Mensile',
+            yearly: 'Annuale',
+            yearlyHint: '(-2 mesi)',
+            planBasicLabel: 'Base',
+            planBasicName: 'Gratis',
+            pillOneProperty: '1 proprietà',
+            basicBlurb: 'Per provare il pannello. Senza carta, senza costo mensile.',
+            basicF0: '✅ Pannello prenotazioni e camere',
+            basicF1: '✅ Esportazione dati',
+            basicF2: '✅ App mobile',
+            ctaStartFree: 'Inizia gratis',
+            pillMostPopular: 'Più scelto',
+            pillUnlimited: 'illimitato',
+            periodCheckin: '/mese + 2€/proprietà',
+            noteMonthly: 'Fatturazione mensile.',
+            noteYearly: 'Fatturazione annuale (2 mesi gratis).',
+            checkinF0: '✅ Invio automatico al Ministero (MIR)',
+            checkinF1: '✅ Check‑in digitale + registrazione ospiti',
+            checkinF2: '✅ Prenotazioni dirette',
+            ctaBuyCheckin: 'Attiva Check‑in',
+            planStandardName: 'Senza annunci',
+            perMonthShort: '/mese',
+            standardF0: '✅ Tutto di Check‑in',
+            standardF1: '✅ Senza annunci',
+            standardF2: '✅ 1 proprietà inclusa (extra: 2€/mese)',
+            ctaBuyStandard: 'Attiva Standard',
+            planProName: 'Più prenotazioni dirette',
+            proF0: '✅ Tutto di Standard',
+            proF1: '✅ Microsito + recensioni Google',
+            proF2: '✅ Supporto prioritario',
+            ctaBuyPro: 'Attiva Pro',
+            signupTitle: 'Crea account (piano gratuito)',
+            signupBody:
+              'Inserisci la tua email e ti invieremo il link per attivare l’account e completare l’onboarding.',
+            emailLabel: 'Email *',
+            emailPlaceholder: 'tu@email.com',
+            nameLabel: 'Nome (opzionale)',
+            namePlaceholder: 'Il tuo nome',
+            signupCta: 'Invia link via email',
+            signupSending: 'Invio…',
+          },
+          pt: {
+            title: 'Delfín Check‑in · Planos',
+            description:
+              'Escolha o seu plano: Básico grátis (1 propriedade), Check‑in, Standard ou Pro. Mensal ou anual.',
+            eyebrow: 'Planos',
+            heroTitle: 'Escolha o plano ideal para o seu alojamento',
+            heroSubtitle:
+              'Comece grátis com 1 propriedade. Se precisar de mais, mude de plano a qualquer momento.',
+            monthly: 'Mensal',
+            yearly: 'Anual',
+            yearlyHint: '(-2 meses)',
+            planBasicLabel: 'Básico',
+            planBasicName: 'Grátis',
+            pillOneProperty: '1 propriedade',
+            basicBlurb: 'Para testar o painel. Sem cartão, sem custo mensal.',
+            basicF0: '✅ Painel de reservas e quartos',
+            basicF1: '✅ Exportação de dados',
+            basicF2: '✅ App móvel',
+            ctaStartFree: 'Começar grátis',
+            pillMostPopular: 'Mais popular',
+            pillUnlimited: 'ilimitado',
+            periodCheckin: '/mês + 2€/propriedade',
+            noteMonthly: 'Faturação mensal.',
+            noteYearly: 'Faturação anual (2 meses grátis).',
+            checkinF0: '✅ Envio automático ao Ministério (MIR)',
+            checkinF1: '✅ Check‑in digital + registo de hóspedes',
+            checkinF2: '✅ Reservas diretas',
+            ctaBuyCheckin: 'Contratar Check‑in',
+            planStandardName: 'Sem anúncios',
+            perMonthShort: '/mês',
+            standardF0: '✅ Tudo do Check‑in',
+            standardF1: '✅ Sem anúncios',
+            standardF2: '✅ 1 propriedade incluída (extra: 2€/mês)',
+            ctaBuyStandard: 'Contratar Standard',
+            planProName: 'Mais reservas diretas',
+            proF0: '✅ Tudo do Standard',
+            proF1: '✅ Microsite + avaliações Google',
+            proF2: '✅ Suporte prioritário',
+            ctaBuyPro: 'Contratar Pro',
+            signupTitle: 'Criar conta (plano grátis)',
+            signupBody:
+              'Introduza o seu email e enviaremos um link para ativar a conta e completar o onboarding.',
+            emailLabel: 'Email *',
+            emailPlaceholder: 'o-seu@email.com',
+            nameLabel: 'Nome (opcional)',
+            namePlaceholder: 'O seu nome',
+            signupCta: 'Enviar link por email',
+            signupSending: 'A enviar…',
+          },
+          fr: {
+            title: 'Delfín Check‑in · Offres',
+            description:
+              'Choisissez votre offre : Basique gratuit (1 logement), Check‑in, Standard ou Pro. Mensuel ou annuel.',
+            eyebrow: 'Offres',
+            heroTitle: 'Choisissez l’offre adaptée à votre hébergement',
+            heroSubtitle:
+              'Commencez gratuitement avec 1 logement. Si besoin, changez d’offre à tout moment.',
+            monthly: 'Mensuel',
+            yearly: 'Annuel',
+            yearlyHint: '(-2 mois)',
+            planBasicLabel: 'Basique',
+            planBasicName: 'Gratuit',
+            pillOneProperty: '1 logement',
+            basicBlurb: 'Pour essayer le tableau de bord. Sans carte, sans coût mensuel.',
+            basicF0: '✅ Tableau de bord réservations et chambres',
+            basicF1: '✅ Export des données',
+            basicF2: '✅ App mobile',
+            ctaStartFree: 'Commencer gratuitement',
+            pillMostPopular: 'Le plus populaire',
+            pillUnlimited: 'illimité',
+            periodCheckin: '/mois + 2€/logement',
+            noteMonthly: 'Facturation mensuelle.',
+            noteYearly: 'Facturation annuelle (2 mois offerts).',
+            checkinF0: '✅ Envoi automatique au Ministère (MIR)',
+            checkinF1: '✅ Check‑in digital + registre des voyageurs',
+            checkinF2: '✅ Réservations directes',
+            ctaBuyCheckin: 'Souscrire Check‑in',
+            planStandardName: 'Sans publicités',
+            perMonthShort: '/mois',
+            standardF0: '✅ Tout ce qui est inclus dans Check‑in',
+            standardF1: '✅ Sans publicités',
+            standardF2: '✅ 1 logement inclus (suppl.: 2€/mois)',
+            ctaBuyStandard: 'Souscrire Standard',
+            planProName: 'Plus de réservations directes',
+            proF0: '✅ Tout ce qui est inclus dans Standard',
+            proF1: '✅ Microsite + avis Google',
+            proF2: '✅ Support prioritaire',
+            ctaBuyPro: 'Souscrire Pro',
+            signupTitle: 'Créer un compte (offre gratuite)',
+            signupBody:
+              'Saisissez votre email et nous vous enverrons un lien pour activer votre compte et terminer l’onboarding.',
+            emailLabel: 'Email *',
+            emailPlaceholder: 'vous@email.com',
+            nameLabel: 'Nom (optionnel)',
+            namePlaceholder: 'Votre nom',
+            signupCta: 'M’envoyer le lien',
+            signupSending: 'Envoi…',
+          },
+          fi: {
+            title: 'Delfín Check‑in · Suunnitelmat',
+            description:
+              'Valitse suunnitelma: ilmainen Basic (1 kohde), Check‑in, Standard tai Pro. Kuukausi- tai vuosilaskutus.',
+            eyebrow: 'Suunnitelmat',
+            heroTitle: 'Valitse majoitukseesi sopiva suunnitelma',
+            heroSubtitle:
+              'Aloita ilmaiseksi 1 kohteella. Tarvittaessa voit päivittää milloin tahansa.',
+            monthly: 'Kuukausi',
+            yearly: 'Vuosi',
+            yearlyHint: '(-2 kk)',
+            planBasicLabel: 'Basic',
+            planBasicName: 'Ilmainen',
+            pillOneProperty: '1 kohde',
+            basicBlurb: 'Kokeile hallintapaneelia. Ei korttia, ei kuukausimaksua.',
+            basicF0: '✅ Varaus- ja huonepaneeli',
+            basicF1: '✅ Tietojen vienti',
+            basicF2: '✅ Mobiilisovellus',
+            ctaStartFree: 'Aloita ilmaiseksi',
+            pillMostPopular: 'Suosituin',
+            pillUnlimited: 'rajaton',
+            periodCheckin: '/kk + 2€/kohde',
+            noteMonthly: 'Laskutetaan kuukausittain.',
+            noteYearly: 'Laskutetaan vuosittain (2 kk ilmaiseksi).',
+            checkinF0: '✅ Automaattinen ilmoitus viranomaisille (MIR)',
+            checkinF1: '✅ Digitaalinen check‑in + matkustajarekisteri',
+            checkinF2: '✅ Suorat varaukset',
+            ctaBuyCheckin: 'Osta Check‑in',
+            planStandardName: 'Ei mainoksia',
+            perMonthShort: '/kk',
+            standardF0: '✅ Kaikki Check‑in‑ominaisuudet',
+            standardF1: '✅ Ei mainoksia',
+            standardF2: '✅ 1 kohde mukana (lisä: 2€/kk)',
+            ctaBuyStandard: 'Osta Standard',
+            planProName: 'Enemmän suoria varauksia',
+            proF0: '✅ Kaikki Standard‑ominaisuudet',
+            proF1: '✅ Microsite + Google-arvostelut',
+            proF2: '✅ Ensisijainen tuki',
+            ctaBuyPro: 'Osta Pro',
+            signupTitle: 'Luo tili (ilmainen)',
+            signupBody:
+              'Syötä sähköpostisi ja lähetämme linkin tilin aktivointiin ja käyttöönottoon.',
+            emailLabel: 'Sähköposti *',
+            emailPlaceholder: 'sinä@email.com',
+            nameLabel: 'Nimi (valinnainen)',
+            namePlaceholder: 'Nimesi',
+            signupCta: 'Lähetä linkki sähköpostiin',
+            signupSending: 'Lähetetään…',
+          },
+          sv: {
+            title: 'Delfín Check‑in · Planer',
+            description:
+              'Välj plan: gratis Basic (1 boende), Check‑in, Standard eller Pro. Månads- eller årsfakturering.',
+            eyebrow: 'Planer',
+            heroTitle: 'Välj planen som passar ditt boende',
+            heroSubtitle:
+              'Börja gratis med 1 boende. Behöver du mer kan du uppgradera när som helst.',
+            monthly: 'Månad',
+            yearly: 'År',
+            yearlyHint: '(-2 månader)',
+            planBasicLabel: 'Basic',
+            planBasicName: 'Gratis',
+            pillOneProperty: '1 boende',
+            basicBlurb: 'Testa panelen. Inget kort, ingen månadskostnad.',
+            basicF0: '✅ Bokningar & rumspanel',
+            basicF1: '✅ Export av data',
+            basicF2: '✅ Mobilapp',
+            ctaStartFree: 'Börja gratis',
+            pillMostPopular: 'Populärast',
+            pillUnlimited: 'obegränsat',
+            periodCheckin: '/mån + 2€/boende',
+            noteMonthly: 'Faktureras månadsvis.',
+            noteYearly: 'Faktureras årsvis (2 månader gratis).',
+            checkinF0: '✅ Automatisk rapportering (MIR)',
+            checkinF1: '✅ Digital check‑in + gästregistrering',
+            checkinF2: '✅ Direktbokningar',
+            ctaBuyCheckin: 'Välj Check‑in',
+            planStandardName: 'Inga annonser',
+            perMonthShort: '/mån',
+            standardF0: '✅ Allt i Check‑in',
+            standardF1: '✅ Inga annonser',
+            standardF2: '✅ 1 boende ingår (extra: 2€/mån)',
+            ctaBuyStandard: 'Välj Standard',
+            planProName: 'Fler direktbokningar',
+            proF0: '✅ Allt i Standard',
+            proF1: '✅ Microsite + Google-recensioner',
+            proF2: '✅ Prioriterad support',
+            ctaBuyPro: 'Välj Pro',
+            signupTitle: 'Skapa konto (gratis)',
+            signupBody:
+              'Ange din e-post så skickar vi en länk för att aktivera kontot och slutföra onboarding.',
+            emailLabel: 'E-post *',
+            emailPlaceholder: 'du@email.com',
+            nameLabel: 'Namn (valfritt)',
+            namePlaceholder: 'Ditt namn',
+            signupCta: 'Skicka länken via e-post',
+            signupSending: 'Skickar…',
+          },
+        };
+
         var LANGS = [
           { code: 'es', label: 'ES', name: 'Español', aria: 'Español', flag: '🇪🇸' },
           { code: 'en', label: 'EN', name: 'English', aria: 'English', flag: '🇬🇧' },
@@ -323,6 +671,23 @@
           var known = { es: 1, en: 1, fr: 1, it: 1, pt: 1, fi: 1, sv: 1 };
           if (!known[lang]) lang = 'es';
           locale = lang;
+
+          // Traducciones (textos + placeholders + metadatos)
+          var dict = STR[lang] || STR.es;
+          try {
+            document.documentElement.lang = lang;
+            document.title = dict.title;
+            var metaD = document.querySelector('meta[name=\"description\"]');
+            if (metaD) metaD.setAttribute('content', dict.description);
+          } catch (e0) {}
+          document.querySelectorAll('[data-i18n]').forEach(function (el) {
+            var k = el.getAttribute('data-i18n');
+            if (k && dict[k] != null) el.textContent = String(dict[k]);
+          });
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+            var k = el.getAttribute('data-i18n-placeholder');
+            if (k && dict[k] != null) el.setAttribute('placeholder', String(dict[k]));
+          });
 
           // Persistencia + URL param (compat con /plans.html?lang=…)
           try { localStorage.setItem('landing_lang', lang); } catch (e) {}
@@ -393,7 +758,8 @@
             btnMonthly.className = 'rounded-full px-4 py-2 text-sm font-extrabold text-slate-700 hover:bg-slate-100';
           }
 
-          var noteSuffix = which === 'year' ? 'Facturación anual (2 meses gratis).' : 'Facturación mensual.';
+          var dict = STR[locale] || STR.es;
+          var noteSuffix = which === 'year' ? dict.noteYearly : dict.noteMonthly;
           var n1 = document.getElementById('noteCheckin');
           var n2 = document.getElementById('noteStandard');
           var n3 = document.getElementById('notePro');
@@ -420,6 +786,7 @@
         if (btnYearly) btnYearly.addEventListener('click', function () { setActive('year'); });
         initLangSwitcher();
         syncLangSwitcher(locale);
+        setLang(locale);
         setActive('month');
       })();
     </script>
