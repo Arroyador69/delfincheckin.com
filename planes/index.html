@@ -14,23 +14,55 @@
     <style>
       body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
       .pill { border: 1px solid rgba(15, 23, 42, 0.10); }
+      /* Igual que landing.html */
+      #lang-dropdown:not(.hidden) { animation: langDdIn 0.2s ease-out; }
+      @keyframes langDdIn {
+        from { opacity: 0; transform: translateY(-6px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      #lang-chevron.lang-dd-open { transform: rotate(180deg); }
     </style>
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
-    <!-- Header alineado con landing.html -->
+    <!-- Header = landing.html (idioma + marca) -->
     <header class="border-b border-slate-200/80 bg-white/90 backdrop-blur-sm sticky top-0 z-10">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
         <div class="flex items-center gap-3">
-          <a href="/landing.html" class="flex items-center gap-3 hover:opacity-90 no-underline">
-            <span class="text-2xl" aria-hidden="true">🐬</span>
-            <span class="font-bold text-lg text-slate-900 tracking-tight">Delfín Check‑in</span>
-          </a>
+          <span class="text-2xl" aria-hidden="true">🐬</span>
+          <span class="font-bold text-lg text-slate-900 tracking-tight">Delfín Check-in</span>
         </div>
-        <a
-          href="https://admin.delfincheckin.com/admin-login"
-          class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-white font-semibold shadow-sm hover:bg-blue-700 transition-colors"
-          id="ctaLoginTop"
-        >Entrar</a>
+        <div
+          id="lang-switcher-root"
+          class="relative z-[60] flex w-full justify-end sm:w-auto"
+          data-landing-lang-switcher
+        >
+          <button
+            type="button"
+            id="lang-trigger"
+            class="flex w-full sm:w-auto items-center justify-between gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-left text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 sm:justify-start"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-label="Idioma"
+          >
+            <span class="flex min-w-0 flex-1 items-center gap-2">
+              <svg class="h-5 w-5 shrink-0 text-gray-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" stroke-width="2" />
+                <path stroke-width="2" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+              </svg>
+              <span id="lang-trigger-text" class="hidden truncate sm:inline">🇪🇸 Español</span>
+              <span id="lang-trigger-flag-only" class="text-lg sm:hidden" aria-hidden="true">🇪🇸</span>
+            </span>
+            <svg id="lang-chevron" class="h-4 w-4 shrink-0 text-gray-600 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div
+            id="lang-dropdown"
+            class="absolute right-0 top-full z-[70] mt-2 hidden w-[min(100vw-2rem,13.5rem)] rounded-lg border border-gray-200 bg-white py-2 shadow-lg sm:w-52"
+            role="listbox"
+            aria-labelledby="lang-trigger"
+          ></div>
+        </div>
       </div>
     </header>
     <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-14">
@@ -224,6 +256,16 @@
     <script src="/landing-tracking.js" defer></script>
     <script>
       (function () {
+        var LANGS = [
+          { code: 'es', label: 'ES', name: 'Español', aria: 'Español', flag: '🇪🇸' },
+          { code: 'en', label: 'EN', name: 'English', aria: 'English', flag: '🇬🇧' },
+          { code: 'it', label: 'IT', name: 'Italiano', aria: 'Italiano', flag: '🇮🇹' },
+          { code: 'pt', label: 'PT', name: 'Português', aria: 'Português', flag: '🇵🇹' },
+          { code: 'fr', label: 'FR', name: 'Français', aria: 'Français', flag: '🇫🇷' },
+          { code: 'fi', label: 'FI', name: 'Suomi', aria: 'Suomi', flag: '🇫🇮' },
+          { code: 'sv', label: 'SV', name: 'Svenska', aria: 'Svenska', flag: '🇸🇪' }
+        ];
+
         var yearEl = document.getElementById('year');
         if (yearEl) yearEl.textContent = String(new Date().getFullYear());
 
@@ -243,6 +285,96 @@
 
         var locale = getLocale();
         var interval = 'month';
+
+        function setDropdownOpen(open) {
+          var dd = document.getElementById('lang-dropdown');
+          var ch = document.getElementById('lang-chevron');
+          var tr = document.getElementById('lang-trigger');
+          if (!dd) return;
+          if (open) {
+            dd.classList.remove('hidden');
+            if (ch) ch.classList.add('lang-dd-open');
+            if (tr) tr.setAttribute('aria-expanded', 'true');
+          } else {
+            dd.classList.add('hidden');
+            if (ch) ch.classList.remove('lang-dd-open');
+            if (tr) tr.setAttribute('aria-expanded', 'false');
+          }
+        }
+
+        function syncLangSwitcher(lang) {
+          var L = LANGS.filter(function (x) { return x.code === lang; })[0] || LANGS[0];
+          var tx = document.getElementById('lang-trigger-text');
+          var fo = document.getElementById('lang-trigger-flag-only');
+          if (tx) tx.textContent = (L.flag ? L.flag + ' ' : '') + L.name;
+          if (fo) fo.textContent = L.flag || '';
+          document.querySelectorAll('[data-lang-item]').forEach(function (btn) {
+            var c = btn.getAttribute('data-lang-code');
+            var active = c === lang;
+            btn.setAttribute('aria-selected', active ? 'true' : 'false');
+            btn.classList.toggle('bg-blue-50', active);
+            btn.classList.toggle('text-blue-800', active);
+            btn.classList.toggle('font-medium', active);
+            btn.classList.toggle('text-gray-700', !active);
+          });
+        }
+
+        function setLang(lang) {
+          var known = { es: 1, en: 1, fr: 1, it: 1, pt: 1, fi: 1, sv: 1 };
+          if (!known[lang]) lang = 'es';
+          locale = lang;
+
+          // Persistencia + URL param (compat con /plans.html?lang=…)
+          try { localStorage.setItem('landing_lang', lang); } catch (e) {}
+          try {
+            var url = new URL(location.href);
+            url.searchParams.set('lang', lang);
+            if (history.replaceState) history.replaceState(null, '', url.toString());
+          } catch (e2) {}
+
+          // Recalcular enlaces Polar + formulario
+          if (freeForm) freeForm.setAttribute('data-signup-locale', locale);
+          setActive(interval);
+          syncLangSwitcher(lang);
+          setDropdownOpen(false);
+        }
+
+        function initLangSwitcher() {
+          var dd = document.getElementById('lang-dropdown');
+          var tr = document.getElementById('lang-trigger');
+          if (!dd || !tr) return;
+          dd.innerHTML = '';
+          LANGS.forEach(function (L) {
+            var btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('role', 'option');
+            btn.setAttribute('data-lang-item', '');
+            btn.setAttribute('data-lang-code', L.code);
+            btn.className =
+              'flex w-full items-center gap-3 px-4 py-2 text-left text-sm text-gray-700 transition-colors hover:bg-gray-100';
+            var sf = document.createElement('span');
+            sf.className = 'text-xl shrink-0';
+            sf.textContent = L.flag;
+            var sn = document.createElement('span');
+            sn.className = 'flex-1';
+            sn.textContent = L.name;
+            btn.appendChild(sf);
+            btn.appendChild(sn);
+            btn.addEventListener('click', function () { setLang(L.code); });
+            dd.appendChild(btn);
+          });
+
+          tr.addEventListener('click', function () {
+            var isOpen = tr.getAttribute('aria-expanded') === 'true';
+            setDropdownOpen(!isOpen);
+          });
+
+          document.addEventListener('click', function (e) {
+            var root = document.getElementById('lang-switcher-root');
+            if (!root) return;
+            if (!root.contains(e.target)) setDropdownOpen(false);
+          });
+        }
 
         var btnMonthly = document.getElementById('btnMonthly');
         var btnYearly = document.getElementById('btnYearly');
@@ -286,6 +418,8 @@
 
         if (btnMonthly) btnMonthly.addEventListener('click', function () { setActive('month'); });
         if (btnYearly) btnYearly.addEventListener('click', function () { setActive('year'); });
+        initLangSwitcher();
+        syncLangSwitcher(locale);
         setActive('month');
       })();
     </script>
