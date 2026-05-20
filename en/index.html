@@ -1423,13 +1423,32 @@
   </header>
 
   <main>
-    <section class="hero container" id="inicio">
+    <!-- Vídeo principal: primera impresión al entrar -->
+    <section id="inicio" class="section container" style="padding: clamp(20px, 4vw, 40px) 0 28px; margin: 0 auto;" aria-labelledby="home-video-intro-title">
+      <div style="text-align:center; max-width: 900px; margin: 0 auto 20px;">
+        <p style="margin: 0 0 10px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #1d4ed8;" data-home-video-key="videoIntroEyebrow">Vídeo · 2 minutos</p>
+        <h1 id="home-video-intro-title" style="margin: 0 0 12px; font-size: clamp(26px, 5vw, 44px); font-weight: 800; color: #0f172a; line-height: 1.15;" data-home-video-key="videoIntroTitle">¿Qué es Delfín Check-in?</h1>
+        <p class="lead" style="font-size: clamp(16px, 2.2vw, 18px); color: #475569; max-width: 720px; margin: 0 auto 8px; line-height: 1.55;" data-home-video-key="videoIntroBody">Software para alojamientos: registro de viajeros (MIR), reservas en tu panel y envío al Ministerio del Interior. Míralo primero y luego explora planes y registro gratis.</p>
+        <p style="font-size: 13px; color: #92400e; font-style: italic; margin: 0 auto;" data-home-video-key="videoSpanishNote">El audio del vídeo está en español.</p>
+      </div>
+      <div style="max-width: 960px; margin: 0 auto;">
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.22);background:#000">
+          <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" src="https://www.youtube.com/embed/sH4Yv5t5hdI" title="Qué es Delfín Check-in" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+      <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top: 24px;">
+        <a href="#registro" class="btn primary" data-landing-free-toggle="1" data-home-video-key="videoHeroCtaPrimary">Empezar gratis</a>
+        <a id="home-video-hero-plans" href="/planes/" class="btn" data-home-video-key="videoHeroCtaPlans">Ver planes</a>
+      </div>
+    </section>
+
+    <section class="hero container" id="mas-sobre-delfin">
       <div class="badges">
         <span class="badge" style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); color: #92400e; font-weight: 800;">🚀 Coming soon</span>
         <span class="badge" style="background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; font-weight: 800;">💯 Free Basic plan (1 property)</span>
         <span class="badge" style="background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%); color: #3730a3; font-weight: 800;">👥 By owners, for owners</span>
       </div>
-      <h1>The hospitality software you always wished you had. <strong style="color: var(--brand);">Try 1 property free today.</strong></h1>
+      <h2 style="margin: 0 0 14px; font-size: clamp(28px, 5vw, 48px); line-height: 1.05;">The hospitality software you always wished you had. <strong style="color: var(--brand);">Try 1 property free today.</strong></h2>
       <div style="margin: 18px 0 20px; max-width: 720px; padding: 18px 20px; border-radius: 16px; border: 1px solid rgba(99, 102, 241, 0.22); background: linear-gradient(135deg, rgba(238, 242, 255, 0.95) 0%, rgba(240, 253, 250, 0.92) 100%); box-shadow: 0 4px 24px rgba(37, 99, 235, 0.07);" role="note" aria-label="Core message">
         <p style="margin: 0; font-size: clamp(15px, 2.5vw, 17px); font-weight: 650; color: #1e1b4b; line-height: 1.5;">
           Every guest check-in you log in Delfín Check-in is a chance to build loyalty and nurture your next direct booking.
@@ -2146,23 +2165,7 @@
         </div>
       </div>
     </section>
-
-        <!-- Tutoriales YouTube (portada) -->
-    <section id="home-video-intro" class="section container" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 24px; padding: 48px 24px; margin: 48px auto;" aria-labelledby="home-video-intro-title">
-      <div style="display:block;text-align:center;margin-bottom:24px">
-        <span style="background: rgba(37,99,235,0.1); color: #1d4ed8; font-weight: 700; font-size: 14px; padding: 6px 14px; border-radius: 999px; display: inline-block; margin-bottom: 16px;">🎥 Tutorial</span>
-        <h2 id="home-video-intro-title" style="margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #0f172a;" data-home-video-key="videoIntroTitle">¿Qué es Delfín Check-in?</h2>
-        <p class="lead" style="font-size: 17px; color: #475569; max-width: 720px; margin: 0 auto 8px;" data-home-video-key="videoIntroBody">Registro de viajeros, reserva en el panel y envío al Ministerio del Interior (MIR). Mira cómo encaja todo en un solo flujo.</p>
-        <p style="font-size: 13px; color: #92400e; font-style: italic; margin: 0 auto; max-width: 720px;" data-home-video-key="videoSpanishNote">El audio del vídeo está en español.</p>
-      </div>
-      <div style="display:block;max-width:900px;margin:0 auto">
-        <div style="display:block;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.25);background:#000">
-          <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:none" src="https://www.youtube.com/embed/sH4Yv5t5hdI" title="Qué es Delfín Check-in" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-      </div>
-    </section>
-
-    <section id="home-video-onboarding" class="section container" style="background: #fff; border-radius: 24px; padding: 48px 24px; margin: 48px auto; border: 1px solid #e2e8f0;" aria-labelledby="home-video-onboarding-title">
+<section id="home-video-onboarding" class="section container" style="background: #fff; border-radius: 24px; padding: 48px 24px; margin: 48px auto; border: 1px solid #e2e8f0;" aria-labelledby="home-video-onboarding-title">
       <div style="text-align: center; margin-bottom: 24px;">
         <h2 id="home-video-onboarding-title" style="margin: 0 0 12px; font-size: clamp(28px, 4vw, 40px); font-weight: 800; color: #0f172a;" data-home-video-key="videoOnboardingTitle">Empieza gratis en 6 pasos</h2>
         <p class="lead" style="font-size: 17px; color: #475569; max-width: 720px; margin: 0 auto 8px;" data-home-video-key="videoOnboardingBody">Regístrate sin tarjeta, recibe el email de onboarding y en minutos tienes el panel listo. El sistema trabaja por ti.</p>

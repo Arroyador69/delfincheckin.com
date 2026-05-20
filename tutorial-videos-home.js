@@ -5,9 +5,12 @@
 (function () {
   var STR = {
     es: {
+      videoIntroEyebrow: 'Vídeo · 2 minutos',
       videoIntroTitle: '¿Qué es Delfín Check-in?',
       videoIntroBody:
-        'Registro de viajeros, reserva en el panel y envío al Ministerio del Interior (MIR). Mira cómo encaja todo en un solo flujo.',
+        'Software para alojamientos: registro de viajeros (MIR), reservas en tu panel y envío al Ministerio del Interior. Míralo primero y luego explora planes y registro gratis.',
+      videoHeroCtaPrimary: 'Empezar gratis',
+      videoHeroCtaPlans: 'Ver planes',
       videoOnboardingTitle: 'Empieza gratis en 6 pasos',
       videoOnboardingBody:
         'Regístrate sin tarjeta, recibe el email de onboarding y en minutos tienes el panel listo. El sistema trabaja por ti.',
@@ -19,9 +22,12 @@
       videoSpanishNote: 'El audio del vídeo está en español.',
     },
     en: {
+      videoIntroEyebrow: 'Video · 2 minutes',
       videoIntroTitle: 'What is Delfín Check-in?',
       videoIntroBody:
-        'Guest registration, booking in your dashboard, and submission to the Spanish Ministry (MIR). See how it fits together.',
+        'Software for lodging: guest registration (MIR), bookings in your dashboard, and submission to the Spanish Ministry. Watch this first, then explore plans and free signup.',
+      videoHeroCtaPrimary: 'Start free',
+      videoHeroCtaPlans: 'View plans',
       videoOnboardingTitle: 'Start free in 6 steps',
       videoOnboardingBody:
         'Sign up with no card, open the onboarding email, and have your panel ready in minutes. The system works for you.',
@@ -33,9 +39,12 @@
       videoSpanishNote: 'Video audio is in Spanish.',
     },
     it: {
+      videoIntroEyebrow: 'Video · 2 minuti',
       videoIntroTitle: "Cos'è Delfín Check-in?",
       videoIntroBody:
-        "Registrazione ospiti, prenotazione nel pannello e invio al Ministero dell'Interno spagnolo (MIR). Guarda come funziona in un unico flusso.",
+        "Software per strutture ricettive: registrazione ospiti (MIR), prenotazioni nel pannello e invio al Ministero dell'Interno spagnolo. Guardalo per primo, poi scopri piani e registrazione gratuita.",
+      videoHeroCtaPrimary: 'Inizia gratis',
+      videoHeroCtaPlans: 'Vedi i piani',
       videoOnboardingTitle: 'Inizia gratis in 6 passi',
       videoOnboardingBody:
         "Registrati senza carta, apri l'email di onboarding e in pochi minuti il pannello è pronto. Il sistema lavora per te.",
@@ -47,9 +56,12 @@
       videoSpanishNote: "L'audio del video è in spagnolo.",
     },
     pt: {
+      videoIntroEyebrow: 'Vídeo · 2 minutos',
       videoIntroTitle: 'O que é o Delfín Check-in?',
       videoIntroBody:
-        'Registo de hóspedes, reserva no painel e envio ao Ministério do Interior espanhol (MIR). Veja como encaixa num único fluxo.',
+        'Software para alojamentos: registo de hóspedes (MIR), reservas no painel e envio ao Ministério do Interior espanhol. Veja primeiro e depois explore planos e registo grátis.',
+      videoHeroCtaPrimary: 'Começar grátis',
+      videoHeroCtaPlans: 'Ver planos',
       videoOnboardingTitle: 'Comece grátis em 6 passos',
       videoOnboardingBody:
         'Registe-se sem cartão, abra o email de onboarding e em minutos o painel está pronto. O sistema trabalha por si.',
@@ -61,9 +73,12 @@
       videoSpanishNote: 'O áudio do vídeo está em espanhol.',
     },
     fr: {
+      videoIntroEyebrow: 'Vidéo · 2 minutes',
       videoIntroTitle: "Qu'est-ce que Delfín Check-in ?",
       videoIntroBody:
-        "Enregistrement des voyageurs, réservation dans votre tableau de bord et envoi au ministère de l'Intérieur espagnol (MIR). Voyez comment tout s'articule.",
+        "Logiciel pour hébergements : fiches voyageurs (MIR), réservations dans votre tableau de bord et envoi au ministère de l'Intérieur espagnol. Regardez d'abord, puis découvrez les offres et l'inscription gratuite.",
+      videoHeroCtaPrimary: 'Commencer gratuitement',
+      videoHeroCtaPlans: 'Voir les offres',
       videoOnboardingTitle: 'Commencez gratuitement en 6 étapes',
       videoOnboardingBody:
         "Inscrivez-vous sans carte, ouvrez l'email d'onboarding et votre panneau est prêt en quelques minutes. Le système travaille pour vous.",
@@ -75,9 +90,12 @@
       videoSpanishNote: "L'audio de la vidéo est en espagnol.",
     },
     fi: {
+      videoIntroEyebrow: 'Video · 2 minuuttia',
       videoIntroTitle: 'Mikä on Delfín Check-in?',
       videoIntroBody:
-        'Vieraiden rekisteröinti, varaus paneelissa ja lähetys Espanjan sisäministeriölle (MIR). Katso miten kaikki linkittyy yhteen.',
+        'Majoitusohjelmisto: vierasrekisteröinti (MIR), varaukset paneelissa ja lähetys Espanjan sisäministeriölle. Katso ensin, sitten tutustu suunnitelmiin ja ilmaiseen rekisteröitymiseen.',
+      videoHeroCtaPrimary: 'Aloita ilmaiseksi',
+      videoHeroCtaPlans: 'Katso suunnitelmat',
       videoOnboardingTitle: 'Aloita ilmaiseksi 6 vaiheessa',
       videoOnboardingBody:
         'Rekisteröidy ilman korttia, avaa onboarding-sähköposti ja paneeli on valmis minuuteissa. Järjestelmä tekee työn puolestasi.',
@@ -89,9 +107,12 @@
       videoSpanishNote: 'Videon ääni on espanjaksi.',
     },
     sv: {
+      videoIntroEyebrow: 'Video · 2 minuter',
       videoIntroTitle: 'Vad är Delfín Check-in?',
       videoIntroBody:
-        'Gästregistrering, bokning i panelen och inlämning till Spaniens inrikesministerium (MIR). Se hur allt hänger ihop.',
+        'Programvara för boenden: gästregistrering (MIR), bokningar i panelen och inlämning till Spaniens inrikesministerium. Titta först, utforska sedan planer och gratis registrering.',
+      videoHeroCtaPrimary: 'Börja gratis',
+      videoHeroCtaPlans: 'Se planer',
       videoOnboardingTitle: 'Börja gratis i 6 steg',
       videoOnboardingBody:
         'Registrera dig utan kort, öppna onboarding-mailet och panelen är klar på minuter. Systemet jobbar för dig.',
@@ -121,6 +142,11 @@
     return '/' + lang + '/planes/' + q;
   }
 
+  function plansHref(lang) {
+    if (lang === 'es') return '/planes/';
+    return '/' + lang + '/planes/';
+  }
+
   function apply() {
     var lang = detectLang();
     var t = STR[lang] || STR.es;
@@ -130,6 +156,10 @@
     });
     var cta = document.getElementById('home-video-reputation-cta');
     if (cta) cta.setAttribute('href', plansProHref(lang));
+    var plansBtn = document.getElementById('home-video-hero-plans');
+    if (plansBtn) plansBtn.setAttribute('href', plansHref(lang));
+    var iframe = document.querySelector('#home-video-intro iframe');
+    if (iframe) iframe.setAttribute('title', t.videoIntroTitle);
   }
 
   if (document.readyState === 'loading') {

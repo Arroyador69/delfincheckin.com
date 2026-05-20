@@ -65,9 +65,25 @@
   </header>
 
   <main>
+    <section id="inicio" class="border-b border-slate-200 bg-white py-10 sm:py-12">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6">
+        <p class="text-xs font-bold uppercase tracking-wider text-blue-700 text-center mb-2" data-key="videoIntroEyebrow"></p>
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-slate-900 leading-tight mb-3" data-key="videoIntroTitle"></h1>
+        <p class="text-sm sm:text-base text-center text-slate-600 mb-2 max-w-2xl mx-auto leading-relaxed" data-key="videoIntroBody"></p>
+        <p class="text-xs text-center text-amber-800/90 italic mb-6 max-w-2xl mx-auto" data-key="videoSpanishNote"></p>
+        <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200" style="position:relative;padding-bottom:56.25%;height:0">
+          <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/sH4Yv5t5hdI" title="Qué es Delfín Check-in" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+        <div class="mt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3">
+          <a id="link-login-top" href="/admin-login" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl bg-blue-600 text-white font-semibold text-base shadow-md shadow-blue-600/20 hover:bg-blue-700 transition-colors" data-key="ctaPrimary"></a>
+          <a id="link-plans-top" href="#" class="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 rounded-xl bg-teal-600 text-white font-semibold text-base shadow-md shadow-teal-600/25 hover:bg-teal-700 transition-colors" data-key="ctaPlans"></a>
+        </div>
+      </div>
+    </section>
+
     <section class="max-w-5xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-10">
       <p class="text-sm font-medium text-blue-700 uppercase tracking-wide text-center mb-3" data-key="eyebrow"></p>
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center text-slate-900 leading-tight max-w-3xl mx-auto" data-key="heroTitle"></h1>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-slate-900 leading-tight max-w-3xl mx-auto" data-key="heroTitle"></h2>
       <p class="mt-5 text-lg sm:text-xl text-center text-slate-600 max-w-2xl mx-auto leading-relaxed" data-key="heroSubtitle"></p>
 
       <div class="mt-10 max-w-2xl mx-auto rounded-2xl border border-indigo-200/70 bg-gradient-to-br from-indigo-50 via-white to-sky-50 px-6 py-5 shadow-sm">
@@ -104,16 +120,6 @@
       </div>
     </section>
 
-    <section id="video-intro-section" class="border-t border-slate-200 bg-slate-50/80 py-12 sm:py-14">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6">
-        <h2 class="text-xl sm:text-2xl font-bold text-center text-slate-900 mb-2" data-key="videoIntroTitle"></h2>
-        <p class="text-sm sm:text-base text-center text-slate-600 mb-2 max-w-2xl mx-auto leading-relaxed" data-key="videoIntroBody"></p>
-        <p class="text-xs text-center text-amber-800/90 italic mb-6 max-w-2xl mx-auto" data-key="videoSpanishNote"></p>
-        <div class="rounded-2xl overflow-hidden shadow-md border border-slate-200" style="position:relative;padding-bottom:56.25%;height:0">
-          <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/sH4Yv5t5hdI" title="Qué es Delfín Check-in" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        </div>
-      </div>
-    </section>
 
     <section id="mir-compliance-section" class="hidden border-t border-slate-200 bg-blue-50/60 py-12 sm:py-14">
       <div class="max-w-4xl mx-auto px-4 sm:px-6">
@@ -202,7 +208,8 @@
       freeLabel: 'Plan gratuito',
       freeBody: 'Puedes empezar con el Plan Básico Gratis (solo para 1 propiedad). No hace falta tarjeta y no tiene coste mensual. Cada propiedad extra son 2 €/mes. El módulo de check-in digital y envío al Ministerio del Interior siempre cuesta 2 €/mes (opcional).',
       videoIntroTitle: '¿Qué es Delfín Check-in?',
-      videoIntroBody: 'Registro de viajeros, reserva en el panel y envío al Ministerio del Interior (MIR). Mira cómo encaja todo en un solo flujo.',
+      videoIntroEyebrow: 'Vídeo · 2 minutos',
+      videoIntroBody: 'Registro MIR, reservas en el panel y envío al Ministerio del Interior. Míralo primero; luego explora planes y acceso al panel.',
       videoOnboardingTitle: 'Empieza gratis en 6 pasos',
       videoOnboardingBody: 'Regístrate sin tarjeta, recibe el email de onboarding y en minutos tienes el panel listo. El sistema trabaja por ti.',
       videoReputationBadge: 'Plan Pro',
@@ -234,7 +241,8 @@
       freeLabel: 'Free plan',
       freeBody: 'Start with the Basic Free plan (1 property included). No card required and no monthly cost. Each additional property is €2/month. The digital check-in + Ministry submission module is always €2/month (optional).',
       videoIntroTitle: 'What is Delfín Check-in?',
-      videoIntroBody: 'Guest registration, booking in your dashboard, and submission to the Spanish Ministry (MIR). See how it fits together.',
+      videoIntroEyebrow: 'Video · 2 minutes',
+      videoIntroBody: 'MIR guest registration, bookings in your dashboard, and Ministry submission. Watch first; then plans and free signup.',
       videoOnboardingTitle: 'Start free in 6 steps',
       videoOnboardingBody: 'Sign up with no card, open the onboarding email, and have your panel ready in minutes. The system works for you.',
       videoReputationBadge: 'Pro plan',
@@ -265,8 +273,9 @@
       mirComplianceBody2: 'Centralizzi dati di ospiti e prenotazioni in un unico flusso operativo per inviare le informazioni richieste dalla legge con tracciabilità e controllo, in pieno allineamento con il quadro normativo applicabile in Spagna.',
       freeLabel: 'Piano gratuito',
       freeBody: 'Puoi iniziare con il Piano Base Gratis (1 proprietà inclusa). Nessuna carta richiesta e nessun costo mensile. Ogni proprietà aggiuntiva costa 2 €/mese. Il modulo di check-in digitale e invio al Ministero dell’Interno costa sempre 2 €/mese (opzionale).',
+      videoIntroEyebrow: 'Video · 2 minuti',
       videoIntroTitle: 'Cos\'è Delfín Check-in?',
-      videoIntroBody: 'Registrazione ospiti, prenotazione nel pannello e invio al Ministero dell\'Interno spagnolo (MIR). Guarda come funziona in un unico flusso.',
+      videoIntroBody: 'Registrazione MIR, prenotazioni nel pannello e invio al Ministero dell\'Interno. Guarda prima; poi piani e accesso al pannello.',
       videoOnboardingTitle: 'Inizia gratis in 6 passi',
       videoOnboardingBody: 'Registrati senza carta, apri l\'email di onboarding e in pochi minuti il pannello è pronto. Il sistema lavora per te.',
       videoReputationBadge: 'Piano Pro',
@@ -297,8 +306,9 @@
       mirComplianceBody2: 'Centraliza dados de hóspedes e reservas num único fluxo operacional para enviar a informação legal obrigatória com rastreabilidade e controlo, em total alinhamento com o quadro legal aplicável em Espanha.',
       freeLabel: 'Plano gratuito',
       freeBody: 'Pode começar com o Plano Básico Gratuito (1 propriedade incluída). Não é preciso cartão e não tem custo mensal. Cada propriedade extra custa 2 €/mês. O módulo de check-in digital e envio ao Ministério do Interior custa sempre 2 €/mês (opcional).',
+      videoIntroEyebrow: 'Vídeo · 2 minutos',
       videoIntroTitle: 'O que é o Delfín Check-in?',
-      videoIntroBody: 'Registo de hóspedes, reserva no painel e envio ao Ministério do Interior espanhol (MIR). Veja como encaixa num único fluxo.',
+      videoIntroBody: 'Registo MIR, reservas no painel e envio ao Ministério do Interior. Veja primeiro; depois planos e acesso ao painel.',
       videoOnboardingTitle: 'Comece grátis em 6 passos',
       videoOnboardingBody: 'Registe-se sem cartão, abra o email de onboarding e em minutos o painel está pronto. O sistema trabalha por si.',
       videoReputationBadge: 'Plano Pro',
@@ -329,8 +339,9 @@
       mirComplianceBody2: 'Vous centralisez les données clients et réservations dans un flux unique pour transmettre les informations légales requises avec traçabilité et contrôle, en conformité totale avec le cadre légal applicable en Espagne.',
       freeLabel: 'Offre gratuite',
       freeBody: 'Vous pouvez commencer avec l’offre gratuite (1 propriété incluse). Pas de carte bancaire et aucun coût mensuel. Chaque propriété supplémentaire coûte 2 €/mois. Le module de check-in digital et envoi au Ministère de l’Intérieur coûte toujours 2 €/mois (optionnel).',
+      videoIntroEyebrow: 'Vidéo · 2 minutes',
       videoIntroTitle: 'Qu\'est-ce que Delfín Check-in ?',
-      videoIntroBody: 'Enregistrement des voyageurs, réservation dans votre tableau de bord et envoi au ministère de l\'Intérieur espagnol (MIR). Voyez comment tout s\'articule.',
+      videoIntroBody: 'Déclaration MIR, réservations dans le tableau de bord et envoi au ministère. Regardez d\'abord; puis offres et accès au panneau.',
       videoOnboardingTitle: 'Commencez gratuitement en 6 étapes',
       videoOnboardingBody: 'Inscrivez-vous sans carte, ouvrez l\'email d\'onboarding et votre panneau est prêt en quelques minutes. Le système travaille pour vous.',
       videoReputationBadge: 'Offre Pro',
@@ -361,8 +372,9 @@
       mirComplianceBody2: 'Keskität vieras- ja varaustiedot yhteen operatiiviseen prosessiin, jotta lakisääteiset tiedot voidaan lähettää jäljitettävästi ja hallitusti Espanjan sovellettavan lainsäädännön mukaisesti.',
       freeLabel: 'Ilmainen suunnitelma',
       freeBody: 'Voit aloittaa ilmaisella peruspaketilla (1 majoituskohde mukana). Korttia ei tarvita eikä kuukausimaksua ole. Jokainen lisäkohde on 2 €/kk. Digitaalinen check-in + lähetys sisäministeriölle maksaa aina 2 €/kk (valinnainen).',
+      videoIntroEyebrow: 'Video · 2 minuuttia',
       videoIntroTitle: 'Mikä on Delfín Check-in?',
-      videoIntroBody: 'Vieraiden rekisteröinti, varaus paneelissa ja lähetys Espanjan sisäministeriölle (MIR). Katso miten kaikki linkittyy yhteen.',
+      videoIntroBody: 'MIR-rekisteröinti, varaukset paneelissa ja lähetys sisäministeriölle. Katso ensin; sitten suunnitelmat ja ilmainen rekisteröityminen.',
       videoOnboardingTitle: 'Aloita ilmaiseksi 6 vaiheessa',
       videoOnboardingBody: 'Rekisteröidy ilman korttia, avaa onboarding-sähköposti ja paneeli on valmis minuuteissa. Järjestelmä tekee työn puolestasi.',
       videoReputationBadge: 'Pro-sopimus',
@@ -397,8 +409,9 @@
       freeLabel: 'Gratisplan',
       freeBody:
         'Du kan börja med gratis grundplan (1 boende ingår). Inget kort krävs och ingen månadskostnad. Varje ytterligare boende kostar 2 €/månad. Modulen för digital incheckning + inlämning till inrikesministeriet kostar alltid 2 €/månad (valfritt).',
+      videoIntroEyebrow: 'Video · 2 minuter',
       videoIntroTitle: 'Vad är Delfín Check-in?',
-      videoIntroBody: 'Gästregistrering, bokning i panelen och inlämning till Spaniens inrikesministerium (MIR). Se hur allt hänger ihop.',
+      videoIntroBody: 'MIR-registrering, bokningar i panelen och inlämning till inrikesministeriet. Titta först; sedan planer och gratis registrering.',
       videoOnboardingTitle: 'Börja gratis i 6 steg',
       videoOnboardingBody: 'Registrera dig utan kort, öppna onboarding-mailet och panelen är klar på minuter. Systemet jobbar för dig.',
       videoReputationBadge: 'Pro-plan',
