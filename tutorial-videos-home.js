@@ -5,7 +5,7 @@
 (function () {
   var STR = {
     es: {
-      videoIntroEyebrow: 'Vídeo · 2 minutos',
+      videoIntroEyebrow: 'Vídeo · 35 segundos',
       videoIntroTitle: '¿Qué es Delfín Check-in?',
       videoIntroBody:
         'Software para alojamientos: registro de viajeros (MIR), reservas en tu panel y envío al Ministerio del Interior. Míralo primero y luego explora planes y registro gratis.',
@@ -22,7 +22,7 @@
       videoSpanishNote: 'El audio del vídeo está en español.',
     },
     en: {
-      videoIntroEyebrow: 'Video · 2 minutes',
+      videoIntroEyebrow: 'Video · 35 seconds',
       videoIntroTitle: 'What is Delfín Check-in?',
       videoIntroBody:
         'Software for lodging: guest registration (MIR), bookings in your dashboard, and submission to the Spanish Ministry. Watch this first, then explore plans and free signup.',
@@ -39,7 +39,7 @@
       videoSpanishNote: 'Video audio is in Spanish.',
     },
     it: {
-      videoIntroEyebrow: 'Video · 2 minuti',
+      videoIntroEyebrow: 'Video · 35 secondi',
       videoIntroTitle: "Cos'è Delfín Check-in?",
       videoIntroBody:
         "Software per strutture ricettive: registrazione ospiti (MIR), prenotazioni nel pannello e invio al Ministero dell'Interno spagnolo. Guardalo per primo, poi scopri piani e registrazione gratuita.",
@@ -56,7 +56,7 @@
       videoSpanishNote: "L'audio del video è in spagnolo.",
     },
     pt: {
-      videoIntroEyebrow: 'Vídeo · 2 minutos',
+      videoIntroEyebrow: 'Vídeo · 35 segundos',
       videoIntroTitle: 'O que é o Delfín Check-in?',
       videoIntroBody:
         'Software para alojamentos: registo de hóspedes (MIR), reservas no painel e envio ao Ministério do Interior espanhol. Veja primeiro e depois explore planos e registo grátis.',
@@ -73,7 +73,7 @@
       videoSpanishNote: 'O áudio do vídeo está em espanhol.',
     },
     fr: {
-      videoIntroEyebrow: 'Vidéo · 2 minutes',
+      videoIntroEyebrow: 'Vidéo · 35 secondes',
       videoIntroTitle: "Qu'est-ce que Delfín Check-in ?",
       videoIntroBody:
         "Logiciel pour hébergements : fiches voyageurs (MIR), réservations dans votre tableau de bord et envoi au ministère de l'Intérieur espagnol. Regardez d'abord, puis découvrez les offres et l'inscription gratuite.",
@@ -90,7 +90,7 @@
       videoSpanishNote: "L'audio de la vidéo est en espagnol.",
     },
     fi: {
-      videoIntroEyebrow: 'Video · 2 minuuttia',
+      videoIntroEyebrow: 'Video · 35 sekuntia',
       videoIntroTitle: 'Mikä on Delfín Check-in?',
       videoIntroBody:
         'Majoitusohjelmisto: vierasrekisteröinti (MIR), varaukset paneelissa ja lähetys Espanjan sisäministeriölle. Katso ensin, sitten tutustu suunnitelmiin ja ilmaiseen rekisteröitymiseen.',
@@ -107,7 +107,7 @@
       videoSpanishNote: 'Videon ääni on espanjaksi.',
     },
     sv: {
-      videoIntroEyebrow: 'Video · 2 minuter',
+      videoIntroEyebrow: 'Video · 35 sekunder',
       videoIntroTitle: 'Vad är Delfín Check-in?',
       videoIntroBody:
         'Programvara för boenden: gästregistrering (MIR), bokningar i panelen och inlämning till Spaniens inrikesministerium. Titta först, utforska sedan planer och gratis registrering.',
