@@ -8,7 +8,7 @@ Delfín Check-in centraliza la operativa del alojamiento: calendario y reservas 
 - Título: ¿Qué es Delfín Check-in?
 - URL: https://www.youtube.com/watch?v=sH4Yv5t5hdI
 - Idioma del audio: español
-- Duración aproximada: 2 minutos
+- Duración aproximada: 35 segundos
 
 ## Planes (resumen)
 - Plan Básico Gratis: 1 propiedad, sin tarjeta, sin coste mensual (financiado con anuncios discretos en el panel).
