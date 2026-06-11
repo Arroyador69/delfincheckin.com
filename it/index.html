@@ -17,8 +17,8 @@
 <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
 <meta content="no-cache" http-equiv="Pragma"/>
 <meta content="0" http-equiv="Expires"/>
-<title>Delfín Check-in · Software gestione &amp; check-in ospiti</title>
-<meta content="Delfín Check-in: software di gestione per strutture dove la registrazione del viaggiatore crea prenotazioni per te: rivedi, conferma, fattura ed esporta. Pro: recensioni Google e microsito per prenotazioni dirette oltre Airbnb/Booking. Base gratis per provare (1 proprietà). Costruito per la Spagna." name="description"/>
+<title>Delfín Check‑in · Scheda ospiti · Ministero dell'Interno (RD 933/2021)</title>
+<meta name="description" content="Conformità scheda ospiti e invio MIR in Spagna. Prova gratis 1 proprietà: modulo digitale, XML e gestione. Solo email, senza carta.">
 <meta content="software per hotel, software gestione, motore di prenotazione, gestione immobiliare Spagna, check-in ospiti, MIR, Ministero degli Interni, software per ostelli, case vacanze, prenotazioni alberghiere" name="keywords"/>
 <meta content="Delfín Check-in" name="author"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
@@ -56,8 +56,8 @@
 <!-- X-Frame-Options debe configurarse como header HTTP, no como meta tag -->
 <meta content="1; mode=block" http-equiv="X-XSS-Protection"/>
 <meta content="website" property="og:type"/>
-<meta content="Delfín Check-in · Software gestione &amp; check-in ospiti" property="og:title"/>
-<meta content="Software di gestione con piano Base (prova 1 proprietà). Check-in (2€/mese + 2€/struttura), Standard (9,99€/mese) e Pro (29,99€/mese). Invio automatico al Ministero degli Interni spagnolo. Iscriviti ora." property="og:description"/>
+<meta property="og:title" content="Delfín Check‑in · Scheda ospiti · Ministero dell'Interno">
+<meta property="og:description" content="RD 933/2021: scheda ospiti e MIR. Prova gratis con 1 proprietà — solo email.">
 <meta content="https://delfincheckin.com/og-image.svg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -4569,5 +4569,50 @@ ${message}`;
 <!-- Referral Tracking Script -->
 <script src="https://admin.delfincheckin.com/referral-tracking.js"></script>
   <script src="/tutorial-videos-home.js" defer></script>
+<style>
+  #delfin-soft-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;z-index:999999;}
+  #delfin-soft-popup{width:min(520px,calc(100vw - 32px));background:#fff;border-radius:18px;box-shadow:0 16px 48px rgba(2,6,23,.35);border:1px solid rgba(148,163,184,.6);overflow:hidden}
+  #delfin-soft-popup .hd{padding:16px 16px 0 16px}
+  #delfin-soft-popup .ttl{font-weight:950;font-size:20px;line-height:1.2;color:#0f172a;margin:0}
+  #delfin-soft-popup .sub{margin:10px 0 0 0;color:#334155;font-size:14px;line-height:1.45}
+  #delfin-soft-popup .cta{display:flex;gap:10px;padding:16px}
+  #delfin-soft-popup .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 14px;font-weight:900;text-decoration:none;border:0;cursor:pointer;font-size:14px}
+  #delfin-soft-popup .btn-primary{background:#16a34a;color:#fff;flex:1}
+  #delfin-soft-popup .btn-ghost{background:#f1f5f9;color:#0f172a}
+  #delfin-soft-popup .x{position:absolute;top:10px;right:10px;border:0;background:transparent;cursor:pointer;font-size:20px;color:#475569}
+  #delfin-soft-popup .wrap{position:relative}
+</style>
+<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true">
+  <div class="wrap">
+    <div id="delfin-soft-popup">
+      <button class="x" type="button" aria-label="Chiudi" id="delfin-soft-popup-close">×</button>
+      <div class="hd">
+        <p class="ttl">Prova gratis con 1 proprietà</p>
+        <p class="sub">Digitalizza la <strong>scheda ospiti</strong> e rispetta il <strong>Ministero dell'Interno</strong> spagnolo (RD 933/2021). Solo email.</p>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" id="delfin-soft-popup-cta" href="#registro" data-landing-free-toggle="1">Prova gratis con 1 proprietà</a>
+        <button class="btn btn-ghost" type="button" id="delfin-soft-popup-later">Più tardi</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    var o=document.getElementById('delfin-soft-popup-overlay');
+    if(!o) return;
+    var k='delfin_landing_soft_popup_last', last=0;
+    try{ last=Number(localStorage.getItem(k)||'0'); }catch(e){}
+    if(last && Date.now()-last<604800000) return;
+    function close(){ o.style.display='none'; try{ localStorage.setItem(k,String(Date.now())); }catch(e){} }
+    document.getElementById('delfin-soft-popup-close').addEventListener('click', close);
+    document.getElementById('delfin-soft-popup-later').addEventListener('click', close);
+    o.addEventListener('click', function(e){ if(e.target===o) close(); });
+    document.getElementById('delfin-soft-popup-cta').addEventListener('click', close);
+    setTimeout(function(){ o.style.display='flex'; }, 15000);
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
