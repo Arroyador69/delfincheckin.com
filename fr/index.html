@@ -1401,7 +1401,8 @@
     #form-registro .btn{ border-color: rgba(15,23,42,.12); background:#ffffff; color:#0f172a }
     #form-registro .btn:hover{ background:#f8fafc }
   </style>
-</link></meta></head>
+</link></meta>  <link rel="stylesheet" href="/landing-capture.css" />
+</head>
 <body>
 <header>
 <div class="container nav">
@@ -2140,171 +2141,58 @@
 </div>
 </div>
 </section>
-<!-- Planes y Precios -->
-<section class="section container" id="planes">
-<h2 style="text-align: center; margin-bottom: 16px; font-size: 36px; font-weight: 800;">Une tarification claire et transparente</h2>
-<p class="lead" style="text-align: center; margin-bottom: 20px; font-size: 18px;">Pas de surprises, pas de petits caractères. Vous savez exactement ce que vous obtenez et ce que cela coûte.</p>
-<p style="text-align: center; margin-bottom: 40px; font-size: 18px; color: #dc2626; font-weight: 700; padding: 16px; background: #fef2f2; border-radius: 12px; border: 2px solid #dc2626; max-width: 800px; margin-left: auto; margin-right: auto;">
-        ⚠️ <strong>IMPORTANT:</strong>L’accès permanent et gratuit au plan Basic est réservé à ceux qui s’inscrivent maintenant. Les places sont limitées.<strong>Inscrivez-vous avant qu'ils ne soient épuisés.</strong>
-</p>
-<div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
-<!-- Plan Básico -->
-<article class="card" style="border: 2px solid #e2e8f0; position: relative;">
-<div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">⚠️ Si vous vous inscrivez maintenant</div>
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800;">Forfait de base</h3>
-<div class="price" style="margin: 16px 0;">
-<strong style="font-size: 42px; color: #16a34a;">0€</strong>
-<small style="font-size: 16px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Jusqu'à 1 propriété. Comprend des publicités.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Formulaire et liste des voyageurs</li>
-<li>✅ Téléchargement XML (téléchargement manuel du ministère)</li>
-<li>✅ Réservations directes (frais de 9%)</li>
-<li>⚠️ Annonces discrètes</li>
-<li>❌ Soumission MIR automatique (non incluse)</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Commencez gratuitement</a>
-</div>
-</article>
-<!-- Plan Check-in -->
-<article class="card" style="border: 2px solid #2563eb; position: relative; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
-<div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">Le plus populaire</div>
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #1e40af;">Plan d'enregistrement</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">4€</div>
-<strong style="font-size: 38px; color: #2563eb;">2€</strong>
-<small style="font-size: 14px; color: #64748b;">/mois + 2 €/bien</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Propriétés illimitées. Comprend des publicités.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Soumission automatique au ministère (MIR)</li>
-<li>✅ Enregistrement numérique et enregistrement des voyageurs</li>
-<li>✅ Réservations directes (frais de 9%)</li>
-<li>✅ Focus conformité RD 933/2021</li>
-<li>⚠️ Annonces discrètes</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Obtenez l'enregistrement</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fr&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(37,99,235,.35); background: rgba(37,99,235,.06); color: #1d4ed8;">Annuel (2 mois offerts)</a>
-</div>
-</article>
-<!-- Plan Standard -->
-<article class="card" style="border: 2px solid #d97706; position: relative; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #b45309;">Forfait standard</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">14,99€</div>
-<strong style="font-size: 38px; color: #d97706;">9,99€</strong>
-<small style="font-size: 14px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">1 propriété incluse. +2€/bien ou chambre supplémentaire. Aucune publicité.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Tout à l'enregistrement</li>
-<li>✅ Aucune publicité</li>
-<li>✅ 1 bien inclus, puis 2€/mois par bien ou chambre supplémentaire</li>
-<li>✅ Réservations directes (frais de 9%)</li>
-<li>✅ E-mail d'instructions d'enregistrement aux invités<strong>(suivi ouvert)</strong></li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Obtenez la norme</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fr&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(217,119,6,.35); background: rgba(217,119,6,.08); color: #92400e;">Annuel (2 mois offerts)</a>
-</div>
-</article>
-<!-- Plan Pro -->
-<article class="card" style="border: 2px solid #7c3aed; position: relative; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);">
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #5b21b6;">Plan Pro</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">39,99€</div>
-<strong style="font-size: 38px; color: #7c3aed;">29,99€</strong>
-<small style="font-size: 14px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">1 propriété incluse. +2€/bien ou chambre supplémentaire. Frais de 5 % sur les réservations directes.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Tout en standard</li>
-<li>✅ 1 bien inclus, puis 2€/mois par extra</li>
-<li>✅ Réservations directes avec seulement<strong>5% de frais</strong></li>
-<li>✅ E-mail d'instructions d'enregistrement aux invités<strong>(suivi ouvert)</strong></li>
-<li>✅ <strong>Avis Google + microsite</strong>sur votre profil : plus de visibilité et de réservations directes au-delà d'Airbnb/Booking<em>(Pro uniquement)</em></li>
-<li>✅ Pas de publicité, support prioritaire et sauvegardes</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Devenez Pro</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fr&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(124,58,237,.35); background: rgba(124,58,237,.08); color: #5b21b6;">Annuel (2 mois offerts)</a>
-</div>
-</article>
-</div>
-<div style="margin-top: 40px; padding: 24px; background: #f0f9ff; border-radius: 16px; border-left: 4px solid #2563eb; max-width: 900px; margin-left: auto; margin-right: auto;">
-<h4 style="margin: 0 0 12px 0; color: #1e40af; font-weight: 700; font-size: 18px;">ℹ️ Transparence totale</h4>
-<ul style="margin: 0; padding-left: 20px; color: #1e40af; font-size: 15px; line-height: 1.8;">
-<li><strong>Basique:</strong>0 €/mois, jusqu'à 1 bien. Financé par la publicité. Téléchargement XML uniquement (pas de MIR automatique).</li>
-<li><strong>Enregistrement:</strong>2 €/mois + 2 € par bien. Comprend la soumission automatique du ministère.</li>
-<li><strong>Standard:</strong>9,99 €/mois, 1 bien inclus, + 2 €/mois par bien ou chambre supplémentaire. Aucune publicité.</li>
-<li><strong>Pro:</strong>29,99 €/mois, 1 bien inclus, +2 €/mois par extra. Pas de publicité, 5 % sur les réservations directes, et<strong>Pro uniquement</strong>des outils pour<strong>Avis Google</strong>et ton<strong>microsite de réservation</strong>pour gagner des séjours hors OTA.</li>
-<li><strong>Pas de surprise :</strong>Vous savez ce que vous obtenez et ce que vous payez dès le premier jour.</li>
-</ul>
-</div>
-</section>
-<!-- (Tarifs) Deux boutons : mensuel + annuel. -->
-    <!-- Plan gratuit : e-mail → onboarding -->
-    <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
-    <section class="section container">
-      <div class="card" style="padding: 28px;">
-        <h2 style="margin-top: 0; font-size: 26px;">Commencer avec le plan gratuit</h2>
-        <p class="lead" style="margin-bottom: 20px;">Saisissez votre e-mail : nous vous enverrons un lien pour activer votre compte et terminer l’onboarding.</p>
-        <form id="landingFreeSignupForm" data-signup-locale="fr" style="display: grid; gap: 16px;">
-          <label>
-            <span style="display:block;font-weight:600;margin-bottom:6px;">E-mail *</span>
-            <input id="landingFreeSignupEmail" type="email" required placeholder="vous@email.com" style="width:100%;height:48px;border-radius:10px;border:2px solid rgba(15,23,42,.2);padding:0 14px;font-size:16px;">
-          </label>
-          <label>
-            <span style="display:block;font-weight:600;margin-bottom:6px;">Nom (facultatif)</span>
-            <input id="landingFreeSignupName" type="text" placeholder="Votre nom" style="width:100%;height:48px;border-radius:10px;border:2px solid rgba(15,23,42,.2);padding:0 14px;font-size:16px;">
-          </label>
-          <button type="submit" id="landingFreeSignupSubmit" class="btn primary" style="width:100%;padding:14px;font-size:17px;font-weight:700;">
-            <span id="landingFreeSignupSubmitText">Recevoir le lien par e-mail</span>
-            <span id="landingFreeSignupLoading" style="display:none;">Envoi en cours…</span>
+<!-- Captación: registro visible -->
+    <section id="registro" class="section container landing-capture-section" aria-label="Registro gratis">
+      <div class="landing-capture-card">
+        <span class="landing-capture-badge">🐬 Essayez maintenant</span>
+        <h2 class="landing-capture-title">Opérationnel en 2 minutes</h2>
+        <p class="landing-capture-sub">Fiche voyageurs et <strong>Ministère de l'Intérieur</strong> (RD 933/2021). Email seulement.</p>
+        <ol class="landing-capture-steps">
+          <li><strong>1</strong>Votre email</li>
+          <li><strong>2</strong>Vérifiez la boîte</li>
+          <li><strong>3</strong>1 propriété</li>
+        </ol>
+        <form id="landingFreeSignupForm" class="landing-capture-form" data-signup-locale="fr">
+          <div>
+            <label class="landing-capture-label" for="landingFreeSignupEmail">E-mail *</label>
+            <input id="landingFreeSignupEmail" class="landing-capture-input" type="email" required placeholder="vous@email.com" autocomplete="email">
+          </div>
+          <div>
+            <label class="landing-capture-label" for="landingFreeSignupName">Nom (optionnel)</label>
+            <input id="landingFreeSignupName" class="landing-capture-input" type="text" placeholder="Votre nom" autocomplete="name">
+          </div>
+          <button type="submit" id="landingFreeSignupSubmit" class="landing-capture-submit">
+            <span id="landingFreeSignupSubmitText">…</span>
+            <span id="landingFreeSignupLoading" style="display:none;">…</span>
           </button>
-          <div id="landingFreeSignupMessage" role="status" style="display:none;padding:12px;border-radius:8px;font-size:15px;"></div>
+          <div id="landingFreeSignupMessage" class="landing-capture-msg" role="status"></div>
+          <p class="landing-capture-fine">Lien d'accès par email. Vérifiez les indésirables.</p>
         </form>
       </div>
     </section>
-    </div>
 
-    <script data-landing-free-collapse>
+    <script data-landing-free-scroll>
     (function () {
-      var panel = document.getElementById('registro');
-      if (!panel || !panel.classList.contains('landing-free-signup-wrap')) return;
-      var toggles = document.querySelectorAll('[data-landing-free-toggle]');
-      function openPanel() {
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden', 'false');
-        toggles.forEach(function (t) {
-          t.setAttribute('aria-expanded', 'true');
-        });
-        try {
-          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } catch (e) {
-          panel.scrollIntoView(true);
-        }
+      function goRegistro() {
+        var reg = document.getElementById('registro');
+        if (reg) reg.scrollIntoView({ behavior: 'smooth', block: 'start' });
         var input = document.getElementById('landingFreeSignupEmail');
-        if (input) window.setTimeout(function () {
-          input.focus();
-        }, 350);
+        if (input) window.setTimeout(function () { input.focus(); }, 400);
       }
-      toggles.forEach(function (el) {
-        el.setAttribute('aria-expanded', 'false');
-        el.setAttribute('aria-controls', 'registro');
+      document.querySelectorAll('[data-landing-free-toggle]').forEach(function (el) {
         el.addEventListener('click', function (e) {
-          e.preventDefault();
-          openPanel();
+          var href = el.getAttribute('href') || '';
+          if (href === '#registro' || href.indexOf('#registro') === 0) {
+            e.preventDefault();
+            goRegistro();
+          }
         });
       });
-      if (location.hash === '#registro') openPanel();
+      if (location.hash === '#registro') goRegistro();
     })();
     </script>
 
-<!-- Formulario de Contacto -->
+    <!-- Formulario de Contacto -->
 <section class="section container" id="contacto">
 <h2>Avez-vous des questions ?</h2>
 <p class="lead">Contactez-nous et nous vous aiderons à trouver la meilleure solution pour votre logement.</p>
@@ -4565,53 +4453,29 @@ ${message}`;
 <!-- Landing Page Analytics Tracking -->
 <script defer="" src="/lang-switcher-home.js"></script>
 <script src="/landing-tracking.js"></script>
+  <script src="/landing-free-signup.js" defer></script>
 <!-- Referral Tracking Script -->
 <script src="https://admin.delfincheckin.com/referral-tracking.js"></script>
   <script src="/tutorial-videos-home.js" defer></script>
-<style>
-  #delfin-soft-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;z-index:999999;}
-  #delfin-soft-popup{width:min(520px,calc(100vw - 32px));background:#fff;border-radius:18px;box-shadow:0 16px 48px rgba(2,6,23,.35);border:1px solid rgba(148,163,184,.6);overflow:hidden}
-  #delfin-soft-popup .hd{padding:16px 16px 0 16px}
-  #delfin-soft-popup .ttl{font-weight:950;font-size:20px;line-height:1.2;color:#0f172a;margin:0}
-  #delfin-soft-popup .sub{margin:10px 0 0 0;color:#334155;font-size:14px;line-height:1.45}
-  #delfin-soft-popup .cta{display:flex;gap:10px;padding:16px}
-  #delfin-soft-popup .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 14px;font-weight:900;text-decoration:none;border:0;cursor:pointer;font-size:14px}
-  #delfin-soft-popup .btn-primary{background:#16a34a;color:#fff;flex:1}
-  #delfin-soft-popup .btn-ghost{background:#f1f5f9;color:#0f172a}
-  #delfin-soft-popup .x{position:absolute;top:10px;right:10px;border:0;background:transparent;cursor:pointer;font-size:20px;color:#475569}
-  #delfin-soft-popup .wrap{position:relative}
-</style>
-<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true">
-  <div class="wrap">
+<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true" aria-label="Delfín Check-in">
+  <div class="wrap" style="position:relative">
     <div id="delfin-soft-popup">
       <button class="x" type="button" aria-label="Fermer" id="delfin-soft-popup-close">×</button>
-      <div class="hd">
-        <p class="ttl">Essai gratuit avec 1 propriété</p>
-        <p class="sub">Digitalisez la <strong>fiche voyageurs</strong> et respectez le <strong>Ministère de l'Intérieur</strong> espagnol (RD 933/2021). Email seulement.</p>
+      <div class="popup-hero">
+        <div class="popup-emoji">🐬</div>
+        <p class="ttl">Essayez maintenant — gratuit</p>
+        <p class="sub">Conformité fiche voyageurs. <strong>~2 minutes</strong> pour accéder au panel.</p>
+        <span class="popup-highlight">⏱️ Email seulement · 1 propriété</span>
       </div>
       <div class="cta">
-        <a class="btn btn-primary" id="delfin-soft-popup-cta" href="#registro" data-landing-free-toggle="1">Essai gratuit avec 1 propriété</a>
-        <button class="btn btn-ghost" type="button" id="delfin-soft-popup-later">Plus tard</button>
+        <input type="email" id="delfin-popup-email" placeholder="vous@email.com" autocomplete="email" aria-label="Email">
+        <button type="button" id="delfin-popup-submit" class="btn btn-primary">…</button>
+        <div id="delfin-popup-msg"></div>
+        <button type="button" id="delfin-soft-popup-scroll" class="btn btn-ghost">Voir le formulaire</button>
+        <button type="button" id="delfin-soft-popup-later" class="btn btn-ghost">Plus tard</button>
       </div>
     </div>
   </div>
 </div>
-<script>
-(function(){
-  try {
-    var o=document.getElementById('delfin-soft-popup-overlay');
-    if(!o) return;
-    var k='delfin_landing_soft_popup_last', last=0;
-    try{ last=Number(localStorage.getItem(k)||'0'); }catch(e){}
-    if(last && Date.now()-last<604800000) return;
-    function close(){ o.style.display='none'; try{ localStorage.setItem(k,String(Date.now())); }catch(e){} }
-    document.getElementById('delfin-soft-popup-close').addEventListener('click', close);
-    document.getElementById('delfin-soft-popup-later').addEventListener('click', close);
-    o.addEventListener('click', function(e){ if(e.target===o) close(); });
-    document.getElementById('delfin-soft-popup-cta').addEventListener('click', close);
-    setTimeout(function(){ o.style.display='flex'; }, 15000);
-  }catch(e){}
-})();
-</script>
 </body>
 </html>
