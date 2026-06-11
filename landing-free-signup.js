@@ -168,6 +168,7 @@
       try {
         await submitSignup(v, locale, nameEl ? String(nameEl.value || '').trim() : '');
         showMsg(msg, t('success'), true);
+        trackLanding('form_submit', { form_id: 'landing_free_signup' });
         form.reset();
       } catch (err) {
         showMsg(msg, String(err.message || t('error')), false);
@@ -203,6 +204,7 @@
         await submitSignup(v, lang(), '');
         msg.innerHTML = t('success');
         msg.className = 'is-success';
+        trackLanding('popup_click', { source: 'email_capture', action: 'signup_success' });
         emailEl.value = '';
       } catch (err) {
         msg.innerHTML = String(err.message || t('error'));
@@ -211,6 +213,14 @@
         btn.disabled = false;
       }
     });
+  }
+
+  function trackLanding(eventType, data) {
+    try {
+      if (typeof window.delfinLandingTrack === 'function') {
+        window.delfinLandingTrack(eventType, data || {});
+      }
+    } catch (e) {}
   }
 
   function wirePopupToggle() {
@@ -242,9 +252,12 @@
     function close() {
       overlay.style.display = 'none';
       safeSet(KEY, String(Date.now()));
+      trackLanding('popup_close', { source: 'email_capture' });
     }
     function open() {
       overlay.style.display = 'flex';
+      window.popupShown = true;
+      trackLanding('popup_view', { source: 'email_capture' });
       var inp = document.getElementById('delfin-popup-email');
       if (inp) setTimeout(function () {
         inp.focus();
