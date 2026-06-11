@@ -17,8 +17,8 @@
 <meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
 <meta content="no-cache" http-equiv="Pragma"/>
 <meta content="0" http-equiv="Expires"/>
-<title>Delfín Check-in · Logiciel de gestion &amp; check-in clients</title>
-<meta content="Delfín Check-in : logiciel de gestion pour hébergements où l'enregistrement des voyageurs crée des réservations pour vous : révision, confirmation, facturation et exportation. Pro : avis Google et microsite pour les réservations directes au-delà d'Airbnb/Booking. Basique gratuit pour essayer (1 propriété). Construit pour l'Espagne." name="description"/>
+<title>Delfín Check‑in · Fiche voyageurs · Ministère de l'Intérieur (RD 933/2021)</title>
+<meta name="description" content="Conformité fiche voyageurs et envoi MIR (Espagne). Essai gratuit 1 propriété : formulaire, XML et gestion. Email seulement, sans carte.">
 <meta content="logiciel hôtelier, logiciel de gestion, moteur de réservation, gestion immobilière Espagne, enregistrement des clients, MIR, Ministère de l'Intérieur, logiciel pour auberges, location de vacances, réservations d'hôtel" name="keywords"/>
 <meta content="Delfín Check-in" name="author"/>
 <meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name="robots"/>
@@ -56,8 +56,8 @@
 <!-- X-Frame-Options debe configurarse como header HTTP, no como meta tag -->
 <meta content="1; mode=block" http-equiv="X-XSS-Protection"/>
 <meta content="website" property="og:type"/>
-<meta content="Delfín Check-in · Logiciel de gestion &amp; check-in clients" property="og:title"/>
-<meta content="Logiciel de gestion avec un plan Basique (essai 1 propriété). Check-in (2€/mois + 2€/propriété), Standard (9,99€/mois) et Pro (29,99€/mois). Soumission automatique au ministère espagnol de l'Intérieur. Inscrivez-vous maintenant." property="og:description"/>
+<meta property="og:title" content="Delfín Check‑in · Fiche voyageurs · Ministère de l'Intérieur">
+<meta property="og:description" content="RD 933/2021 : fiche voyageurs et MIR. Essai gratuit 1 propriété — email seulement.">
 <meta content="https://delfincheckin.com/og-image.svg" property="og:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
@@ -1419,7 +1419,7 @@
 </button>
 <div aria-labelledby="home-lang-trigger" id="home-lang-dd" role="listbox"></div>
 </div>
-<a class="btn primary" href="#registro" data-landing-free-toggle="1">Inscription gratuite</a>
+<a class="btn primary" href="#registro" data-landing-free-toggle="1">Essai gratuit</a>
 <a class="btn" href="#calendario-limpieza">Calendrier de nettoyage</a>
 <a class="btn" href="#caracteristicas">Caractéristiques</a>
 </div>
@@ -2628,7 +2628,7 @@
 </div>
 <div style="border-top: 1px solid var(--border); padding-top: 15px; text-align: center; color: var(--muted);">
 <p style="margin: 0 0 12px; font-size: 14px;">
-            © <span id="year"></span>Delfin Enregistrement ·<a href="#registro" data-landing-free-toggle="1" style="color: var(--brand);">Inscription gratuite</a>
+            © <span id="year"></span>Delfin Enregistrement ·<a href="#registro" data-landing-free-toggle="1" style="color: var(--brand);">Essai gratuit</a>
 </p>
 <p style="margin: 0; font-size: 12px; color: #94a3b8; line-height: 1.8;">
 <a href="politica-privacidad.html" style="color: var(--brand); margin: 0 8px;">Politique de confidentialité</a> ·
@@ -4568,5 +4568,50 @@ ${message}`;
 <!-- Referral Tracking Script -->
 <script src="https://admin.delfincheckin.com/referral-tracking.js"></script>
   <script src="/tutorial-videos-home.js" defer></script>
+<style>
+  #delfin-soft-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;z-index:999999;}
+  #delfin-soft-popup{width:min(520px,calc(100vw - 32px));background:#fff;border-radius:18px;box-shadow:0 16px 48px rgba(2,6,23,.35);border:1px solid rgba(148,163,184,.6);overflow:hidden}
+  #delfin-soft-popup .hd{padding:16px 16px 0 16px}
+  #delfin-soft-popup .ttl{font-weight:950;font-size:20px;line-height:1.2;color:#0f172a;margin:0}
+  #delfin-soft-popup .sub{margin:10px 0 0 0;color:#334155;font-size:14px;line-height:1.45}
+  #delfin-soft-popup .cta{display:flex;gap:10px;padding:16px}
+  #delfin-soft-popup .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 14px;font-weight:900;text-decoration:none;border:0;cursor:pointer;font-size:14px}
+  #delfin-soft-popup .btn-primary{background:#16a34a;color:#fff;flex:1}
+  #delfin-soft-popup .btn-ghost{background:#f1f5f9;color:#0f172a}
+  #delfin-soft-popup .x{position:absolute;top:10px;right:10px;border:0;background:transparent;cursor:pointer;font-size:20px;color:#475569}
+  #delfin-soft-popup .wrap{position:relative}
+</style>
+<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true">
+  <div class="wrap">
+    <div id="delfin-soft-popup">
+      <button class="x" type="button" aria-label="Fermer" id="delfin-soft-popup-close">×</button>
+      <div class="hd">
+        <p class="ttl">Essai gratuit avec 1 propriété</p>
+        <p class="sub">Digitalisez la <strong>fiche voyageurs</strong> et respectez le <strong>Ministère de l'Intérieur</strong> espagnol (RD 933/2021). Email seulement.</p>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" id="delfin-soft-popup-cta" href="#registro" data-landing-free-toggle="1">Essai gratuit avec 1 propriété</a>
+        <button class="btn btn-ghost" type="button" id="delfin-soft-popup-later">Plus tard</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  try {
+    var o=document.getElementById('delfin-soft-popup-overlay');
+    if(!o) return;
+    var k='delfin_landing_soft_popup_last', last=0;
+    try{ last=Number(localStorage.getItem(k)||'0'); }catch(e){}
+    if(last && Date.now()-last<604800000) return;
+    function close(){ o.style.display='none'; try{ localStorage.setItem(k,String(Date.now())); }catch(e){} }
+    document.getElementById('delfin-soft-popup-close').addEventListener('click', close);
+    document.getElementById('delfin-soft-popup-later').addEventListener('click', close);
+    o.addEventListener('click', function(e){ if(e.target===o) close(); });
+    document.getElementById('delfin-soft-popup-cta').addEventListener('click', close);
+    setTimeout(function(){ o.style.display='flex'; }, 15000);
+  }catch(e){}
+})();
+</script>
 </body>
 </html>
