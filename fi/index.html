@@ -1401,7 +1401,8 @@
     #form-registro .btn{ border-color: rgba(15,23,42,.12); background:#ffffff; color:#0f172a }
     #form-registro .btn:hover{ background:#f8fafc }
   </style>
-</link></meta></head>
+</link></meta>  <link rel="stylesheet" href="/landing-capture.css" />
+</head>
 <body>
 <header>
 <div class="container nav">
@@ -2140,171 +2141,58 @@
 </div>
 </div>
 </section>
-<!-- Planes y Precios -->
-<section class="section container" id="planes">
-<h2 style="text-align: center; margin-bottom: 16px; font-size: 36px; font-weight: 800;">Selkeä, läpinäkyvä hinnoittelu</h2>
-<p class="lead" style="text-align: center; margin-bottom: 20px; font-size: 18px;">Ei yllätyksiä, ei pientä tulosta. Tiedät tarkalleen mitä saat ja mitä se maksaa.</p>
-<p style="text-align: center; margin-bottom: 40px; font-size: 18px; color: #dc2626; font-weight: 700; padding: 16px; background: #fef2f2; border-radius: 12px; border: 2px solid #dc2626; max-width: 800px; margin-left: auto; margin-right: auto;">
-        ⚠️ <strong>TÄRKEÄÄ:</strong>Pysyvä ilmainen peruspaketti on vain niille, jotka rekisteröityvät nyt. Paikkoja rajoitetusti.<strong>Rekisteröidy ennen kuin ne loppuvat.</strong>
-</p>
-<div class="pricing" style="grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto;">
-<!-- Plan Básico -->
-<article class="card" style="border: 2px solid #e2e8f0; position: relative;">
-<div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); color: #166534; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">⚠️ Jos ilmoittaudut nyt</div>
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800;">Perussuunnitelma</h3>
-<div class="price" style="margin: 16px 0;">
-<strong style="font-size: 42px; color: #16a34a;">0 €</strong>
-<small style="font-size: 16px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Jopa 1 omaisuus. Sisältää mainoksia.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Matkustajalomake ja lista</li>
-<li>✅ XML-lataus (manuaalinen ministeriön lataus)</li>
-<li>✅ Suorat varaukset (9% maksu)</li>
-<li>⚠️ Huomaamattomat mainokset</li>
-<li>❌ Automaattinen MIR-lähetys (ei sisälly)</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="#registro" data-landing-free-toggle="1" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700;">Aloita ilmaiseksi</a>
-</div>
-</article>
-<!-- Plan Check-in -->
-<article class="card" style="border: 2px solid #2563eb; position: relative; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);">
-<div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: white; padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700;">Suosituin</div>
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #1e40af;">Sisäänkirjautumissuunnitelma</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">4 €</div>
-<strong style="font-size: 38px; color: #2563eb;">2 €</strong>
-<small style="font-size: 14px; color: #64748b;">/kk + 2€/asunto</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Rajoittamaton ominaisuuksia. Sisältää mainoksia.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Automaattinen ministeriön (MIR) lähetys</li>
-<li>✅ Digitaalinen lähtöselvitys ja matkustajien rekisteröinti</li>
-<li>✅ Suorat varaukset (9% maksu)</li>
-<li>✅ RD 933/2021 -vaatimustenmukaisuus</li>
-<li>⚠️ Huomaamattomat mainokset</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fi&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">Hae sisäänkirjautuminen</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=checkin&locale=fi&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(37,99,235,.35); background: rgba(37,99,235,.06); color: #1d4ed8;">Vuosi (2 kk ilmaiseksi)</a>
-</div>
-</article>
-<!-- Plan Standard -->
-<article class="card" style="border: 2px solid #d97706; position: relative; background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);">
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #b45309;">Vakiosuunnitelma</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">14,99 €</div>
-<strong style="font-size: 38px; color: #d97706;">9,99 €</strong>
-<small style="font-size: 14px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Mukana 1 omaisuus. +2€/lisäasunto tai huone. Ei mainoksia.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Kaikki lähtöselvityksessä</li>
-<li>✅ Ei mainoksia</li>
-<li>✅ Sisältää 1 kiinteistön, sitten 2€/kk per lisäkiinteistö tai huone</li>
-<li>✅ Suorat varaukset (9% maksu)</li>
-<li>✅ Sisäänkirjautumisohjeet vieraille sähköpostitse<strong>(avoin seuranta)</strong></li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fi&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #d97706 0%, #b45309 100%);">Hanki Standard</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=standard&locale=fi&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(217,119,6,.35); background: rgba(217,119,6,.08); color: #92400e;">Vuosi (2 kk ilmaiseksi)</a>
-</div>
-</article>
-<!-- Plan Pro -->
-<article class="card" style="border: 2px solid #7c3aed; position: relative; background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);">
-<h3 style="margin-top: 20px; font-size: 22px; font-weight: 800; color: #5b21b6;">Plan Pro</h3>
-<div class="price" style="margin: 16px 0;">
-<div style="font-size: 14px; color: #64748b; text-decoration: line-through; font-weight: 800; margin-bottom: 4px;">39,99 €</div>
-<strong style="font-size: 38px; color: #7c3aed;">29,99 €</strong>
-<small style="font-size: 14px; color: #64748b;">/mes</small>
-</div>
-<p style="color: #64748b; font-size: 14px; margin-bottom: 12px;">Mukana 1 omaisuus. +2€/lisäasunto tai huone. 5% maksu suorista varauksista.</p>
-<ul class="features" style="margin: 20px 0; font-size: 14px;">
-<li>✅ Kaikki vakiona</li>
-<li>✅ Mukana 1 kiinteistö, sitten 2€/kk/lisä</li>
-<li>✅ Suorat varaukset vain<strong>5% maksu</strong></li>
-<li>✅ Sisäänkirjautumisohjeet vieraille sähköpostitse<strong>(avoin seuranta)</strong></li>
-<li>✅ <strong>Google-arvostelut + mikrosivusto</strong>profiilissasi: enemmän näkyvyyttä ja suoria varauksia Airbnb/Bookingin lisäksi<em>(vain Pro)</em></li>
-<li>✅ Ei mainoksia, ensisijainen tuki ja varmuuskopiot</li>
-</ul>
-<div class="cta" style="margin-top: 24px;">
-<a class="btn primary" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fi&seats=1&interval=month" style="width: 100%; text-align: center; padding: 16px; font-size: 18px; font-weight: 700; background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);">Hanki Pro</a>
-<a class="btn" href="https://admin.delfincheckin.com/api/polar/subscribe-redirect?plan=pro&locale=fi&seats=1&interval=year" style="width: 100%; text-align: center; padding: 12px; margin-top: 10px; font-size: 15px; font-weight: 800; border: 2px solid rgba(124,58,237,.35); background: rgba(124,58,237,.08); color: #5b21b6;">Vuosi (2 kk ilmaiseksi)</a>
-</div>
-</article>
-</div>
-<div style="margin-top: 40px; padding: 24px; background: #f0f9ff; border-radius: 16px; border-left: 4px solid #2563eb; max-width: 900px; margin-left: auto; margin-right: auto;">
-<h4 style="margin: 0 0 12px 0; color: #1e40af; font-weight: 700; font-size: 18px;">ℹ️ Täysi läpinäkyvyys</h4>
-<ul style="margin: 0; padding-left: 20px; color: #1e40af; font-size: 15px; line-height: 1.8;">
-<li><strong>Perus:</strong>0 €/kk, enintään 1 kiinteistö. Mainosrahoitettu. Vain XML-lataus (ei automaattista MIR:ää).</li>
-<li><strong>Sisäänkirjautuminen:</strong>2€/kk + 2€/kiinteistö. Sisältää automaattisen ministeriön toimituksen.</li>
-<li><strong>Vakio:</strong>9,99 €/kk, sisältää 1 asunnon, +2 €/kk per lisäkiinteistö tai huone. Ei mainoksia.</li>
-<li><strong>Pro:</strong>29,99 €/kk, sisältää 1 kiinteistön, +2 €/kk per lisä. Ei mainoksia, 5% suorista varauksista ja<strong>Vain ammattilainen</strong>työkaluja varten<strong>Google-arvostelut</strong>ja sinun<strong>varausmikrosivusto</strong>voittaa pysyy OTA:n ulkopuolella.</li>
-<li><strong>Ei yllätyksiä:</strong>Tiedät heti ensimmäisestä päivästä alkaen, mitä saat ja mitä maksat.</li>
-</ul>
-</div>
-</section>
-<!-- (Hinnoittelu) Kaksi painiketta: kuukausi + vuosi. -->
-    <!-- Ilmainen suunnitelma: sähköposti → onboarding -->
-    <div id="registro" class="landing-free-signup-wrap" hidden style="max-width: 640px; margin: 48px auto;">
-    <section class="section container">
-      <div class="card" style="padding: 28px;">
-        <h2 style="margin-top: 0; font-size: 26px;">Aloita ilmaisella suunnitelmalla</h2>
-        <p class="lead" style="margin-bottom: 20px;">Syötä sähköpostiosoitteesi, niin lähetämme linkin tilin aktivointiin ja onboardingin viimeistelyyn.</p>
-        <form id="landingFreeSignupForm" data-signup-locale="fi" style="display: grid; gap: 16px;">
-          <label>
-            <span style="display:block;font-weight:600;margin-bottom:6px;">Sähköposti *</span>
-            <input id="landingFreeSignupEmail" type="email" required placeholder="sinä@email.com" style="width:100%;height:48px;border-radius:10px;border:2px solid rgba(15,23,42,.2);padding:0 14px;font-size:16px;">
-          </label>
-          <label>
-            <span style="display:block;font-weight:600;margin-bottom:6px;">Nimi (valinnainen)</span>
-            <input id="landingFreeSignupName" type="text" placeholder="Nimesi" style="width:100%;height:48px;border-radius:10px;border:2px solid rgba(15,23,42,.2);padding:0 14px;font-size:16px;">
-          </label>
-          <button type="submit" id="landingFreeSignupSubmit" class="btn primary" style="width:100%;padding:14px;font-size:17px;font-weight:700;">
-            <span id="landingFreeSignupSubmitText">Lähetä linkki sähköpostiin</span>
-            <span id="landingFreeSignupLoading" style="display:none;">Lähetetään…</span>
+<!-- Captación: registro visible -->
+    <section id="registro" class="section container landing-capture-section" aria-label="Registro gratis">
+      <div class="landing-capture-card">
+        <span class="landing-capture-badge">🐬 Kokeile nyt</span>
+        <h2 class="landing-capture-title">Käytössä 2 minuutissa</h2>
+        <p class="landing-capture-sub">Matkustajailmoitus ja <strong>sisäministeriö</strong> (RD 933/2021). Vain sähköposti.</p>
+        <ol class="landing-capture-steps">
+          <li><strong>1</strong>Sähköposti</li>
+          <li><strong>2</strong>Tarkista posti</li>
+          <li><strong>3</strong>1 majoitus</li>
+        </ol>
+        <form id="landingFreeSignupForm" class="landing-capture-form" data-signup-locale="fi">
+          <div>
+            <label class="landing-capture-label" for="landingFreeSignupEmail">Sähköposti *</label>
+            <input id="landingFreeSignupEmail" class="landing-capture-input" type="email" required placeholder="sinä@email.com" autocomplete="email">
+          </div>
+          <div>
+            <label class="landing-capture-label" for="landingFreeSignupName">Nimi (valinnainen)</label>
+            <input id="landingFreeSignupName" class="landing-capture-input" type="text" placeholder="Nimesi" autocomplete="name">
+          </div>
+          <button type="submit" id="landingFreeSignupSubmit" class="landing-capture-submit">
+            <span id="landingFreeSignupSubmitText">…</span>
+            <span id="landingFreeSignupLoading" style="display:none;">…</span>
           </button>
-          <div id="landingFreeSignupMessage" role="status" style="display:none;padding:12px;border-radius:8px;font-size:15px;"></div>
+          <div id="landingFreeSignupMessage" class="landing-capture-msg" role="status"></div>
+          <p class="landing-capture-fine">Lähetämme käyttölinkin. Tarkista roskaposti.</p>
         </form>
       </div>
     </section>
-    </div>
 
-    <script data-landing-free-collapse>
+    <script data-landing-free-scroll>
     (function () {
-      var panel = document.getElementById('registro');
-      if (!panel || !panel.classList.contains('landing-free-signup-wrap')) return;
-      var toggles = document.querySelectorAll('[data-landing-free-toggle]');
-      function openPanel() {
-        panel.removeAttribute('hidden');
-        panel.setAttribute('aria-hidden', 'false');
-        toggles.forEach(function (t) {
-          t.setAttribute('aria-expanded', 'true');
-        });
-        try {
-          panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } catch (e) {
-          panel.scrollIntoView(true);
-        }
+      function goRegistro() {
+        var reg = document.getElementById('registro');
+        if (reg) reg.scrollIntoView({ behavior: 'smooth', block: 'start' });
         var input = document.getElementById('landingFreeSignupEmail');
-        if (input) window.setTimeout(function () {
-          input.focus();
-        }, 350);
+        if (input) window.setTimeout(function () { input.focus(); }, 400);
       }
-      toggles.forEach(function (el) {
-        el.setAttribute('aria-expanded', 'false');
-        el.setAttribute('aria-controls', 'registro');
+      document.querySelectorAll('[data-landing-free-toggle]').forEach(function (el) {
         el.addEventListener('click', function (e) {
-          e.preventDefault();
-          openPanel();
+          var href = el.getAttribute('href') || '';
+          if (href === '#registro' || href.indexOf('#registro') === 0) {
+            e.preventDefault();
+            goRegistro();
+          }
         });
       });
-      if (location.hash === '#registro') openPanel();
+      if (location.hash === '#registro') goRegistro();
     })();
     </script>
 
-<!-- Formulario de Contacto -->
+    <!-- Formulario de Contacto -->
 <section class="section container" id="contacto">
 <h2>Onko sinulla kysyttävää?</h2>
 <p class="lead">Ota yhteyttä, niin autamme sinua löytämään parhaan ratkaisun majoituksellesi.</p>
@@ -4566,53 +4454,29 @@ ${message}`;
 <!-- Landing Page Analytics Tracking -->
 <script defer="" src="/lang-switcher-home.js"></script>
 <script src="/landing-tracking.js"></script>
+  <script src="/landing-free-signup.js" defer></script>
 <!-- Referral Tracking Script -->
 <script src="https://admin.delfincheckin.com/referral-tracking.js"></script>
   <script src="/tutorial-videos-home.js" defer></script>
-<style>
-  #delfin-soft-popup-overlay{position:fixed;inset:0;background:rgba(2,6,23,.55);display:none;align-items:center;justify-content:center;z-index:999999;}
-  #delfin-soft-popup{width:min(520px,calc(100vw - 32px));background:#fff;border-radius:18px;box-shadow:0 16px 48px rgba(2,6,23,.35);border:1px solid rgba(148,163,184,.6);overflow:hidden}
-  #delfin-soft-popup .hd{padding:16px 16px 0 16px}
-  #delfin-soft-popup .ttl{font-weight:950;font-size:20px;line-height:1.2;color:#0f172a;margin:0}
-  #delfin-soft-popup .sub{margin:10px 0 0 0;color:#334155;font-size:14px;line-height:1.45}
-  #delfin-soft-popup .cta{display:flex;gap:10px;padding:16px}
-  #delfin-soft-popup .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:12px;padding:12px 14px;font-weight:900;text-decoration:none;border:0;cursor:pointer;font-size:14px}
-  #delfin-soft-popup .btn-primary{background:#16a34a;color:#fff;flex:1}
-  #delfin-soft-popup .btn-ghost{background:#f1f5f9;color:#0f172a}
-  #delfin-soft-popup .x{position:absolute;top:10px;right:10px;border:0;background:transparent;cursor:pointer;font-size:20px;color:#475569}
-  #delfin-soft-popup .wrap{position:relative}
-</style>
-<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true">
-  <div class="wrap">
+<div id="delfin-soft-popup-overlay" role="dialog" aria-modal="true" aria-label="Delfín Check-in">
+  <div class="wrap" style="position:relative">
     <div id="delfin-soft-popup">
       <button class="x" type="button" aria-label="Sulje" id="delfin-soft-popup-close">×</button>
-      <div class="hd">
-        <p class="ttl">Kokeile ilmaiseksi 1 majoitus</p>
-        <p class="sub">Digitalisoi <strong>matkustajailmoitus</strong> ja täytä Espanjan <strong>sisäministeriön</strong> vaatimukset (RD 933/2021). Vain sähköposti.</p>
+      <div class="popup-hero">
+        <div class="popup-emoji">🐬</div>
+        <p class="ttl">Kokeile nyt — ilmainen</p>
+        <p class="sub">Lakisäädäntö kuntoon. <strong>~2 minuutissa</strong> paneeliin.</p>
+        <span class="popup-highlight">⏱️ Vain sähköposti · 1 majoitus</span>
       </div>
       <div class="cta">
-        <a class="btn btn-primary" id="delfin-soft-popup-cta" href="#registro" data-landing-free-toggle="1">Kokeile ilmaiseksi 1 majoitus</a>
-        <button class="btn btn-ghost" type="button" id="delfin-soft-popup-later">Myöhemmin</button>
+        <input type="email" id="delfin-popup-email" placeholder="sinä@email.com" autocomplete="email" aria-label="Email">
+        <button type="button" id="delfin-popup-submit" class="btn btn-primary">…</button>
+        <div id="delfin-popup-msg"></div>
+        <button type="button" id="delfin-soft-popup-scroll" class="btn btn-ghost">Siirry lomakkeeseen</button>
+        <button type="button" id="delfin-soft-popup-later" class="btn btn-ghost">Myöhemmin</button>
       </div>
     </div>
   </div>
 </div>
-<script>
-(function(){
-  try {
-    var o=document.getElementById('delfin-soft-popup-overlay');
-    if(!o) return;
-    var k='delfin_landing_soft_popup_last', last=0;
-    try{ last=Number(localStorage.getItem(k)||'0'); }catch(e){}
-    if(last && Date.now()-last<604800000) return;
-    function close(){ o.style.display='none'; try{ localStorage.setItem(k,String(Date.now())); }catch(e){} }
-    document.getElementById('delfin-soft-popup-close').addEventListener('click', close);
-    document.getElementById('delfin-soft-popup-later').addEventListener('click', close);
-    o.addEventListener('click', function(e){ if(e.target===o) close(); });
-    document.getElementById('delfin-soft-popup-cta').addEventListener('click', close);
-    setTimeout(function(){ o.style.display='flex'; }, 15000);
-  }catch(e){}
-})();
-</script>
 </body>
 </html>
