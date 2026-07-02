@@ -10,9 +10,11 @@ permissions:
   pages: write
   id-token: write
 
+# No cancelar despliegues en curso: si GitHub Pages está en cola y se cancela,
+# el sitio puede quedar en estado "errored" (deployment_queued → timeout).
 concurrency:
   group: "pages"
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -27,11 +29,27 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare static site artifact
+        run: |
+          mkdir -p _site
+          rsync -a \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='tools' \
+            --exclude='.venv-translate' \
+            --exclude='__pycache__' \
+            --exclude='.DS_Store' \
+            ./ _site/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 1800000
+          error_count: 30
+          reporting_interval: 10000
