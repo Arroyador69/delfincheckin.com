@@ -442,9 +442,11 @@
     .badge{ font-size:12px; color:#0a1020; background:#b5f1ff; padding:6px 10px; border-radius:999px; font-weight:700 }
     .hero-card{ background: var(--card); border:1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow) }
     .checklist{ display:grid; grid-template-columns: repeat(2, minmax(200px, 1fr)); gap:12px; margin-top:8px }
-    .check{ display:flex; gap:10px; align-items:flex-start; color: var(--muted) }
-    .check strong{ min-width: 200px; display: inline-block; }
-    .check i{ color:#93fba3 }
+    .check{ display:flex; gap:10px; align-items:flex-start; color: var(--muted); min-width: 0 }
+    .check strong{ display: inline; min-width: 0 }
+    .check--wide{ grid-column: 1 / -1 }
+    .check-copy{ min-width: 0; line-height: 1.55 }
+    .check i{ color:#93fba3; flex-shrink: 0 }
 
     /* Social proof */
     .logos{ opacity:.95; display:flex; gap:22px; flex-wrap:wrap; align-items:flex-start; justify-content:center; padding: 18px 0 }
@@ -1476,7 +1478,12 @@
           <div class="check"><i>✔</i> <strong>Digital check-in</strong> — Ministry of the Interior submission (€2/month)</div>
           <div class="check"><i>✔</i> <strong>Mobile app</strong> — iOS and Android in development (coming soon)</div>
           <div class="check"><i>✔</i> <strong>Data export</strong> — CSV/Excel for accounting and taxes</div>
-          <div class="check"><i>✔</i> <strong>Free Basic plan</strong> — No monthly fee <strong>(1 property)</strong>, funded by discreet ads. Create a public page for your property in minutes, share the link with guests and take direct bookings. With direct payments, fees are cut and money reaches your bank account fast (great for repeat guests so you avoid OTA fees).</div>
+          <div class="check check--wide">
+            <i>✔</i>
+            <div class="check-copy">
+              <strong>Free Basic plan</strong> — No monthly fee (1 property), funded by discreet ads. Create a public page for your property in minutes, share the link with guests and take direct bookings. With direct payments, fees are cut and money reaches your bank account fast (great for repeat guests so you avoid OTA fees).
+            </div>
+          </div>
         </div>
       </div>
       

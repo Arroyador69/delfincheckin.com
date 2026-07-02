@@ -371,7 +371,7 @@ REPLACEMENTS: list[tuple[str, str]] = [
     ),
     (
         "<div class=\"check\"><i>✔</i> <strong>Plan Básico Gratis</strong> - Acceso sin coste mensual, financiado con anuncios discretos</div>",
-        "<div class=\"check\"><i>✔</i> <strong>Free Basic plan</strong> — No monthly fee, funded by discreet ads</div>",
+        "<div class=\"check check--wide\"><i>✔</i><div class=\"check-copy\"><strong>Free Basic plan</strong> — No monthly fee (1 property), funded by discreet ads. Create a public page for your property in minutes, share the link with guests and take direct bookings. With direct payments, fees are cut and money reaches your bank account fast (great for repeat guests so you avoid OTA fees).</div></div>",
     ),
     ("<span>SSL Seguro</span>", "<span>Secure SSL</span>"),
     ("<span>RGPD Compliant</span>", "<span>GDPR ready</span>"),
