@@ -3,26 +3,3 @@ Allow: /
 
 # Sitemap
 Sitemap: https://delfincheckin.com/sitemap.xml
-
-# Crawl-delay para evitar sobrecarga
-Crawl-delay: 1
-
-# Permitir acceso a recursos importantes
-Allow: /css/
-Allow: /js/
-Allow: /images/
-Allow: /fonts/
-
-# Bloquear archivos innecesarios
-Disallow: /admin/
-Disallow: /api/
-Disallow: /*.json$
-Disallow: /*.xml$
-Disallow: /temp/
-Disallow: /cache/
-
-# Permitir archivos específicos importantes
-Allow: /sitemap.xml
-Allow: /robots.txt
-Allow: /favicon.ico
-Allow: /og-image.svg
