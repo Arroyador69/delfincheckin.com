@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
     <meta name="theme-color" content="#44c0ff" />
+    <meta name="robots" content="index, follow" />
     <title>Delfín Check‑in · Planes</title>
     <meta
       name="description"
@@ -667,7 +668,7 @@
           });
         }
 
-        function setLang(lang) {
+        function setLang(lang, updateUrl) {
           var known = { es: 1, en: 1, fr: 1, it: 1, pt: 1, fi: 1, sv: 1 };
           if (!known[lang]) lang = 'es';
           locale = lang;
@@ -689,13 +690,15 @@
             if (k && dict[k] != null) el.setAttribute('placeholder', String(dict[k]));
           });
 
-          // Persistencia + URL param (compat con /plans.html?lang=…)
           try { localStorage.setItem('landing_lang', lang); } catch (e) {}
-          try {
-            var url = new URL(location.href);
-            url.searchParams.set('lang', lang);
-            if (history.replaceState) history.replaceState(null, '', url.toString());
-          } catch (e2) {}
+          if (updateUrl) {
+            try {
+              var url = new URL(location.href);
+              if (lang === 'es') url.searchParams.delete('lang');
+              else url.searchParams.set('lang', lang);
+              if (history.replaceState) history.replaceState(null, '', url.toString());
+            } catch (e2) {}
+          }
 
           // Recalcular enlaces Polar + formulario
           if (freeForm) freeForm.setAttribute('data-signup-locale', locale);
@@ -725,7 +728,7 @@
             sn.textContent = L.name;
             btn.appendChild(sf);
             btn.appendChild(sn);
-            btn.addEventListener('click', function () { setLang(L.code); });
+            btn.addEventListener('click', function () { setLang(L.code, true); });
             dd.appendChild(btn);
           });
 
