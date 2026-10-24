@@ -285,10 +285,37 @@
     setTimeout(open, 8000);
   }
 
+  /** Prefill desde ?email= (mails outreach → #empezar) y opcional autosubmit. */
+  function prefillFromQuery() {
+    try {
+      var params = new URLSearchParams(window.location.search || '');
+      var email = String(params.get('email') || '').trim();
+      if (!email && window.location.hash) {
+        var hashQ = window.location.hash.indexOf('?');
+        if (hashQ !== -1) {
+          email = String(new URLSearchParams(window.location.hash.slice(hashQ + 1)).get('email') || '').trim();
+        }
+      }
+      if (!validEmail(email)) return;
+      var emailEl = document.getElementById('landingFreeSignupEmail');
+      var popupEl = document.getElementById('delfin-popup-email');
+      if (emailEl) emailEl.value = email;
+      if (popupEl) popupEl.value = email;
+      var start = document.getElementById('empezar');
+      if (start && params.get('ref') === 'owner_outreach') {
+        setTimeout(function () {
+          start.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (emailEl) emailEl.focus();
+        }, 300);
+      }
+    } catch (e) {}
+  }
+
   function init() {
     wireMainForm();
     wirePopupForm();
     wirePopupToggle();
+    prefillFromQuery();
   }
 
   if (document.readyState === 'loading') {
