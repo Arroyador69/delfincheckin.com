@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+  <title>Parte de viajeros MIR · Delfín Check-in</title>
+  <meta
+    name="description"
+    content="Cumple el RD 933/2021: recoge el parte de viajeros, envía al MIR/SES Hospedajes y deja de pelearte con el portal. Prueba gratis 1 propiedad. Sin tarjeta."
+  />
+  <link rel="canonical" href="https://delfincheckin.com/parte-viajeros/" />
+  <meta name="theme-color" content="#44c0ff" />
+  <meta property="og:title" content="Parte de viajeros MIR · Delfín Check-in" />
+  <meta
+    property="og:description"
+    content="Software para alquiler vacacional en España: parte de viajeros, envío MIR y prueba gratis."
+  />
+  <meta property="og:url" content="https://delfincheckin.com/parte-viajeros/" />
+  <meta property="og:image" content="https://delfincheckin.com/og-image.svg" />
+  <link rel="icon" href="/favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,500&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #0ea5e9;
+      --brand-deep: #0284c7;
+      --brand-soft: #e0f2fe;
+      --ink: #0f172a;
+      --muted: #475569;
+      --line: rgba(15, 23, 42, 0.1);
+      --ok: #059669;
+      --bg: #f8fbff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, rgba(68, 192, 255, 0.28), transparent 55%),
+        radial-gradient(900px 400px at 90% 0%, rgba(14, 165, 233, 0.12), transparent 50%),
+        var(--bg);
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 2rem)); margin-inline: auto; }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 0; gap: 1rem;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 0.65rem;
+      font-weight: 800; letter-spacing: -0.02em; text-decoration: none;
+      font-size: 1.15rem;
+    }
+    .brand-mark {
+      width: 2.25rem; height: 2.25rem; border-radius: 0.75rem;
+      display: grid; place-items: center;
+      background: linear-gradient(145deg, #44c0ff, #0284c7);
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.35);
+      font-size: 1.15rem;
+    }
+    .nav-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 2.75rem; padding: 0 1.15rem; border-radius: 0.85rem;
+      border: 1px solid var(--line); background: #fff; font-weight: 700;
+      text-decoration: none; cursor: pointer; font-size: 0.95rem;
+      transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      border-color: transparent; color: #fff;
+      box-shadow: 0 10px 28px rgba(2, 132, 199, 0.35);
+    }
+    .btn-ghost { background: rgba(255,255,255,0.7); backdrop-filter: blur(8px); }
+
+    .hero {
+      padding: clamp(2rem, 5vw, 4rem) 0 clamp(2.5rem, 6vw, 4.5rem);
+      display: grid; gap: 2rem;
+      grid-template-columns: 1.15fr 0.85fr; align-items: end;
+    }
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--brand-deep);
+      background: var(--brand-soft); padding: 0.4rem 0.7rem; border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(2.1rem, 5vw, 3.35rem);
+      line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 1rem;
+      font-weight: 700;
+    }
+    .lede {
+      margin: 0 0 1.5rem; color: var(--muted); font-size: clamp(1.02rem, 2vw, 1.15rem);
+      max-width: 36rem;
+    }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem; }
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
+      color: var(--muted); font-size: 0.9rem; font-weight: 600;
+    }
+    .trust-row span::before { content: "✓ "; color: var(--ok); font-weight: 800; }
+
+    .panel {
+      background: #fff; border: 1px solid var(--line); border-radius: 1.35rem;
+      padding: 1.35rem; box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
+    }
+    .panel h2 { margin: 0 0 0.35rem; font-size: 1.2rem; }
+    .panel p { margin: 0 0 1rem; color: var(--muted); font-size: 0.92rem; }
+    label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem; }
+    input {
+      width: 100%; min-height: 2.75rem; border-radius: 0.75rem;
+      border: 1px solid rgba(15,23,42,0.16); padding: 0 0.9rem; margin-bottom: 0.85rem;
+      font: inherit;
+    }
+    input:focus { outline: 2px solid rgba(14,165,233,0.35); border-color: var(--brand); }
+    .fine { font-size: 0.78rem; color: #64748b; margin: 0.75rem 0 0; }
+    .msg { margin-top: 0.75rem; font-size: 0.9rem; font-weight: 600; min-height: 1.2em; }
+    .msg.ok { color: var(--ok); }
+    .msg.err { color: #b91c1c; }
+
+    section.block { padding: clamp(2.5rem, 6vw, 4rem) 0; }
+    .section-title {
+      font-family: Fraunces, Georgia, serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      margin: 0 0 0.6rem; letter-spacing: -0.02em;
+    }
+    .section-sub { margin: 0 0 1.75rem; color: var(--muted); max-width: 40rem; }
+
+    .grid-3 {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 800px) { .grid-3 { grid-template-columns: 1fr; } }
+    .card {
+      background: #fff; border: 1px solid var(--line); border-radius: 1.15rem;
+      padding: 1.25rem 1.2rem; box-shadow: 0 10px 30px rgba(15,23,42,0.04);
+    }
+    .step-num {
+      width: 2rem; height: 2rem; border-radius: 0.65rem; display: grid; place-items: center;
+      background: var(--brand-soft); color: var(--brand-deep); font-weight: 800; margin-bottom: 0.75rem;
+    }
+    .card h3 { margin: 0 0 0.4rem; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+    .split {
+      display: grid; gap: 1.5rem; grid-template-columns: 1fr 1fr; align-items: start;
+    }
+    @media (max-width: 800px) { .split { grid-template-columns: 1fr; } }
+    .list { margin: 0; padding: 0; list-style: none; }
+    .list li {
+      padding: 0.75rem 0; border-bottom: 1px solid var(--line);
+      display: grid; grid-template-columns: 1.4rem 1fr; gap: 0.6rem;
+      font-weight: 600; font-size: 0.98rem;
+    }
+    .list li:last-child { border-bottom: 0; }
+    .list li::before { content: "→"; color: var(--brand-deep); font-weight: 800; }
+
+    .plans {
+      display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 900px) { .plans { grid-template-columns: 1fr; } }
+    .plan {
+      background: #fff; border: 1px solid var(--line); border-radius: 1.25rem; padding: 1.35rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .plan.featured {
+      border-color: rgba(2, 132, 199, 0.45);
+      box-shadow: 0 18px 40px rgba(2, 132, 199, 0.15);
+      background: linear-gradient(180deg, #f0f9ff, #fff 40%);
+    }
+    .plan h3 { margin: 0; font-size: 1.15rem; }
+    .price { font-size: 1.85rem; font-weight: 800; letter-spacing: -0.03em; }
+    .price span { font-size: 0.9rem; font-weight: 600; color: var(--muted); }
+    .plan ul { margin: 0; padding-left: 1.1rem; color: var(--muted); flex: 1; }
+    .plan .btn { width: 100%; margin-top: 0.5rem; }
+
+    details.faq {
+      background: #fff; border: 1px solid var(--line); border-radius: 0.9rem;
+      padding: 0.9rem 1rem; margin-bottom: 0.6rem;
+    }
+    details.faq summary { cursor: pointer; font-weight: 700; }
+    details.faq p { color: var(--muted); margin: 0.65rem 0 0; }
+
+    footer {
+      border-top: 1px solid var(--line); padding: 1.5rem 0 2.5rem;
+      color: #64748b; font-size: 0.88rem;
+    }
+    footer a { color: var(--brand-deep); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <div class="nav">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">🐬</span>
+        Delfín Check-in
+      </a>
+      <div class="nav-actions">
+        <a class="btn btn-ghost" href="/planes/">Planes</a>
+        <a class="btn btn-primary" href="#empezar">Probar gratis</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">RD 933/2021 · SES Hospedajes · MIR</p>
+        <h1 id="hero-title">El parte de viajeros, listo para el Ministerio — sin pelearte con el portal</h1>
+        <p class="lede">
+          Para alquiler vacacional en España: el huésped rellena el registro, tú revisas el estado
+          (OK / Error / Pendiente) y cumples el envío al MIR. Empieza con <strong>1 propiedad gratis</strong>, solo email, sin tarjeta.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#empezar">Empezar gratis en 2 minutos</a>
+          <a class="btn" href="/planes/">Ver planes Polar</a>
+        </div>
+        <div class="trust-row">
+          <span>Enfoque 100 % parte de viajeros</span>
+          <span>Estados legibles en el panel</span>
+          <span>Baja y privacidad respetadas</span>
+        </div>
+      </div>
+
+      <aside class="panel" id="empezar" aria-label="Registro gratis">
+        <h2>Prueba gratis</h2>
+        <p>Te enviamos el enlace al panel en admin.delfincheckin.com. Revisa spam si no lo ves.</p>
+        <form id="landingFreeSignupForm" data-signup-locale="es">
+          <label for="landingFreeSignupEmail">Email *</label>
+          <input id="landingFreeSignupEmail" type="email" required autocomplete="email" placeholder="tu@alojamiento.es" />
+          <label for="landingFreeSignupName">Nombre (opcional)</label>
+          <input id="landingFreeSignupName" type="text" autocomplete="name" placeholder="Tu nombre" />
+          <button type="submit" class="btn btn-primary" id="landingFreeSignupSubmit" style="width:100%">
+            <span id="landingFreeSignupSubmitText">Crear cuenta gratis</span>
+            <span id="landingFreeSignupLoading" style="display:none">Enviando…</span>
+          </button>
+          <div id="landingFreeSignupMessage" class="msg" role="status"></div>
+          <p class="fine">Al continuar aceptas el uso del email para acceso y onboarding. Sin tarjeta en el plan básico.</p>
+        </form>
+      </aside>
+    </section>
+
+    <section class="wrap block" aria-labelledby="problema-title">
+      <h2 class="section-title" id="problema-title">El mercado ya no perdona el Excel y el portal a mano</h2>
+      <p class="section-sub">
+        Como el resto de soluciones serias del sector (registro digital + SES Hospedajes), el estándar es:
+        recoger bien los datos, firmar el flujo y comunicar a tiempo. Delfín Check-in está hecho para eso —
+        con panel claro para el propietario, no para un técnico.
+      </p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="step-num">1</div>
+          <h3>Obligación real</h3>
+          <p>RD 933/2021: comunicar datos de huéspedes / reservas a la plataforma del Ministerio (SES Hospedajes).</p>
+        </article>
+        <article class="card">
+          <div class="step-num">2</div>
+          <h3>Riesgo operativo</h3>
+          <p>Altas rotaciones Airbnb/Booking: si fallas un parte, el error llega tarde y caro.</p>
+        </article>
+        <article class="card">
+          <div class="step-num">3</div>
+          <h3>Lo que quieres ver</h3>
+          <p>En el admin: <strong>OK</strong>, <strong>Error (qué hacer)</strong> o <strong>Pendiente</strong> — y CTA para reenviar el formulario al huésped.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap block" aria-labelledby="como-title" style="padding-top:0">
+      <h2 class="section-title" id="como-title">Cómo funciona (3 pasos)</h2>
+      <p class="section-sub">Flujo pensado como las herramientas líderes del mercado español de partes, con la marca y precios de Delfín.</p>
+      <div class="grid-3">
+        <article class="card">
+          <div class="step-num">01</div>
+          <h3>Envías el enlace</h3>
+          <p>El huésped completa el registro online (datos del parte) desde el móvil.</p>
+        </article>
+        <article class="card">
+          <div class="step-num">02</div>
+          <h3>Revisas en el panel</h3>
+          <p>En admin.delfincheckin.com ves el estado MIR legible y actúas si falta algo.</p>
+        </article>
+        <article class="card">
+          <div class="step-num">03</div>
+          <h3>Cumples el envío</h3>
+          <p>Preparas y gestionas la comunicación al MIR según tu plan — sin improvisar con plantillas sueltas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap block" aria-labelledby="diff-title" style="padding-top:0">
+      <div class="split">
+        <div>
+          <h2 class="section-title" id="diff-title">Hecho para vender confianza</h2>
+          <p class="section-sub" style="margin-bottom:1rem">
+            Nos medimos con el listón del sector (check-in digital + SES), no con landings genéricas.
+            Mismo problema, nuestra ejecución: prueba gratis clara, planes Polar transparentes, panel profesional.
+          </p>
+          <ul class="list">
+            <li>Copy centrado en parte de viajeros (no “otro PMS más”).</li>
+            <li>CTA de prueba gratis + upgrade Polar sin fricción.</li>
+            <li>Onboarding por email y estados MIR que se entienden.</li>
+            <li>Opt-out y buenas prácticas si te contactamos por email público.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h2 style="font-size:1.1rem;margin:0 0 0.75rem">Comparativa rápida</h2>
+          <p style="margin:0 0 0.75rem;color:var(--muted);font-size:0.92rem">
+            Frente a hacerlo solo en el portal SES o con hojas sueltas:
+          </p>
+          <ul class="list">
+            <li>Huésped rellena fuera de tu WhatsApp caótico.</li>
+            <li>Tú controlas OK / Error / Pendiente.</li>
+            <li>Escalas a más propiedades con planes Check-in / Standard / Pro.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap block" aria-labelledby="planes-title" style="padding-top:0">
+      <h2 class="section-title" id="planes-title">Empieza gratis. Escala con Polar cuando toque</h2>
+      <p class="section-sub">Precios claros. Pago seguro vía Polar desde la página de planes.</p>
+      <div class="plans">
+        <article class="plan">
+          <h3>Básico</h3>
+          <div class="price">0 € <span>/ mes</span></div>
+          <ul>
+            <li>1 propiedad para probar</li>
+            <li>Registro de viajeros</li>
+            <li>Panel web admin</li>
+          </ul>
+          <a class="btn btn-primary" href="#empezar">Empezar gratis</a>
+        </article>
+        <article class="plan featured">
+          <h3>Check-in</h3>
+          <div class="price">desde 2 € <span>/ mes</span></div>
+          <ul>
+            <li>Enfoque parte / check-in digital</li>
+            <li>Más propiedades según plan</li>
+            <li>Checkout Polar</li>
+          </ul>
+          <a class="btn btn-primary" href="/planes/">Contratar en Polar</a>
+        </article>
+        <article class="plan">
+          <h3>Standard / Pro</h3>
+          <div class="price">9,99–29,99 € <span>/ mes</span></div>
+          <ul>
+            <li>Más capacidad y extras</li>
+            <li>Pro: reputación / microsite</li>
+            <li>Ideal gestores</li>
+          </ul>
+          <a class="btn" href="/planes/">Ver detalle</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="wrap block" aria-labelledby="faq-title" style="padding-top:0">
+      <h2 class="section-title" id="faq-title">Preguntas frecuentes</h2>
+      <details class="faq">
+        <summary>¿Sustituís al Ministerio?</summary>
+        <p>No. Facilitamos el registro y la gestión del parte hacia el cumplimiento con SES Hospedajes / MIR. El titular del alojamiento sigue siendo el obligado.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Necesito tarjeta para probar?</summary>
+        <p>No. El plan básico de 1 propiedad se activa con tu email.</p>
+      </details>
+      <details class="faq">
+        <summary>¿Cómo contrato un plan de pago?</summary>
+        <p>Desde <a href="/planes/">delfincheckin.com/planes</a> con redirección Polar (misma pasarela que ya usamos en producción).</p>
+      </details>
+      <details class="faq">
+        <summary>¿Por qué me habéis escrito por email?</summary>
+        <p>Solo contactamos emails publicados en la web del negocio (contacto / aviso legal), con baja en un clic. Nunca scrapemos OTAs ni redes sociales.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>
+      © <span id="y"></span> Delfín Check-in ·
+      <a href="/">Inicio</a> ·
+      <a href="/planes/">Planes</a> ·
+      <a href="/aviso-legal.html">Aviso legal</a> ·
+      <a href="/politica-privacidad.html">Privacidad</a>
+    </p>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/landing-free-signup.js" defer></script>
+</body>
+</html>
