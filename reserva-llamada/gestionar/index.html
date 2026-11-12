@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#0284c7" />
+    <meta name="robots" content="noindex" />
+    <title>Gestionar llamada · Delfín Check-in</title>
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      :root { --sky:#0284c7; --ink:#0f172a; --muted:#475569; --line:#e2e8f0; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; min-height: 100vh; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: var(--ink);
+        background: radial-gradient(900px 500px at 10% 0%, #e0f2fe 0%, transparent 55%), #f8fafc;
+      }
+      .wrap { max-width: 640px; margin: 0 auto; padding: 40px 18px 64px; }
+      .brand { font-size: 18px; font-weight: 800; color: var(--sky); margin: 0 0 22px; }
+      .card { background:#fff; border:1px solid #e0f2fe; border-radius:18px; padding:26px 22px; box-shadow:0 18px 40px rgba(2,132,199,.08); }
+      h1 { margin: 8px 0 12px; font-size: 24px; line-height: 1.25; }
+      .eyebrow { margin:0; font-size:13px; font-weight:700; color:var(--sky); }
+      .muted { color: var(--muted); font-size: 14px; line-height: 1.55; }
+      .btn, .ghost {
+        display:inline-flex; justify-content:center; align-items:center; width:100%;
+        border-radius:12px; padding:14px 16px; font-weight:750; font-size:15px;
+        text-decoration:none; cursor:pointer; margin-top:10px; border:0;
+      }
+      .btn { background:var(--sky); color:#fff; }
+      .ghost { background:#fff; color:#0f172a; border:1px solid var(--line); }
+      .sky-ghost { color:#0369a1; border-color:#bae6fd; }
+      .err { margin-top:14px; padding:10px 12px; border-radius:12px; background:#fff1f2; border:1px solid #fecdd3; color:#be123c; font-size:14px; }
+      .home { display:inline-block; margin-top:18px; color:var(--sky); font-size:14px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="brand">Delfín Check-in</p>
+      <div class="card" id="app"><p class="muted">Cargando reserva…</p></div>
+      <a class="home" href="/reserva-llamada/">← Volver al calendario</a>
+    </div>
+    <script>
+(function () {
+  var API = 'https://admin.delfincheckin.com/api/public/sales-calls/manage';
+  var token = new URLSearchParams(location.search).get('token') || '';
+  var app = document.getElementById('app');
+  var booking = null;
+  var pending = false;
+  var error = '';
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function render() {
+    if (!token) {
+      app.innerHTML = '<h1>Falta el enlace de gestión</h1><p class="muted">Abre el enlace que te enviamos por email.</p>';
+      return;
+    }
+    if (error && !booking) {
+      app.innerHTML = '<h1>No encontramos la reserva</h1><p class="muted">' + esc(error) + '</p>';
+      return;
+    }
+    if (!booking) {
+      app.innerHTML = '<p class="muted">Cargando reserva…</p>';
+      return;
+    }
+    var cancelled = booking.status !== 'confirmed';
+    var meet = !cancelled && booking.meetingUrl && booking.meetingUrl.indexOf('Te enviaremos') !== 0
+      ? '<a class="btn" href="' + esc(booking.meetingUrl) + '" target="_blank" rel="noopener">Abrir videollamada</a>'
+      : '';
+    var actions = cancelled
+      ? '<p class="muted">Hueco liberado. Si quieres, elige otra hora:</p><a class="btn" href="' + esc(booking.rescheduleUrl) + '">Reservar otra hora</a>'
+      : '<p class="muted">Si no puedes venir, cancela o cambia la hora. Así liberamos el hueco (invertimos tiempo en cada llamada).</p>' +
+        '<button class="ghost sky-ghost" id="reschedule" ' + (pending ? 'disabled' : '') + '>' + (pending ? 'Un momento…' : 'Cambiar de hora') + '</button>' +
+        '<button class="ghost" id="cancel" ' + (pending ? 'disabled' : '') + '>' + (pending ? 'Cancelando…' : 'Cancelar llamada') + '</button>';
+    app.innerHTML =
+      '<p class="eyebrow">' + (cancelled ? 'Reserva cancelada' : 'Tu llamada') + '</p>' +
+      '<h1>' + esc(booking.dateLabel) + ' · ' + esc(booking.timeLabel) + '</h1>' +
+      '<p class="muted">15 minutos · hora de Madrid · puntualidad estricta.</p>' +
+      meet + actions +
+      (error ? '<p class="err">' + esc(error) + '</p>' : '');
+
+    var c = document.getElementById('cancel');
+    var r = document.getElementById('reschedule');
+    if (c) c.addEventListener('click', function () { cancel(false); });
+    if (r) r.addEventListener('click', function () { cancel(true); });
+  }
+
+  function cancel(thenReschedule) {
+    if (pending) return;
+    pending = true; error = ''; render();
+    fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ token: token, action: 'cancel' })
+    })
+      .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, j: j }; }); })
+      .then(function (res) {
+        pending = false;
+        if (!res.ok || !res.j.success) {
+          error = (res.j && res.j.error) || 'No se pudo cancelar';
+          render();
+          return;
+        }
+        booking.status = 'cancelled';
+        if (res.j.booking && res.j.booking.rescheduleUrl) booking.rescheduleUrl = res.j.booking.rescheduleUrl;
+        if (thenReschedule && booking.rescheduleUrl) {
+          location.href = booking.rescheduleUrl;
+          return;
+        }
+        render();
+      })
+      .catch(function () {
+        pending = false;
+        error = 'Error de red al cancelar.';
+        render();
+      });
+  }
+
+  if (!token) { render(); return; }
+  fetch(API + '?token=' + encodeURIComponent(token), { cache: 'no-store', headers: { Accept: 'application/json' } })
+    .then(function (res) { return res.json().then(function (j) { return { ok: res.ok, j: j }; }); })
+    .then(function (res) {
+      if (!res.ok || !res.j.success) throw new Error((res.j && res.j.error) || 'No encontrada');
+      booking = res.j.booking;
+      render();
+    })
+    .catch(function (e) {
+      error = e.message || 'Error';
+      render();
+    });
+})();
+    </script>
+  </body>
+</html>

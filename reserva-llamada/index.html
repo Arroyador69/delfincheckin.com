@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="theme-color" content="#0284c7" />
+    <title>Reservar llamada · Delfín Check-in</title>
+    <meta
+      name="description"
+      content="Reserva una llamada de 15 minutos con el equipo de Delfín Check-in. Lunes a viernes, hora de Madrid."
+    />
+    <link rel="icon" href="/favicon.ico" />
+    <style>
+      :root {
+        --sky: #0284c7;
+        --sky-dark: #0369a1;
+        --ink: #0f172a;
+        --muted: #475569;
+        --line: #e2e8f0;
+        --bg: #f8fafc;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(900px 500px at 10% 0%, #e0f2fe 0%, transparent 55%),
+          radial-gradient(700px 400px at 100% 10%, #f0f9ff 0%, transparent 50%),
+          linear-gradient(180deg, #f0f9ff 0%, #fff 45%, #f8fafc 100%);
+      }
+      .wrap { max-width: 640px; margin: 0 auto; padding: 40px 18px 64px; }
+      .brand { font-size: 18px; font-weight: 800; color: var(--sky); margin: 0 0 22px; }
+      .card {
+        background: #fff;
+        border: 1px solid #e0f2fe;
+        border-radius: 18px;
+        padding: 26px 22px;
+        box-shadow: 0 18px 40px rgba(2, 132, 199, 0.08);
+      }
+      h1 { margin: 0 0 10px; font-size: 28px; line-height: 1.2; }
+      .lead { margin: 0 0 18px; color: var(--muted); line-height: 1.55; font-size: 15px; }
+      .eyebrow { margin: 0 0 8px; font-size: 13px; font-weight: 700; color: var(--sky); }
+      .label { display: block; font-size: 13px; font-weight: 700; margin: 0 0 8px; }
+      .days, .slots { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+      .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      @media (min-width: 520px) { .slots { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+      button.chip, button.slot {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        padding: 10px 12px;
+        font-size: 13px;
+        font-weight: 650;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      button.chip.active, button.slot.active {
+        background: var(--sky);
+        border-color: var(--sky);
+        color: #fff;
+      }
+      button.chip:hover, button.slot:hover { border-color: #7dd3fc; }
+      .field { margin-bottom: 14px; }
+      input, textarea {
+        width: 100%;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 16px;
+        font-family: inherit;
+      }
+      textarea { min-height: 88px; resize: vertical; }
+      .cta {
+        width: 100%;
+        border: 0;
+        border-radius: 12px;
+        background: var(--sky);
+        color: #fff;
+        font-weight: 750;
+        font-size: 16px;
+        padding: 14px 16px;
+        cursor: pointer;
+      }
+      .cta:disabled { opacity: 0.5; cursor: not-allowed; }
+      .cta:hover:not(:disabled) { background: var(--sky-dark); }
+      .note { margin: 12px 0 0; font-size: 12px; color: #64748b; line-height: 1.5; }
+      .err {
+        margin-top: 14px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: #fff1f2;
+        border: 1px solid #fecdd3;
+        color: #be123c;
+        font-size: 14px;
+      }
+      .ok-title { font-size: 24px; margin: 8px 0 12px; }
+      .muted { color: var(--muted); font-size: 14px; line-height: 1.55; }
+      a.btn {
+        display: inline-flex; justify-content: center; align-items: center;
+        width: 100%; margin-top: 14px; text-decoration: none;
+        background: var(--sky); color: #fff; font-weight: 750;
+        border-radius: 12px; padding: 14px 16px;
+      }
+      .home { display: inline-block; margin-top: 18px; color: var(--sky); font-size: 14px; }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <p class="brand">Delfín Check-in</p>
+      <div class="card" id="app">
+        <p class="muted">Cargando huecos…</p>
+      </div>
+      <a class="home" href="/">← Volver a delfincheckin.com</a>
+    </div>
+    <script>
+(function () {
+  var API = 'https://admin.delfincheckin.com/api/public/sales-calls';
+  var params = new URLSearchParams(location.search);
+  var initialEmail = (params.get('email') || '').trim().toLowerCase();
+  var source = (params.get('src') || 'web_landing').trim() || 'web_landing';
+  var app = document.getElementById('app');
+  var state = {
+    days: [],
+    windows: '',
+    note: '',
+    selectedDay: '',
+    selectedSlot: null,
+    name: '',
+    email: initialEmail,
+    phone: '',
+    comments: '',
+    error: '',
+    pending: false,
+    done: null
+  };
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function render() {
+    if (state.done) {
+      var d = state.done;
+      var meet = d.meetingUrl && d.meetingUrl.indexOf('Te enviaremos') !== 0
+        ? '<a class="btn" href="' + esc(d.meetingUrl) + '" target="_blank" rel="noopener">Abrir videollamada</a>'
+        : '';
+      app.innerHTML =
+        '<p class="eyebrow">Reserva confirmada</p>' +
+        '<h1 class="ok-title">' + esc(d.dateLabel) + ' · ' + esc(d.timeLabel) + '</h1>' +
+        '<p class="muted">Llamada de <strong>15 minutos</strong> (Madrid). Es puntual: empezamos a la hora en punto.</p>' +
+        '<p class="muted">Te hemos enviado un <strong>email de confirmación</strong> con el enlace Zoom y cómo cambiar de hora o cancelar. Una hora antes recibirás un recordatorio.</p>' +
+        meet;
+      return;
+    }
+
+    var daysHtml = state.days.map(function (d) {
+      return '<button type="button" class="chip' + (state.selectedDay === d.dateKey ? ' active' : '') + '" data-day="' + esc(d.dateKey) + '">' + esc(d.dateLabel) + '</button>';
+    }).join('');
+
+    var day = state.days.find(function (d) { return d.dateKey === state.selectedDay; });
+    var slots = (day && day.slots) || [];
+    var slotsHtml = slots.length
+      ? slots.map(function (s) {
+          return '<button type="button" class="slot' + (state.selectedSlot && state.selectedSlot.startAt === s.startAt ? ' active' : '') + '" data-start="' + esc(s.startAt) + '">' + esc(s.timeLabel) + '</button>';
+        }).join('')
+      : '<p class="muted">Sin huecos este día.</p>';
+
+    app.innerHTML =
+      '<p class="eyebrow">Equipo comercial</p>' +
+      '<h1>Reserva una llamada de 15 min</h1>' +
+      '<p class="lead">Te enseñamos Delfín Check-in en una videollamada corta. Horario: <strong>lunes a viernes</strong>, ' +
+      esc(state.windows || '09:00–14:00 y 16:00–19:00') +
+      ' (Madrid). Entre citas dejamos 30 min de margen.</p>' +
+      (state.note ? '<p class="note" style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:10px 12px;color:#92400e;margin-bottom:16px;">' + esc(state.note) + '</p>' : '') +
+      (state.days.length === 0
+        ? '<p class="muted">Ahora mismo no hay huecos libres. Escríbenos a <a href="mailto:soporte@delfincheckin.com">soporte@delfincheckin.com</a>.</p>'
+        : '<div><span class="label">Día</span><div class="days">' + daysHtml + '</div></div>' +
+          '<div><span class="label">Hora (15 min · puntual)</span><div class="slots">' + slotsHtml + '</div></div>' +
+          '<div class="field"><label class="label" for="name">Nombre</label><input id="name" value="' + esc(state.name) + '" autocomplete="name" /></div>' +
+          '<div class="field"><label class="label" for="email">Email</label><input id="email" type="email" value="' + esc(state.email) + '" autocomplete="email" /></div>' +
+          '<div class="field"><label class="label" for="phone">Teléfono (opcional)</label><input id="phone" value="' + esc(state.phone) + '" autocomplete="tel" /></div>' +
+          '<div class="field"><label class="label" for="comments">Comentarios (opcional)</label><textarea id="comments" placeholder="Nº de viviendas, Airbnb/Booking, dudas SES…">' + esc(state.comments) + '</textarea></div>' +
+          '<button class="cta" id="submit" ' + (state.pending || !state.selectedSlot ? 'disabled' : '') + '>' +
+          (state.pending ? 'Reservando…' : 'Confirmar llamada de 15 min') +
+          '</button>' +
+          '<p class="note">Importante: la hora es fija. Si llegas tarde puede que hayamos pasado a la siguiente cita.</p>') +
+      (state.error ? '<p class="err">' + esc(state.error) + '</p>' : '');
+
+    app.querySelectorAll('[data-day]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        state.selectedDay = btn.getAttribute('data-day');
+        state.selectedSlot = null;
+        render();
+      });
+    });
+    app.querySelectorAll('[data-start]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var start = btn.getAttribute('data-start');
+        var found = slots.find(function (s) { return s.startAt === start; });
+        state.selectedSlot = found || null;
+        render();
+      });
+    });
+    ['name', 'email', 'phone', 'comments'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.addEventListener('input', function () { state[id] = el.value; });
+    });
+    var submit = document.getElementById('submit');
+    if (submit) submit.addEventListener('click', book);
+  }
+
+  function book() {
+    if (!state.selectedSlot || state.pending) return;
+    state.pending = true;
+    state.error = '';
+    state.name = (document.getElementById('name') || {}).value || state.name;
+    state.email = (document.getElementById('email') || {}).value || state.email;
+    state.phone = (document.getElementById('phone') || {}).value || state.phone;
+    state.comments = (document.getElementById('comments') || {}).value || state.comments;
+    render();
+    fetch(API + '/book', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        startAt: state.selectedSlot.startAt,
+        name: state.name,
+        email: state.email,
+        phone: state.phone,
+        comments: state.comments,
+        source: source
+      })
+    })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        state.pending = false;
+        if (!res.ok || !res.j.success) {
+          state.error = (res.j && res.j.error) || 'No se pudo reservar';
+          render();
+          return;
+        }
+        state.done = res.j.booking;
+        render();
+      })
+      .catch(function () {
+        state.pending = false;
+        state.error = 'Error de red al reservar. Inténtalo de nuevo.';
+        render();
+      });
+  }
+
+  fetch(API + '/availability', { cache: 'no-store', headers: { Accept: 'application/json' } })
+    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+    .then(function (res) {
+      if (!res.ok || !res.j.success) throw new Error((res.j && res.j.error) || 'Error al cargar');
+      state.days = res.j.days || [];
+      state.windows = res.j.windows || '';
+      state.note = res.j.note || '';
+      if (state.days[0]) state.selectedDay = state.days[0].dateKey;
+      render();
+    })
+    .catch(function (e) {
+      app.innerHTML = '<p class="err">' + esc(e.message || 'Error al cargar el calendario') + '</p>';
+    });
+})();
+    </script>
+  </body>
+</html>
