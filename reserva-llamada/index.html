@@ -17,7 +17,6 @@
         --ink: #0f172a;
         --muted: #475569;
         --line: #e2e8f0;
-        --bg: #f8fafc;
       }
       * { box-sizing: border-box; }
       body {
@@ -27,7 +26,6 @@
         color: var(--ink);
         background:
           radial-gradient(900px 500px at 10% 0%, #e0f2fe 0%, transparent 55%),
-          radial-gradient(700px 400px at 100% 10%, #f0f9ff 0%, transparent 50%),
           linear-gradient(180deg, #f0f9ff 0%, #fff 45%, #f8fafc 100%);
       }
       .wrap { max-width: 640px; margin: 0 auto; padding: 40px 18px 64px; }
@@ -43,10 +41,10 @@
       .lead { margin: 0 0 18px; color: var(--muted); line-height: 1.55; font-size: 15px; }
       .eyebrow { margin: 0 0 8px; font-size: 13px; font-weight: 700; color: var(--sky); }
       .label { display: block; font-size: 13px; font-weight: 700; margin: 0 0 8px; }
-      .days, .slots { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
-      .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .req { color: #be123c; }
+      .slots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-bottom: 18px; }
       @media (min-width: 520px) { .slots { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-      button.chip, button.slot {
+      button.slot {
         border: 1px solid var(--line);
         background: #fff;
         border-radius: 12px;
@@ -56,12 +54,43 @@
         cursor: pointer;
         color: var(--ink);
       }
-      button.chip.active, button.slot.active {
-        background: var(--sky);
-        border-color: var(--sky);
-        color: #fff;
+      button.slot.active { background: var(--sky); border-color: var(--sky); color: #fff; }
+      button.slot:hover { border-color: #7dd3fc; }
+      .cal-nav {
+        display: flex; align-items: center; justify-content: space-between;
+        gap: 8px; margin-bottom: 10px;
       }
-      button.chip:hover, button.slot:hover { border-color: #7dd3fc; }
+      .cal-nav button {
+        border: 1px solid var(--line); background: #fff; border-radius: 10px;
+        padding: 8px 12px; font-weight: 700; cursor: pointer; color: var(--ink);
+      }
+      .cal-nav button:disabled { opacity: 0.35; cursor: not-allowed; }
+      .cal-title { font-size: 15px; font-weight: 800; text-transform: capitalize; }
+      .cal-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .cal-dow {
+        text-align: center; font-size: 11px; font-weight: 700; color: #64748b;
+        padding: 4px 0;
+      }
+      button.day {
+        border: 1px solid var(--line);
+        background: #fff;
+        border-radius: 12px;
+        min-height: 44px;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--ink);
+      }
+      button.day:disabled {
+        opacity: 0.28; cursor: not-allowed; background: #f8fafc; color: #94a3b8;
+      }
+      button.day.active { background: var(--sky); border-color: var(--sky); color: #fff; }
+      button.day.has-slots:not(.active):not(:disabled) { border-color: #7dd3fc; }
       .field { margin-bottom: 14px; }
       input, textarea {
         width: 100%;
@@ -71,29 +100,25 @@
         font-size: 16px;
         font-family: inherit;
       }
-      textarea { min-height: 88px; resize: vertical; }
+      input:invalid:not(:placeholder-shown), textarea:invalid:not(:placeholder-shown) {
+        border-color: #fda4af;
+      }
+      textarea { min-height: 96px; resize: vertical; }
+      .hint { margin: 6px 0 0; font-size: 12px; color: #64748b; line-height: 1.45; }
       .cta {
-        width: 100%;
-        border: 0;
-        border-radius: 12px;
-        background: var(--sky);
-        color: #fff;
-        font-weight: 750;
-        font-size: 16px;
-        padding: 14px 16px;
-        cursor: pointer;
+        width: 100%; border: 0; border-radius: 12px; background: var(--sky);
+        color: #fff; font-weight: 750; font-size: 16px; padding: 14px 16px; cursor: pointer;
       }
       .cta:disabled { opacity: 0.5; cursor: not-allowed; }
       .cta:hover:not(:disabled) { background: var(--sky-dark); }
       .note { margin: 12px 0 0; font-size: 12px; color: #64748b; line-height: 1.5; }
+      .banner {
+        background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+        padding: 10px 12px; color: #92400e; margin-bottom: 16px; font-size: 13px; line-height: 1.45;
+      }
       .err {
-        margin-top: 14px;
-        padding: 10px 12px;
-        border-radius: 12px;
-        background: #fff1f2;
-        border: 1px solid #fecdd3;
-        color: #be123c;
-        font-size: 14px;
+        margin-top: 14px; padding: 10px 12px; border-radius: 12px;
+        background: #fff1f2; border: 1px solid #fecdd3; color: #be123c; font-size: 14px;
       }
       .ok-title { font-size: 24px; margin: 8px 0 12px; }
       .muted { color: var(--muted); font-size: 14px; line-height: 1.55; }
@@ -110,7 +135,7 @@
     <div class="wrap">
       <p class="brand">Delfín Check-in</p>
       <div class="card" id="app">
-        <p class="muted">Cargando huecos…</p>
+        <p class="muted">Cargando calendario…</p>
       </div>
       <a class="home" href="/">← Volver a delfincheckin.com</a>
     </div>
@@ -121,10 +146,15 @@
   var initialEmail = (params.get('email') || '').trim().toLowerCase();
   var source = (params.get('src') || 'web_landing').trim() || 'web_landing';
   var app = document.getElementById('app');
+  var MONTHS = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
   var state = {
-    days: [],
+    byKey: {},
     windows: '',
     note: '',
+    viewYear: 0,
+    viewMonth: 0, // 0-11
+    minKey: '',
+    maxKey: '',
     selectedDay: '',
     selectedSlot: null,
     name: '',
@@ -144,6 +174,66 @@
       .replace(/"/g, '&quot;');
   }
 
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function keyFromYMD(y, m, d) { return y + '-' + pad(m + 1) + '-' + pad(d); }
+  function parseKey(k) {
+    var p = k.split('-').map(Number);
+    return { y: p[0], m: p[1] - 1, d: p[2] };
+  }
+  function weekdayMon0(y, m, d) {
+    // 0=Mon … 4=Fri … 6=Sun
+    var wd = new Date(Date.UTC(y, m, d, 12, 0, 0)).getUTCDay();
+    return (wd + 6) % 7;
+  }
+
+  function canGoPrev() {
+    if (!state.minKey) return false;
+    var min = parseKey(state.minKey);
+    return state.viewYear > min.y || (state.viewYear === min.y && state.viewMonth > min.m);
+  }
+  function canGoNext() {
+    if (!state.maxKey) return false;
+    var max = parseKey(state.maxKey);
+    return state.viewYear < max.y || (state.viewYear === max.y && state.viewMonth < max.m);
+  }
+
+  function renderCalendar() {
+    var y = state.viewYear;
+    var m = state.viewMonth;
+    var daysInMonth = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+    var html = '<div class="cal-nav">' +
+      '<button type="button" id="prevMonth" ' + (canGoPrev() ? '' : 'disabled') + '>←</button>' +
+      '<div class="cal-title">' + MONTHS[m] + ' ' + y + '</div>' +
+      '<button type="button" id="nextMonth" ' + (canGoNext() ? '' : 'disabled') + '>→</button>' +
+      '</div>';
+    html += '<div class="cal-grid">' +
+      '<div class="cal-dow">L</div><div class="cal-dow">M</div><div class="cal-dow">X</div><div class="cal-dow">J</div><div class="cal-dow">V</div>';
+
+    // Find first Mon-Fri cell offset for day 1
+    var firstWd = weekdayMon0(y, m, 1);
+    // Skip weekend starts by advancing empty cells only for Mon-Fri grid:
+    // If month starts Sat(5)/Sun(6), first weekday cell is empty until Mon.
+    var lead = firstWd <= 4 ? firstWd : 0;
+    if (firstWd === 5 || firstWd === 6) lead = 0; // weekend start → first cell is next Mon which is still day>1
+    // Better: iterate all days, only emit Mon-Fri buttons; insert blanks for alignment
+    var emitted = false;
+    for (var day = 1; day <= daysInMonth; day++) {
+      var wd = weekdayMon0(y, m, day);
+      if (wd > 4) continue; // weekend
+      if (!emitted) {
+        for (var b = 0; b < wd; b++) html += '<div></div>';
+        emitted = true;
+      }
+      var key = keyFromYMD(y, m, day);
+      var info = state.byKey[key];
+      var has = !!(info && info.slots && info.slots.length);
+      var active = state.selectedDay === key;
+      html += '<button type="button" class="day' + (active ? ' active' : '') + (has ? ' has-slots' : '') + '" data-day="' + esc(key) + '" ' + (has ? '' : 'disabled') + '>' + day + '</button>';
+    }
+    html += '</div>';
+    return html;
+  }
+
   function render() {
     if (state.done) {
       var d = state.done;
@@ -154,22 +244,20 @@
         '<p class="eyebrow">Reserva confirmada</p>' +
         '<h1 class="ok-title">' + esc(d.dateLabel) + ' · ' + esc(d.timeLabel) + '</h1>' +
         '<p class="muted">Llamada de <strong>15 minutos</strong> (Madrid). Es puntual: empezamos a la hora en punto.</p>' +
-        '<p class="muted">Te hemos enviado un <strong>email de confirmación</strong> con el enlace Zoom y cómo cambiar de hora o cancelar. Una hora antes recibirás un recordatorio.</p>' +
+        '<p class="muted">Te hemos enviado un <strong>email de confirmación</strong> a <strong>' + esc(state.email) + '</strong> con Zoom y cómo cambiar/cancelar. Una hora antes recibirás un recordatorio.</p>' +
         meet;
       return;
     }
 
-    var daysHtml = state.days.map(function (d) {
-      return '<button type="button" class="chip' + (state.selectedDay === d.dateKey ? ' active' : '') + '" data-day="' + esc(d.dateKey) + '">' + esc(d.dateLabel) + '</button>';
-    }).join('');
-
-    var day = state.days.find(function (d) { return d.dateKey === state.selectedDay; });
+    var day = state.byKey[state.selectedDay];
     var slots = (day && day.slots) || [];
     var slotsHtml = slots.length
       ? slots.map(function (s) {
           return '<button type="button" class="slot' + (state.selectedSlot && state.selectedSlot.startAt === s.startAt ? ' active' : '') + '" data-start="' + esc(s.startAt) + '">' + esc(s.timeLabel) + '</button>';
         }).join('')
-      : '<p class="muted">Sin huecos este día.</p>';
+      : '<p class="muted">Elige un día con huecos libres (L–V).</p>';
+
+    var dayLabel = day ? day.dateLabel : '—';
 
     app.innerHTML =
       '<p class="eyebrow">Equipo comercial</p>' +
@@ -177,20 +265,39 @@
       '<p class="lead">Te enseñamos Delfín Check-in en una videollamada corta. Horario: <strong>lunes a viernes</strong>, ' +
       esc(state.windows || '09:00–14:00 y 16:00–19:00') +
       ' (Madrid). Entre citas dejamos 30 min de margen.</p>' +
-      (state.note ? '<p class="note" style="background:#fffbeb;border:1px solid #fde68a;border-radius:10px;padding:10px 12px;color:#92400e;margin-bottom:16px;">' + esc(state.note) + '</p>' : '') +
-      (state.days.length === 0
-        ? '<p class="muted">Ahora mismo no hay huecos libres. Escríbenos a <a href="mailto:soporte@delfincheckin.com">soporte@delfincheckin.com</a>.</p>'
-        : '<div><span class="label">Día</span><div class="days">' + daysHtml + '</div></div>' +
-          '<div><span class="label">Hora (15 min · puntual)</span><div class="slots">' + slotsHtml + '</div></div>' +
-          '<div class="field"><label class="label" for="name">Nombre</label><input id="name" value="' + esc(state.name) + '" autocomplete="name" /></div>' +
-          '<div class="field"><label class="label" for="email">Email</label><input id="email" type="email" value="' + esc(state.email) + '" autocomplete="email" /></div>' +
-          '<div class="field"><label class="label" for="phone">Teléfono (opcional)</label><input id="phone" value="' + esc(state.phone) + '" autocomplete="tel" /></div>' +
-          '<div class="field"><label class="label" for="comments">Comentarios (opcional)</label><textarea id="comments" placeholder="Nº de viviendas, Airbnb/Booking, dudas SES…">' + esc(state.comments) + '</textarea></div>' +
-          '<button class="cta" id="submit" ' + (state.pending || !state.selectedSlot ? 'disabled' : '') + '>' +
-          (state.pending ? 'Reservando…' : 'Confirmar llamada de 15 min') +
-          '</button>' +
-          '<p class="note">Importante: la hora es fija. Si llegas tarde puede que hayamos pasado a la siguiente cita.</p>') +
+      (state.note ? '<p class="banner">' + esc(state.note) + '</p>' : '') +
+      '<div><span class="label">Día (calendario L–V)</span>' + renderCalendar() + '</div>' +
+      '<div><span class="label">Hora · ' + esc(dayLabel) + ' (15 min · puntual)</span><div class="slots">' + slotsHtml + '</div></div>' +
+      '<div class="field"><label class="label" for="name">Nombre <span class="req">*</span></label>' +
+      '<input id="name" required placeholder="Tu nombre" value="' + esc(state.name) + '" autocomplete="name" /></div>' +
+      '<div class="field"><label class="label" for="email">Email <span class="req">*</span></label>' +
+      '<input id="email" type="email" required placeholder="tu@email.com" value="' + esc(state.email) + '" autocomplete="email" />' +
+      '<p class="hint">Obligatorio: aquí enviamos la confirmación y el recordatorio 1 h antes.</p></div>' +
+      '<div class="field"><label class="label" for="phone">Teléfono (opcional)</label>' +
+      '<input id="phone" value="' + esc(state.phone) + '" autocomplete="tel" /></div>' +
+      '<div class="field"><label class="label" for="comments">¿Qué te gustaría resolver en la llamada?</label>' +
+      '<textarea id="comments" placeholder="Ej.: nº de viviendas, Airbnb/Booking, dudas SES Hospedajes, si quieres ver el panel en directo…">' + esc(state.comments) + '</textarea>' +
+      '<p class="hint">Opcional, pero ayuda: lo leemos antes de la llamada (también llega a nuestro equipo).</p></div>' +
+      '<button class="cta" id="submit" ' + (state.pending || !state.selectedSlot ? 'disabled' : '') + '>' +
+      (state.pending ? 'Reservando…' : 'Confirmar llamada de 15 min') +
+      '</button>' +
+      '<p class="note">Importante: la hora es fija. Si llegas tarde puede que hayamos pasado a la siguiente cita.</p>' +
       (state.error ? '<p class="err">' + esc(state.error) + '</p>' : '');
+
+    var prev = document.getElementById('prevMonth');
+    var next = document.getElementById('nextMonth');
+    if (prev) prev.addEventListener('click', function () {
+      if (!canGoPrev()) return;
+      if (state.viewMonth === 0) { state.viewMonth = 11; state.viewYear -= 1; }
+      else state.viewMonth -= 1;
+      render();
+    });
+    if (next) next.addEventListener('click', function () {
+      if (!canGoNext()) return;
+      if (state.viewMonth === 11) { state.viewMonth = 0; state.viewYear += 1; }
+      else state.viewMonth += 1;
+      render();
+    });
 
     app.querySelectorAll('[data-day]').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -218,12 +325,24 @@
 
   function book() {
     if (!state.selectedSlot || state.pending) return;
+    state.name = ((document.getElementById('name') || {}).value || state.name).trim();
+    state.email = ((document.getElementById('email') || {}).value || state.email).trim().toLowerCase();
+    state.phone = ((document.getElementById('phone') || {}).value || state.phone).trim();
+    state.comments = ((document.getElementById('comments') || {}).value || state.comments).trim();
+
+    if (state.name.length < 2) {
+      state.error = 'El nombre es obligatorio.';
+      render();
+      return;
+    }
+    if (!state.email || state.email.indexOf('@') < 1) {
+      state.error = 'El email es obligatorio (para confirmación y recordatorio).';
+      render();
+      return;
+    }
+
     state.pending = true;
     state.error = '';
-    state.name = (document.getElementById('name') || {}).value || state.name;
-    state.email = (document.getElementById('email') || {}).value || state.email;
-    state.phone = (document.getElementById('phone') || {}).value || state.phone;
-    state.comments = (document.getElementById('comments') || {}).value || state.comments;
     render();
     fetch(API + '/book', {
       method: 'POST',
@@ -259,10 +378,23 @@
     .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
     .then(function (res) {
       if (!res.ok || !res.j.success) throw new Error((res.j && res.j.error) || 'Error al cargar');
-      state.days = res.j.days || [];
+      var list = res.j.days || [];
+      state.byKey = {};
+      list.forEach(function (d) { state.byKey[d.dateKey] = d; });
       state.windows = res.j.windows || '';
       state.note = res.j.note || '';
-      if (state.days[0]) state.selectedDay = state.days[0].dateKey;
+      if (list.length) {
+        state.minKey = list[0].dateKey;
+        state.maxKey = list[list.length - 1].dateKey;
+        state.selectedDay = list[0].dateKey;
+        var p = parseKey(list[0].dateKey);
+        state.viewYear = p.y;
+        state.viewMonth = p.m;
+      } else {
+        var now = new Date();
+        state.viewYear = now.getFullYear();
+        state.viewMonth = now.getMonth();
+      }
       render();
     })
     .catch(function (e) {
